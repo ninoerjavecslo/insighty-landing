@@ -1,0 +1,46 @@
+---
+import { blogCTA } from '../../data/blogCTAContent'
+---
+
+<aside
+  class="not-prose my-12 rounded-2xl overflow-hidden relative"
+  style="background: linear-gradient(135deg, #112445 0%, #4a6ec7 100%)"
+  aria-label="Try Insighty"
+>
+  <div
+    class="absolute inset-0 opacity-[0.04] pointer-events-none"
+    style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 32px 32px;"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative z-10 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-center p-8 md:p-10">
+    <div class="space-y-4">
+      <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white/60 border border-white/20 px-3 py-1 rounded-full">
+        Insighty
+      </span>
+      <h3 class="text-white leading-tight max-w-[420px] not-prose">{blogCTA.headline}</h3>
+      <p class="text-tagline-2 text-white/70 max-w-[400px]">{blogCTA.subtext}</p>
+      <div class="flex flex-wrap gap-3 pt-2">
+        <a href={blogCTA.primaryCTA.href} class="btn btn-md btn-white">
+          <span>{blogCTA.primaryCTA.label}</span>
+        </a>
+        <a
+          href={blogCTA.secondaryCTA.href}
+          class="inline-flex items-center px-5 py-2.5 rounded-full text-tagline-2 font-medium text-white border border-white/25 hover:border-white/50 transition-colors duration-200"
+        >
+          {blogCTA.secondaryCTA.label}
+        </a>
+      </div>
+    </div>
+
+    <div class="hidden md:block shrink-0 w-[240px] xl:w-[280px]">
+      <img
+        src="/images/ns-img-506.png"
+        alt="Insighty platform dashboard"
+        class="w-full rounded-xl shadow-2xl ring-1 ring-white/10 rotate-1"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </div>
+</aside>

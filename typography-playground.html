@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Insighty — Typography Hierarchy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ui-bg: #111;
+    --ui-surface: #1a1a1a;
+    --ui-border: #2a2a2a;
+    --ui-text: #e0e0e0;
+    --ui-muted: #888;
+    --ui-accent: #4a6ec7;
+  }
+
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--ui-bg);
+    color: var(--ui-text);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* ─── Controls panel ─── */
+  #controls {
+    width: 240px;
+    min-width: 240px;
+    background: var(--ui-surface);
+    border-right: 1px solid var(--ui-border);
+    padding: 20px 16px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .panel-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ui-muted);
+    margin-bottom: 10px;
+  }
+
+  .control-group { display: flex; flex-direction: column; gap: 12px; }
+
+  .control-label {
+    font-size: 12px;
+    color: var(--ui-muted);
+    margin-bottom: 4px;
+  }
+
+  .control-row { display: flex; flex-direction: column; gap: 4px; }
+
+  input[type=range] {
+    width: 100%;
+    accent-color: var(--ui-accent);
+    cursor: pointer;
+  }
+
+  .range-val {
+    font-size: 11px;
+    color: var(--ui-accent);
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
+
+  .toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--ui-text);
+  }
+
+  .toggle {
+    position: relative;
+    width: 36px;
+    height: 20px;
+  }
+  .toggle input { opacity: 0; width: 0; height: 0; }
+  .toggle-track {
+    position: absolute;
+    inset: 0;
+    background: #333;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .toggle input:checked + .toggle-track { background: var(--ui-accent); }
+  .toggle-track::after {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.2s;
+  }
+  .toggle input:checked + .toggle-track::after { transform: translateX(16px); }
+
+  .preset-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .preset-btn {
+    background: var(--ui-bg);
+    border: 1px solid var(--ui-border);
+    color: var(--ui-text);
+    font-size: 11px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .preset-btn:hover { border-color: var(--ui-accent); background: #1e2535; }
+  .preset-btn.active { border-color: var(--ui-accent); color: var(--ui-accent); background: #1e2535; }
+
+  /* ─── Right side ─── */
+  #right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ─── Preview ─── */
+  #preview-wrap {
+    flex: 1;
+    overflow-y: auto;
+    padding: 40px 48px;
+    transition: background 0.3s;
+  }
+
+  .type-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--preview-divider, rgba(31,31,31,0.08));
+  }
+  .type-row:last-child { border-bottom: none; }
+
+  .type-sample { flex: 1; min-width: 0; }
+
+  .type-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    padding-top: 4px;
+    flex-shrink: 0;
+  }
+
+  .meta-pill {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    background: rgba(74,110,199,0.12);
+    color: #4a6ec7;
+    border: 1px solid rgba(74,110,199,0.2);
+  }
+
+  .meta-pill.muted {
+    background: rgba(128,128,128,0.08);
+    color: var(--ui-muted, #888);
+    border-color: rgba(128,128,128,0.15);
+  }
+
+  .responsive-note {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 10px;
+    margin-top: 6px;
+    color: var(--preview-muted);
+    opacity: 0.5;
+  }
+
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0 4px;
+  }
+  .section-divider span {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--ui-accent);
+    opacity: 0.7;
+  }
+  .section-divider::before, .section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.12;
+  }
+
+  /* ─── Prompt bar ─── */
+  #prompt-bar {
+    border-top: 1px solid var(--ui-border);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--ui-surface);
+    flex-shrink: 0;
+  }
+
+  #prompt-text {
+    flex: 1;
+    font-size: 12px;
+    color: var(--ui-muted);
+    line-height: 1.5;
+  }
+
+  #copy-btn {
+    background: var(--ui-accent);
+    border: none;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+    flex-shrink: 0;
+  }
+  #copy-btn:hover { opacity: 0.85; }
+</style>
+</head>
+<body>
+
+<!-- Controls -->
+<div id="controls">
+  <div>
+    <div class="panel-title">Presets</div>
+    <div class="preset-grid">
+      <button class="preset-btn active" onclick="applyPreset('default')">Default</button>
+      <button class="preset-btn" onclick="applyPreset('tight')">Tight</button>
+      <button class="preset-btn" onclick="applyPreset('airy')">Airy</button>
+      <button class="preset-btn" onclick="applyPreset('display')">Display</button>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="panel-title">Scale</div>
+    <div class="control-row">
+      <div class="control-label">Base scale factor</div>
+      <input type="range" id="scale" min="80" max="130" value="100" step="1" oninput="updateAll()" />
+      <div class="range-val" id="scale-val">100%</div>
+    </div>
+    <div class="control-row">
+      <div class="control-label">Font weight — headings</div>
+      <input type="range" id="weight" min="300" max="700" value="500" step="100" oninput="updateAll()" />
+      <div class="range-val" id="weight-val">500</div>
+    </div>
+    <div class="control-row">
+      <div class="control-label">Letter spacing — headings</div>
+      <input type="range" id="tracking" min="-3" max="3" value="-0.5" step="0.25" oninput="updateAll()" />
+      <div class="range-val" id="tracking-val">-0.5px</div>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="panel-title">Display</div>
+    <div class="toggle-row">
+      <span>Dark mode</span>
+      <label class="toggle">
+        <input type="checkbox" id="dark-toggle" onchange="updateAll()" />
+        <span class="toggle-track"></span>
+      </label>
+    </div>
+    <div class="toggle-row">
+      <span>Show responsive notes</span>
+      <label class="toggle">
+        <input type="checkbox" id="responsive-toggle" checked onchange="updateAll()" />
+        <span class="toggle-track"></span>
+      </label>
+    </div>
+    <div class="toggle-row">
+      <span>Show meta pills</span>
+      <label class="toggle">
+        <input type="checkbox" id="meta-toggle" checked onchange="updateAll()" />
+        <span class="toggle-track"></span>
+      </label>
+    </div>
+  </div>
+</div>
+
+<!-- Right side -->
+<div id="right">
+  <div id="preview-wrap">
+
+    <div class="section-divider"><span>Headings</span></div>
+
+    <!-- H1 -->
+    <div class="type-row">
+      <div class="type-sample">
+        <div id="h1-sample" style="font-family:'Inter Tight',sans-serif;">AI-Powered Agency Intelligence Platform Built for Profitable Growth</div>
+        <div class="responsive-note" id="h1-resp">mobile 2rem → sm 2.5rem → md 3.25rem → xl 4.25rem</div>
+      </div>
+      <div class="type-meta" id="h1-meta">
+        <span class="meta-pill">4.25rem · 110%lh</span>
+        <span class="meta-pill muted">h1 · medium</span>
+      </div>
+    </div>
+
+    <!-- H2 -->
+    <div class="type-row">
+      <div class="type-sample">
+        <div id="h2-sample" style="font-family:'Inter Tight',sans-serif;">Six surfaces. One source of truth.</div>
+        <div class="responsive-note" id="h2-resp">mobile 1.5rem → sm 2rem → md 2.5rem → xl 3.25rem</div>
+      </div>
+      <div class="type-meta" id="h2-meta">
+        <span class="meta-pill">3.25rem · 120%lh</span>
+        <span class="meta-pill muted">h2 · semibold</span>
+      </div>
+    </div>
+
+    <!-- H3 -->
+    <div class="type-row">
+      <div class="type-sample">
+        <div id="h3-sample" style="font-family:'Inter Tight',sans-serif;">One client. The full picture.</div>
+        <div class="responsive-note" id="h3-resp">mobile 1.5rem → md 2rem → xl 2.5rem</div>
+      </div>
+      <div class="type-meta" id="h3-meta">
+        <span class="meta-pill">2.5rem · 120%lh</span>
+        <span class="meta-pill muted">h3 · semibold</span>
+      </div>
+    </div>
+
+    <!-- H4 -->
+    <div class="type-row">
+      <div class="type-sample">
+        <div id="h4-sample" style="font-family:'Inter Tight',sans-serif;">Revenue Planner</div>
+      </div>
+      <div class="type-meta" id="h4-meta">
+        <span class="meta-pill">2rem · 130%lh</span>
+        <span class="meta-pill muted">h4 · semibold</span>
+      </div>
+    </div>
+
+    <!-- H5 -->
+    <div class="type-row">
+      <div class="type-sample">
+        <div id="h5-sample" style="font-family:'Inter Tight',sans-serif;">Founding Members</div>
+      </div>
+      <div class="type-meta" id="h5-meta">
+        <span class="meta-pill">1.5rem · 140%lh</span>
+        <span class="meta-pill muted">h5 · semibold</span>
+      </div>
+    </div>
+
+    <!-- H6 -->
+    <div class="type-row">
+      <div class="type-sample">
+        <div id="h6-sample" style="font-family:'Inter Tight',sans-serif;">Lifetime pricing lock</div>
+      </div>
+      <div class="type-meta" id="h6-meta">
+        <span class="meta-pill">1.25rem · 140%lh</span>
+        <span class="meta-pill muted">h6 · medium</span>
+      </div>
+    </div>
+
+    <div class="section-divider"><span>Body &amp; Labels</span></div>
+
+    <!-- tagline-1 -->
+    <div class="type-row">
+      <div class="type-sample">
+        <div id="tl1-sample" style="font-family:'Inter Tight',sans-serif;">Insighty brings every client, project, contract, and revenue stream into one intelligent dashboard. Coming soon to help agencies scale profitably.</div>
+      </div>
+      <div class="type-meta" id="tl1-meta">
+        <span class="meta-pill">1rem · 150%lh</span>
+        <span class="meta-pill muted">tagline-1 · body</span>
+      </div>
+    </div>
+
+    <!-- tagline-2 -->
+    <div class="type-row">
+      <div class="type-sample">
+        <div id="tl2-sample" style="font-family:'Inter Tight',sans-serif;">Projects with total value, amount invoiced, and current status — all in one view.</div>
+      </div>
+      <div class="type-meta" id="tl2-meta">
+        <span class="meta-pill">0.875rem · 150%lh</span>
+        <span class="meta-pill muted">tagline-2 · small body / nav</span>
+      </div>
+    </div>
+
+    <!-- tagline-3 -->
+    <div class="type-row">
+      <div class="type-sample">
+        <div id="tl3-sample" style="font-family:'Inter Tight',sans-serif; text-transform:uppercase; letter-spacing:0.1em;">Early Access · 20 Founding Spots Left</div>
+      </div>
+      <div class="type-meta" id="tl3-meta">
+        <span class="meta-pill">0.75rem · 150%lh</span>
+        <span class="meta-pill muted">tagline-3 · labels / uppercase</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Prompt bar -->
+  <div id="prompt-bar">
+    <div id="prompt-text">Loading…</div>
+    <button id="copy-btn" onclick="copyPrompt()">Copy prompt</button>
+  </div>
+</div>
+
+<script>
+  const DEFAULTS = { scale: 100, weight: 500, tracking: -0.5, dark: false, responsive: true, meta: true };
+
+  const PRESETS = {
+    default: { scale: 100, weight: 500, tracking: -0.5, dark: false },
+    tight:   { scale: 92,  weight: 600, tracking: -1.0, dark: false },
+    airy:    { scale: 108, weight: 400, tracking: 0,    dark: false },
+    display: { scale: 120, weight: 700, tracking: -1.5, dark: true  },
+  };
+
+  const BASE = {
+    h1:  { size: 4.25, lh: 1.10 },
+    h2:  { size: 3.25, lh: 1.20 },
+    h3:  { size: 2.50, lh: 1.20 },
+    h4:  { size: 2.00, lh: 1.30 },
+    h5:  { size: 1.50, lh: 1.40 },
+    h6:  { size: 1.25, lh: 1.40 },
+    tl1: { size: 1.00, lh: 1.50 },
+    tl2: { size: 0.875, lh: 1.50 },
+    tl3: { size: 0.75, lh: 1.50 },
+  };
+
+  const RESPONSIVE = {
+    h1: 'mobile 2rem → sm 2.5rem → md 3.25rem → xl 4.25rem',
+    h2: 'mobile 1.5rem → sm 2rem → md 2.5rem → xl 3.25rem',
+    h3: 'mobile 1.5rem → md 2rem → xl 2.5rem',
+  };
+
+  let promptText = '';
+
+  function getState() {
+    return {
+      scale:      parseFloat(document.getElementById('scale').value),
+      weight:     parseInt(document.getElementById('weight').value),
+      tracking:   parseFloat(document.getElementById('tracking').value),
+      dark:       document.getElementById('dark-toggle').checked,
+      responsive: document.getElementById('responsive-toggle').checked,
+      meta:       document.getElementById('meta-toggle').checked,
+    };
+  }
+
+  function updateAll() {
+    const s = getState();
+
+    // Update slider display values
+    document.getElementById('scale-val').textContent = s.scale + '%';
+    document.getElementById('weight-val').textContent = s.weight;
+    document.getElementById('tracking-val').textContent = s.tracking + 'px';
+
+    // Dark / light
+    const wrap = document.getElementById('preview-wrap');
+    const previewBg  = s.dark ? '#070b10' : '#fcfcfd';
+    const previewTxt = s.dark ? '#fcfcfc' : '#1f1f1f';
+    const previewMuted = s.dark ? 'rgba(252,252,252,0.55)' : 'rgba(31,31,31,0.55)';
+    const dividerColor = s.dark ? 'rgba(252,252,252,0.08)' : 'rgba(31,31,31,0.08)';
+
+    wrap.style.background = previewBg;
+    wrap.style.setProperty('--preview-muted', previewMuted);
+
+    // Apply rows
+    document.querySelectorAll('.type-row').forEach(r => {
+      r.style.borderBottomColor = dividerColor;
+    });
+
+    const factor = s.scale / 100;
+
+    Object.keys(BASE).forEach(key => {
+      const el = document.getElementById(key + '-sample');
+      if (!el) return;
+      const b = BASE[key];
+      const sz = (b.size * factor).toFixed(3);
+      const isHeading = key.startsWith('h');
+      const w = isHeading ? s.weight : 400;
+      const tr = isHeading ? s.tracking + 'px' : (key === 'tl3' ? '0.1em' : 'normal');
+
+      el.style.fontSize = sz + 'rem';
+      el.style.lineHeight = b.lh;
+      el.style.fontWeight = w;
+      el.style.letterSpacing = tr;
+      el.style.color = isHeading ? previewTxt : (key === 'tl3' ? previewMuted : previewMuted);
+
+      // Update meta pill size text
+      const metaEl = document.getElementById(key + '-meta');
+      if (metaEl) {
+        metaEl.style.display = s.meta ? 'flex' : 'none';
+        const pill = metaEl.querySelector('.meta-pill');
+        if (pill) pill.textContent = sz + 'rem · ' + Math.round(b.lh * 100) + '%lh';
+      }
+    });
+
+    // Responsive notes
+    ['h1','h2','h3'].forEach(k => {
+      const el = document.getElementById(k + '-resp');
+      if (el) el.style.display = s.responsive ? 'block' : 'none';
+    });
+
+    // Highlight active preset
+    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+    for (const [name, p] of Object.entries(PRESETS)) {
+      if (p.scale === s.scale && p.weight === s.weight && p.tracking === s.tracking && p.dark === s.dark) {
+        document.querySelector(`[onclick="applyPreset('${name}')"]`)?.classList.add('active');
+      }
+    }
+
+    updatePrompt(s);
+  }
+
+  function updatePrompt(s) {
+    const parts = [];
+    if (s.scale !== DEFAULTS.scale) parts.push(`scale factor at ${s.scale}% (${s.scale > 100 ? 'larger' : 'smaller'} than default)`);
+    if (s.weight !== DEFAULTS.weight) parts.push(`heading weight ${s.weight}`);
+    if (s.tracking !== DEFAULTS.tracking) parts.push(`letter-spacing ${s.tracking}px on headings`);
+    if (s.dark) parts.push('dark background (#070b10)');
+
+    const base = `Insighty type scale: Inter Tight font family, 9-step system (heading-1 through heading-6 + tagline-1/2/3).`;
+    const mods = parts.length
+      ? ` Adjustments from default: ${parts.join(', ')}.`
+      : ' Using default scale settings.';
+    const hint = ` H1–H3 are responsive (scale up from mobile to xl breakpoint). Taglines use normal weight; headings use weight ${s.weight}.`;
+
+    promptText = base + mods + hint;
+    document.getElementById('prompt-text').textContent = promptText;
+  }
+
+  function applyPreset(name) {
+    const p = PRESETS[name];
+    document.getElementById('scale').value = p.scale;
+    document.getElementById('weight').value = p.weight;
+    document.getElementById('tracking').value = p.tracking;
+    document.getElementById('dark-toggle').checked = p.dark;
+    updateAll();
+  }
+
+  function copyPrompt() {
+    navigator.clipboard.writeText(promptText).then(() => {
+      const btn = document.getElementById('copy-btn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy prompt', 1500);
+    });
+  }
+
+  updateAll();
+</script>
+</body>
+</html>

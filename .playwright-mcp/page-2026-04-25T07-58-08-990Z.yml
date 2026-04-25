@@ -1,0 +1,416 @@
+- generic [active] [ref=e1]:
+  - banner:
+    - generic [ref=e2]:
+      - link "Home Insighty" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e5]: Home
+        - img "Insighty" [ref=e6]:
+          - generic [ref=e12]: insighty
+      - navigation [ref=e13]:
+        - list [ref=e14]:
+          - listitem [ref=e15]:
+            - link "Platform" [ref=e16] [cursor=pointer]:
+              - /url: "#platform"
+              - generic [ref=e17]: Platform
+          - listitem [ref=e18]:
+            - link "Product Tour" [ref=e19] [cursor=pointer]:
+              - /url: "#product-tour"
+              - generic [ref=e20]: Product Tour
+          - listitem [ref=e21]:
+            - link "Pixel AI" [ref=e22] [cursor=pointer]:
+              - /url: "#pixel-ai"
+              - generic [ref=e23]: Pixel AI
+          - listitem [ref=e24]:
+            - link "Integrations" [ref=e25] [cursor=pointer]:
+              - /url: "#integrations"
+              - generic [ref=e26]: Integrations
+          - listitem [ref=e27]:
+            - link "Impact" [ref=e28] [cursor=pointer]:
+              - /url: "#impact"
+              - generic [ref=e29]: Impact
+          - listitem [ref=e30]:
+            - link "FAQ" [ref=e31] [cursor=pointer]:
+              - /url: "#faq"
+              - generic [ref=e32]: FAQ
+      - link "Request a Demo" [ref=e34] [cursor=pointer]:
+        - /url: /signup
+        - generic [ref=e35]: Request a Demo
+    - button "Theme toggle button" [ref=e36] [cursor=pointer]:
+      - img [ref=e38]
+  - main [ref=e40]:
+    - generic [ref=e42]:
+      - navigation "Breadcrumb" [ref=e43]:
+        - link "Blog" [ref=e44] [cursor=pointer]:
+          - /url: /blog
+        - generic [ref=e45]: /
+        - generic [ref=e46]: Agency Ops
+      - heading "Best All-in-One Platforms for Digital Agencies" [level=1] [ref=e47]
+      - paragraph [ref=e48]: Managing a digital agency means fragmented data, missed billables, and manual reporting. Here are the best unified platforms built to fix that — starting with Insighty.
+      - generic [ref=e49]:
+        - time [ref=e50]: April 25, 2026
+        - generic [ref=e51]: ·
+        - generic [ref=e52]: 10 min read
+    - generic [ref=e55]:
+      - complementary "Table of contents" [ref=e56]:
+        - generic [ref=e57]:
+          - paragraph [ref=e58]: Contents
+          - navigation [ref=e59]:
+            - list [ref=e60]:
+              - listitem [ref=e61]:
+                - link "Top All-in-One Platforms for Digital Agencies in 2026" [ref=e62] [cursor=pointer]:
+                  - /url: "#top-all-in-one-platforms-for-digital-agencies-in-2026"
+              - listitem [ref=e63]:
+                - link "1. Insighty — The AI-Powered Agency Intelligence Hub" [ref=e64] [cursor=pointer]:
+                  - /url: "#1-insighty--the-ai-powered-agency-intelligence-hub"
+              - listitem [ref=e65]:
+                - link "2. Monday.com — Flexible Work OS for Agencies" [ref=e66] [cursor=pointer]:
+                  - /url: "#2-mondaycom--flexible-work-os-for-agencies"
+              - listitem [ref=e67]:
+                - link "3. Scoro — End-to-End Business Management for Agencies" [ref=e68] [cursor=pointer]:
+                  - /url: "#3-scoro--end-to-end-business-management-for-agencies"
+              - listitem [ref=e69]:
+                - link "4. Wrike — Robust Project and Resource Management" [ref=e70] [cursor=pointer]:
+                  - /url: "#4-wrike--robust-project-and-resource-management"
+              - listitem [ref=e71]:
+                - link "5. HubSpot CRM + Operations Hub — Integrated CRM and Automation" [ref=e72] [cursor=pointer]:
+                  - /url: "#5-hubspot-crm--operations-hub--integrated-crm-and-automation"
+              - listitem [ref=e73]:
+                - link "Why Insighty Stands Out for Digital Agencies" [ref=e74] [cursor=pointer]:
+                  - /url: "#why-insighty-stands-out-for-digital-agencies"
+              - listitem [ref=e75]:
+                - link "Conclusion" [ref=e76] [cursor=pointer]:
+                  - /url: "#conclusion"
+        - generic "Try Insighty" [ref=e77]:
+          - generic [ref=e78]:
+            - paragraph [ref=e79]: Run a smarter agency with Insighty
+            - list [ref=e80]:
+              - listitem [ref=e81]:
+                - img [ref=e83]
+                - generic [ref=e85]: Zero invoice leakage — see every billable at a glance
+              - listitem [ref=e86]:
+                - img [ref=e88]
+                - generic [ref=e90]: Track projects, retainers, and hosting in one view
+              - listitem [ref=e91]:
+                - img [ref=e93]
+                - generic [ref=e95]: AI forecasting to predict revenue before it lands
+              - listitem [ref=e96]:
+                - img [ref=e98]
+                - generic [ref=e100]: Purpose-built for agency PMs and owners
+            - generic [ref=e101]:
+              - link "Request early access" [ref=e102] [cursor=pointer]:
+                - /url: /contact
+                - generic [ref=e103]: Request early access
+              - link "See the platform" [ref=e104] [cursor=pointer]:
+                - /url: /#platform
+                - generic [ref=e105]: See the platform
+      - generic [ref=e106]:
+        - article [ref=e107]:
+          - paragraph [ref=e108]: Managing a digital agency today is a complex balancing act. Project Managers and Agency Owners grapple daily with fragmented data scattered across multiple tools, invoice leakage from missed billables, and the tedious manual reporting that drains time from strategic work. In an industry delivering fast-paced, high-value projects, these operational inefficiencies aren’t just inconvenient — they directly impact revenue and client satisfaction.
+          - paragraph [ref=e109]:
+            - text: To stay competitive, agencies need unified platforms that consolidate workflows, automate routine tasks, and provide real-time insights into projects, finances, and client relationships. This post explores the best all-in-one platforms tailored for digital agencies, with a special focus on
+            - strong [ref=e110]: Insighty
+            - text: ", an innovative AI-powered agency management intelligence tool designed specifically to address these challenges."
+          - separator [ref=e111]
+          - heading "Top All-in-One Platforms for Digital Agencies in 2026" [level=2] [ref=e112]
+          - heading "1. Insighty — The AI-Powered Agency Intelligence Hub" [level=3] [ref=e113]
+          - paragraph [ref=e114]: Insighty is a next-generation internal AI agency management platform built exclusively for digital agencies. Unlike generic project management or CRM tools, Insighty unifies every critical operational component — from clients, projects, and maintenance contracts to hosting plans, invoices, domains, and pipeline deals — into a single, intelligent platform. It is designed to eliminate scattered data silos, reduce invoice leakage, and automate reporting with AI-powered insights.
+          - paragraph [ref=e115]:
+            - strong [ref=e116]: "Key Features:"
+          - list [ref=e117]:
+            - listitem [ref=e118]:
+              - strong [ref=e119]: "Comprehensive Revenue Planning:"
+              - text: Manage fixed-fee projects, monthly retainers, hosting revenues, and consulting services all in one place.
+            - listitem [ref=e120]:
+              - strong [ref=e121]: "“This Month” Action View:"
+              - text: A dynamic dashboard showing every invoice due for issuance within the month, ensuring no revenue slips through the cracks.
+            - listitem [ref=e122]:
+              - strong [ref=e123]: "Automated Maintenance & Hosting Management:"
+              - text: Track active maintenance contracts, monitor hosting margins, and get alerts on domain expiries.
+            - listitem [ref=e124]:
+              - strong [ref=e125]: "Intelligent Forecasting:"
+              - text: Apply probability weighting to pipeline deals for more accurate revenue forecasts.
+            - listitem [ref=e126]:
+              - strong [ref=e127]: "AI-Powered Efficiency (Pixel Intelligence):"
+              - text: Automatically generate full proposals and streamline operational workflows with AI assistance.
+          - paragraph [ref=e128]:
+            - strong [ref=e129]: "Pros:"
+          - list [ref=e130]:
+            - listitem [ref=e131]: Designed specifically for digital agencies — no unnecessary bloat.
+            - listitem [ref=e132]: Integrates every revenue stream for holistic financial visibility.
+            - listitem [ref=e133]: AI-powered automation reduces manual tasks and human error.
+            - listitem [ref=e134]: Helps proactively identify and prevent invoice leakage.
+            - listitem [ref=e135]: Intuitive interface tailored for PMs and agency leadership.
+          - paragraph [ref=e136]:
+            - strong [ref=e137]: "Cons:"
+          - list [ref=e138]:
+            - listitem [ref=e139]: Newer platform — some agencies may prefer established brand maturity.
+            - listitem [ref=e140]: Advanced AI features may require initial onboarding and training.
+          - paragraph [ref=e141]:
+            - strong [ref=e142]: "Pricing:"
+          - list [ref=e143]:
+            - listitem [ref=e144]: "Starter Plan: $85/user/month (up to 10 users)"
+            - listitem [ref=e145]: "Growth Plan: $150/user/month (includes AI-powered proposal generation and forecasting)"
+            - listitem [ref=e146]: "Enterprise: Custom pricing with dedicated support and integrations"
+          - separator [ref=e147]
+          - heading "2. Monday.com — Flexible Work OS for Agencies" [level=3] [ref=e148]
+          - paragraph [ref=e149]: Monday.com is a flexible Work Operating System that agencies use for project management, CRM, and workflow automation. Thanks to its highly customizable boards and integrations, it can be configured as an all-in-one platform.
+          - paragraph [ref=e150]:
+            - strong [ref=e151]: "Key Features:"
+          - list [ref=e152]:
+            - listitem [ref=e153]: Customizable project workflows and dashboards.
+            - listitem [ref=e154]: Time tracking and workload management.
+            - listitem [ref=e155]: CRM and pipeline management modules.
+            - listitem [ref=e156]: Automation recipes for recurring tasks and notifications.
+            - listitem [ref=e157]: Integration with finance tools for invoicing via third-party apps.
+          - paragraph [ref=e158]:
+            - strong [ref=e159]: "Pros:"
+          - list [ref=e160]:
+            - listitem [ref=e161]: Highly flexible and widely adopted.
+            - listitem [ref=e162]: Large ecosystem of integrations.
+            - listitem [ref=e163]: Visual dashboards simplify complex project tracking.
+          - paragraph [ref=e164]:
+            - strong [ref=e165]: "Cons:"
+          - list [ref=e166]:
+            - listitem [ref=e167]: Requires significant configuration to become an all-in-one solution.
+            - listitem [ref=e168]: Financial and invoicing features are not native and need add-ons.
+            - listitem [ref=e169]: Can be overwhelming for smaller teams without dedicated admins.
+          - paragraph [ref=e170]:
+            - strong [ref=e171]: "Pricing:"
+          - list [ref=e172]:
+            - listitem [ref=e173]: "Basic: $12/user/month"
+            - listitem [ref=e174]: "Standard: $20/user/month"
+            - listitem [ref=e175]: "Pro: $35/user/month (recommended for agencies needing automation and integration)"
+          - separator [ref=e176]
+          - heading "3. Scoro — End-to-End Business Management for Agencies" [level=3] [ref=e177]
+          - paragraph [ref=e178]: Scoro offers a comprehensive business management platform combining project management, CRM, billing, and reporting for agencies and professional services.
+          - paragraph [ref=e179]:
+            - strong [ref=e180]: "Key Features:"
+          - list [ref=e181]:
+            - listitem [ref=e182]: Project and task management with timelines and Gantt charts.
+            - listitem [ref=e183]: CRM and sales pipeline tracking.
+            - listitem [ref=e184]: Time tracking and billing with invoice automation.
+            - listitem [ref=e185]: Financial reporting and budget management.
+            - listitem [ref=e186]: Resource planning and workload balancing.
+          - paragraph [ref=e187]:
+            - strong [ref=e188]: "Pros:"
+          - list [ref=e189]:
+            - listitem [ref=e190]: All-in-one platform minimizing tool switching.
+            - listitem [ref=e191]: Strong financial management features.
+            - listitem [ref=e192]: Detailed reporting tailored to agency KPIs.
+          - paragraph [ref=e193]:
+            - strong [ref=e194]: "Cons:"
+          - list [ref=e195]:
+            - listitem [ref=e196]: User interface can feel dated compared to newer SaaS tools.
+            - listitem [ref=e197]: Pricing can get expensive as team size grows.
+            - listitem [ref=e198]: Less AI automation compared to emerging platforms like Insighty.
+          - paragraph [ref=e199]:
+            - strong [ref=e200]: "Pricing:"
+          - list [ref=e201]:
+            - listitem [ref=e202]: "Essential: $40/user/month"
+            - listitem [ref=e203]: "Work Hub: $55/user/month"
+            - listitem [ref=e204]: "Business Hub: $70/user/month (recommended for full agency operations)"
+          - separator [ref=e205]
+          - heading "4. Wrike — Robust Project and Resource Management" [level=3] [ref=e206]
+          - paragraph [ref=e207]: Wrike is a well-established project management and collaboration platform popular with marketing and creative agencies.
+          - paragraph [ref=e208]:
+            - strong [ref=e209]: "Key Features:"
+          - list [ref=e210]:
+            - listitem [ref=e211]: Task and project tracking with real-time updates.
+            - listitem [ref=e212]: Custom workflows and approval processes.
+            - listitem [ref=e213]: Resource and workload management.
+            - listitem [ref=e214]: Reporting dashboards and analytics.
+            - listitem [ref=e215]: Integrations with invoicing and CRM platforms.
+          - paragraph [ref=e216]:
+            - strong [ref=e217]: "Pros:"
+          - list [ref=e218]:
+            - listitem [ref=e219]: Strong collaboration and communication features.
+            - listitem [ref=e220]: Flexible workflow automation.
+            - listitem [ref=e221]: Scalable for medium to large agencies.
+          - paragraph [ref=e222]:
+            - strong [ref=e223]: "Cons:"
+          - list [ref=e224]:
+            - listitem [ref=e225]: Limited native financial management — requires integrations.
+            - listitem [ref=e226]: Can be complex to set up for full agency operations.
+            - listitem [ref=e227]: Less focus on AI or predictive analytics.
+          - paragraph [ref=e228]:
+            - strong [ref=e229]: "Pricing:"
+          - list [ref=e230]:
+            - listitem [ref=e231]: "Professional: $15/user/month"
+            - listitem [ref=e232]: "Business: $30/user/month"
+            - listitem [ref=e233]: "Enterprise: Custom pricing"
+          - separator [ref=e234]
+          - heading "5. HubSpot CRM + Operations Hub — Integrated CRM and Automation" [level=3] [ref=e235]
+          - paragraph [ref=e236]: HubSpot offers a free CRM combined with paid Operations Hub modules that enable workflow automation, data sync, and reporting — a popular choice for agencies seeking a CRM-centric all-in-one platform.
+          - paragraph [ref=e237]:
+            - strong [ref=e238]: "Key Features:"
+          - list [ref=e239]:
+            - listitem [ref=e240]: Contact and pipeline management.
+            - listitem [ref=e241]: Custom workflows and task automation.
+            - listitem [ref=e242]: Reporting dashboards and analytics.
+            - listitem [ref=e243]: Integration with billing and payment systems.
+            - listitem [ref=e244]: Data sync across multiple tools with Operations Hub.
+          - paragraph [ref=e245]:
+            - strong [ref=e246]: "Pros:"
+          - list [ref=e247]:
+            - listitem [ref=e248]: Strong CRM capabilities with marketing and sales alignment.
+            - listitem [ref=e249]: Easy to use with extensive training resources.
+            - listitem [ref=e250]: Free CRM tier lowers the entry barrier.
+          - paragraph [ref=e251]:
+            - strong [ref=e252]: "Cons:"
+          - list [ref=e253]:
+            - listitem [ref=e254]: Not designed specifically for agency operations or finance management.
+            - listitem [ref=e255]: Requires multiple paid add-ons for full operational coverage.
+            - listitem [ref=e256]: Limited project management features compared to dedicated tools.
+          - paragraph [ref=e257]:
+            - strong [ref=e258]: "Pricing:"
+          - list [ref=e259]:
+            - listitem [ref=e260]: "CRM: Free"
+            - listitem [ref=e261]: "Operations Hub Starter: $50/month"
+            - listitem [ref=e262]: "Operations Hub Professional: $800/month"
+          - separator [ref=e263]
+          - heading "Why Insighty Stands Out for Digital Agencies" [level=2] [ref=e264]
+          - paragraph [ref=e265]: "While many platforms offer pieces of the puzzle — project management, CRM, or invoicing — Insighty uniquely integrates all these functions with an AI-powered intelligence layer developed solely for digital agencies. It directly addresses the core pain points of Project Managers and Agency Owners:"
+          - list [ref=e266]:
+            - listitem [ref=e267]:
+              - strong [ref=e268]: "Scattered Data:"
+              - text: Insighty connects every client, project, contract, invoice, and pipeline deal into one source of truth.
+            - listitem [ref=e269]:
+              - strong [ref=e270]: "Invoice Leakage:"
+              - text: The “This Month” Action View ensures no invoice is forgotten, regardless of type or contract complexity.
+            - listitem [ref=e271]:
+              - strong [ref=e272]: "Manual Reporting:"
+              - text: Automated dashboards and AI forecasting reduce time spent on data compilation.
+            - listitem [ref=e273]:
+              - strong [ref=e274]: "Revenue Forecasting:"
+              - text: Intelligent probability weighting and revenue planning help leadership make data-driven decisions.
+            - listitem [ref=e275]:
+              - strong [ref=e276]: "Operational Efficiency:"
+              - text: Pixel Intelligence AI automates proposal generation and routine workflows, freeing teams to focus on creative and strategic work.
+          - paragraph [ref=e277]: For agencies looking to consolidate their operations and unlock new levels of efficiency and revenue insight, Insighty sets a new standard.
+          - separator [ref=e278]
+          - heading "Conclusion" [level=2] [ref=e279]
+          - paragraph [ref=e280]: Digital agencies face unique operational challenges that generic tools can’t fully solve. The future of agency management lies in intelligent, purpose-built platforms that unify finances, projects, and client pipelines with AI-powered automation.
+          - paragraph [ref=e281]: Insighty is that platform — designed from the ground up for digital agencies, combining deep industry knowledge with cutting-edge AI to transform how you manage your agency’s operations.
+          - paragraph [ref=e282]:
+            - text: If you’re ready to eliminate scattered data silos, plug invoice leakage, and automate your reporting for sharper revenue forecasting,
+            - link "request early access to Insighty today" [ref=e283] [cursor=pointer]:
+              - /url: /contact
+            - text: .
+        - complementary "Try Insighty" [ref=e284]:
+          - generic [ref=e285]:
+            - generic [ref=e286]:
+              - generic [ref=e287]: Insighty
+              - heading "Run a smarter agency with Insighty" [level=3] [ref=e288]
+              - paragraph [ref=e289]: The unified platform for digital agencies — clients, projects, invoices, hosting, and AI-powered insights in one place.
+              - generic [ref=e290]:
+                - link "Request early access" [ref=e291] [cursor=pointer]:
+                  - /url: /contact
+                  - generic [ref=e292]: Request early access
+                - link "See the platform" [ref=e293] [cursor=pointer]:
+                  - /url: /#platform
+            - img "Insighty platform dashboard" [ref=e294]
+        - generic [ref=e295]:
+          - generic [ref=e296]: Share
+          - link "LinkedIn" [ref=e297] [cursor=pointer]:
+            - /url: https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Finsighty.io%2Fblog%2Fbest-all-in-one-platforms
+            - img [ref=e298]
+            - text: LinkedIn
+          - link "X (Twitter)" [ref=e300] [cursor=pointer]:
+            - /url: https://twitter.com/intent/tweet?text=Best%20All-in-One%20Platforms%20for%20Digital%20Agencies&url=https%3A%2F%2Finsighty.io%2Fblog%2Fbest-all-in-one-platforms
+            - img [ref=e301]
+            - text: X (Twitter)
+          - link "Facebook" [ref=e303] [cursor=pointer]:
+            - /url: https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Finsighty.io%2Fblog%2Fbest-all-in-one-platforms
+            - img [ref=e304]
+            - text: Facebook
+        - link "All articles" [ref=e307] [cursor=pointer]:
+          - /url: /blog
+          - img [ref=e308]
+          - text: All articles
+    - generic [ref=e311]:
+      - generic [ref=e312]:
+        - heading "More articles" [level=2] [ref=e313]
+        - link "View all" [ref=e314] [cursor=pointer]:
+          - /url: /blog
+          - text: View all
+          - img [ref=e315]
+      - generic [ref=e317]:
+        - article [ref=e319]:
+          - link "Agency Ops Stop Rebuilding Your Agency's Reality Every Monday Every Monday, someone at your agency reconstructs last week's revenue from five different tabs. Here's why that's your biggest hidden cost — and what you should see instead. Apr 20, 2026 6 min read" [ref=e320] [cursor=pointer]:
+            - /url: /blog/stop-rebuilding-agency-reality
+            - generic [ref=e321]:
+              - generic:
+                - generic: A
+              - generic [ref=e322]: Agency Ops
+            - generic [ref=e323]:
+              - heading "Stop Rebuilding Your Agency's Reality Every Monday" [level=3] [ref=e324]
+              - paragraph [ref=e325]: Every Monday, someone at your agency reconstructs last week's revenue from five different tabs. Here's why that's your biggest hidden cost — and what you should see instead.
+              - generic [ref=e326]:
+                - time [ref=e327]: Apr 20, 2026
+                - generic [ref=e328]: ·
+                - generic [ref=e329]: 6 min read
+        - article [ref=e331]:
+          - link "Agency Ops The Real Cost of Running Your Agency Across 5 Tools You're not paying for five tools. You're paying for five tools plus the 12 hours a week your team spends reconciling them. Here's the full ledger. Apr 15, 2026 5 min read" [ref=e332] [cursor=pointer]:
+            - /url: /blog/hidden-cost-five-tools
+            - generic [ref=e333]:
+              - generic:
+                - generic: A
+              - generic [ref=e334]: Agency Ops
+            - generic [ref=e335]:
+              - heading "The Real Cost of Running Your Agency Across 5 Tools" [level=3] [ref=e336]
+              - paragraph [ref=e337]: You're not paying for five tools. You're paying for five tools plus the 12 hours a week your team spends reconciling them. Here's the full ledger.
+              - generic [ref=e338]:
+                - time [ref=e339]: Apr 15, 2026
+                - generic [ref=e340]: ·
+                - generic [ref=e341]: 5 min read
+        - article [ref=e343]:
+          - 'link "Revenue Client Profitability vs Revenue: Why Most Agencies Confuse Them Your biggest client might be your least profitable. Without the right data layer, you won''t know until the damage is done. A framework for seeing the difference. Apr 10, 2026 7 min read" [ref=e344] [cursor=pointer]':
+            - /url: /blog/client-profitability-vs-revenue
+            - generic [ref=e345]:
+              - generic:
+                - generic: R
+              - generic [ref=e346]: Revenue
+            - generic [ref=e347]:
+              - 'heading "Client Profitability vs Revenue: Why Most Agencies Confuse Them" [level=3] [ref=e348]'
+              - paragraph [ref=e349]: Your biggest client might be your least profitable. Without the right data layer, you won't know until the damage is done. A framework for seeing the difference.
+              - generic [ref=e350]:
+                - time [ref=e351]: Apr 10, 2026
+                - generic [ref=e352]: ·
+                - generic [ref=e353]: 7 min read
+  - contentinfo [ref=e354]:
+    - figure
+    - generic [ref=e356]:
+      - figure [ref=e357]:
+        - img "Insighty" [ref=e358]
+      - paragraph [ref=e359]: The unified platform for agency operations. Coming soon to help agencies scale profitably.
+      - generic [ref=e360]:
+        - link "LinkedIn LinkedIn" [ref=e361] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e362]: LinkedIn
+          - img "LinkedIn" [ref=e363]
+        - link "Instagram Instagram" [ref=e365] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e366]: Instagram
+          - img "Instagram" [ref=e367]
+        - link "Facebook Facebook" [ref=e369] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e370]: Facebook
+          - img "Facebook" [ref=e371]
+        - link "Youtube Youtube" [ref=e373] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e374]: Youtube
+          - img "Youtube" [ref=e375]
+      - paragraph [ref=e377]: Copyright ©2026 Insighty. All rights reserved.
+  - generic [ref=e380]:
+    - button "Menu" [ref=e381]:
+      - img [ref=e383]
+      - generic: Menu
+    - button "Inspect" [ref=e387]:
+      - img [ref=e389]
+      - generic: Inspect
+    - button "Audit" [ref=e391]:
+      - img [ref=e393]
+      - generic: Audit
+    - button "Settings" [ref=e396]:
+      - img [ref=e398]
+      - generic: Settings

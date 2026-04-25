@@ -1,0 +1,295 @@
+---
+import { getCollection, render } from 'astro:content'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/organisms/Header.astro'
+import Footer from '../../components/organisms/Footer.astro'
+import BlogCard from '../../components/molecules/BlogCard.astro'
+import BlogCTA from '../../components/molecules/BlogCTA.astro'
+import BlogCTASidebar from '../../components/molecules/BlogCTASidebar.astro'
+import BlogNewsletter from '../../components/molecules/BlogNewsletter.astro'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog')
+  return posts.map(post => ({ params: { id: post.id }, props: { post } }))
+}
+
+const { post } = Astro.props
+const { title, description, pubDate, category, readTime } = post.data
+const { Content, headings } = await render(post)
+const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3)
+
+const allPosts = await getCollection('blog')
+const related = allPosts
+  .filter(p => p.id !== post.id)
+  .sort((a, b) => {
+    const sameA = a.data.category === category ? 1 : 0
+    const sameB = b.data.category === category ? 1 : 0
+    if (sameB !== sameA) return sameB - sameA
+    return b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  })
+  .slice(0, 3)
+
+const formattedDate = pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+
+const shareText = encodeURIComponent(title)
+const shareUrl = encodeURIComponent(`https://insighty.io/blog/${post.id}`)
+
+const gradients: Record<string, string> = {
+  'Agency Ops': 'linear-gradient(135deg, #112445 0%, #4a6ec7 100%)',
+  'Revenue':    'linear-gradient(135deg, #d4a574 0%, #b87333 100%)',
+  'Projects':   'linear-gradient(135deg, #2d9b9b 0%, #4a6ec7 100%)',
+  'Product':    'linear-gradient(135deg, #1b3a6b 0%, #6e8fd9 100%)',
+}
+const gradient = gradients[category] ?? gradients['Agency Ops']
+---
+
+<BaseLayout
+  title={`${title} — Insighty Blog`}
+  description={description}
+  ogType="article"
+  ogPublishedTime={pubDate.toISOString()}
+>
+  <Header />
+  <main>
+
+    <!-- Hero -->
+    <section
+      class="pt-[140px] sm:pt-[150px] md:pt-[160px] pb-16 md:pb-20 relative overflow-hidden"
+      style={`background: ${gradient}`}
+    >
+      <div class="main-container relative z-10">
+        <nav class="flex items-center gap-2 text-tagline-3 text-white/75 mb-8" aria-label="Breadcrumb">
+          <a href="/blog" class="hover:text-white transition-colors duration-200">Blog</a>
+          <span aria-hidden="true">/</span>
+          <span class="badge badge-white !text-secondary font-medium">{category}</span>
+        </nav>
+        <h1 class="max-w-[760px] text-white">{title}</h1>
+        <p class="mt-4 max-w-[600px] text-white/70">{description}</p>
+        <div class="mt-6 flex items-center gap-3 text-tagline-3 text-white/75 font-medium uppercase tracking-widest">
+          <time datetime={pubDate.toISOString()}>{formattedDate}</time>
+          <span aria-hidden="true">·</span>
+          <span>{readTime} min read</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Article + Sidebar -->
+    <section class="bg-background-1 dark:bg-background-8 py-16 md:py-24">
+      <div class="main-container">
+        <div class="grid grid-cols-1 lg:grid-cols-[220px_1fr] xl:grid-cols-[260px_1fr] gap-12 xl:gap-16 items-start">
+
+          <!-- TOC sidebar -->
+          {tocHeadings.length > 0 && (
+            <aside class="hidden lg:flex flex-col gap-8 sticky top-28" aria-label="Table of contents">
+              <div>
+                <p class="text-tagline-2 uppercase tracking-widest font-bold text-secondary dark:text-accent mb-4">Contents</p>
+                <nav>
+                  <ul class="space-y-1">
+                    {tocHeadings.map(h => (
+                      <li class={h.depth === 3 ? 'pl-4' : ''}>
+                        <a
+                          href={`#${h.slug}`}
+                          class="block py-1 text-tagline-2 text-secondary/70 dark:text-accent/70 hover:text-secondary dark:hover:text-accent transition-colors duration-200 leading-snug"
+                        >
+                          {h.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </div>
+              <BlogCTASidebar />
+            </aside>
+          )}
+
+          <!-- Content column -->
+          <div class="min-w-0 flex flex-col gap-0">
+            <article class="blog-content">
+              <Content />
+            </article>
+
+            <BlogCTA />
+
+            <!-- Share -->
+            <div class="mt-4 pt-8 border-t border-stroke-2 dark:border-stroke-6 flex flex-wrap items-center gap-4">
+              <span class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Share</span>
+              <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-tagline-2 text-secondary/60 dark:text-accent/60 hover:text-secondary dark:hover:text-accent transition-colors duration-200">
+                <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                LinkedIn
+              </a>
+              <a href={`https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-tagline-2 text-secondary/60 dark:text-accent/60 hover:text-secondary dark:hover:text-accent transition-colors duration-200">
+                <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                X (Twitter)
+              </a>
+              <a href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-tagline-2 text-secondary/60 dark:text-accent/60 hover:text-secondary dark:hover:text-accent transition-colors duration-200">
+                <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                Facebook
+              </a>
+            </div>
+
+            <div class="mt-8 pt-8 border-t border-stroke-2 dark:border-stroke-6">
+              <a href="/blog" class="inline-flex items-center gap-2 text-tagline-2 font-medium text-secondary/60 dark:text-accent/60 hover:text-primary-400 transition-colors duration-200">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                All articles
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Related posts -->
+    {related.length > 0 && (
+      <section class="bg-background-2 dark:bg-background-7 py-16 md:py-[100px]">
+        <div class="main-container space-y-10">
+          <div class="flex items-center justify-between gap-4 flex-wrap">
+            <h2 data-ns-animate data-delay="0.05">More articles</h2>
+            <a href="/blog" class="flex items-center gap-1.5 text-tagline-2 text-secondary/50 dark:text-accent/50 hover:text-secondary dark:hover:text-accent transition-colors duration-200">
+              View all
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+            {related.map((p, i) => (
+              <div data-ns-animate data-delay={String(0.05 * (i + 1))}>
+                <BlogCard post={p} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Newsletter -->
+    <section class="bg-background-1 dark:bg-background-8 py-16 md:py-20">
+      <div class="main-container">
+        <BlogNewsletter />
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('aside[aria-label="Table of contents"] a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault()
+      const id = (e.currentTarget as HTMLAnchorElement).getAttribute('href')!.slice(1)
+      const target = document.getElementById(id)
+      if (!target) return
+      const offset = 100
+      const top = target.getBoundingClientRect().top + window.scrollY - offset
+      window.scrollTo({ top, behavior: 'smooth' })
+    })
+  })
+</script>
+
+<style>
+  .prose-insighty :global(h2) {
+    font-size: var(--text-heading-4);
+    line-height: var(--text-heading-4--line-height);
+    font-weight: 500;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-secondary);
+  }
+  :global(.dark) .prose-insighty :global(h2) {
+    color: var(--color-accent);
+  }
+  .prose-insighty :global(h3) {
+    font-size: var(--text-heading-5);
+    line-height: var(--text-heading-5--line-height);
+    font-weight: 500;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-secondary);
+  }
+  :global(.dark) .prose-insighty :global(h3) {
+    color: var(--color-accent);
+  }
+  .prose-insighty :global(p) {
+    font-size: var(--text-tagline-1);
+    line-height: 1.75;
+    color: color-mix(in srgb, var(--color-secondary) 70%, transparent);
+    margin-bottom: 1.25rem;
+  }
+  :global(.dark) .prose-insighty :global(p) {
+    color: color-mix(in srgb, var(--color-accent) 70%, transparent);
+  }
+  .prose-insighty :global(ul),
+  .prose-insighty :global(ol) {
+    font-size: var(--text-tagline-1);
+    color: color-mix(in srgb, var(--color-secondary) 70%, transparent);
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+  :global(.dark) .prose-insighty :global(ul),
+  :global(.dark) .prose-insighty :global(ol) {
+    color: color-mix(in srgb, var(--color-accent) 70%, transparent);
+  }
+  .prose-insighty :global(ul) { list-style-type: disc; }
+  .prose-insighty :global(ol) { list-style-type: decimal; }
+  .prose-insighty :global(li) { line-height: 1.75; margin-bottom: 0.5rem; }
+  .prose-insighty :global(strong) {
+    font-weight: 600;
+    color: var(--color-secondary);
+  }
+  :global(.dark) .prose-insighty :global(strong) {
+    color: var(--color-accent);
+  }
+  .prose-insighty :global(a) {
+    color: var(--color-primary-500);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  :global(.dark) .prose-insighty :global(a) {
+    color: var(--color-primary-400);
+  }
+  .prose-insighty :global(blockquote) {
+    border-left: 4px solid color-mix(in srgb, var(--color-primary-500) 40%, transparent);
+    padding-left: 1.25rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: color-mix(in srgb, var(--color-secondary) 60%, transparent);
+  }
+  :global(.dark) .prose-insighty :global(blockquote) {
+    color: color-mix(in srgb, var(--color-accent) 60%, transparent);
+  }
+  .prose-insighty :global(code) {
+    background: var(--color-background-2);
+    color: var(--color-secondary);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-family: monospace;
+  }
+  :global(.dark) .prose-insighty :global(code) {
+    background: var(--color-background-6);
+    color: var(--color-accent);
+  }
+  .prose-insighty :global(pre) {
+    background: var(--color-background-2);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    overflow-x: auto;
+    margin-bottom: 1.25rem;
+  }
+  :global(.dark) .prose-insighty :global(pre) {
+    background: var(--color-background-6);
+  }
+  .prose-insighty :global(pre code) {
+    background: transparent;
+    padding: 0;
+  }
+  .prose-insighty :global(hr) {
+    border-color: var(--color-stroke-2);
+    margin: 2.5rem 0;
+  }
+  :global(.dark) .prose-insighty :global(hr) {
+    border-color: var(--color-stroke-6);
+  }
+</style>

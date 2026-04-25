@@ -1,0 +1,59 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+interface Props {
+  post: CollectionEntry<'blog'>
+}
+
+const { post } = Astro.props
+const { title, description, category, pubDate, readTime, thumbnail } = post.data
+
+const gradients: Record<string, string> = {
+  'Agency Ops': 'linear-gradient(135deg, #112445 0%, #4a6ec7 100%)',
+  'Revenue':    'linear-gradient(135deg, #d4a574 0%, #b87333 100%)',
+  'Projects':   'linear-gradient(135deg, #2d9b9b 0%, #4a6ec7 100%)',
+  'Product':    'linear-gradient(135deg, #1b3a6b 0%, #6e8fd9 100%)',
+}
+const placeholderGradient = gradients[category] ?? gradients['Agency Ops']
+
+const formattedDate = pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+---
+
+<article class="group h-full flex flex-col bg-background-2 dark:bg-background-6 rounded-2xl overflow-hidden border border-stroke-2 dark:border-stroke-5 hover:scale-[1.02] hover:shadow-3 transition-all duration-500">
+  <a href={`/blog/${post.id}`} class="flex flex-col h-full">
+    <!-- Thumbnail / placeholder -->
+    <div
+      class="aspect-video relative flex items-end p-5 shrink-0 overflow-hidden"
+      style={thumbnail ? undefined : `background: ${placeholderGradient}`}
+    >
+      {thumbnail ? (
+        <>
+          <img
+            src={thumbnail}
+            alt=""
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="absolute inset-0" style={`background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%)`}></div>
+        </>
+      ) : (
+        <span class="absolute inset-0 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+          <span class="text-white/8 font-bold text-[9rem] leading-none">{category[0]}</span>
+        </span>
+      )}
+      <span class="badge badge-white relative z-10 !text-secondary font-medium">{category}</span>
+    </div>
+
+    <!-- Content -->
+    <div class="p-6 flex flex-col flex-1 gap-3">
+      <h3 class="text-heading-6 font-medium line-clamp-2 text-secondary dark:text-accent group-hover:text-primary-400 transition-colors duration-300">{title}</h3>
+      <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 line-clamp-2 flex-1">{description}</p>
+      <div class="flex items-center gap-2 text-tagline-3 text-secondary/40 dark:text-accent/40 pt-3 border-t border-stroke-2 dark:border-stroke-6">
+        <time datetime={pubDate.toISOString()}>{formattedDate}</time>
+        <span aria-hidden="true">·</span>
+        <span>{readTime} min read</span>
+      </div>
+    </div>
+  </a>
+</article>

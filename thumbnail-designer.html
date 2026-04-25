@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Blog Thumbnail Designer</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0d0d0d;
+    color: #e0e0e0;
+    font-family: system-ui, sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .top { flex: 1; display: flex; overflow: hidden; }
+  .controls {
+    width: 272px; min-width: 272px;
+    background: #111;
+    padding: 20px;
+    overflow-y: auto;
+    border-right: 1px solid #1e1e1e;
+  }
+  .controls h2 {
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.1em; color: #555; margin-bottom: 18px;
+  }
+  .group { margin-bottom: 22px; }
+  .group-label {
+    font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.09em; color: #444; margin-bottom: 10px;
+  }
+  label {
+    display: block; font-size: 12px; color: #888;
+    margin-bottom: 5px; margin-top: 11px;
+  }
+  label:first-child { margin-top: 0; }
+  input[type="range"] {
+    width: 100%; height: 3px; accent-color: #4f7dff;
+    cursor: pointer; outline: none; -webkit-appearance: none;
+    background: #222; border-radius: 2px;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 13px; height: 13px;
+    border-radius: 50%; background: #4f7dff; cursor: pointer;
+  }
+  select {
+    width: 100%; background: #1a1a1a; border: 1px solid #252525;
+    color: #ccc; padding: 7px 10px; border-radius: 6px;
+    font-size: 12px; cursor: pointer; outline: none;
+  }
+  .toggle-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 9px; }
+  .toggle-label { font-size: 12px; color: #888; }
+  .toggle { position: relative; width: 34px; height: 18px; }
+  .toggle input { display: none; }
+  .toggle-slider {
+    position: absolute; top:0; left:0; right:0; bottom:0;
+    background: #222; border-radius: 9px; cursor: pointer; transition: 0.2s;
+  }
+  .toggle-slider::before {
+    content: ''; position: absolute; width: 12px; height: 12px;
+    background: #555; border-radius: 50%; top: 3px; left: 3px; transition: 0.2s;
+  }
+  .toggle input:checked + .toggle-slider { background: #4f7dff; }
+  .toggle input:checked + .toggle-slider::before { transform: translateX(16px); background: white; }
+  .presets { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 22px; }
+  .preset-btn {
+    background: #1a1a1a; border: 1px solid #252525; color: #888;
+    padding: 7px 6px; border-radius: 6px; font-size: 11px;
+    cursor: pointer; text-align: center; transition: 0.12s;
+  }
+  .preset-btn:hover { border-color: #4f7dff; color: #ccc; }
+  .preset-btn.active { border-color: #4f7dff; background: #17203a; color: #6b8fff; }
+  .preview-panel {
+    flex: 1; display: flex; flex-direction: column;
+    background: #080808; align-items: center; justify-content: center;
+    padding: 32px; gap: 16px;
+  }
+  .preview-meta { font-size: 10px; color: #333; text-transform: uppercase; letter-spacing: 0.1em; align-self: flex-start; }
+  #thumbnail-preview {
+    width: 100%; max-width: 700px;
+    border-radius: 14px; overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+  }
+  #thumbnail-preview svg { display: block; width: 100%; height: auto; }
+  .prompt-section {
+    background: #0e0e0e; border-top: 1px solid #1a1a1a;
+    padding: 14px 20px; display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+  }
+  #prompt-text {
+    flex: 1; font-family: 'Menlo','Monaco',monospace; font-size: 11px;
+    color: #777; line-height: 1.5; background: none; border: none;
+    resize: none; outline: none; height: 34px;
+  }
+  #copy-btn {
+    background: #17203a; border: 1px solid #2a3a6a; color: #4f7dff;
+    padding: 7px 14px; border-radius: 6px; font-size: 11px; cursor: pointer;
+    white-space: nowrap; transition: 0.12s; min-width: 80px; text-align: center;
+  }
+  #copy-btn:hover { background: #1e2d50; }
+  #copy-btn.copied { color: #4fdf8f; border-color: #2a5a40; background: #152820; }
+  .val { font-size: 10px; color: #444; float: right; }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="controls">
+    <h2>Thumbnail Designer</h2>
+
+    <div class="group-label">Presets</div>
+    <div class="presets">
+      <button class="preset-btn active" onclick="applyPreset('deepBlue',this)">Deep Blue</button>
+      <button class="preset-btn" onclick="applyPreset('midnight',this)">Midnight Grid</button>
+      <button class="preset-btn" onclick="applyPreset('electric',this)">Electric</button>
+      <button class="preset-btn" onclick="applyPreset('executive',this)">Executive</button>
+      <button class="preset-btn" onclick="applyPreset('gradient',this)">Gradient Pop</button>
+    </div>
+
+    <div class="group">
+      <div class="group-label">Background</div>
+      <label>Style</label>
+      <select id="bgStyle" onchange="update()">
+        <option value="gradient">Gradient</option>
+        <option value="mesh">Mesh</option>
+        <option value="solid">Solid</option>
+      </select>
+      <label>Primary hue <span class="val" id="hueVal">220°</span></label>
+      <input type="range" id="hue" min="0" max="360" value="220" oninput="update()">
+      <label>Darkness <span class="val" id="darkVal">90%</span></label>
+      <input type="range" id="darkness" min="60" max="97" value="90" oninput="update()">
+    </div>
+
+    <div class="group">
+      <div class="group-label">Layout</div>
+      <label>Style</label>
+      <select id="layout" onchange="update()">
+        <option value="grid">Platform Grid</option>
+        <option value="abstract">Connected Nodes</option>
+        <option value="bold">Bold Type</option>
+        <option value="minimal">Minimal</option>
+      </select>
+      <label>Accent hue <span class="val" id="accentVal">210°</span></label>
+      <input type="range" id="accent" min="0" max="360" value="210" oninput="update()">
+      <label>Glow intensity <span class="val" id="glowVal">55%</span></label>
+      <input type="range" id="glow" min="0" max="100" value="55" oninput="update()">
+    </div>
+
+    <div class="group">
+      <div class="group-label">Elements</div>
+      <div class="toggle-row">
+        <span class="toggle-label">Category badge</span>
+        <label class="toggle"><input type="checkbox" id="showBadge" checked onchange="update()"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-label">Title text</span>
+        <label class="toggle"><input type="checkbox" id="showTitle" onchange="update()"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="toggle-row">
+        <span class="toggle-label">Grid lines</span>
+        <label class="toggle"><input type="checkbox" id="showGrid" checked onchange="update()"><span class="toggle-slider"></span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="preview-panel">
+    <div class="preview-meta">800 × 450 — Blog thumbnail</div>
+    <div id="thumbnail-preview"></div>
+  </div>
+</div>
+
+<div class="prompt-section">
+  <textarea id="prompt-text" readonly></textarea>
+  <button id="copy-btn" onclick="copyPrompt()">Copy prompt</button>
+</div>
+
+<script>
+const state = {
+  bgStyle:'gradient', hue:220, darkness:90,
+  layout:'grid', accent:210, glow:55,
+  showBadge:true, showTitle:false, showGrid:true,
+};
+
+const presets = {
+  deepBlue:  {bgStyle:'gradient',hue:220,darkness:92,layout:'grid',    accent:210,glow:55,showBadge:true, showTitle:false,showGrid:true },
+  midnight:  {bgStyle:'mesh',    hue:230,darkness:95,layout:'grid',    accent:195,glow:35,showBadge:true, showTitle:false,showGrid:true },
+  electric:  {bgStyle:'gradient',hue:248,darkness:88,layout:'abstract',accent:290,glow:88,showBadge:true, showTitle:false,showGrid:false},
+  executive: {bgStyle:'solid',   hue:215,darkness:95,layout:'minimal', accent:42, glow:45,showBadge:true, showTitle:true, showGrid:false},
+  gradient:  {bgStyle:'mesh',    hue:198,darkness:80,layout:'abstract',accent:265,glow:78,showBadge:true, showTitle:false,showGrid:false},
+};
+
+function hsl(h,s,l,a) {
+  return a!==undefined ? `hsla(${h},${s}%,${l}%,${a})` : `hsl(${h},${s}%,${l}%)`;
+}
+
+function makeSVGEl(tag, attrs) {
+  const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (const [k,v] of Object.entries(attrs)) el.setAttribute(k,v);
+  return el;
+}
+
+function makeSVGText(parent, text, attrs) {
+  const el = makeSVGEl('text', attrs);
+  el.textContent = text;
+  parent.appendChild(el);
+  return el;
+}
+
+function buildGrid(svg, s) {
+  const tools = [
+    {emoji:'📊',label:'Analytics'},{emoji:'💬',label:'CRM'},
+    {emoji:'📅',label:'Schedule'},{emoji:'💳',label:'Billing'},
+    {emoji:'📁',label:'Projects'},{emoji:'📈',label:'Reports'},
+  ];
+  const cW=128,cH=78,gX=18,gY=14,cols=3;
+  const totalW = cols*(cW+gX)-gX;
+  const startX = 800/2 - totalW/2 + 20;
+  const startY = 450/2 - (2*(cH+gY)-gY)/2 - 10;
+
+  tools.forEach((t,i) => {
+    const col=i%cols, row=Math.floor(i/cols);
+    const x=startX+col*(cW+gX), y=startY+row*(cH+gY);
+
+    svg.appendChild(makeSVGEl('rect',{x,y,width:cW,height:cH,rx:9,
+      fill:'rgba(255,255,255,0.055)',stroke:'rgba(255,255,255,0.1)','stroke-width':1}));
+    makeSVGText(svg, t.emoji, {x:x+cW/2, y:y+26, 'text-anchor':'middle', 'font-size':17});
+    makeSVGText(svg, t.label, {x:x+cW/2, y:y+52, 'text-anchor':'middle',
+      fill:'rgba(255,255,255,0.65)', 'font-size':11, 'font-family':'system-ui', 'font-weight':500});
+
+    if (col < cols-1) {
+      svg.appendChild(makeSVGEl('line',{
+        x1:x+cW, y1:y+cH/2, x2:x+cW+gX, y2:y+cH/2,
+        stroke:hsl(s.accent,65,60,0.35), 'stroke-width':1.5, 'stroke-dasharray':'4,3'
+      }));
+    }
+    if (row===0) {
+      svg.appendChild(makeSVGEl('line',{
+        x1:x+cW/2, y1:y+cH, x2:x+cW/2, y2:y+cH+gY,
+        stroke:hsl(s.accent,65,60,0.3), 'stroke-width':1.5, 'stroke-dasharray':'3,3'
+      }));
+    }
+  });
+}
+
+function buildAbstract(svg, s) {
+  const a = s.accent;
+  const circles = [
+    {cx:490,cy:185,r:110,fill:'none',stroke:hsl(a,60,62,0.18),'stroke-width':1},
+    {cx:490,cy:185,r:70, fill:'none',stroke:hsl(a,65,65,0.28),'stroke-width':1},
+    {cx:490,cy:185,r:30, fill:hsl(a,70,60,0.22),stroke:hsl(a,75,68,0.55),'stroke-width':1.5},
+    {cx:340,cy:295,r:65, fill:'none',stroke:hsl(a+35,55,62,0.18),'stroke-width':1},
+    {cx:648,cy:275,r:82, fill:'none',stroke:hsl(a-35,55,62,0.15),'stroke-width':1},
+  ];
+  circles.forEach(attrs => svg.appendChild(makeSVGEl('circle', attrs)));
+
+  [[459,193,348,287,a],[521,193,638,268,a+40]].forEach(([x1,y1,x2,y2,h]) => {
+    svg.appendChild(makeSVGEl('line',{x1,y1,x2,y2,stroke:hsl(h,60,62,0.28),'stroke-width':1.5}));
+  });
+
+  [{cx:340,cy:295,r:9,h:a+35},{cx:648,cy:275,r:9,h:a-35},{cx:490,cy:185,r:11,h:a}].forEach(({cx,cy,r,h},i) => {
+    svg.appendChild(makeSVGEl('circle',{cx,cy,r,fill:hsl(h,i===2?85:72,i===2?70:65,i===2?0.9:0.7)}));
+  });
+
+  [['CRM',340,330],['Analytics',490,155],['Projects',648,312]].forEach(([txt,x,y]) => {
+    makeSVGText(svg, txt, {x,y,'text-anchor':'middle',fill:'rgba(255,255,255,0.35)','font-size':10,'font-family':'system-ui'});
+  });
+}
+
+function buildBold(svg) {
+  [
+    {text:'BEST',      y:190, size:78, opacity:0.07},
+    {text:'ALL-IN-ONE',y:268, size:60, opacity:0.10},
+    {text:'PLATFORMS', y:328, size:40, opacity:0.06},
+  ].forEach(({text,y,size,opacity}) => {
+    makeSVGText(svg, text, {
+      x:400, y, 'text-anchor':'middle',
+      'font-family':'system-ui,sans-serif', 'font-weight':900,
+      'font-size':size, fill:`rgba(255,255,255,${opacity})`, 'letter-spacing':-2
+    });
+  });
+}
+
+function buildMinimal(svg, s) {
+  const acc = hsl(s.accent, 72, 66, 0.85);
+  svg.appendChild(makeSVGEl('rect',{x:72,y:155,width:3.5,height:140,fill:acc,rx:2}));
+  [
+    {text:'Best',        x:98, y:200, size:38, weight:800, opacity:0.92},
+    {text:'All-in-One',  x:98, y:245, size:38, weight:800, opacity:0.92},
+    {text:'Platforms for Digital Agencies', x:98, y:278, size:18, weight:500, opacity:0.42},
+  ].forEach(({text,x,y,size,weight,opacity}) => {
+    makeSVGText(svg, text, {
+      x, y, 'font-family':'system-ui,sans-serif',
+      'font-weight':weight, 'font-size':size,
+      fill:`rgba(255,255,255,${opacity})`, 'letter-spacing':-0.4
+    });
+  });
+}
+
+function buildGridLines(svg, W, H) {
+  const g = makeSVGEl('g',{opacity:0.055,stroke:'white','stroke-width':0.5});
+  for (let i=1;i<10;i++) g.appendChild(makeSVGEl('line',{x1:i*80,y1:0,x2:i*80,y2:H}));
+  for (let i=1;i<6;i++)  g.appendChild(makeSVGEl('line',{x1:0,y1:i*75,x2:W,y2:i*75}));
+  svg.appendChild(g);
+}
+
+function buildDefs(svg, s) {
+  const defs = makeSVGEl('defs',{});
+  const W=800, H=450;
+  const dark = 100 - s.darkness;
+  const bg1=hsl(s.hue,48,dark), bg2=hsl(s.hue+18,52,dark+7), bg3=hsl(s.hue-12,40,dark+2);
+  const gA = s.glow/200;
+
+  if (s.bgStyle==='gradient'||s.bgStyle==='mesh') {
+    const grad = makeSVGEl('linearGradient',{id:'bg',x1:'0%',y1:'0%',x2:'100%',y2:'100%'});
+    [{offset:'0%',color:bg1},{offset:'55%',color:bg2},{offset:'100%',color:bg3}].forEach(({offset,color})=>{
+      const stop = makeSVGEl('stop',{offset}); stop.setAttribute('stop-color',color); grad.appendChild(stop);
+    });
+    defs.appendChild(grad);
+  }
+
+  if (s.bgStyle==='mesh') {
+    [{id:'m1',cx:'80%',cy:'20%',r:'55%',h:s.hue+28,d:dark+13,a:0.65},
+     {id:'m2',cx:'18%',cy:'82%',r:'48%',h:s.accent,d:dark+8,a:0.45}].forEach(({id,cx,cy,r,h,d,a})=>{
+      const rg = makeSVGEl('radialGradient',{id,cx,cy,r});
+      const s1=makeSVGEl('stop',{offset:'0%'}); s1.setAttribute('stop-color',hsl(h,58,d,a)); rg.appendChild(s1);
+      const s2=makeSVGEl('stop',{offset:'100%'}); s2.setAttribute('stop-color',hsl(h,58,d,0)); rg.appendChild(s2);
+      defs.appendChild(rg);
+    });
+  }
+
+  [{id:'g1',cx:'68%',cy:'28%',r:'52%',h:s.accent,a:gA},
+   {id:'g2',cx:'28%',cy:'72%',r:'42%',h:s.hue,a:gA*0.65}].forEach(({id,cx,cy,r,h,a})=>{
+    const rg = makeSVGEl('radialGradient',{id,cx,cy,r});
+    const s1=makeSVGEl('stop',{offset:'0%'}); s1.setAttribute('stop-color',hsl(h,72,60,a)); rg.appendChild(s1);
+    const s2=makeSVGEl('stop',{offset:'100%'}); s2.setAttribute('stop-color',hsl(h,72,60,0)); rg.appendChild(s2);
+    defs.appendChild(rg);
+  });
+
+  svg.appendChild(defs);
+}
+
+function renderThumbnail() {
+  const s = state;
+  const W=800, H=450;
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns,'svg');
+  svg.setAttribute('width', W); svg.setAttribute('height', H);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+
+  buildDefs(svg, s);
+
+  const dark = 100 - s.darkness;
+  const bg1 = hsl(s.hue,48,dark);
+  const bgFill = s.bgStyle==='solid' ? bg1 : 'url(#bg)';
+
+  svg.appendChild(makeSVGEl('rect',{width:W,height:H,fill:bgFill}));
+  if (s.bgStyle==='mesh') {
+    svg.appendChild(makeSVGEl('rect',{width:W,height:H,fill:'url(#m1)'}));
+    svg.appendChild(makeSVGEl('rect',{width:W,height:H,fill:'url(#m2)'}));
+  }
+  svg.appendChild(makeSVGEl('rect',{width:W,height:H,fill:'url(#g1)'}));
+  svg.appendChild(makeSVGEl('rect',{width:W,height:H,fill:'url(#g2)'}));
+
+  if (s.showGrid) buildGridLines(svg, W, H);
+
+  if (s.layout==='grid')     buildGrid(svg, s);
+  if (s.layout==='abstract') buildAbstract(svg, s);
+  if (s.layout==='bold')     buildBold(svg);
+  if (s.layout==='minimal')  buildMinimal(svg, s);
+
+  if (s.showBadge) {
+    svg.appendChild(makeSVGEl('rect',{x:40,y:H-78,width:118,height:36,rx:18,fill:'white'}));
+    makeSVGText(svg,'Agency ops',{x:99,y:H-53,'text-anchor':'middle',
+      'font-family':'system-ui,sans-serif','font-size':13,'font-weight':600,fill:'#111'});
+  }
+
+  if (s.showTitle) {
+    [
+      {text:'Best All-in-One Platforms', y:H-106},
+      {text:'for Digital Agencies',      y:H-77},
+    ].forEach(({text,y}) => {
+      makeSVGText(svg, text, {x:40, y,
+        'font-family':'system-ui,sans-serif','font-size':21,'font-weight':700,
+        fill:'rgba(255,255,255,0.93)','letter-spacing':-0.4});
+    });
+  }
+
+  return svg;
+}
+
+function update() {
+  state.bgStyle   = document.getElementById('bgStyle').value;
+  state.hue       = +document.getElementById('hue').value;
+  state.darkness  = +document.getElementById('darkness').value;
+  state.layout    = document.getElementById('layout').value;
+  state.accent    = +document.getElementById('accent').value;
+  state.glow      = +document.getElementById('glow').value;
+  state.showBadge = document.getElementById('showBadge').checked;
+  state.showTitle = document.getElementById('showTitle').checked;
+  state.showGrid  = document.getElementById('showGrid').checked;
+
+  document.getElementById('hueVal').textContent    = state.hue + '°';
+  document.getElementById('darkVal').textContent   = state.darkness + '%';
+  document.getElementById('accentVal').textContent = state.accent + '°';
+  document.getElementById('glowVal').textContent   = state.glow + '%';
+
+  const preview = document.getElementById('thumbnail-preview');
+  preview.replaceChildren(renderThumbnail());
+  updatePrompt();
+}
+
+function updatePrompt() {
+  const s = state;
+  const styleMap = {grid:'platform grid',abstract:'connected-node diagram',bold:'bold type overlay',minimal:'minimal left-rule'};
+  const bgMap    = {gradient:'linear gradient',mesh:'mesh gradient',solid:'solid fill'};
+  const parts = [`${styleMap[s.layout]} layout`, `${bgMap[s.bgStyle]} background at hue ${s.hue}°`];
+  if (s.glow>65) parts.push('strong accent glow');
+  else if (s.glow>25) parts.push('subtle glow overlay');
+  if (s.showBadge) parts.push('"Agency ops" badge bottom-left');
+  if (s.showTitle) parts.push('title text overlay');
+  if (!s.showGrid)  parts.push('no grid lines');
+
+  document.getElementById('prompt-text').value =
+    `Design a "Best All-in-One Platforms for Digital Agencies" blog thumbnail: ${parts.join(', ')}.`;
+}
+
+function applyPreset(name, btn) {
+  Object.assign(state, presets[name]);
+  document.getElementById('bgStyle').value     = state.bgStyle;
+  document.getElementById('hue').value         = state.hue;
+  document.getElementById('darkness').value    = state.darkness;
+  document.getElementById('layout').value      = state.layout;
+  document.getElementById('accent').value      = state.accent;
+  document.getElementById('glow').value        = state.glow;
+  document.getElementById('showBadge').checked = state.showBadge;
+  document.getElementById('showTitle').checked = state.showTitle;
+  document.getElementById('showGrid').checked  = state.showGrid;
+  document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  update();
+}
+
+function copyPrompt() {
+  navigator.clipboard.writeText(document.getElementById('prompt-text').value).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy prompt'; btn.classList.remove('copied'); }, 1800);
+  });
+}
+
+update();
+</script>
+</body>
+</html>

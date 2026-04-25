@@ -15,7 +15,7 @@ Font base styles
     @apply text-heading-4 sm:text-heading-3 md:text-heading-2 xl:text-heading-1 font-medium;
   }
   h2 {
-    @apply text-heading-5 sm:text-heading-4 md:text-heading-3 xl:text-heading-2;
+    @apply text-heading-4 md:text-heading-3 xl:text-heading-2;
   }
   h3 {
     @apply text-heading-5 md:text-heading-4 xl:text-heading-3;

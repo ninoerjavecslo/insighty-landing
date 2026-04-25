@@ -1,0 +1,45 @@
+---
+import { blogCTA } from '../../data/blogCTAContent'
+---
+
+<div
+  class="rounded-2xl p-[2px]"
+  style="background: linear-gradient(135deg, #4a6ec7, #a585ff, #f97316, #ec4899)"
+  aria-label="Try Insighty"
+>
+  <div class="bg-background-1 dark:bg-background-6 rounded-[14px] p-5 space-y-4">
+
+    <p class="text-tagline-1 font-semibold text-secondary dark:text-accent leading-snug">
+      {blogCTA.headline}
+    </p>
+
+    <ul class="space-y-3">
+      {blogCTA.bullets.map(bullet => (
+        <li class="flex items-start gap-2.5">
+          <span class="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-primary-500 flex items-center justify-center" aria-hidden="true">
+            <svg class="w-3 h-3 text-white" viewBox="0 0 12 12" fill="none">
+              <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="text-tagline-2 text-secondary/70 dark:text-accent/70 leading-snug">{bullet}</span>
+        </li>
+      ))}
+    </ul>
+
+    <div class="space-y-2 pt-1">
+      <a
+        href={blogCTA.primaryCTA.href}
+        class="btn btn-md btn-primary w-full justify-center"
+      >
+        <span>{blogCTA.primaryCTA.label}</span>
+      </a>
+      <a
+        href={blogCTA.secondaryCTA.href}
+        class="btn btn-md btn-secondary w-full justify-center"
+      >
+        <span>{blogCTA.secondaryCTA.label}</span>
+      </a>
+    </div>
+
+  </div>
+</div>

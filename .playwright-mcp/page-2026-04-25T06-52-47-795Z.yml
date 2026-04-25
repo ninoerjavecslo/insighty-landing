@@ -1,0 +1,402 @@
+- generic [ref=e1]:
+  - banner:
+    - generic [ref=e2]:
+      - link "Home" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e5]: Home
+        - figure [ref=e6]:
+          - img "Insighty" [ref=e7]
+      - navigation [ref=e8]:
+        - list [ref=e9]:
+          - listitem [ref=e10]:
+            - link "Platform" [ref=e11] [cursor=pointer]:
+              - /url: "#platform"
+              - generic [ref=e12]: Platform
+          - listitem [ref=e13]:
+            - link "Product Tour" [ref=e14] [cursor=pointer]:
+              - /url: "#product-tour"
+              - generic [ref=e15]: Product Tour
+          - listitem [ref=e16]:
+            - link "Pixel AI" [ref=e17] [cursor=pointer]:
+              - /url: "#pixel-ai"
+              - generic [ref=e18]: Pixel AI
+          - listitem [ref=e19]:
+            - link "Integrations" [ref=e20] [cursor=pointer]:
+              - /url: "#integrations"
+              - generic [ref=e21]: Integrations
+          - listitem [ref=e22]:
+            - link "Impact" [ref=e23] [cursor=pointer]:
+              - /url: "#impact"
+              - generic [ref=e24]: Impact
+          - listitem [ref=e25]:
+            - link "FAQ" [ref=e26] [cursor=pointer]:
+              - /url: "#faq"
+              - generic [ref=e27]: FAQ
+      - link "Request a Demo" [ref=e29] [cursor=pointer]:
+        - /url: /signup
+        - generic [ref=e30]: Request a Demo
+    - button "Theme toggle button" [active] [ref=e31] [cursor=pointer]:
+      - img [ref=e519]
+  - main [ref=e35]:
+    - region "Hero section" [ref=e36]:
+      - generic [ref=e37]:
+        - generic [ref=e38]:
+          - generic [ref=e39]:
+            - generic [ref=e42]: Early Access · 20 Founding Spots Left
+            - heading "AI-Powered Agency Intelligence Platform Built for Profitable Growth" [level=1] [ref=e43]
+            - paragraph [ref=e44]: Insighty brings every client, project, contract, and revenue stream into one intelligent dashboard. Coming soon to help agencies scale profitably.
+          - link "Join the Insighty waitlist" [ref=e46] [cursor=pointer]:
+            - /url: /contact
+            - generic [ref=e47]: Become a Founding Member
+        - generic [ref=e48]:
+          - generic [ref=e49]:
+            - figure:
+              - img "Decorative gradient background"
+          - generic [ref=e50]:
+            - figure [ref=e51]:
+              - img "Insighty agency intelligence platform dashboard" [ref=e52]
+            - figure [ref=e55]:
+              - img "Quick actions panel" [ref=e56]
+            - figure [ref=e59]:
+              - img "Pixel AI assistant" [ref=e60]
+    - generic [ref=e62]:
+      - generic [ref=e63]:
+        - generic [ref=e64]: Platform
+        - heading "Six surfaces. One source of truth." [level=2] [ref=e65]:
+          - text: Six surfaces.
+          - text: One source of truth.
+        - paragraph [ref=e66]: Every module reads from the same database. No reconciliation, no cross-tool sync, no stale numbers.
+      - generic [ref=e67]:
+        - generic [ref=e68]:
+          - generic [ref=e71]: 
+          - generic [ref=e72]:
+            - paragraph [ref=e73]: Revenue Planner
+            - paragraph [ref=e74]: Multi-stream revenue matrix across projects, retainers, hosting, and domains — tracked from planned to paid. Plus a 12-month weighted forecast built on what's actually committed.
+        - generic [ref=e75]:
+          - generic [ref=e78]: 
+          - generic [ref=e79]:
+            - paragraph [ref=e80]: Invoice Dashboard
+            - paragraph [ref=e81]: Every invoice due this month in one focused view. One click to confirm, issue, or defer. Invoice leakage stops here.
+        - generic [ref=e82]:
+          - generic [ref=e85]: 
+          - generic [ref=e86]:
+            - paragraph [ref=e87]: Client Intelligence
+            - paragraph [ref=e88]: Every client's projects, retainers, hosting, domains, and pipeline deals in one profile. Lifetime value, contract history, and financial summary — always current.
+        - generic [ref=e89]:
+          - generic [ref=e92]: 
+          - generic [ref=e93]:
+            - paragraph [ref=e94]: Infrastructure
+            - paragraph [ref=e95]: Hosting revenue per client, domain renewals, and provider costs — tracked line by line. Net margin visible. No renewal arrives as a surprise.
+        - generic [ref=e96]:
+          - generic [ref=e99]: 
+          - generic [ref=e100]:
+            - paragraph [ref=e101]: Sales Pipeline
+            - paragraph [ref=e102]: Proposal, negotiation, won, lost. Probability-weighted deal values feed your 12-month revenue forecast automatically.
+        - generic [ref=e103]:
+          - generic [ref=e106]: 
+          - generic [ref=e107]:
+            - paragraph [ref=e108]: Agency Reports
+            - paragraph [ref=e109]: Pipeline impact, delay scenarios, capacity forecast, and monthly digest — assembled automatically and ready for the board.
+    - generic [ref=e111]:
+      - generic [ref=e112]:
+        - generic [ref=e113]: Product Tour
+        - heading "Designed for Agencies. Built by Agencies." [level=2] [ref=e114]
+        - paragraph [ref=e115]: Explore how Insighty brings all your data together. See revenue planning, forecasting, and operations—all in one platform.
+      - generic [ref=e116]:
+        - figure [ref=e118]:
+          - img "Client detail view" [ref=e119]
+        - generic [ref=e121]:
+          - generic [ref=e122]:
+            - paragraph [ref=e123]: Client Intelligence
+            - heading "One client. The full picture." [level=3] [ref=e124]
+            - paragraph [ref=e125]: Your client isn't a row in a spreadsheet. Open their page and see every active project, every invoice planned or issued, every domain expiring, every change request, every hosting.
+          - list [ref=e126]:
+            - listitem [ref=e127]:
+              - img [ref=e128]
+              - generic [ref=e131]: Projects with total value, amount invoiced, and current status
+            - listitem [ref=e132]:
+              - img [ref=e133]
+              - generic [ref=e136]: Full invoice history across projects and maintenance contracts
+            - listitem [ref=e137]:
+              - img [ref=e138]
+              - generic [ref=e141]: Hosting costs, domain expiry dates, and contract end dates per client
+            - listitem [ref=e142]:
+              - img [ref=e143]
+              - generic [ref=e146]: Pipeline and open proposals linked to the same client
+      - generic [ref=e147]:
+        - generic [ref=e149]:
+          - generic [ref=e150]:
+            - paragraph [ref=e151]: Invoice Planning
+            - heading "Know what to send. Every time you need." [level=3] [ref=e152]:
+              - text: Know what to send.
+              - text: Every time you need.
+            - paragraph [ref=e153]: A 6-month matrix shows your entire billing pipeline at once. This Month narrows it down to what needs action today — confirm it, issue it, or move it to next month with one click. No spreadsheet. No missed invoices.
+          - list [ref=e154]:
+            - listitem [ref=e155]:
+              - img [ref=e156]
+              - generic [ref=e159]: Six-month view of planned and issued invoices per project
+            - listitem [ref=e160]:
+              - img [ref=e161]
+              - generic [ref=e164]: One-click confirm, defer, or transfer to another month
+            - listitem [ref=e165]:
+              - img [ref=e166]
+              - generic [ref=e169]: Monthly target vs. achieved progress always on screen
+            - listitem [ref=e170]:
+              - img [ref=e171]
+              - generic [ref=e174]: Retainers auto-populate so recurring billing never gets forgotten
+        - figure [ref=e176]:
+          - img "Invoice planning view" [ref=e177]
+      - generic [ref=e178]:
+        - figure [ref=e180]:
+          - img "Sales pipeline view" [ref=e181]
+        - generic [ref=e183]:
+          - generic [ref=e184]:
+            - paragraph [ref=e185]: Sales & Change Requests
+            - heading "From proposal to paid. No manual steps." [level=3] [ref=e186]
+            - paragraph [ref=e187]: Win a deal and the project is already structured. Approve a change request and it feeds straight into the invoice plan. The full revenue loop — without the copy-pasting.
+          - list [ref=e188]:
+            - listitem [ref=e189]:
+              - img [ref=e190]
+              - generic [ref=e193]: Pipeline tracks proposals with probability scores and estimated value
+            - listitem [ref=e194]:
+              - img [ref=e195]
+              - generic [ref=e198]: Won deals flow directly into project setup and billing
+            - listitem [ref=e199]:
+              - img [ref=e200]
+              - generic [ref=e203]: Change requests move from pending → approved → invoiced
+            - listitem [ref=e204]:
+              - img [ref=e205]
+              - generic [ref=e208]: Forecast always reflects approved work, not just wishful pipeline
+    - generic [ref=e211]:
+      - generic [ref=e212]:
+        - generic [ref=e213]: Meet PIXEL AI
+        - heading "AI That Actually Understands Your Agency." [level=2] [ref=e214]:
+          - text: AI That Actually Understands
+          - emphasis [ref=e215]: Your Agency.
+        - paragraph [ref=e216]: Pixel Intelligence is your AI operations assistant. It continuously monitors your revenue, projects, contracts, and infrastructure. When something needs attention — an invoice that's late, a project going over budget, a domain expiring, a client at risk — Pixel alerts you immediately. No manual checking. No missed opportunities. Just smart, proactive insights.
+      - generic [ref=e217]:
+        - generic [ref=e219]:
+          - img [ref=e221]
+          - generic [ref=e223]:
+            - paragraph [ref=e224]: Pixel AI
+            - paragraph [ref=e225]: ANALYZING · 09:14 CET
+        - generic [ref=e227]:
+          - generic [ref=e228]:
+            - text: Invoicing
+            - paragraph [ref=e229]:
+              - strong [ref=e230]: 34 invoices
+              - text: are ready to issue this morning.
+              - strong [ref=e231]: € 31,950
+              - text: total.
+          - generic [ref=e232]:
+            - text: Pipeline
+            - paragraph [ref=e233]:
+              - strong [ref=e234]: 5 proposals
+              - text: have gone quiet — last one 11 days ago. Drafts ready.
+          - generic [ref=e235]:
+            - text: Expiring
+            - paragraph [ref=e236]:
+              - strong [ref=e237]: insighty.io
+              - text: domain expires in 6 days. Auto-renew disabled.
+          - generic [ref=e238]:
+            - text: Margin
+            - paragraph [ref=e239]:
+              - text: All active projects tracking
+              - strong [ref=e240]: ≥ 38% margin
+              - text: . No interventions needed.
+        - generic [ref=e241]:
+          - generic [ref=e242]: Ask Pixel anything…
+          - generic [ref=e243]: ⌘K
+    - generic [ref=e246]:
+      - generic [ref=e247]:
+        - img
+        - img [ref=e251]
+        - img [ref=e256]
+        - img [ref=e261]
+        - img [ref=e266]
+        - img [ref=e272]
+        - img [ref=e279]
+        - img [ref=e284]
+        - img [ref=e289]
+      - generic [ref=e296]:
+        - generic [ref=e297]: Integrations
+        - heading "Keep your stack. Add the layer that makes sense of it." [level=2] [ref=e298]:
+          - text: Keep your stack.
+          - text: Add the layer that makes sense of it.
+        - paragraph [ref=e299]: Insighty doesn't replace Jira, Slack, or your accounting tool. It sits above them — pulling the signal that already exists in your stack and turning it into the numbers you actually run the agency on.
+    - generic [ref=e301]:
+      - generic [ref=e302]:
+        - generic [ref=e303]: The Impact
+        - heading "Numbers agencies feel in the first month." [level=2] [ref=e304]:
+          - text: Numbers agencies feel
+          - text: in the first month.
+        - paragraph [ref=e305]: Not marketing estimates. This is what happens when you stop reconstructing reality from five tabs and just open one.
+      - generic [ref=e307]:
+        - generic [ref=e308]:
+          - paragraph [ref=e310]: 8 hrs
+          - generic [ref=e311]:
+            - paragraph [ref=e312]: Saved every month
+            - paragraph [ref=e313]: No more tab-switching to figure out what's billable.
+        - generic [ref=e314]:
+          - paragraph [ref=e316]: €2.4k
+          - generic [ref=e317]:
+            - paragraph [ref=e318]: Recovered revenue
+            - paragraph [ref=e319]: Invoice leakage surfaced and confirmed in one view.
+        - generic [ref=e320]:
+          - paragraph [ref=e322]: "0"
+          - generic [ref=e323]:
+            - paragraph [ref=e324]: Missed renewals
+            - paragraph [ref=e325]: Alerts fire before every domain expiry and contract end.
+        - generic [ref=e326]:
+          - paragraph [ref=e328]: 5 min
+          - generic [ref=e329]:
+            - paragraph [ref=e330]: Board summary
+            - paragraph [ref=e331]: Revenue, margin, and pipeline assembled automatically.
+    - generic [ref=e332]:
+      - figure
+      - generic [ref=e333]:
+        - generic [ref=e334]:
+          - generic [ref=e335]: Founding Members
+          - heading "Why join now, not later?" [level=2] [ref=e336]
+          - paragraph [ref=e337]: We're opening a limited number of founding member spots before launch. Here's what you get that nobody else will — ever.
+        - generic [ref=e338]:
+          - generic [ref=e339]:
+            - generic [ref=e341]: 
+            - generic [ref=e342]:
+              - paragraph [ref=e343]: Lifetime pricing lock
+              - paragraph [ref=e344]: The price you sign up at is yours forever. No annual increases, no "we're adjusting pricing" emails. You're in at founding rates for life.
+          - generic [ref=e345]:
+            - generic [ref=e347]: 
+            - generic [ref=e348]:
+              - paragraph [ref=e349]: First access to every release
+              - paragraph [ref=e350]: New modules, new features, Pixel AI updates — founding members get access weeks before public release. You run on the latest version, always.
+          - generic [ref=e351]:
+            - generic [ref=e353]: 
+            - generic [ref=e354]:
+              - paragraph [ref=e355]: Help us build it right
+              - paragraph [ref=e356]: Direct line to the product team. Your workflow, your pain points, your agency's reality. We built the roadmap from real agency input — founding members keep shaping it.
+          - generic [ref=e357]:
+            - generic [ref=e359]: 
+            - generic [ref=e360]:
+              - paragraph [ref=e361]: White-glove onboarding
+              - paragraph [ref=e362]: We'll migrate your data, map your projects, and get you up and running ourselves. No reading docs, no figuring it out alone. Founding members get hands-on setup.
+          - generic [ref=e363]:
+            - generic [ref=e365]: 
+            - generic [ref=e366]:
+              - paragraph [ref=e367]: Private founding member community
+              - paragraph [ref=e368]: A private group of agency operators who get early access, compare notes, and talk directly to the Insighty team. No noise, no outsiders, no vendor pitches.
+          - generic [ref=e369]:
+            - generic [ref=e371]: 
+            - generic [ref=e372]:
+              - paragraph [ref=e373]: Founding member badge
+              - paragraph [ref=e374]: Permanently marked as a founding member in your account — the people who believed in Insighty before it launched. A small thing that means something.
+        - generic [ref=e375]:
+          - link "Become a Founding Member" [ref=e376] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e377]: Become a Founding Member
+          - paragraph [ref=e378]: Limited spots available. No credit card required.
+    - generic [ref=e380]:
+      - generic [ref=e381]:
+        - generic [ref=e382]: FAQ
+        - heading "Questions we keep getting" [level=2] [ref=e383]
+        - paragraph [ref=e384]: Everything you need to know before joining the waitlist.
+      - region [ref=e385]:
+        - generic [ref=e386]:
+          - button "When is Insighty launching?" [ref=e387] [cursor=pointer]:
+            - generic [ref=e388]: When is Insighty launching?
+            - img [ref=e390]
+          - paragraph [ref=e394]: We're targeting a Q2 2026 early-access launch for waitlist members. Founding members will get first access, locked pricing, and direct input on the roadmap before we open to the public.
+        - button "What size agency is Insighty built for?" [ref=e396] [cursor=pointer]:
+          - generic [ref=e397]: What size agency is Insighty built for?
+          - img [ref=e399]
+        - button "How is Insighty different from tools like Asana, Jira, or Monday?" [ref=e402] [cursor=pointer]:
+          - generic [ref=e403]: How is Insighty different from tools like Asana, Jira, or Monday?
+          - img [ref=e405]
+        - button "What is Pixel AI and what can it do?" [ref=e408] [cursor=pointer]:
+          - generic [ref=e409]: What is Pixel AI and what can it do?
+          - img [ref=e411]
+        - button "Can I migrate from spreadsheets?" [ref=e414] [cursor=pointer]:
+          - generic [ref=e415]: Can I migrate from spreadsheets?
+          - img [ref=e417]
+        - button "Is my data secure and private?" [ref=e420] [cursor=pointer]:
+          - generic [ref=e421]: Is my data secure and private?
+          - img [ref=e423]
+    - generic [ref=e428]:
+      - generic [ref=e429]:
+        - generic [ref=e430]: Founding Member
+        - generic [ref=e431]:
+          - heading "Be part of something before everyone else is." [level=2] [ref=e432]
+          - paragraph [ref=e433]: A limited number of founding member spots are open before launch. Lock in early access, founding pricing, and a direct line to the product team.
+        - list [ref=e434]:
+          - listitem [ref=e435]:
+            - img [ref=e436]
+            - generic [ref=e439]: Early access before public launch
+          - listitem [ref=e440]:
+            - img [ref=e441]
+            - generic [ref=e444]: Founding member pricing — locked for life
+          - listitem [ref=e445]:
+            - img [ref=e446]
+            - generic [ref=e449]: Direct influence on the product roadmap
+          - listitem [ref=e450]:
+            - img [ref=e451]
+            - generic [ref=e454]: Private founding member community
+      - generic [ref=e456]:
+        - generic [ref=e457]:
+          - text: Full name
+          - textbox "Sam Carter" [ref=e458]
+        - generic [ref=e459]:
+          - text: Work email
+          - textbox "sam@agency.com" [ref=e460]
+        - generic [ref=e461]:
+          - text: Agency name
+          - textbox "Your agency" [ref=e462]
+        - generic [ref=e463]:
+          - text: Team size
+          - combobox [ref=e464]:
+            - option "Select team size" [disabled] [selected]
+            - option "1–5 people"
+            - option "6–15 people"
+            - option "16–30 people"
+            - option "30+ people"
+        - button "Claim my founding member spot" [ref=e465] [cursor=pointer]:
+          - generic [ref=e466]: Claim my founding member spot
+        - paragraph [ref=e467]: No credit card required. We'll reach out before launch.
+  - contentinfo [ref=e468]:
+    - figure
+    - generic [ref=e470]:
+      - figure [ref=e471]:
+        - img "Insighty" [ref=e472]
+      - paragraph [ref=e473]: The unified platform for agency operations. Coming soon to help agencies scale profitably.
+      - generic [ref=e474]:
+        - link "LinkedIn LinkedIn" [ref=e475] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e476]: LinkedIn
+          - img "LinkedIn" [ref=e477]
+        - link "Instagram Instagram" [ref=e479] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e480]: Instagram
+          - img "Instagram" [ref=e481]
+        - link "Facebook Facebook" [ref=e483] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e484]: Facebook
+          - img "Facebook" [ref=e485]
+        - link "Youtube Youtube" [ref=e487] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e488]: Youtube
+          - img "Youtube" [ref=e489]
+      - paragraph [ref=e491]: Copyright ©2026 Insighty. All rights reserved.
+  - generic [ref=e494]:
+    - button "Menu" [ref=e495]:
+      - img [ref=e497]
+      - generic: Menu
+    - button "Inspect" [ref=e501]:
+      - img [ref=e503]
+      - generic: Inspect
+    - button "Audit" [ref=e505]:
+      - generic [ref=e506]:
+        - img [ref=e507]
+        - img [ref=e516]
+      - generic: Audit
+    - button "Settings" [ref=e510]:
+      - img [ref=e512]
+      - generic: Settings

@@ -115,6 +115,54 @@ Common Styles all over the sites
   }
 }
 
+/* Blog post prose */
+.blog-content {
+  @apply mx-auto;
+
+  h2 {
+    @apply text-heading-4 md:text-heading-3 font-medium text-secondary dark:text-accent mt-14 mb-4;
+  }
+  h3 {
+    @apply text-heading-5 font-medium text-secondary dark:text-accent mt-10 mb-3;
+  }
+  h4 {
+    @apply text-heading-6 font-medium text-secondary dark:text-accent mt-6 mb-2;
+  }
+  p {
+    @apply text-tagline-1 text-secondary/75 dark:text-accent/75 mb-5 leading-relaxed;
+  }
+  ul {
+    @apply mb-5 pl-5 space-y-2 list-disc;
+    li {
+      @apply text-tagline-1 text-secondary/75 dark:text-accent/75;
+    }
+  }
+  ol {
+    @apply mb-5 pl-5 space-y-2 list-decimal;
+    li {
+      @apply text-tagline-1 text-secondary/75 dark:text-accent/75;
+    }
+  }
+  strong {
+    @apply font-medium text-secondary dark:text-accent;
+  }
+  hr {
+    @apply border-stroke-2 dark:border-stroke-6 my-12;
+  }
+  a {
+    @apply text-primary-400 hover:underline transition-colors duration-200;
+  }
+  blockquote {
+    @apply border-l-4 border-primary-400 pl-6 italic text-secondary/60 dark:text-accent/60 my-8;
+  }
+  figure {
+    @apply my-8 rounded-2xl overflow-hidden;
+    img {
+      @apply w-full object-cover;
+    }
+  }
+}
+
 /* Terms & Conditions */
 .terms-conditions-body {
   h3 {
@@ -152,7 +200,7 @@ Common Styles all over the sites
 /* ==========AUTHENTICATION========== */
 
 .auth-form-input {
-  @apply border-stroke-3 bg-background-1 placeholder:text-tagline-2 placeholder:text-secondary/60 text-secondary text-tagline-1 dark:bg-background-6 dark:border-stroke-7 dark:placeholder:text-accent/60 dark:text-accent block h-[45px] w-full rounded-full border px-[18px] py-3 font-normal placeholder:font-normal focus:ring-0 focus:outline-none;
+  @apply border-stroke-3 bg-background-1 placeholder:text-tagline-2 placeholder:text-secondary/60 text-secondary text-tagline-1 dark:bg-background-6 dark:border-stroke-7 dark:placeholder:text-accent/60 dark:text-accent block h-[45px] w-full rounded-none border px-[18px] py-3 font-normal placeholder:font-normal focus:ring-0 focus:outline-none;
 }
 
 /* ==========CASE STUDY DETAILS========== */
