@@ -5,6 +5,7 @@ pubDate: 2026-03-15
 category: Product
 readTime: 4
 featured: false
+thumbnail: /blog/welcome-thumbnail.svg
 ---
 
 Insighty started from a single frustration: why does it take 45 minutes to answer "how are we doing this month?"

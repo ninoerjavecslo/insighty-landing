@@ -5,7 +5,7 @@ pubDate: 2026-04-20
 category: Agency Ops
 readTime: 6
 featured: true
-thumbnail: /blog/v2_stop_rebuilding.jpg
+thumbnail: /blog/generated_apps_graphic.jpg
 ---
 
 Every Monday morning, somewhere in your agency, someone opens Harvest, then Xero, then the project tracker, then the CRM, and starts copying numbers into a spreadsheet. By 10am they have something that approximates reality. By Friday, that document is wrong again.

@@ -5,6 +5,7 @@ pubDate: 2026-04-05
 category: Revenue
 readTime: 8
 featured: false
+thumbnail: /blog/growing_broke_thumbnail_2528x1696.jpg
 ---
 
 Growing broke is a specific kind of agency pain. Everything looks fine from the outside.

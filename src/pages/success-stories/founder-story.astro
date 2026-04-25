@@ -1,0 +1,279 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/organisms/Header.astro'
+import Footer from '../../components/organisms/Footer.astro'
+---
+
+<BaseLayout
+  title="I Built Insighty Because My Own Agency Was Forgetting to Invoice €30,000 Per Year — Insighty"
+  description="The personal story behind Insighty. How forgotten invoices, bad handovers, and invisible revenue leakage pushed one agency owner to build a better way."
+>
+  <Header />
+  <main>
+
+    <!-- Hero -->
+    <section
+      class="pt-[140px] sm:pt-[150px] md:pt-[160px] pb-0 relative overflow-hidden"
+      style="background: linear-gradient(155deg, #112445 0%, #1b3a6b 65%, #4a6ec7 100%)"
+    >
+      <div class="main-container pb-16 md:pb-20">
+
+        <!-- Back link -->
+        <a
+          href="/success-stories"
+          class="inline-flex items-center gap-2 text-white/50 hover:text-white text-tagline-2 transition-colors duration-200 mb-10"
+        >
+          <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none">
+            <path d="M11 7H3M6 4L3 7l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          All stories
+        </a>
+
+        <div class="grid grid-cols-1 xl:grid-cols-[1fr_340px] gap-12 items-start">
+          <div class="space-y-6">
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="inline-block bg-white/10 text-white text-tagline-3 font-semibold tracking-widest uppercase px-3 py-1 rounded-full">Founder Story</span>
+              <span class="text-white/40 text-tagline-3">5 min read</span>
+            </div>
+            <h1 class="text-white max-w-[640px] leading-tight">
+              I built Insighty because my own agency was forgetting to invoice
+              <em class="not-italic" style="color: #d4a574">€30,000 a year.</em>
+            </h1>
+            <p class="text-white/65 max-w-[540px] leading-relaxed" style="font-size: 1.125rem;">
+              People left the company. Handovers were chaos. Hosting fees, maintenance contracts, domain renewals — all quietly falling through the cracks. When I finally mapped everything, the number made me sick.
+            </p>
+            <div class="flex items-center gap-3 pt-2">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white font-semibold text-tagline-2 shrink-0">N</div>
+              <div>
+                <p class="text-white font-semibold text-tagline-2">Nino E.</p>
+                <p class="text-white/50 text-tagline-3">Founder, Insighty · Agency Owner for 8 years</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Key metric card -->
+          <div class="bg-white/8 backdrop-blur-sm border border-white/10 rounded-2xl p-7 space-y-6">
+            <div class="space-y-1">
+              <p class="text-white/50 text-tagline-3 uppercase tracking-widest font-semibold">Recovered per year</p>
+              <p class="text-white font-bold" style="font-size: 3rem; line-height: 1;">€30,000+</p>
+            </div>
+            <div class="border-t border-white/10 pt-5 space-y-4">
+              <div class="flex items-start gap-3">
+                <div class="w-1.5 h-1.5 rounded-full bg-white/30 mt-2 shrink-0"></div>
+                <p class="text-white/60 text-tagline-2">€18,400 in previously uninvoiced hosting & maintenance</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-1.5 h-1.5 rounded-full bg-white/30 mt-2 shrink-0"></div>
+                <p class="text-white/60 text-tagline-2">€11,800+ in upsells identified and converted</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-1.5 h-1.5 rounded-full bg-white/30 mt-2 shrink-0"></div>
+                <p class="text-white/60 text-tagline-2">4 clients found with 18+ months of missed invoices</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Story body -->
+    <section class="bg-background-1 dark:bg-background-8 py-16 md:py-20">
+      <div class="main-container">
+        <div class="grid grid-cols-1 xl:grid-cols-[680px_1fr] gap-12 xl:gap-20">
+
+          <!-- Narrative -->
+          <div class="prose-story space-y-8 text-secondary/75 dark:text-accent/75" style="font-size: 1.0625rem; line-height: 1.8;">
+
+            <h2 class="text-secondary dark:text-accent" style="font-size: 1.5rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.5rem;">The handover that broke everything</h2>
+            <p>
+              We were a seven-person agency. We'd been running for four years. We had 30-something active clients — hosting for some, WordPress maintenance retainers for others, mixed packages for a few. Nothing exotic.
+            </p>
+            <p>
+              Then, over eight months, three people left. The project manager who owned the hosting contracts. A developer who handled half the maintenance clients. A junior who'd been managing domain renewals via a spreadsheet nobody else could find.
+            </p>
+            <p>
+              The handovers were what they always are: rushed, incomplete, and optimistic. "It's all in the Drive folder." It wasn't. "Just check the email thread." There were 400 email threads.
+            </p>
+            <p>
+              We kept running. We kept doing the work. We just stopped tracking whether we were billing for it.
+            </p>
+
+            <h2 class="text-secondary dark:text-accent" style="font-size: 1.5rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.5rem;">The spreadsheet that lied to me for two years</h2>
+            <p>
+              I had a master billing spreadsheet. I'm not proud of it. It was 12 tabs, colour-coded, completely manual. Every month I'd open it, squint at a few rows, and convince myself everything was roughly under control.
+            </p>
+            <p>
+              What it couldn't tell me: which clients had active hosting contracts that weren't in the invoicing system. Which maintenance retainers had been paused — temporarily, everyone said — and never restarted. Which domains we were managing but nobody was charging for anymore.
+            </p>
+            <p>
+              The spreadsheet showed me what I entered. It couldn't show me what I'd forgotten.
+            </p>
+
+            <!-- Pull quote -->
+            <div
+              class="rounded-xl px-8 py-7 my-2 border-l-4 border-primary-500"
+              style="background: rgba(27,58,107,0.06)"
+            >
+              <p class="text-secondary dark:text-accent font-semibold leading-snug" style="font-size: 1.2rem;">
+                "The spreadsheet showed me what I entered. It couldn't show me what I'd forgotten."
+              </p>
+            </div>
+
+            <h2 class="text-secondary dark:text-accent" style="font-size: 1.5rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.5rem;">The audit that changed everything</h2>
+            <p>
+              When I started building Insighty, the first thing I did was import our own data. Every client. Every service. Every contract. Every hosting environment. Every domain. Every maintenance tier.
+            </p>
+            <p>
+              It took two evenings. Then I ran a report I called "Services with no attached invoice in 90 days." I expected a handful of edge cases. What I got was a list of 23 line items.
+            </p>
+            <p>
+              Twenty-three services across eleven clients that had been running — work was being done, infrastructure was live — and nobody had sent an invoice in three months or more. Four of those clients hadn't been billed in over eighteen months.
+            </p>
+            <p>
+              One client: we'd been managing their WordPress site and two domains for twenty-two months. No invoice. The contract was in a folder with the previous developer's name on it. The work had continued; the billing had quietly died.
+            </p>
+
+            <h2 class="text-secondary dark:text-accent" style="font-size: 1.5rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.5rem;">What we found, and what we did</h2>
+            <p>
+              I pulled together the numbers over a weekend. Across all the missed invoicing: €18,400 in work that had been delivered but never billed for in that calendar year. Some of it recoverable from clients (most were fine with it, a few required honest conversations), some we had to write off.
+            </p>
+            <p>
+              But the bigger find wasn't the missed invoices. It was the upsells.
+            </p>
+            <p>
+              When all the data was in one place, I could see the service history for every client. Three clients on basic hosting plans were running high-traffic sites — they'd grown since we'd set them up. Two clients had never been offered our performance maintenance tier, despite having precisely the kind of WordPress setup that breaks without it.
+            </p>
+            <p>
+              We had structured conversations with five clients within a month. Four upgraded. One declined, which is fine — at least we asked.
+            </p>
+            <p>
+              The total swing from that first audit: over €30,000 per year in recovered and new revenue. And that's not counting what we'll <em>never lose again</em> because everything is now tracked, invoiced automatically, and flagged the moment something goes uninvoiced for 30 days.
+            </p>
+
+            <!-- Pull quote 2 -->
+            <div
+              class="rounded-xl px-8 py-7 my-2 border-l-4 border-ns-yellow"
+              style="background: rgba(212,165,116,0.07)"
+            >
+              <p class="text-secondary dark:text-accent font-semibold leading-snug" style="font-size: 1.2rem;">
+                "We had structured conversations with five clients within a month. Four upgraded. The total swing: over €30,000 per year."
+              </p>
+            </div>
+
+            <h2 class="text-secondary dark:text-accent" style="font-size: 1.5rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.5rem;">Why I'm telling you this</h2>
+            <p>
+              I built Insighty because I was tired of running an agency on vibes and manual spreadsheets. I thought we were competent. We were. We just had no system for the thing that matters most: making sure every piece of work we delivered resulted in revenue.
+            </p>
+            <p>
+              The worst part isn't the money. It's that this was all preventable. The data existed. The contracts existed. The work was documented. We just had no way to see across all of it at once.
+            </p>
+            <p>
+              That's what Insighty does. It doesn't do the work for you. It makes sure you can see everything — and that you never quietly forget to invoice a client for the third year in a row.
+            </p>
+            <p>
+              If you're running an agency, I'd be willing to bet there's a version of this number somewhere in your ops right now. You just don't have a way to see it yet.
+            </p>
+
+            <div class="pt-4 flex flex-wrap gap-3">
+              <a href="/founding-member" class="btn btn-primary btn-md"><span>Get Early Access</span></a>
+              <a href="/request-a-demo" class="btn btn-white dark:btn-white-dark btn-md"><span>Request a Demo</span></a>
+            </div>
+
+          </div>
+
+          <!-- Sidebar -->
+          <div class="space-y-6">
+
+            <!-- Results summary -->
+            <div class="rounded-2xl border border-stroke-2 dark:border-stroke-6 overflow-hidden sticky top-28">
+              <div class="px-6 py-4 border-b border-stroke-2 dark:border-stroke-6">
+                <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/40 dark:text-accent/40">Results at a glance</p>
+              </div>
+              <div class="divide-y divide-stroke-2 dark:divide-stroke-6">
+                <div class="px-6 py-5 space-y-0.5">
+                  <p class="text-tagline-3 text-secondary/40 dark:text-accent/40 uppercase tracking-wider font-medium">Total recovered / year</p>
+                  <p class="text-secondary dark:text-accent font-bold" style="font-size: 1.75rem; line-height: 1.2;">€30,000+</p>
+                </div>
+                <div class="px-6 py-5 space-y-0.5">
+                  <p class="text-tagline-3 text-secondary/40 dark:text-accent/40 uppercase tracking-wider font-medium">Missed invoices found</p>
+                  <p class="text-secondary dark:text-accent font-bold text-h4">23 line items</p>
+                </div>
+                <div class="px-6 py-5 space-y-0.5">
+                  <p class="text-tagline-3 text-secondary/40 dark:text-accent/40 uppercase tracking-wider font-medium">Clients not billed 18+ months</p>
+                  <p class="text-secondary dark:text-accent font-bold text-h4">4 clients</p>
+                </div>
+                <div class="px-6 py-5 space-y-0.5">
+                  <p class="text-tagline-3 text-secondary/40 dark:text-accent/40 uppercase tracking-wider font-medium">Upsells converted</p>
+                  <p class="text-secondary dark:text-accent font-bold text-h4">4 of 5</p>
+                </div>
+                <div class="px-6 py-5 space-y-0.5">
+                  <p class="text-tagline-3 text-secondary/40 dark:text-accent/40 uppercase tracking-wider font-medium">Time to first audit</p>
+                  <p class="text-secondary dark:text-accent font-bold text-h4">2 evenings</p>
+                </div>
+              </div>
+
+              <!-- Feature callout -->
+              <div class="px-6 py-5 border-t border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7">
+                <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/35 dark:text-accent/35 mb-3">Feature that made it possible</p>
+                <div class="flex items-start gap-3">
+                  <span class="w-8 h-8 rounded-lg bg-primary-500/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <svg class="w-4 h-4 text-primary-500" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 2H4a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1V6L9 2z"/><path d="M9 2v4h4M6 9h4M6 12h2"/>
+                    </svg>
+                  </span>
+                  <div>
+                    <p class="text-tagline-2 font-semibold text-secondary dark:text-accent">Services & Billing Sync</p>
+                    <p class="text-tagline-3 text-secondary/50 dark:text-accent/50 leading-snug mt-0.5">Surfaces services with no attached invoice activity within a configurable window — so nothing goes unbilled.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Read next -->
+            <div class="rounded-2xl border border-stroke-2 dark:border-stroke-6 overflow-hidden">
+              <div class="px-6 py-4 border-b border-stroke-2 dark:border-stroke-6">
+                <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/40 dark:text-accent/40">Read next</p>
+              </div>
+              <a href="/success-stories/hosting-audit" class="group flex flex-col px-6 py-5 hover:bg-background-2 dark:hover:bg-background-7 transition-colors duration-200">
+                <p class="text-tagline-3 text-secondary/40 dark:text-accent/40 mb-1.5">Case Study</p>
+                <p class="text-tagline-2 font-semibold text-secondary dark:text-accent group-hover:text-primary-500 transition-colors duration-200 leading-snug">We Were Paying for Hosting Our Clients Weren't Billed For</p>
+                <div class="flex items-center gap-1.5 text-primary-500 text-tagline-3 font-medium mt-3">
+                  Read story
+                  <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" viewBox="0 0 14 14" fill="none">
+                    <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="py-16 md:py-20 border-t border-stroke-2 dark:border-stroke-6">
+      <div class="main-container">
+        <div
+          class="rounded-2xl p-10 md:p-14 flex flex-col md:flex-row items-start md:items-center justify-between gap-8"
+          style="background: linear-gradient(135deg, #112445 0%, #1b3a6b 60%, #4a6ec7 100%)"
+        >
+          <div class="space-y-3 max-w-[500px]">
+            <h2 class="text-white leading-tight">What are you not seeing in your ops right now?</h2>
+            <p class="text-white/60 text-tagline-1 leading-relaxed">Import your clients, services, and contracts. Get your first billing audit in minutes.</p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+            <a href="/founding-member" class="btn btn-xl" style="background: white; color: #1b3a6b; border-radius: 0.5rem;">
+              <span>Get Early Access</span>
+            </a>
+            <a href="/request-a-demo" class="btn btn-xl" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); border-radius: 0.5rem;">
+              <span>Book a Demo</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>

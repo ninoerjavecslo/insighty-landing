@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/organisms/Header.astro'
+import Footer from '../../components/organisms/Footer.astro'
+
+const stories = [
+  {
+    href: '/success-stories/founder-story',
+    eyebrow: 'Founder Story · Digital Agency',
+    headline: 'I Built Insighty Because My Own Agency Was Forgetting to Invoice €30,000 Per Year',
+    excerpt: 'People left the company. Handovers were a mess. Hosting fees, maintenance contracts, domain renewals — all falling through the cracks. When I finally mapped everything, the number made me sick.',
+    metric: '€30,000+',
+    metricLabel: 'recovered per year',
+    accent: 'linear-gradient(135deg, #112445 0%, #1b3a6b 60%, #4a6ec7 100%)',
+    tag: 'Origin story',
+    readTime: '5 min read',
+  },
+  {
+    href: '/success-stories/hosting-audit',
+    eyebrow: 'Case Study · Hosting & Ops',
+    headline: "We Were Paying for Hosting Our Clients Weren't Billed For",
+    excerpt: 'After importing every service contract into Insighty, the dashboard showed a number that didn\'t add up. Infrastructure costs versus what we were actually charging — a quiet €15,000 annual gap.',
+    metric: '€15,000',
+    metricLabel: 'saved per year',
+    accent: 'linear-gradient(135deg, #1b3a6b 0%, #2d9b9b 100%)',
+    tag: 'Ops win',
+    readTime: '4 min read',
+  },
+]
+---
+
+<BaseLayout
+  title="Success Stories — Insighty"
+  description="Real results from agency owners who used Insighty to stop revenue leakage, recover forgotten invoices, and take back control of their operations."
+>
+  <Header />
+  <main>
+
+    <!-- Hero -->
+    <section class="bg-background-1 dark:bg-background-8 pt-[140px] sm:pt-[150px] md:pt-[160px] pb-16 md:pb-20 border-b border-stroke-2 dark:border-stroke-6">
+      <div class="main-container">
+        <div class="max-w-[680px] space-y-5">
+          <span
+            data-ns-animate
+            data-delay="0.05"
+            class="inline-block text-tagline-3 uppercase tracking-widest font-semibold text-secondary/40 dark:text-accent/40 border border-secondary/15 dark:border-accent/15 px-4 py-1.5 rounded-full"
+          >Success Stories</span>
+          <h1
+            data-ns-animate
+            data-delay="0.1"
+            class="text-secondary dark:text-accent"
+          >Revenue you didn't<br/> know you were losing.</h1>
+          <p
+            data-ns-animate
+            data-delay="0.2"
+            class="text-tagline-1 text-secondary/60 dark:text-accent/60 max-w-[520px] leading-relaxed"
+          >
+            These aren't marketing numbers. They're the exact amounts found, recovered, and turned into profit by agencies who finally had a single view of their operations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Story cards -->
+    <section class="bg-background-1 dark:bg-background-8 py-16 md:py-24">
+      <div class="main-container">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {stories.map((story, i) => (
+            <a
+              href={story.href}
+              data-ns-animate
+              data-delay={String(0.05 + i * 0.1)}
+              class="group flex flex-col rounded-2xl border border-stroke-2 dark:border-stroke-6 hover:border-primary-500/30 dark:hover:border-primary-500/30 overflow-hidden transition-all duration-300 hover:shadow-[0_8px_40px_rgba(27,58,107,0.10)]"
+            >
+              <!-- Gradient header with metric -->
+              <div
+                class="h-[180px] p-8 flex flex-col justify-between"
+                style={`background: ${story.accent}`}
+              >
+                <div class="flex items-center justify-between">
+                  <span class="inline-block bg-white/10 text-white text-tagline-3 font-semibold tracking-widest uppercase px-3 py-1 rounded-full">{story.tag}</span>
+                  <span class="text-white/50 text-tagline-3">{story.readTime}</span>
+                </div>
+                <div>
+                  <p class="text-white/60 text-tagline-3 font-medium mb-0.5">{story.metricLabel}</p>
+                  <p class="text-white font-bold" style="font-size: clamp(2rem, 4vw, 3rem); line-height: 1;">{story.metric}</p>
+                </div>
+              </div>
+
+              <!-- Body -->
+              <div class="flex-1 flex flex-col p-8 bg-background-1 dark:bg-background-8 space-y-4">
+                <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/35 dark:text-accent/35">{story.eyebrow}</p>
+                <h2 class="text-h4 font-semibold text-secondary dark:text-accent leading-snug group-hover:text-primary-500 transition-colors duration-200">{story.headline}</h2>
+                <p class="text-tagline-1 text-secondary/60 dark:text-accent/60 leading-relaxed flex-1">{story.excerpt}</p>
+                <div class="flex items-center gap-2 text-primary-500 font-medium text-tagline-2 pt-2">
+                  Read the story
+                  <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA banner -->
+    <section class="py-16 md:py-20 border-t border-stroke-2 dark:border-stroke-6">
+      <div class="main-container">
+        <div
+          class="rounded-2xl p-10 md:p-14 flex flex-col md:flex-row items-start md:items-center justify-between gap-8"
+          style="background: linear-gradient(135deg, #112445 0%, #1b3a6b 60%, #4a6ec7 100%)"
+        >
+          <div class="space-y-3 max-w-[520px]">
+            <p class="text-white/60 text-tagline-2 font-semibold uppercase tracking-widest">Your agency, next</p>
+            <h2 class="text-white leading-tight">What's leaking from your operations right now?</h2>
+            <p class="text-white/60 text-tagline-1 leading-relaxed">Import your contracts, clients, and services. Insighty surfaces the gaps in minutes — not months.</p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+            <a href="/founding-member" class="btn btn-xl" style="background: white; color: #1b3a6b; border-radius: 0.5rem;">
+              <span>Get Early Access</span>
+            </a>
+            <a href="/request-a-demo" class="btn btn-xl" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); border-radius: 0.5rem;">
+              <span>Request a Demo</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>

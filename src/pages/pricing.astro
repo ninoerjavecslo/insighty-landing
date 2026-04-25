@@ -140,21 +140,21 @@ const faqs = [
       <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 36px 36px;"></div>
       <div class="main-container relative z-10 text-center">
         <div class="max-w-[680px] mx-auto space-y-6">
-          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white/40 border border-white/10 px-4 py-1.5 rounded-full">Pricing</span>
+          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white border border-white/30 px-4 py-1.5">Pricing</span>
           <h1 class="text-white">Transparent pricing.<br /><span class="hero-text-gradient hero-text-color-1">No surprises.</span></h1>
-          <p class="text-white/65 text-tagline-1 max-w-[520px] mx-auto">
+          <p class="text-white text-tagline-1 max-w-[520px] mx-auto">
             Every plan includes every feature. The only variable is how many seats your team needs and how much Pixel AI power you want.
           </p>
           <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 pt-2">
-            <div class="flex items-center gap-2 text-white/55 text-tagline-2">
+            <div class="flex items-center gap-2 text-white text-tagline-2">
               <svg class="w-4 h-4 text-green-400 shrink-0" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" fill="currentColor" opacity="0.2"/><path d="M4.5 8l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               14-day free trial
             </div>
-            <div class="flex items-center gap-2 text-white/55 text-tagline-2">
+            <div class="flex items-center gap-2 text-white text-tagline-2">
               <svg class="w-4 h-4 text-green-400 shrink-0" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" fill="currentColor" opacity="0.2"/><path d="M4.5 8l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               No credit card required
             </div>
-            <div class="flex items-center gap-2 text-white/55 text-tagline-2">
+            <div class="flex items-center gap-2 text-white text-tagline-2">
               <svg class="w-4 h-4 text-green-400 shrink-0" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" fill="currentColor" opacity="0.2"/><path d="M4.5 8l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               Cancel anytime
             </div>
@@ -167,62 +167,53 @@ const faqs = [
     <section class="bg-background-1 dark:bg-background-8 py-16 md:py-20">
       <div class="main-container">
 
-        <!-- Billing toggle -->
-        <div class="flex items-center justify-center gap-4 mb-12">
-          <span class="text-tagline-2 font-semibold text-secondary dark:text-accent" id="label-monthly">Monthly</span>
-          <button
-            id="billing-toggle"
-            role="switch"
-            aria-checked="false"
-            aria-label="Toggle annual billing"
-            style="position:relative; width:48px; height:26px; border-radius:999px; background:#d1d5db; border:none; cursor:pointer; transition: background 0.2s; flex-shrink:0;"
-          >
-            <span
-              id="billing-toggle-thumb"
-              style="position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:white; box-shadow:0 1px 3px rgba(0,0,0,0.2); transition: transform 0.2s;"
-            ></span>
-          </button>
-          <span class="text-tagline-2 font-medium text-secondary/50 dark:text-accent/50" id="label-annual">
-            Annual
-            <span class="ml-1.5 text-tagline-3 font-bold text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-2 py-0.5 rounded-full">Save 20%</span>
-          </span>
+        <!-- Billing toggle — pill style -->
+        <div class="flex items-center justify-center mb-12">
+          <div class="relative flex items-center p-1 rounded-full" style="background: #111827;">
+            <div id="toggle-slider" class="absolute rounded-full bg-white shadow-sm transition-all duration-200 ease-in-out" style="top:4px; left:4px; height:calc(100% - 8px); width:0;"></div>
+            <button id="btn-monthly" class="relative z-10 px-5 py-2.5 text-tagline-2 font-semibold rounded-full transition-colors duration-150 text-secondary" style="color:#111827;">Monthly</button>
+            <button id="btn-annual" class="relative z-10 px-5 py-2.5 text-tagline-2 font-semibold rounded-full transition-colors duration-150 flex items-center gap-2" style="color:rgba(255,255,255,0.55);">
+              Yearly
+              <span class="text-tagline-3 font-bold text-green-400 bg-green-900/40 px-2 py-0.5 rounded-full">Save 20%</span>
+            </button>
+          </div>
         </div>
 
         <!-- Plan cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
 
           <!-- Starter -->
-          <div class="rounded-2xl border border-stroke-2 dark:border-stroke-6 bg-background-1 dark:bg-background-7 p-7 flex flex-col gap-6">
+          <div class="rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-1 dark:bg-background-7 p-7 flex flex-col gap-6">
             <div>
-              <span class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/40 dark:text-accent/40">Starter</span>
+              <span class="text-tagline-2 font-bold text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Starter</span>
               <div class="flex items-end gap-1 mt-3 mb-0.5">
-                <span class="text-secondary dark:text-accent font-bold text-[2.25rem] leading-none tracking-tight">
+                <span class="text-secondary dark:text-accent font-bold text-[2.5rem] leading-none tracking-tight">
                   $<span class="price-monthly">49</span><span class="price-annual" style="display:none;">39</span>
                 </span>
-                <span class="text-tagline-2 text-secondary/50 dark:text-accent/50 mb-1">/ mo</span>
+                <span class="text-tagline-2 text-secondary/50 dark:text-accent/50 mb-1.5">/ mo</span>
               </div>
               <p class="text-tagline-3 text-secondary/40 dark:text-accent/40 billing-note-annual" style="display:none;">Billed $468 / year</p>
-              <p class="text-tagline-2 text-secondary/55 dark:text-accent/55 mt-3 leading-relaxed">For solo operators and small teams getting their agency data in one place.</p>
+              <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 mt-3 leading-relaxed">For solo operators and small teams getting their agency data in one place.</p>
             </div>
-            <a href="/request-a-demo" class="btn btn-secondary dark:btn-accent btn-md w-full text-center">
+            <a href="/request-a-demo" class="btn btn-secondary dark:btn-accent btn-md w-full text-center !rounded-lg">
               <span>Get started free</span>
             </a>
             <div class="border-t border-stroke-2 dark:border-stroke-6 pt-5 space-y-3">
-              <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/30 dark:text-accent/30">What's included</p>
+              <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/50 dark:text-accent/50">What's included</p>
               <ul class="space-y-2.5">
-                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/65 dark:text-accent/65">
+                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   <span><strong class="text-secondary dark:text-accent font-semibold">3 seats</strong> included</span>
                 </li>
-                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/65 dark:text-accent/65">
+                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   <span><strong class="text-secondary dark:text-accent font-semibold">250 Pixel AI credits</strong> / mo</span>
                 </li>
-                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/65 dark:text-accent/65">
+                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   <span>All core features</span>
                 </li>
-                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/65 dark:text-accent/65">
+                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   <span>Email support</span>
                 </li>
@@ -231,44 +222,44 @@ const faqs = [
           </div>
 
           <!-- Growth (Popular) -->
-          <div class="rounded-2xl border-2 border-primary-500 bg-background-1 dark:bg-background-7 p-7 flex flex-col gap-6 relative" style="box-shadow: 0 0 0 4px rgba(74,110,199,0.08);">
+          <div class="rounded-xl border-2 border-primary-500 bg-background-1 dark:bg-background-7 p-7 flex flex-col gap-6 relative" style="box-shadow: 0 0 0 4px rgba(74,110,199,0.08);">
             <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap">
-              <span class="bg-primary-500 text-white text-tagline-3 font-bold uppercase tracking-widest px-4 py-1.5 rounded-full">Most Popular</span>
+              <span class="bg-primary-500 text-white text-tagline-3 font-bold uppercase tracking-widest px-4 py-1.5">Most Popular</span>
             </div>
             <div>
-              <span class="text-tagline-3 uppercase tracking-widest font-semibold text-primary-500">Growth</span>
+              <span class="text-tagline-2 font-bold text-primary-500 uppercase tracking-widest">Growth</span>
               <div class="flex items-end gap-1 mt-3 mb-0.5">
-                <span class="text-secondary dark:text-accent font-bold text-[2.25rem] leading-none tracking-tight">
+                <span class="text-secondary dark:text-accent font-bold text-[2.5rem] leading-none tracking-tight">
                   $<span class="price-monthly">129</span><span class="price-annual" style="display:none;">103</span>
                 </span>
-                <span class="text-tagline-2 text-secondary/50 dark:text-accent/50 mb-1">/ mo</span>
+                <span class="text-tagline-2 text-secondary/50 dark:text-accent/50 mb-1.5">/ mo</span>
               </div>
               <p class="text-tagline-3 text-secondary/40 dark:text-accent/40 billing-note-annual" style="display:none;">Billed $1,236 / year</p>
-              <p class="text-tagline-2 text-secondary/55 dark:text-accent/55 mt-3 leading-relaxed">For growing agencies managing multiple clients and needing deeper AI intelligence.</p>
+              <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 mt-3 leading-relaxed">For growing agencies managing multiple clients and needing deeper AI intelligence.</p>
             </div>
-            <a href="/request-a-demo" class="btn btn-primary btn-md w-full text-center">
+            <a href="/request-a-demo" class="btn btn-primary btn-md w-full text-center !rounded-lg">
               <span>Start free trial</span>
             </a>
             <div class="border-t border-stroke-2 dark:border-stroke-6 pt-5 space-y-3">
-              <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/30 dark:text-accent/30">What's included</p>
+              <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/50 dark:text-accent/50">What's included</p>
               <ul class="space-y-2.5">
-                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/65 dark:text-accent/65">
+                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   <span><strong class="text-secondary dark:text-accent font-semibold">10 seats</strong> included</span>
                 </li>
-                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/65 dark:text-accent/65">
+                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   <span><strong class="text-secondary dark:text-accent font-semibold">1,000 Pixel AI credits</strong> / mo</span>
                 </li>
-                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/65 dark:text-accent/65">
+                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   <span>All core features</span>
                 </li>
-                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/65 dark:text-accent/65">
+                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   <span>Priority email + chat support</span>
                 </li>
-                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/65 dark:text-accent/65">
+                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   <span>Audit logs</span>
                 </li>
@@ -277,41 +268,41 @@ const faqs = [
           </div>
 
           <!-- Scale -->
-          <div class="rounded-2xl border border-stroke-2 dark:border-stroke-6 bg-background-1 dark:bg-background-7 p-7 flex flex-col gap-6">
+          <div class="rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-1 dark:bg-background-7 p-7 flex flex-col gap-6">
             <div>
-              <span class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/40 dark:text-accent/40">Scale</span>
+              <span class="text-tagline-2 font-bold text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Scale</span>
               <div class="flex items-end gap-1 mt-3 mb-0.5">
-                <span class="text-secondary dark:text-accent font-bold text-[2.25rem] leading-none tracking-tight">
+                <span class="text-secondary dark:text-accent font-bold text-[2.5rem] leading-none tracking-tight">
                   $<span class="price-monthly">299</span><span class="price-annual" style="display:none;">239</span>
                 </span>
-                <span class="text-tagline-2 text-secondary/50 dark:text-accent/50 mb-1">/ mo</span>
+                <span class="text-tagline-2 text-secondary/50 dark:text-accent/50 mb-1.5">/ mo</span>
               </div>
               <p class="text-tagline-3 text-secondary/40 dark:text-accent/40 billing-note-annual" style="display:none;">Billed $2,868 / year</p>
-              <p class="text-tagline-2 text-secondary/55 dark:text-accent/55 mt-3 leading-relaxed">For established agencies that need full team access and high-volume AI automation.</p>
+              <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 mt-3 leading-relaxed">For established agencies that need full team access and high-volume AI automation.</p>
             </div>
-            <a href="/request-a-demo" class="btn btn-secondary dark:btn-accent btn-md w-full text-center">
+            <a href="/request-a-demo" class="btn btn-secondary dark:btn-accent btn-md w-full text-center !rounded-lg">
               <span>Start free trial</span>
             </a>
             <div class="border-t border-stroke-2 dark:border-stroke-6 pt-5 space-y-3">
-              <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/30 dark:text-accent/30">What's included</p>
+              <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/50 dark:text-accent/50">What's included</p>
               <ul class="space-y-2.5">
-                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/65 dark:text-accent/65">
+                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   <span><strong class="text-secondary dark:text-accent font-semibold">25 seats</strong> included</span>
                 </li>
-                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/65 dark:text-accent/65">
+                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   <span><strong class="text-secondary dark:text-accent font-semibold">5,000 Pixel AI credits</strong> / mo</span>
                 </li>
-                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/65 dark:text-accent/65">
+                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   <span>All core features</span>
                 </li>
-                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/65 dark:text-accent/65">
+                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   <span>Dedicated success manager</span>
                 </li>
-                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/65 dark:text-accent/65">
+                <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   <span>Custom roles &amp; permissions</span>
                 </li>
@@ -320,33 +311,33 @@ const faqs = [
           </div>
 
           <!-- Enterprise -->
-          <div class="rounded-2xl border border-stroke-6 p-7 flex flex-col gap-6" style="background: linear-gradient(160deg, #0a1628 0%, #112445 100%);">
+          <div class="rounded-xl border border-stroke-6 p-7 flex flex-col gap-6" style="background: linear-gradient(160deg, #0a1628 0%, #112445 100%);">
             <div>
-              <span class="text-tagline-3 uppercase tracking-widest font-semibold text-white/35">Enterprise</span>
+              <span class="text-tagline-2 font-bold text-white/60 uppercase tracking-widest">Enterprise</span>
               <div class="mt-3 mb-0.5">
-                <span class="text-white font-bold text-[2rem] leading-none tracking-tight">Custom</span>
+                <span class="text-white font-bold text-[2.5rem] leading-none tracking-tight">Custom</span>
               </div>
-              <p class="text-tagline-2 text-white/50 mt-3 leading-relaxed">For agency groups and enterprise teams needing unlimited scale, SSO, and custom contracts.</p>
+              <p class="text-tagline-2 text-white/80 mt-3 leading-relaxed">For agency groups and enterprise teams needing unlimited scale, SSO, and custom contracts.</p>
             </div>
-            <a href="/request-a-demo" class="btn btn-md w-full text-center" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.18); border-radius: 9999px;">
+            <a href="/request-a-demo" class="btn btn-md w-full text-center !rounded-lg" style="background: rgba(255,255,255,0.12); color: white; border: 1px solid rgba(255,255,255,0.22);">
               <span>Talk to sales</span>
             </a>
             <div class="pt-5 border-t border-white/10 space-y-3">
-              <p class="text-tagline-3 uppercase tracking-widest font-semibold text-white/25">What's included</p>
+              <p class="text-tagline-3 uppercase tracking-widest font-semibold text-white/50">What's included</p>
               <ul class="space-y-2.5">
-                <li class="flex items-start gap-2.5 text-tagline-2 text-white/60">
+                <li class="flex items-start gap-2.5 text-tagline-2 text-white/85">
                   <svg class="w-4 h-4 mt-0.5 text-green-400 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   <span><strong class="text-white font-semibold">Unlimited seats</strong></span>
                 </li>
-                <li class="flex items-start gap-2.5 text-tagline-2 text-white/60">
+                <li class="flex items-start gap-2.5 text-tagline-2 text-white/85">
                   <svg class="w-4 h-4 mt-0.5 text-green-400 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   <span><strong class="text-white font-semibold">Unlimited Pixel AI credits</strong></span>
                 </li>
-                <li class="flex items-start gap-2.5 text-tagline-2 text-white/60">
+                <li class="flex items-start gap-2.5 text-tagline-2 text-white/85">
                   <svg class="w-4 h-4 mt-0.5 text-green-400 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   <span>SSO, SAML, custom roles</span>
                 </li>
-                <li class="flex items-start gap-2.5 text-tagline-2 text-white/60">
+                <li class="flex items-start gap-2.5 text-tagline-2 text-white/85">
                   <svg class="w-4 h-4 mt-0.5 text-green-400 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   <span>SLA + white-glove onboarding</span>
                 </li>
@@ -679,39 +670,44 @@ const faqs = [
 </BaseLayout>
 
 <script>
-  // ── Billing toggle ──
-  const toggle = document.getElementById('billing-toggle');
-  const thumb = document.getElementById('billing-toggle-thumb');
-  const labelAnnual = document.getElementById('label-annual');
-  const labelMonthly = document.getElementById('label-monthly');
+  // ── Billing toggle (pill) ──
+  const btnMonthly = document.getElementById('btn-monthly') as HTMLButtonElement | null;
+  const btnAnnual  = document.getElementById('btn-annual')  as HTMLButtonElement | null;
+  const slider     = document.getElementById('toggle-slider') as HTMLElement | null;
   let isAnnual = false;
 
-  toggle?.addEventListener('click', () => {
-    isAnnual = !isAnnual;
-    toggle.setAttribute('aria-checked', String(isAnnual));
+  function positionSlider(btn: HTMLButtonElement) {
+    if (!slider) return;
+    slider.style.left   = btn.offsetLeft + 'px';
+    slider.style.width  = btn.offsetWidth + 'px';
+  }
 
-    if (isAnnual) {
-      (toggle as HTMLElement).style.background = '#4a6ec7';
-      (thumb as HTMLElement).style.transform = 'translateX(22px)';
-      if (labelAnnual) (labelAnnual as HTMLElement).style.opacity = '1';
-      if (labelMonthly) (labelMonthly as HTMLElement).style.opacity = '0.5';
-    } else {
-      (toggle as HTMLElement).style.background = '#d1d5db';
-      (thumb as HTMLElement).style.transform = '';
-      if (labelAnnual) (labelAnnual as HTMLElement).style.opacity = '0.5';
-      if (labelMonthly) (labelMonthly as HTMLElement).style.opacity = '1';
-    }
-
+  function setAnnual(annual: boolean) {
+    isAnnual = annual;
+    const activeBtn   = annual ? btnAnnual   : btnMonthly;
+    const inactiveBtn = annual ? btnMonthly  : btnAnnual;
+    if (!activeBtn || !inactiveBtn) return;
+    positionSlider(activeBtn);
+    activeBtn.style.color   = '#111827';
+    inactiveBtn.style.color = 'rgba(255,255,255,0.55)';
     document.querySelectorAll('.price-monthly').forEach(el => {
-      (el as HTMLElement).style.display = isAnnual ? 'none' : 'inline';
+      (el as HTMLElement).style.display = annual ? 'none' : 'inline';
     });
     document.querySelectorAll('.price-annual').forEach(el => {
-      (el as HTMLElement).style.display = isAnnual ? 'inline' : 'none';
+      (el as HTMLElement).style.display = annual ? 'inline' : 'none';
     });
     document.querySelectorAll('.billing-note-annual').forEach(el => {
-      (el as HTMLElement).style.display = isAnnual ? 'block' : 'none';
+      (el as HTMLElement).style.display = annual ? 'block' : 'none';
     });
-  });
+  }
+
+  // Init slider on monthly button
+  if (btnMonthly) {
+    requestAnimationFrame(() => positionSlider(btnMonthly));
+  }
+
+  btnMonthly?.addEventListener('click', () => setAnnual(false));
+  btnAnnual?.addEventListener('click',  () => setAnnual(true));
 
   // ── Savings calculator ──
   const competitorData: Record<string, { name: string; perUser: number; flat: number }> = {

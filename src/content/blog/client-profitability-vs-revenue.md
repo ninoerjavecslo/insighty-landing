@@ -5,6 +5,7 @@ pubDate: 2026-04-10
 category: Revenue
 readTime: 7
 featured: false
+thumbnail: /blog/profitability_thumbnail.jpg
 ---
 
 Revenue tells you what came in. Profitability tells you what you actually made. Most agencies only track the first number.

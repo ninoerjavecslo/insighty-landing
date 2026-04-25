@@ -1,0 +1,267 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/organisms/Header.astro'
+import Footer from '../../components/organisms/Footer.astro'
+---
+
+<BaseLayout
+  title="We Were Paying for Hosting Our Clients Weren't Billed For — Insighty"
+  description="After importing all service contracts into Insighty, the dashboard showed a €15,000 annual gap between actual hosting costs and what clients were being charged. Here's how we fixed it."
+>
+  <Header />
+  <main>
+
+    <!-- Hero -->
+    <section
+      class="pt-[140px] sm:pt-[150px] md:pt-[160px] pb-0 relative overflow-hidden"
+      style="background: linear-gradient(155deg, #0e3030 0%, #1b3a6b 50%, #2d9b9b 100%)"
+    >
+      <div class="main-container pb-16 md:pb-20">
+
+        <!-- Back link -->
+        <a
+          href="/success-stories"
+          class="inline-flex items-center gap-2 text-white/50 hover:text-white text-tagline-2 transition-colors duration-200 mb-10"
+        >
+          <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none">
+            <path d="M11 7H3M6 4L3 7l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          All stories
+        </a>
+
+        <div class="grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-12 items-start">
+          <div class="space-y-6">
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="inline-block bg-white/10 text-white text-tagline-3 font-semibold tracking-widest uppercase px-3 py-1 rounded-full">Ops Win</span>
+              <span class="text-white/40 text-tagline-3">4 min read</span>
+            </div>
+            <h1 class="text-white max-w-[620px] leading-tight">
+              We were paying for hosting our clients
+              <em class="not-italic" style="color: #7dd8d8">weren't being billed for.</em>
+            </h1>
+            <p class="text-white/65 max-w-[520px] leading-relaxed" style="font-size: 1.125rem;">
+              After importing every service contract into Insighty, a single dashboard view showed infrastructure costs stacked against client billing. The gap was €15,000 a year. It had been there for years.
+            </p>
+            <div class="flex items-center gap-3 pt-2">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white font-semibold text-tagline-2 shrink-0">N</div>
+              <div>
+                <p class="text-white font-semibold text-tagline-2">Nino E.</p>
+                <p class="text-white/50 text-tagline-3">Founder, Insighty · Digital Agency Owner</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Key metric card -->
+          <div class="bg-white/8 backdrop-blur-sm border border-white/10 rounded-2xl p-7 space-y-6">
+            <div class="space-y-1">
+              <p class="text-white/50 text-tagline-3 uppercase tracking-widest font-semibold">Saved per year</p>
+              <p class="text-white font-bold" style="font-size: 3rem; line-height: 1;">€15,000</p>
+            </div>
+            <div class="border-t border-white/10 pt-5 space-y-4">
+              <div class="flex items-start gap-3">
+                <div class="w-1.5 h-1.5 rounded-full bg-white/30 mt-2 shrink-0"></div>
+                <p class="text-white/60 text-tagline-2">7 client contracts under-billed vs. actual hosting cost</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-1.5 h-1.5 rounded-full bg-white/30 mt-2 shrink-0"></div>
+                <p class="text-white/60 text-tagline-2">Infrastructure consolidated from 3 providers to 1</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-1.5 h-1.5 rounded-full bg-white/30 mt-2 shrink-0"></div>
+                <p class="text-white/60 text-tagline-2">All savings converted to direct margin — not cost cuts</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Story body -->
+    <section class="bg-background-1 dark:bg-background-8 py-16 md:py-20">
+      <div class="main-container">
+        <div class="grid grid-cols-1 xl:grid-cols-[680px_1fr] gap-12 xl:gap-20">
+
+          <!-- Narrative -->
+          <div class="space-y-8 text-secondary/75 dark:text-accent/75" style="font-size: 1.0625rem; line-height: 1.8;">
+
+            <h2 class="text-secondary dark:text-accent" style="font-size: 1.5rem; font-weight: 700; line-height: 1.3;">How hosting pricing goes wrong in a growing agency</h2>
+            <p>
+              When you onboard your first ten clients, hosting is simple. You know exactly what each one costs to run because you set it all up yourself. €15/month here, a dedicated environment there. Easy.
+            </p>
+            <p>
+              By the time you're at 35 clients — with different server configurations, mixed reseller accounts, a couple of cloud environments from legacy projects, and billing set up by three different people over four years — it's anything but simple.
+            </p>
+            <p>
+              Our hosting pricing hadn't been audited since we'd set most of it up. We'd upgraded infrastructure as needed. We hadn't upgraded what we charged clients to reflect that.
+            </p>
+
+            <h2 class="text-secondary dark:text-accent" style="font-size: 1.5rem; font-weight: 700; line-height: 1.3;">What we thought we knew</h2>
+            <p>
+              I thought we were roughly margin-neutral on hosting. It was never a big profit centre — we viewed it as a service that kept clients sticky. Cover costs, charge a small management fee, move on.
+            </p>
+            <p>
+              The problem was I had no way to see hosting costs and billing side by side, per client, in real time. Hosting invoices went to the ops email. Client billing went through our invoicing tool. Nobody was reconciling the two in any structured way.
+            </p>
+
+            <!-- Pull quote -->
+            <div
+              class="rounded-xl px-8 py-7 my-2 border-l-4"
+              style="border-color: #2d9b9b; background: rgba(45,155,155,0.07)"
+            >
+              <p class="text-secondary dark:text-accent font-semibold leading-snug" style="font-size: 1.2rem;">
+                "Hosting invoices went to the ops email. Client billing went through our invoicing tool. Nobody was reconciling the two."
+              </p>
+            </div>
+
+            <h2 class="text-secondary dark:text-accent" style="font-size: 1.5rem; font-weight: 700; line-height: 1.3;">The moment everything became visible</h2>
+            <p>
+              When I was building Insighty, I used our own agency as the test dataset. I imported every client, every service, every hosting contract — cost, provider, environment size, and what the client was being billed for it.
+            </p>
+            <p>
+              The "Services Overview" view laid it out clearly: for each hosting service, the monthly cost on the left, the monthly revenue on the right. Green where we had margin. Red where the math didn't work.
+            </p>
+            <p>
+              There were seven red rows.
+            </p>
+            <p>
+              A client on a managed WordPress plan — we'd moved them to a faster environment 18 months prior after a performance issue, but never updated their billing. A client whose site now ran alongside three others on a shared server that cost more per seat than the individual amount we were charging. Two clients on "legacy" pricing we'd offered during a promotional period three years earlier, never expecting them to still be on it.
+            </p>
+            <p>
+              Combined across the seven: we were delivering €1,250/month more in hosting infrastructure than we were billing for. €15,000 a year. Straight loss.
+            </p>
+
+            <h2 class="text-secondary dark:text-accent" style="font-size: 1.5rem; font-weight: 700; line-height: 1.3;">The fix — and what it took</h2>
+            <p>
+              First, we consolidated. Three hosting providers down to one managed provider with cleaner per-client pricing. That alone removed a chunk of the gap through better infrastructure unit economics.
+            </p>
+            <p>
+              Second, we updated client pricing. Most clients were on contracts with annual review clauses — we'd just never used them. We had honest conversations. Every client stayed. A few pushed back on the increase; we explained the infrastructure change and that was enough.
+            </p>
+            <p>
+              One client was on hosting so old it predated our current contract template. We migrated them to our standard hosting tier and absorbed a one-time credit on their account. Still came out ahead by more than €2,000/year on that client alone.
+            </p>
+
+            <!-- Pull quote 2 -->
+            <div
+              class="rounded-xl px-8 py-7 my-2 border-l-4 border-primary-500"
+              style="background: rgba(27,58,107,0.06)"
+            >
+              <p class="text-secondary dark:text-accent font-semibold leading-snug" style="font-size: 1.2rem;">
+                "Every client stayed. The €15,000 gap became €15,000 of clean margin — not new revenue. Money we were already working for."
+              </p>
+            </div>
+
+            <h2 class="text-secondary dark:text-accent" style="font-size: 1.5rem; font-weight: 700; line-height: 1.3;">What's different now</h2>
+            <p>
+              Every hosting service in Insighty has a cost field and a billing field. The moment those two numbers diverge beyond our threshold — 15% margin minimum — it surfaces as a flag on the dashboard.
+            </p>
+            <p>
+              We review it quarterly now instead of never. When we upgrade a client's infrastructure, the billing update is part of the workflow, not an afterthought six months later.
+            </p>
+            <p>
+              The €15,000 wasn't new money. It was money we were already spending effort to earn. We just weren't collecting it.
+            </p>
+
+            <div class="pt-4 flex flex-wrap gap-3">
+              <a href="/founding-member" class="btn btn-primary btn-md"><span>Get Early Access</span></a>
+              <a href="/request-a-demo" class="btn btn-white dark:btn-white-dark btn-md"><span>Request a Demo</span></a>
+            </div>
+
+          </div>
+
+          <!-- Sidebar -->
+          <div class="space-y-6">
+
+            <!-- Results summary -->
+            <div class="rounded-2xl border border-stroke-2 dark:border-stroke-6 overflow-hidden sticky top-28">
+              <div class="px-6 py-4 border-b border-stroke-2 dark:border-stroke-6">
+                <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/40 dark:text-accent/40">Results at a glance</p>
+              </div>
+              <div class="divide-y divide-stroke-2 dark:divide-stroke-6">
+                <div class="px-6 py-5 space-y-0.5">
+                  <p class="text-tagline-3 text-secondary/40 dark:text-accent/40 uppercase tracking-wider font-medium">Annual margin recovered</p>
+                  <p class="text-secondary dark:text-accent font-bold" style="font-size: 1.75rem; line-height: 1.2;">€15,000</p>
+                </div>
+                <div class="px-6 py-5 space-y-0.5">
+                  <p class="text-tagline-3 text-secondary/40 dark:text-accent/40 uppercase tracking-wider font-medium">Under-billed contracts found</p>
+                  <p class="text-secondary dark:text-accent font-bold text-h4">7 clients</p>
+                </div>
+                <div class="px-6 py-5 space-y-0.5">
+                  <p class="text-tagline-3 text-secondary/40 dark:text-accent/40 uppercase tracking-wider font-medium">Hosting providers consolidated</p>
+                  <p class="text-secondary dark:text-accent font-bold text-h4">3 → 1</p>
+                </div>
+                <div class="px-6 py-5 space-y-0.5">
+                  <p class="text-tagline-3 text-secondary/40 dark:text-accent/40 uppercase tracking-wider font-medium">Client churn from repricing</p>
+                  <p class="text-secondary dark:text-accent font-bold text-h4">0</p>
+                </div>
+                <div class="px-6 py-5 space-y-0.5">
+                  <p class="text-tagline-3 text-secondary/40 dark:text-accent/40 uppercase tracking-wider font-medium">Time to first insight</p>
+                  <p class="text-secondary dark:text-accent font-bold text-h4">Under 1 hour</p>
+                </div>
+              </div>
+
+              <!-- Feature callout -->
+              <div class="px-6 py-5 border-t border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7">
+                <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/35 dark:text-accent/35 mb-3">Feature that made it possible</p>
+                <div class="flex items-start gap-3">
+                  <span class="w-8 h-8 rounded-lg bg-ns-green/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <svg class="w-4 h-4 text-ns-green" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="8" cy="8" r="6"/><path d="M2 8h12M8 2a9.3 9.3 0 000 12M8 2a9.3 9.3 0 010 12"/>
+                    </svg>
+                  </span>
+                  <div>
+                    <p class="text-tagline-2 font-semibold text-secondary dark:text-accent">Hosting & Infrastructure Overview</p>
+                    <p class="text-tagline-3 text-secondary/50 dark:text-accent/50 leading-snug mt-0.5">Side-by-side view of hosting cost vs. client billing per service — with margin alerts when the gap exceeds your threshold.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Read next -->
+            <div class="rounded-2xl border border-stroke-2 dark:border-stroke-6 overflow-hidden">
+              <div class="px-6 py-4 border-b border-stroke-2 dark:border-stroke-6">
+                <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/40 dark:text-accent/40">Read next</p>
+              </div>
+              <a href="/success-stories/founder-story" class="group flex flex-col px-6 py-5 hover:bg-background-2 dark:hover:bg-background-7 transition-colors duration-200">
+                <p class="text-tagline-3 text-secondary/40 dark:text-accent/40 mb-1.5">Founder Story</p>
+                <p class="text-tagline-2 font-semibold text-secondary dark:text-accent group-hover:text-primary-500 transition-colors duration-200 leading-snug">I Built Insighty Because My Own Agency Was Forgetting to Invoice €30,000 Per Year</p>
+                <div class="flex items-center gap-1.5 text-primary-500 text-tagline-3 font-medium mt-3">
+                  Read story
+                  <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" viewBox="0 0 14 14" fill="none">
+                    <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="py-16 md:py-20 border-t border-stroke-2 dark:border-stroke-6">
+      <div class="main-container">
+        <div
+          class="rounded-2xl p-10 md:p-14 flex flex-col md:flex-row items-start md:items-center justify-between gap-8"
+          style="background: linear-gradient(155deg, #0e3030 0%, #1b3a6b 50%, #2d9b9b 100%)"
+        >
+          <div class="space-y-3 max-w-[500px]">
+            <h2 class="text-white leading-tight">Is your hosting margin where you think it is?</h2>
+            <p class="text-white/60 text-tagline-1 leading-relaxed">Import your service contracts and get a cost-vs-billing breakdown for every client in your first session.</p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+            <a href="/founding-member" class="btn btn-xl" style="background: white; color: #1b3a6b; border-radius: 0.5rem;">
+              <span>Get Early Access</span>
+            </a>
+            <a href="/request-a-demo" class="btn btn-xl" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); border-radius: 0.5rem;">
+              <span>Book a Demo</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>

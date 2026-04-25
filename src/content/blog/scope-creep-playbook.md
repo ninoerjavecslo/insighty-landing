@@ -5,6 +5,7 @@ pubDate: 2026-03-20
 category: Projects
 readTime: 6
 featured: false
+thumbnail: /blog/scope_creep_thumbnail_2528x1696.jpg
 ---
 
 By the time scope creep shows up in your financials, it's already too late to course-correct on that project.

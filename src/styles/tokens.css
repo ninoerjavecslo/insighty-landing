@@ -14,7 +14,7 @@ All the varaiables are added here
   --color-primary-600: #162f58;
   --color-primary-700: #112445;
   --color-primary-800: #0c1932;
-  --color-secondary: #1f1f1f;
+  --color-secondary: #181818cf;
   --color-ns-navy: #1b3a6b;
   --color-accent: #fcfcfc;
   --color-split-text: #1a1a1c;
@@ -27,13 +27,13 @@ All the varaiables are added here
   --color-background-7: #181d26;
   --color-background-8: #070b10;
   --color-background-9: #1f252f;
-  --color-background-10: #ebebeb;
-  --color-background-11: #b5b5b9;
-  --color-background-12: #eaeceb;
-  --color-stroke-1: #dfe4eb;
-  --color-stroke-2: #e3e7ed;
-  --color-stroke-3: #d7dde5;
-  --color-stroke-4: #eceff4;
+  --color-background-10: #888888;
+  --color-background-11: #555558;
+  --color-background-12: #878989;
+  --color-stroke-1: #6b7280;
+  --color-stroke-2: #707888;
+  --color-stroke-3: #636b78;
+  --color-stroke-4: #757e8d;
   --color-stroke-5: #1b232f;
   --color-stroke-6: #202731;
   --color-stroke-7: #2a333e;
@@ -49,7 +49,7 @@ All the varaiables are added here
   --color-ns-cyan-light: #c8eded;
   --color-ns-yellow-light: #f5e5d0;
   --color-ns-ivory: #f4efe7;
-  --color-ns-linen: #beab9a;
+  --color-ns-linen: #7a6b5d;
 
   --color-gradient-1: linear-gradient(135deg, #4a6ec7 0%, #d4a574 100%);
   --color-gradient-2: linear-gradient(135deg, #d4a574 0%, #c08040 100%);
@@ -87,11 +87,11 @@ All the varaiables are added here
   --text-heading-5--line-height: 140%;
   --text-heading-6: 1.25rem;
   --text-heading-6--line-height: 140%;
-  --text-tagline-1: 1rem;
+  --text-tagline-1: 1.0625rem;
   --text-tagline-1--line-height: 150%;
-  --text-tagline-2: 0.875rem;
+  --text-tagline-2: 0.9375rem;
   --text-tagline-2--line-height: 150%;
-  --text-tagline-3: 0.75rem;
+  --text-tagline-3: 0.8125rem;
   --text-tagline-3--line-height: 150%;
 
   /* blur  */

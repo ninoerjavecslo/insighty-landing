@@ -5,6 +5,7 @@ pubDate: 2026-03-10
 category: Product
 readTime: 5
 featured: false
+thumbnail: /blog/pixel-thumbnail.svg
 ---
 
 Pixel AI isn't a chatbot bolted onto a dashboard. It's an operations assistant that knows your agency's data.

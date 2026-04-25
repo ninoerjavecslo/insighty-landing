@@ -5,6 +5,7 @@ pubDate: 2026-04-15
 category: Agency Ops
 readTime: 5
 featured: false
+thumbnail: /blog/receipt_v3_2528x1696.png
 ---
 
 Most agency ops reviews focus on software spend. Nobody counts the reconciliation tax.

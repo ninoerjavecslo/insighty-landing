@@ -265,14 +265,19 @@ const totalCount = projectManagement.length + agencyPsa.length
 
           <!-- Left: copy -->
           <div class="space-y-6">
-            <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white/40">Platform Comparisons</span>
+            <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white border border-white/30 px-4 py-1.5">Platform Comparisons</span>
             <h1 class="text-white">Insighty vs.<br /><span class="hero-text-gradient hero-text-color-1">the field</span></h1>
-            <p class="text-white/65 max-w-[480px] text-tagline-1">
+            <p class="text-white max-w-[480px] text-tagline-1">
               Insighty is not a project management tool. It's the financial and operations intelligence layer that sits on top of the tools your agency already uses. Here's how it compares with {totalCount} alternatives.
             </p>
-            <div class="flex flex-wrap gap-3 pt-2">
-              <a href="/contact" class="btn btn-md btn-primary"><span>Request early access</span></a>
-              <a href="/#platform" class="btn btn-md btn-secondary !border-white/20 !text-white hover:!bg-white/10"><span>See the platform</span></a>
+            <div class="flex flex-wrap items-center gap-4 pt-2">
+              <a href="/founding-member" class="btn btn-md btn-outline-white"><span>Request early access</span></a>
+              <a href="/#platform" class="inline-flex items-center gap-2 text-white/75 hover:text-white text-tagline-2 font-medium uppercase tracking-wide transition-colors duration-200 group">
+                <span>See the platform</span>
+                <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
             </div>
           </div>
 

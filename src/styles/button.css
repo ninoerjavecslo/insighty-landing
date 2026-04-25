@@ -77,6 +77,14 @@ Nexsas Buttons Styles
   @apply shadow-1 bg-background-5 border-stroke-7 text-accent;
 }
 
+/* btn-outline-white — transparent bg, white border, white text (for dark/navy backgrounds) */
+@utility btn-outline-white {
+  @apply bg-transparent border-white/30 text-white hover:bg-white/8 hover:border-white/50;
+  &::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='white' viewBox='0 0 256 256'%3E%3Cpath d='M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z'%3E%3C/path%3E%3C/svg%3E");
+  }
+}
+
 @utility btn-transparent {
   @apply border-stroke-7 text-accent bg-transparent;
   &::before {

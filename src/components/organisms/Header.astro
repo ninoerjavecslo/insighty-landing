@@ -425,8 +425,14 @@ Header v1
           href={`/blog/${featuredPost.id}`}
           class="block rounded-xl overflow-hidden border border-stroke-2 dark:border-stroke-5 hover:border-primary-500/30 transition-colors duration-150 group"
         >
-          <div class="h-[70px] flex items-end p-2.5" style="background: linear-gradient(135deg, #112445 0%, #4a6ec7 100%)">
-            <span class="badge badge-white !text-secondary text-tagline-3 font-medium">{featuredPost.data.category}</span>
+          <div class="h-[120px] flex items-end p-2.5 relative overflow-hidden" style={featuredPost.data.thumbnail ? undefined : "background: linear-gradient(135deg, #112445 0%, #4a6ec7 100%)"}>
+            {featuredPost.data.thumbnail && (
+              <img src={featuredPost.data.thumbnail} alt="" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+            )}
+            {featuredPost.data.thumbnail && (
+              <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 60%)"></div>
+            )}
+            <span class="relative z-10 badge badge-white !text-secondary text-tagline-3 font-medium">{featuredPost.data.category}</span>
           </div>
           <div class="px-3 py-2 space-y-0.5 bg-background-2 dark:bg-background-7">
             <p class="text-tagline-2 font-semibold text-secondary dark:text-accent group-hover:text-primary-500 transition-colors duration-150 leading-snug line-clamp-2">{featuredPost.data.title}</p>

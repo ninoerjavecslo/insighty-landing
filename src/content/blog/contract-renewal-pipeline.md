@@ -5,6 +5,7 @@ pubDate: 2026-03-28
 category: Projects
 readTime: 5
 featured: false
+thumbnail: /blog/contract.png
 ---
 
 A contract renewal pipeline isn't a CRM feature. It's a mindset — surfacing the right information at the right time.

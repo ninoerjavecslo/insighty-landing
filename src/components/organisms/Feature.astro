@@ -3,14 +3,12 @@
 <!-- =========================
 Pixel AI section
 ===========================-->
-<section id="pixel-ai" class="bg-[#0e1120] py-16 md:py-[100px] xl:py-[140px] overflow-hidden relative">
+<section id="pixel-ai" class="py-16 md:py-[100px] xl:py-[140px] overflow-hidden relative" style="background: linear-gradient(155deg, #112445 0%, #1b3a6b 55%, #4a6ec7 100%)">
 
-  <!-- bg gradients -->
-  <div class="pointer-events-none absolute inset-0 overflow-hidden -z-0">
-    <div class="absolute -top-[100px] left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full bg-primary-500/25 blur-[130px]"></div>
-    <div class="absolute bottom-0 left-0 w-[500px] h-[400px] rounded-full bg-primary-700/20 blur-[120px]"></div>
-    <div class="absolute top-1/2 right-0 w-[350px] h-[350px] rounded-full bg-primary-600/15 blur-[100px]"></div>
-  </div>
+  <!-- subtle grid overlay -->
+  <div class="pointer-events-none absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 36px 36px;"></div>
+  <!-- soft blue glow at top -->
+  <div class="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full opacity-30 blur-[120px]" style="background: radial-gradient(ellipse, #6e8fd9 0%, transparent 70%);"></div>
 
   <div class="main-container relative z-10 space-y-14 md:space-y-20">
 
@@ -32,7 +30,7 @@ Pixel AI section
           data-delay="0.2"
           class="text-white leading-tight"
         >
-          AI That Actually Understands<br/><em class="not-italic text-primary-400">Your Agency.</em>
+          AI That Actually Understands<br/><em class="not-italic text-primary-300">Your Agency.</em>
         </h2>
 
         <p
