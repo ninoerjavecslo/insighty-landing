@@ -3,8 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/organisms/Header.astro'
 import Footer from '../../components/organisms/Footer.astro'
 
-const title = 'Insighty vs ClickUp: Agency Financial Intelligence vs All-in-One PM'
-const description = 'ClickUp is everything in one project management tool. Insighty is the financial intelligence layer agencies need — revenue, contracts, retainer billing, and forecasting. Here is the difference.'
+const title = 'Insighty vs Orangescrum: Financial Intelligence for Agency Teams'
+const description = 'Orangescrum handles project management and time tracking for small agencies and teams. Insighty handles the financial intelligence layer — revenue, contracts, and billing visibility that project tracking tools leave to spreadsheets.'
 
 const checks = [
   'Revenue planning across all income streams in one view',
@@ -15,50 +15,50 @@ const checks = [
   'Resource capacity planning with billability reports',
 ]
 
-const clickupStrengths = [
-  { label: 'Everything in one tool', detail: 'Tasks, docs, goals, whiteboards, time tracking, chat — all in a single platform to reduce tool sprawl.' },
-  { label: 'Highly customisable', detail: 'Custom statuses, fields, views, and workflows that adapt to any team or process.' },
-  { label: 'Multiple project views', detail: 'List, board, Gantt, calendar, timeline, workload, and mind map — any way you want to see work.' },
-  { label: 'Powerful automations', detail: 'Automated actions across spaces, folders, and lists with conditional logic.' },
-  { label: 'Native time tracking', detail: 'Built-in time tracking with reporting across projects and team members.' },
-  { label: 'Docs and wikis', detail: 'Collaborative documents connected to tasks and projects for team knowledge management.' },
+const competitorStrengths = [
+  { label: 'Task and project management', detail: 'Straightforward task management with project grouping, priorities, and status tracking for small to mid-size teams.' },
+  { label: 'Time tracking and timesheets', detail: 'Built-in time tracking with timesheet views and approval workflows for team-wide time logging.' },
+  { label: 'Resource allocation and scheduling', detail: 'Resource planning tools to schedule team members across projects and avoid overallocation.' },
+  { label: 'Client and project grouping', detail: 'Organise projects by client with role-based access so clients can view project progress.' },
+  { label: 'Invoicing based on tracked time', detail: 'Generate invoices directly from logged hours, connecting time tracking to billing for simple time-and-materials work.' },
+  { label: 'Self-hosted option available', detail: 'Available as a self-hosted deployment for agencies that require on-premises data control.' },
 ]
 
 const gaps = [
   {
-    title: 'Are we actually making money on this project?',
-    body: 'ClickUp tracks tasks and hours. It does not know the contract value, billing rate, or budget burn. Project profitability is invisible without a separate spreadsheet.',
+    title: 'Which recurring maintenance contracts need invoicing this month?',
+    body: 'Orangescrum generates invoices from tracked time but doesn\'t manage recurring contract schedules or renewal cycles.',
   },
   {
-    title: 'Which maintenance clients need invoicing this month?',
-    body: 'Recurring retainers, hosting renewals, and maintenance contracts are not natively managed in ClickUp. Custom fields can track some of this, but they cannot drive invoicing.',
+    title: 'What is the full revenue picture across all client contract types?',
+    body: 'Orangescrum focuses on project-level billing. Multi-stream revenue (hosting, domains, retainers) isn\'t its model.',
   },
   {
-    title: 'What is the revenue forecast for next quarter?',
-    body: 'ClickUp has no probability-weighted revenue model. Pipeline, committed contracts, retainers, and deferred invoices cannot be combined into a financial forecast without leaving the tool.',
+    title: 'Which hosting plans and domains are renewing in the next 90 days?',
+    body: 'Infrastructure renewal tracking is not part of Orangescrum\'s feature set.',
   },
   {
-    title: 'Is this retainer over scope?',
-    body: 'ClickUp tracks hours and tasks. It does not know the included hours budget for a maintenance contract, the change request ceiling, or how tracked time translates to billing.',
+    title: 'What is the probability-weighted sales pipeline for next quarter?',
+    body: 'Orangescrum has no sales pipeline or revenue forecast capabilities.',
   },
 ]
 
 type Mark = 'yes' | 'no' | 'partial'
-interface Row { feature: string; clickup: Mark; insighty: Mark; note?: string }
+interface Row { feature: string; competitor: Mark; insighty: Mark; note?: string }
 
 const rows: Row[] = [
-  { feature: 'Task & project management', clickup: 'yes', insighty: 'no', note: 'ClickUp is purpose-built as an all-in-one PM tool.' },
-  { feature: 'Native time tracking', clickup: 'yes', insighty: 'yes', note: 'ClickUp has built-in time. Insighty tracks billable hours against contracts.' },
-  { feature: 'Docs and wikis', clickup: 'yes', insighty: 'no', note: 'Not in scope for Insighty.' },
-  { feature: 'Maintenance contract billing', clickup: 'no', insighty: 'yes', note: 'Monthly/annual retainers with hours-included scope tracking.' },
-  { feature: 'Revenue planning (multi-stream)', clickup: 'no', insighty: 'yes', note: 'Projects, retainers, hosting, domains — unified matrix.' },
-  { feature: '"This Month" invoice view', clickup: 'no', insighty: 'yes', note: 'Every invoice due this month across all revenue types.' },
-  { feature: 'Hosting & domain renewal tracking', clickup: 'no', insighty: 'yes', note: 'Automated alerts at 90 / 60 / 30 days before expiry.' },
-  { feature: 'Sales pipeline & probability forecast', clickup: 'partial', insighty: 'yes', note: 'ClickUp has CRM. Insighty combines pipeline + contracts + retainers into a forecast.' },
-  { feature: 'Resource utilisation & billability', clickup: 'partial', insighty: 'yes', note: 'ClickUp has workload. Insighty adds billability % and utilisation reporting.' },
-  { feature: 'Client financial summary', clickup: 'no', insighty: 'yes', note: 'Annual revenue across all contract types per client.' },
-  { feature: 'Invoice automation (recurring)', clickup: 'no', insighty: 'yes', note: 'Scheduled invoice batches on a set day each month.' },
-  { feature: 'Budget vs actuals tracking', clickup: 'partial', insighty: 'yes', note: 'ClickUp has budget fields. Insighty connects budget to billing and contract scope.' },
+  { feature: 'Task & project management', competitor: 'yes', insighty: 'no', note: 'Orangescrum is purpose-built for this. Insighty does not manage tasks.' },
+  { feature: 'Time tracking & timesheets', competitor: 'yes', insighty: 'yes', note: 'Orangescrum tracks time per task; Insighty tracks billable hours against contracts.' },
+  { feature: 'Resource allocation', competitor: 'yes', insighty: 'partial', note: 'Orangescrum manages scheduling; Insighty tracks capacity and utilisation.' },
+  { feature: 'Basic invoicing', competitor: 'yes', insighty: 'yes', note: 'Orangescrum invoices from time; Insighty handles multi-stream contract billing.' },
+  { feature: 'Maintenance contract scheduling', competitor: 'no', insighty: 'yes', note: 'Monthly/annual retainers with hours-included scope tracking.' },
+  { feature: 'Revenue planning (multi-stream)', competitor: 'no', insighty: 'yes', note: 'Projects, retainers, hosting, domains — unified matrix.' },
+  { feature: '"This Month" invoice view', competitor: 'partial', insighty: 'yes', note: 'Orangescrum shows project invoices; Insighty covers all revenue types.' },
+  { feature: 'Hosting & domain renewal tracking', competitor: 'no', insighty: 'yes', note: 'Automated alerts at 90 / 60 / 30 days before expiry.' },
+  { feature: 'Sales pipeline & forecast', competitor: 'no', insighty: 'yes', note: 'Weighted deal values integrated with committed revenue.' },
+  { feature: 'Client financial summary', competitor: 'partial', insighty: 'yes', note: 'Orangescrum has per-project; Insighty gives annual revenue across all contract types.' },
+  { feature: 'Invoice automation (recurring)', competitor: 'no', insighty: 'yes', note: 'Scheduled invoice batches on a set day each month.' },
+  { feature: 'Billability & utilisation reports', competitor: 'partial', insighty: 'yes', note: 'Orangescrum has utilisation views; Insighty adds billability % per team member.' },
 ]
 
 function mark(val: Mark) {
@@ -72,6 +72,7 @@ function mark(val: Mark) {
   <Header />
   <main>
 
+    <!-- Hero -->
     <section
       class="pt-[140px] sm:pt-[150px] md:pt-[160px] pb-16 md:pb-24 relative overflow-hidden"
       style="background: linear-gradient(135deg, #0a1628 0%, #112445 50%, #1a3a70 100%)"
@@ -83,17 +84,17 @@ function mark(val: Mark) {
           <span>/</span>
           <a href="/compare" class="hover:text-white transition-colors duration-200">Compare</a>
           <span>/</span>
-          <span class="text-white/70">Insighty vs ClickUp</span>
+          <span class="text-white/70">Insighty vs Orangescrum</span>
         </nav>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-center">
           <div class="space-y-6">
             <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white border border-white/30 px-4 py-1.5">Platform Comparison</span>
-            <h1 class="text-white">
-              Insighty vs ClickUp:<br />
-              <span class="hero-text-gradient hero-text-color-1">all-in-one PM vs financial intelligence</span>
+            <h1 class="text-white max-w-[560px]">
+              Insighty + Orangescrum:<br />
+              <span class="hero-text-gradient hero-text-color-1">project tracking, plus the financial layer</span>
             </h1>
             <p class="text-white max-w-[480px]">
-              ClickUp puts everything in one place — tasks, docs, goals, and time. Insighty is the financial intelligence layer that agencies need alongside it — revenue, retainers, contracts, and forecasting.
+              Orangescrum handles project management and time tracking for small agencies and teams. Insighty handles the financial intelligence layer — revenue, contracts, and billing visibility that project tracking tools leave to spreadsheets.
             </p>
             <div class="flex flex-wrap items-center gap-4 pt-2">
               <a href="/founding-member" class="btn btn-md btn-outline-white"><span>Join founding members</span></a>
@@ -107,14 +108,14 @@ function mark(val: Mark) {
           </div>
           <div class="flex flex-col gap-3">
             <div class="rounded-2xl p-5 flex flex-wrap items-center gap-4 border backdrop-blur-sm" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.13)">
-              <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-white p-2">
-                <img src="/images/icons/clickup.png" alt="ClickUp" class="w-full h-full object-contain" />
+              <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 text-white font-bold text-xl" style="background: #F7941E">
+                O
               </div>
               <div class="flex-1 min-w-0">
-                <p class="text-white font-semibold leading-tight">ClickUp</p>
-                <p class="text-white text-tagline-1 mt-1">All-in-one work management</p>
+                <p class="text-white font-semibold leading-tight">Orangescrum</p>
+                <p class="text-white text-tagline-1 mt-1">Project management & time tracking</p>
               </div>
-              <span class="basis-full sm:basis-auto text-tagline-3 uppercase tracking-widest font-semibold px-3 py-1 pl-16 sm:pl-0" style="color: #b3a8ff; background: rgba(123,104,238,0.15); border: 1px solid rgba(123,104,238,0.3)">Work OS</span>
+              <span class="basis-full sm:basis-auto text-tagline-3 uppercase tracking-widest font-semibold px-3 py-1 pl-16 sm:pl-0" style="color: #ffc47a; background: rgba(255,196,122,0.12); border: 1px solid rgba(255,196,122,0.3)">Project Management</span>
             </div>
             <div class="flex items-center gap-4 py-0.5">
               <div class="flex-1 h-px bg-white/10"></div>
@@ -143,25 +144,26 @@ function mark(val: Mark) {
       </div>
     </section>
 
+    <!-- What each tool is -->
     <section class="bg-background-1 dark:bg-background-8 py-16 md:py-20">
       <div class="main-container">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-8 space-y-4">
             <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-white p-1.5">
-                <img src="/images/icons/clickup.png" alt="ClickUp" class="w-full h-full object-contain" />
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 text-white font-bold text-lg" style="background: #F7941E">
+                O
               </div>
               <div>
-                <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">ClickUp</p>
-                <p class="text-tagline-3 text-secondary/50 dark:text-accent/50">All-in-one productivity platform</p>
+                <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">Orangescrum</p>
+                <p class="text-tagline-3 text-secondary/50 dark:text-accent/50">Project management & time tracking</p>
               </div>
             </div>
             <p class="text-tagline-1 text-secondary/70 dark:text-accent/70 leading-relaxed">
-              An all-in-one productivity platform that combines tasks, documents, goals, whiteboards, and time tracking in a single, highly customisable workspace. Positioned as a replacement for multiple separate tools.
+              A practical project management and time tracking tool built for small agencies and growing teams. Orangescrum combines task management, resource scheduling, and time-based invoicing in a single platform.
             </p>
             <p class="text-tagline-2 font-medium text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Best for</p>
             <ul class="space-y-1.5">
-              {['Teams wanting to consolidate tools', 'Complex project and task management', 'Custom workflows and automations', 'Documentation alongside delivery'].map(s => (
+              {['Small agencies managing multiple client projects', 'Time and materials billing workflows', 'Resource scheduling and capacity planning', 'Teams needing time tracking with basic invoicing'].map(s => (
                 <li class="flex items-center gap-2 text-tagline-2 text-secondary/70 dark:text-accent/70">
                   <span class="w-1 h-1 rounded-full bg-secondary/30 dark:bg-accent/30 shrink-0"></span>
                   {s}
@@ -174,7 +176,7 @@ function mark(val: Mark) {
             <div class="relative space-y-4">
               <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl bg-primary-500 flex items-center justify-center shrink-0">
-                  <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.5l7-7 4 4 7-7M3 19h18"/>
                   </svg>
                 </div>
@@ -184,7 +186,7 @@ function mark(val: Mark) {
                 </div>
               </div>
               <p class="text-tagline-1 text-secondary/70 dark:text-accent/70 leading-relaxed">
-                The financial and operational intelligence layer built specifically for agencies. Connects clients, contracts, maintenance retainers, hosting, domains, invoices, and pipeline into one unified revenue view.
+                The financial and operational intelligence layer agencies need alongside their PM tools. Connects clients, contracts, retainers, hosting, domains, invoices, and pipeline into one unified revenue view.
               </p>
               <p class="text-tagline-2 font-medium text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Best for</p>
               <ul class="space-y-1.5">
@@ -201,14 +203,18 @@ function mark(val: Mark) {
       </div>
     </section>
 
+    <!-- Orangescrum strengths -->
     <section class="bg-background-2 dark:bg-background-7 py-16 md:py-20">
       <div class="main-container space-y-10">
         <div class="max-w-[640px] space-y-3">
-          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Where ClickUp wins</span>
-          <h2 class="text-secondary dark:text-accent">ClickUp is excellent at consolidating work management</h2>
+          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Where Orangescrum wins</span>
+          <h2 class="text-secondary dark:text-accent">Orangescrum is a practical project and time management tool</h2>
+          <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
+            This is not a "switch away from Orangescrum" argument. Orangescrum handles day-to-day project and time tracking well. Teams that live in it find real value in its simplicity.
+          </p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {clickupStrengths.map(s => (
+          {competitorStrengths.map(s => (
             <div class="bg-background-1 dark:bg-background-6 rounded-2xl border border-stroke-2 dark:border-stroke-5 p-6 space-y-2">
               <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">{s.label}</p>
               <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 leading-relaxed">{s.detail}</p>
@@ -218,11 +224,15 @@ function mark(val: Mark) {
       </div>
     </section>
 
+    <!-- Gaps -->
     <section class="bg-background-1 dark:bg-background-8 py-16 md:py-20">
       <div class="main-container space-y-10">
         <div class="max-w-[640px] space-y-3">
           <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">The agency blind spot</span>
-          <h2 class="text-secondary dark:text-accent">The questions ClickUp cannot answer for agency owners</h2>
+          <h2 class="text-secondary dark:text-accent">The questions Orangescrum cannot answer for agency owners</h2>
+          <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
+            Orangescrum covers project delivery and time billing. It leaves the wider revenue picture — retainers, renewals, pipeline — to spreadsheets.
+          </p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {gaps.map((g, i) => (
@@ -238,20 +248,22 @@ function mark(val: Mark) {
       </div>
     </section>
 
+    <!-- Comparison table -->
     <section class="bg-background-2 dark:bg-background-7 py-16 md:py-20">
       <div class="main-container space-y-8">
         <div class="max-w-[560px] space-y-3">
           <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Feature comparison</span>
           <h2 class="text-secondary dark:text-accent">What each tool handles</h2>
+          <p class="text-tagline-2 text-secondary/60 dark:text-accent/60">Different tools, different jobs. The overlap is minimal by design.</p>
         </div>
         <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 overflow-hidden">
           <div class="grid grid-cols-[1fr_100px_100px] md:grid-cols-[1fr_120px_120px] bg-background-1 dark:bg-background-6 border-b border-stroke-2 dark:border-stroke-5 px-6 py-4">
             <p class="text-tagline-2 font-semibold text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Capability</p>
-            <p class="text-tagline-2 font-semibold text-secondary/50 dark:text-accent/50 uppercase tracking-widest text-center">ClickUp</p>
+            <p class="text-tagline-2 font-semibold text-secondary/50 dark:text-accent/50 uppercase tracking-widest text-center">Orangescrum</p>
             <p class="text-tagline-2 font-semibold text-primary-400 uppercase tracking-widest text-center">Insighty</p>
           </div>
           {rows.map((row, i) => {
-            const c = mark(row.clickup)
+            const a = mark(row.competitor)
             const ins = mark(row.insighty)
             return (
               <div class={`grid grid-cols-[1fr_100px_100px] md:grid-cols-[1fr_120px_120px] px-6 py-4 border-b border-stroke-2 dark:border-stroke-5 last:border-0 ${i % 2 === 0 ? 'bg-background-1 dark:bg-background-8' : 'bg-background-2 dark:bg-background-7'}`}>
@@ -259,7 +271,7 @@ function mark(val: Mark) {
                   <p class="text-tagline-2 font-medium text-secondary dark:text-accent">{row.feature}</p>
                   {row.note && <p class="text-tagline-3 text-secondary/45 dark:text-accent/45 leading-snug hidden md:block">{row.note}</p>}
                 </div>
-                <p class={`text-center self-center ${c.cls}`}>{c.text}</p>
+                <p class={`text-center self-center ${a.cls}`}>{a.text}</p>
                 <p class={`text-center self-center ${ins.cls}`}>{ins.text}</p>
               </div>
             )
@@ -273,16 +285,17 @@ function mark(val: Mark) {
       </div>
     </section>
 
+    <!-- CTA -->
     <section class="bg-background-1 dark:bg-background-8 py-16 md:py-24">
       <div class="main-container text-center space-y-6 max-w-[640px] mx-auto">
         <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Ready to complete the picture?</span>
-        <h2 class="text-secondary dark:text-accent">Keep ClickUp. Add the financial intelligence it is missing.</h2>
+        <h2 class="text-secondary dark:text-accent">Keep Orangescrum for project tracking. Add Insighty for full financial ops.</h2>
         <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
-          Insighty works alongside ClickUp. Your team keeps using ClickUp for delivery and collaboration. Your agency owner gets the revenue visibility they have been trying to build in custom ClickUp spaces.
+          Orangescrum is a practical project management tool. Insighty adds the financial intelligence layer — multi-stream contracts, hosting renewals, and pipeline forecasting — that project billing alone doesn't cover.
         </p>
         <div class="flex flex-wrap justify-center gap-3 pt-2">
           <a href="/founding-member" class="btn btn-md btn-primary"><span>Join founding members</span></a>
-          <a href="/compare" class="btn btn-md btn-white"><span>All comparisons</span></a>
+          <a href="/compare" class="btn btn-md btn-secondary dark:btn-accent"><span>All comparisons</span></a>
         </div>
       </div>
     </section>

@@ -140,8 +140,13 @@ import Footer from '../components/organisms/Footer.astro'
           data-delay="0.15"
           class="space-y-4"
           id="demo-request-form"
+          name="demo-request"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
           novalidate
         >
+          <input type="hidden" name="form-name" value="demo-request" />
+          <input type="hidden" name="bot-field" class="hidden" />
 
           <!-- Name row -->
           <div class="grid grid-cols-2 gap-3">
@@ -290,7 +295,20 @@ import Footer from '../components/organisms/Footer.astro'
 
         </form>
 
-        <!-- Success state (hidden by default) -->
+        <!-- Cal.com booking (shown after form submit) -->
+        <div id="booking-section" class="hidden">
+          <div class="space-y-2 mb-6">
+            <h3 class="text-secondary dark:text-accent" style="font-size: 1.375rem; line-height: 130%; font-weight: 500;">
+              Pick a time for your demo
+            </h3>
+            <p class="text-tagline-2 text-secondary/50 dark:text-accent/50">
+              Your details are saved — choose a slot that works for you.
+            </p>
+          </div>
+          <div id="cal-booking" style="min-height: 600px; width: 100%;"></div>
+        </div>
+
+        <!-- Success state (fallback, hidden by default) -->
         <div
           id="demo-success"
           class="hidden text-center space-y-4 py-8"
@@ -355,20 +373,53 @@ import Footer from '../components/organisms/Footer.astro'
 </style>
 
 <script>
-  const form = document.getElementById('demo-request-form') as HTMLFormElement | null;
-  const successState = document.getElementById('demo-success');
-  const submitBtn = document.getElementById('demo-submit-btn');
+  // Cal.com embed loader
+  (function (C: any, A: string, L: string) {
+    const p = (a: any, ar: any) => { a.q.push(ar); };
+    const d = (C as Window).document;
+    (C as any).Cal = (C as any).Cal || function () {
+      const cal = (C as any).Cal;
+      const ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        const s = d.createElement('script') as HTMLScriptElement;
+        s.src = A;
+        d.head.appendChild(s);
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api: any = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = [];
+        if (typeof namespace === 'string') {
+          (cal.ns as any)[namespace] = api;
+          p(api, ar);
+        }
+        p(cal, ar);
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, 'https://app.cal.eu/embed/embed.js', 'init');
 
-  if (form && successState && submitBtn) {
-    form.addEventListener('submit', (e) => {
+  const Cal = (window as any).Cal;
+  Cal('init', 'demo', { origin: 'https://cal.eu' });
+
+  // Form wiring
+  const form = document.getElementById('demo-request-form') as HTMLFormElement | null;
+  const bookingSection = document.getElementById('booking-section');
+  const submitBtn = document.getElementById('demo-submit-btn') as HTMLButtonElement | null;
+
+  if (form && submitBtn) {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // Basic validation
+      // Validation
       const inputs = form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
         'input[required], select[required]'
       );
       let valid = true;
-
       inputs.forEach((input) => {
         input.classList.remove('error');
         if (!input.value.trim()) {
@@ -376,21 +427,57 @@ import Footer from '../components/organisms/Footer.astro'
           valid = false;
         }
       });
-
       if (!valid) return;
 
-      // Simulate submission
       const btnSpan = submitBtn.querySelector('span');
       if (btnSpan) btnSpan.textContent = 'Sending...';
-      submitBtn.setAttribute('disabled', 'true');
+      submitBtn.disabled = true;
 
-      setTimeout(() => {
-        form.classList.add('hidden');
-        successState.classList.remove('hidden');
-        // Also hide the form header
-        const formHeader = form.previousElementSibling as HTMLElement | null;
-        if (formHeader) formHeader.classList.add('hidden');
-      }, 900);
+      const data = new FormData(form);
+      const firstName = (data.get('first_name') as string) || '';
+      const lastName = (data.get('last_name') as string) || '';
+      const email = (data.get('email') as string) || '';
+      const agencyName = (data.get('agency_name') as string) || '';
+      const teamSize = (data.get('team_size') as string) || '';
+      const role = (data.get('role') as string) || '';
+      const message = (data.get('message') as string) || '';
+
+      // Capture lead in Netlify Forms
+      try {
+        const body = new URLSearchParams();
+        data.forEach((value, key) => body.append(key, value as string));
+        await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: body.toString(),
+        });
+      } catch {
+        // Non-blocking — still show booking even if Netlify fails
+      }
+
+      // Hide form + header, show Cal.com booking
+      form.classList.add('hidden');
+      const formHeader = form.previousElementSibling as HTMLElement | null;
+      if (formHeader) formHeader.classList.add('hidden');
+
+      if (bookingSection) {
+        bookingSection.classList.remove('hidden');
+        Cal.ns.demo('inline', {
+          elementOrSelector: '#cal-booking',
+          calLink: 'insighty',
+          config: {
+            name: `${firstName} ${lastName}`.trim(),
+            email,
+            notes: [
+              agencyName && `Agency: ${agencyName}`,
+              teamSize && `Team size: ${teamSize}`,
+              role && `Role: ${role}`,
+              message && `Message: ${message}`,
+            ].filter(Boolean).join('\n'),
+          },
+        });
+        Cal.ns.demo('ui', { hideEventTypeDetails: false, layout: 'month_view' });
+      }
     });
   }
 </script>

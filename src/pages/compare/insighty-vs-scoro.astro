@@ -3,8 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/organisms/Header.astro'
 import Footer from '../../components/organisms/Footer.astro'
 
-const title = 'Insighty vs ClickUp: Agency Financial Intelligence vs All-in-One PM'
-const description = 'ClickUp is everything in one project management tool. Insighty is the financial intelligence layer agencies need — revenue, contracts, retainer billing, and forecasting. Here is the difference.'
+const title = 'Insighty vs Scoro: Focused Financial Ops vs All-in-One Agency Platform'
+const description = 'Scoro is a comprehensive all-in-one business management suite. Insighty is the focused financial intelligence layer for agencies — deeper on revenue planning, contract tracking, and agency-specific ops.'
 
 const checks = [
   'Revenue planning across all income streams in one view',
@@ -15,50 +15,50 @@ const checks = [
   'Resource capacity planning with billability reports',
 ]
 
-const clickupStrengths = [
-  { label: 'Everything in one tool', detail: 'Tasks, docs, goals, whiteboards, time tracking, chat — all in a single platform to reduce tool sprawl.' },
-  { label: 'Highly customisable', detail: 'Custom statuses, fields, views, and workflows that adapt to any team or process.' },
-  { label: 'Multiple project views', detail: 'List, board, Gantt, calendar, timeline, workload, and mind map — any way you want to see work.' },
-  { label: 'Powerful automations', detail: 'Automated actions across spaces, folders, and lists with conditional logic.' },
-  { label: 'Native time tracking', detail: 'Built-in time tracking with reporting across projects and team members.' },
-  { label: 'Docs and wikis', detail: 'Collaborative documents connected to tasks and projects for team knowledge management.' },
+const competitorStrengths = [
+  { label: 'Full project and task management', detail: 'End-to-end project delivery with tasks, milestones, and team assignment.' },
+  { label: 'CRM and deal pipeline', detail: 'Track leads, opportunities, and client relationships in one platform.' },
+  { label: 'Comprehensive invoicing and billing', detail: 'Invoicing, quotes, purchase orders, and payment tracking built in.' },
+  { label: 'Financial reports and dashboards', detail: 'Revenue, profitability, and budget reports across the business.' },
+  { label: 'Time tracking and utilisation', detail: 'Time logged against projects and team members for billing and reporting.' },
+  { label: 'Resource planning and scheduling', detail: 'Capacity planning and team scheduling across projects.' },
 ]
 
 const gaps = [
   {
-    title: 'Are we actually making money on this project?',
-    body: 'ClickUp tracks tasks and hours. It does not know the contract value, billing rate, or budget burn. Project profitability is invisible without a separate spreadsheet.',
+    title: 'What is the renewal date and billing scope for each maintenance contract?',
+    body: 'Scoro manages projects and invoices but does not specialise in maintenance contract lifecycle — renewal alerts, scope tracking, and change request billing at a granular level.',
   },
   {
-    title: 'Which maintenance clients need invoicing this month?',
-    body: 'Recurring retainers, hosting renewals, and maintenance contracts are not natively managed in ClickUp. Custom fields can track some of this, but they cannot drive invoicing.',
+    title: 'Which hosting plans and domains are renewing in the next 90 days across all clients?',
+    body: 'Infrastructure-level renewal tracking and automated alerts are not a core Scoro model.',
   },
   {
-    title: 'What is the revenue forecast for next quarter?',
-    body: 'ClickUp has no probability-weighted revenue model. Pipeline, committed contracts, retainers, and deferred invoices cannot be combined into a financial forecast without leaving the tool.',
+    title: 'What does the probability-weighted pipeline look like against committed contract revenue?',
+    body: 'Scoro has a CRM and pipeline, but the integration between sales probability weighting and committed recurring revenue is less granular than Insighty\'s model.',
   },
   {
-    title: 'Is this retainer over scope?',
-    body: 'ClickUp tracks hours and tasks. It does not know the included hours budget for a maintenance contract, the change request ceiling, or how tracked time translates to billing.',
+    title: 'Which retainer clients have consumed more hours than their contract allows this month?',
+    body: 'Scoro can track time against projects, but maintenance contract scope ceiling alerts are not a core feature.',
   },
 ]
 
 type Mark = 'yes' | 'no' | 'partial'
-interface Row { feature: string; clickup: Mark; insighty: Mark; note?: string }
+interface Row { feature: string; competitor: Mark; insighty: Mark; note?: string }
 
 const rows: Row[] = [
-  { feature: 'Task & project management', clickup: 'yes', insighty: 'no', note: 'ClickUp is purpose-built as an all-in-one PM tool.' },
-  { feature: 'Native time tracking', clickup: 'yes', insighty: 'yes', note: 'ClickUp has built-in time. Insighty tracks billable hours against contracts.' },
-  { feature: 'Docs and wikis', clickup: 'yes', insighty: 'no', note: 'Not in scope for Insighty.' },
-  { feature: 'Maintenance contract billing', clickup: 'no', insighty: 'yes', note: 'Monthly/annual retainers with hours-included scope tracking.' },
-  { feature: 'Revenue planning (multi-stream)', clickup: 'no', insighty: 'yes', note: 'Projects, retainers, hosting, domains — unified matrix.' },
-  { feature: '"This Month" invoice view', clickup: 'no', insighty: 'yes', note: 'Every invoice due this month across all revenue types.' },
-  { feature: 'Hosting & domain renewal tracking', clickup: 'no', insighty: 'yes', note: 'Automated alerts at 90 / 60 / 30 days before expiry.' },
-  { feature: 'Sales pipeline & probability forecast', clickup: 'partial', insighty: 'yes', note: 'ClickUp has CRM. Insighty combines pipeline + contracts + retainers into a forecast.' },
-  { feature: 'Resource utilisation & billability', clickup: 'partial', insighty: 'yes', note: 'ClickUp has workload. Insighty adds billability % and utilisation reporting.' },
-  { feature: 'Client financial summary', clickup: 'no', insighty: 'yes', note: 'Annual revenue across all contract types per client.' },
-  { feature: 'Invoice automation (recurring)', clickup: 'no', insighty: 'yes', note: 'Scheduled invoice batches on a set day each month.' },
-  { feature: 'Budget vs actuals tracking', clickup: 'partial', insighty: 'yes', note: 'ClickUp has budget fields. Insighty connects budget to billing and contract scope.' },
+  { feature: 'Project & task management', competitor: 'yes', insighty: 'no', note: 'Scoro is purpose-built for this. Insighty does not track tasks.' },
+  { feature: 'CRM & deal pipeline', competitor: 'yes', insighty: 'yes', note: 'Both platforms include CRM and pipeline capabilities.' },
+  { feature: 'Invoicing & billing', competitor: 'yes', insighty: 'yes', note: 'Both support invoicing; Insighty focuses on recurring agency billing.' },
+  { feature: 'Financial reports', competitor: 'yes', insighty: 'yes', note: 'Both offer financial reporting dashboards.' },
+  { feature: 'Time tracking', competitor: 'yes', insighty: 'yes', note: 'Scoro tracks time against projects; Insighty against contract scope.' },
+  { feature: 'Maintenance contract lifecycle', competitor: 'partial', insighty: 'yes', note: 'Insighty adds renewal alerts, scope ceilings, and change request billing.' },
+  { feature: 'Hosting & domain renewal tracking', competitor: 'no', insighty: 'yes', note: 'Automated alerts at 90 / 60 / 30 days before expiry.' },
+  { feature: 'Contract scope ceiling alerts', competitor: 'partial', insighty: 'yes', note: 'Insighty flags when retainer hours or scope is being exceeded.' },
+  { feature: 'Revenue planning (multi-stream matrix)', competitor: 'partial', insighty: 'yes', note: 'Projects, retainers, hosting, domains — unified revenue matrix.' },
+  { feature: '"This Month" invoice view', competitor: 'partial', insighty: 'yes', note: 'Every invoice due this month across all revenue types.' },
+  { feature: 'Invoice automation (recurring)', competitor: 'yes', insighty: 'yes', note: 'Both support scheduled recurring invoice batches.' },
+  { feature: 'Resource utilisation & billability', competitor: 'yes', insighty: 'yes', note: 'Both provide utilisation and billability reporting.' },
 ]
 
 function mark(val: Mark) {
@@ -66,12 +66,19 @@ function mark(val: Mark) {
   if (val === 'partial') return { text: '~', cls: 'text-amber-500 font-semibold text-base' }
   return { text: '—', cls: 'text-secondary/25 dark:text-accent/20 text-base' }
 }
+
+const competitorColor = '#5C4EFF'
+const competitorTagColor = '#a09aff'
+const competitorName = 'Scoro'
+const competitorTag = 'Business PSA'
+const competitorRole = 'All-in-one business management'
 ---
 
 <BaseLayout {title} {description}>
   <Header />
   <main>
 
+    <!-- Hero -->
     <section
       class="pt-[140px] sm:pt-[150px] md:pt-[160px] pb-16 md:pb-24 relative overflow-hidden"
       style="background: linear-gradient(135deg, #0a1628 0%, #112445 50%, #1a3a70 100%)"
@@ -83,17 +90,17 @@ function mark(val: Mark) {
           <span>/</span>
           <a href="/compare" class="hover:text-white transition-colors duration-200">Compare</a>
           <span>/</span>
-          <span class="text-white/70">Insighty vs ClickUp</span>
+          <span class="text-white/70">Insighty vs Scoro</span>
         </nav>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-center">
           <div class="space-y-6">
             <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white border border-white/30 px-4 py-1.5">Platform Comparison</span>
-            <h1 class="text-white">
-              Insighty vs ClickUp:<br />
-              <span class="hero-text-gradient hero-text-color-1">all-in-one PM vs financial intelligence</span>
+            <h1 class="text-white max-w-[560px]">
+              Insighty vs Scoro:<br />
+              <span class="hero-text-gradient hero-text-color-1">focused financial ops vs all-in-one</span>
             </h1>
             <p class="text-white max-w-[480px]">
-              ClickUp puts everything in one place — tasks, docs, goals, and time. Insighty is the financial intelligence layer that agencies need alongside it — revenue, retainers, contracts, and forecasting.
+              Scoro is a comprehensive all-in-one business management suite covering projects, CRM, billing, and financial reporting. Insighty is the focused financial intelligence layer — deeper on revenue planning, contract tracking, and agency-specific ops. Different approaches to agency operations.
             </p>
             <div class="flex flex-wrap items-center gap-4 pt-2">
               <a href="/founding-member" class="btn btn-md btn-outline-white"><span>Join founding members</span></a>
@@ -106,19 +113,19 @@ function mark(val: Mark) {
             </div>
           </div>
           <div class="flex flex-col gap-3">
-            <div class="rounded-2xl p-5 flex flex-wrap items-center gap-4 border backdrop-blur-sm" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.13)">
-              <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-white p-2">
-                <img src="/images/icons/clickup.png" alt="ClickUp" class="w-full h-full object-contain" />
+            <div class="rounded-2xl p-5 flex flex-wrap items-center gap-4 border backdrop-blur-sm" style={`background: rgba(92,78,255,0.08); border-color: rgba(92,78,255,0.25)`}>
+              <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 text-white font-bold text-xl" style={`background: ${competitorColor}`}>
+                S
               </div>
               <div class="flex-1 min-w-0">
-                <p class="text-white font-semibold leading-tight">ClickUp</p>
-                <p class="text-white text-tagline-1 mt-1">All-in-one work management</p>
+                <p class="text-white font-semibold leading-tight">{competitorName}</p>
+                <p class="text-white text-tagline-1 mt-1">{competitorRole}</p>
               </div>
-              <span class="basis-full sm:basis-auto text-tagline-3 uppercase tracking-widest font-semibold px-3 py-1 pl-16 sm:pl-0" style="color: #b3a8ff; background: rgba(123,104,238,0.15); border: 1px solid rgba(123,104,238,0.3)">Work OS</span>
+              <span class="basis-full sm:basis-auto text-tagline-3 uppercase tracking-widest font-semibold px-3 py-1 pl-16 sm:pl-0" style={`color: ${competitorTagColor}; background: rgba(92,78,255,0.12); border: 1px solid rgba(92,78,255,0.3)`}>{competitorTag}</span>
             </div>
             <div class="flex items-center gap-4 py-0.5">
               <div class="flex-1 h-px bg-white/10"></div>
-              <span class="text-white/55 text-tagline-2 font-semibold tracking-widest uppercase">+ together</span>
+              <span class="text-white/35 text-tagline-3 font-medium tracking-widest uppercase">vs</span>
               <div class="flex-1 h-px bg-white/10"></div>
             </div>
             <div class="rounded-2xl p-5 flex items-center gap-4 border border-primary-500/30 backdrop-blur-sm" style="background: rgba(74,110,199,0.10)">
@@ -137,31 +144,32 @@ function mark(val: Mark) {
               </div>
               <span class="basis-full sm:basis-auto text-tagline-3 uppercase tracking-widest font-semibold px-3 py-1 text-primary-300 pl-16 sm:pl-0" style="background: rgba(74,110,199,0.15); border: 1px solid rgba(74,110,199,0.35)">Finance & Ops</span>
             </div>
-
+            <p class="text-white/30 text-tagline-3 text-center pt-1">Different approach. Different depth.</p>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- What each tool is -->
     <section class="bg-background-1 dark:bg-background-8 py-16 md:py-20">
       <div class="main-container">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-8 space-y-4">
             <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-white p-1.5">
-                <img src="/images/icons/clickup.png" alt="ClickUp" class="w-full h-full object-contain" />
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 text-white font-bold" style={`background: ${competitorColor}`}>
+                S
               </div>
               <div>
-                <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">ClickUp</p>
-                <p class="text-tagline-3 text-secondary/50 dark:text-accent/50">All-in-one productivity platform</p>
+                <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">{competitorName}</p>
+                <p class="text-tagline-3 text-secondary/50 dark:text-accent/50">{competitorRole}</p>
               </div>
             </div>
             <p class="text-tagline-1 text-secondary/70 dark:text-accent/70 leading-relaxed">
-              An all-in-one productivity platform that combines tasks, documents, goals, whiteboards, and time tracking in a single, highly customisable workspace. Positioned as a replacement for multiple separate tools.
+              An all-in-one business management platform covering projects, CRM, billing, financial reports, time tracking, and resource planning. Built for agencies and professional services teams that want everything in one platform.
             </p>
             <p class="text-tagline-2 font-medium text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Best for</p>
             <ul class="space-y-1.5">
-              {['Teams wanting to consolidate tools', 'Complex project and task management', 'Custom workflows and automations', 'Documentation alongside delivery'].map(s => (
+              {['Full project and delivery management', 'CRM and sales pipeline tracking', 'Invoicing and financial reporting', 'Resource planning and scheduling'].map(s => (
                 <li class="flex items-center gap-2 text-tagline-2 text-secondary/70 dark:text-accent/70">
                   <span class="w-1 h-1 rounded-full bg-secondary/30 dark:bg-accent/30 shrink-0"></span>
                   {s}
@@ -174,7 +182,7 @@ function mark(val: Mark) {
             <div class="relative space-y-4">
               <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl bg-primary-500 flex items-center justify-center shrink-0">
-                  <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.5l7-7 4 4 7-7M3 19h18"/>
                   </svg>
                 </div>
@@ -184,7 +192,7 @@ function mark(val: Mark) {
                 </div>
               </div>
               <p class="text-tagline-1 text-secondary/70 dark:text-accent/70 leading-relaxed">
-                The financial and operational intelligence layer built specifically for agencies. Connects clients, contracts, maintenance retainers, hosting, domains, invoices, and pipeline into one unified revenue view.
+                The focused financial intelligence layer for digital agencies. Connects clients, contracts, retainers, hosting, domains, invoices, and pipeline into one unified revenue view — with deep specialisation in maintenance contract lifecycle and infrastructure tracking.
               </p>
               <p class="text-tagline-2 font-medium text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Best for</p>
               <ul class="space-y-1.5">
@@ -201,14 +209,18 @@ function mark(val: Mark) {
       </div>
     </section>
 
+    <!-- Scoro strengths -->
     <section class="bg-background-2 dark:bg-background-7 py-16 md:py-20">
       <div class="main-container space-y-10">
         <div class="max-w-[640px] space-y-3">
-          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Where ClickUp wins</span>
-          <h2 class="text-secondary dark:text-accent">ClickUp is excellent at consolidating work management</h2>
+          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Where Scoro wins</span>
+          <h2 class="text-secondary dark:text-accent">Scoro is exceptional at all-in-one business management</h2>
+          <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
+            For agencies that want a single platform covering projects, CRM, billing, and reporting, Scoro delivers. It is a broad and capable system.
+          </p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {clickupStrengths.map(s => (
+          {competitorStrengths.map(s => (
             <div class="bg-background-1 dark:bg-background-6 rounded-2xl border border-stroke-2 dark:border-stroke-5 p-6 space-y-2">
               <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">{s.label}</p>
               <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 leading-relaxed">{s.detail}</p>
@@ -218,11 +230,15 @@ function mark(val: Mark) {
       </div>
     </section>
 
+    <!-- Gaps -->
     <section class="bg-background-1 dark:bg-background-8 py-16 md:py-20">
       <div class="main-container space-y-10">
         <div class="max-w-[640px] space-y-3">
           <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">The agency blind spot</span>
-          <h2 class="text-secondary dark:text-accent">The questions ClickUp cannot answer for agency owners</h2>
+          <h2 class="text-secondary dark:text-accent">The questions Scoro cannot answer for agency owners</h2>
+          <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
+            Scoro covers the broad picture well. What it lacks is deep specialisation in the recurring, infrastructure-level financial operations that agencies rely on.
+          </p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {gaps.map((g, i) => (
@@ -238,20 +254,22 @@ function mark(val: Mark) {
       </div>
     </section>
 
+    <!-- Comparison table -->
     <section class="bg-background-2 dark:bg-background-7 py-16 md:py-20">
       <div class="main-container space-y-8">
         <div class="max-w-[560px] space-y-3">
           <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Feature comparison</span>
           <h2 class="text-secondary dark:text-accent">What each tool handles</h2>
+          <p class="text-tagline-2 text-secondary/60 dark:text-accent/60">Different tools, different depth. Where they overlap, Insighty goes deeper on agency financial ops.</p>
         </div>
         <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 overflow-hidden">
           <div class="grid grid-cols-[1fr_100px_100px] md:grid-cols-[1fr_120px_120px] bg-background-1 dark:bg-background-6 border-b border-stroke-2 dark:border-stroke-5 px-6 py-4">
             <p class="text-tagline-2 font-semibold text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Capability</p>
-            <p class="text-tagline-2 font-semibold text-secondary/50 dark:text-accent/50 uppercase tracking-widest text-center">ClickUp</p>
+            <p class="text-tagline-2 font-semibold text-secondary/50 dark:text-accent/50 uppercase tracking-widest text-center">Scoro</p>
             <p class="text-tagline-2 font-semibold text-primary-400 uppercase tracking-widest text-center">Insighty</p>
           </div>
           {rows.map((row, i) => {
-            const c = mark(row.clickup)
+            const c = mark(row.competitor)
             const ins = mark(row.insighty)
             return (
               <div class={`grid grid-cols-[1fr_100px_100px] md:grid-cols-[1fr_120px_120px] px-6 py-4 border-b border-stroke-2 dark:border-stroke-5 last:border-0 ${i % 2 === 0 ? 'bg-background-1 dark:bg-background-8' : 'bg-background-2 dark:bg-background-7'}`}>
@@ -273,12 +291,13 @@ function mark(val: Mark) {
       </div>
     </section>
 
+    <!-- CTA -->
     <section class="bg-background-1 dark:bg-background-8 py-16 md:py-24">
       <div class="main-container text-center space-y-6 max-w-[640px] mx-auto">
         <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Ready to complete the picture?</span>
-        <h2 class="text-secondary dark:text-accent">Keep ClickUp. Add the financial intelligence it is missing.</h2>
+        <h2 class="text-secondary dark:text-accent">Insighty or Scoro — it depends on your agency's focus.</h2>
         <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
-          Insighty works alongside ClickUp. Your team keeps using ClickUp for delivery and collaboration. Your agency owner gets the revenue visibility they have been trying to build in custom ClickUp spaces.
+          Scoro is a broad platform for agencies that want projects, CRM, and billing in one place. Insighty is the focused financial intelligence layer for agencies that already have project tools and need deeper revenue ops, contract management, and infrastructure tracking.
         </p>
         <div class="flex flex-wrap justify-center gap-3 pt-2">
           <a href="/founding-member" class="btn btn-md btn-primary"><span>Join founding members</span></a>

@@ -1,92 +1,198 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
-import Header from '../components/organisms/Header.astro'
+import Logo from '../components/atoms/Logo.astro'
 import Footer from '../components/organisms/Footer.astro'
 ---
 
 <BaseLayout
   title="About Insighty — Built for the Agencies Running on Spreadsheets"
-  description="We built Insighty because we lived the problem — revenue scattered across tools, retainers tracked in spreadsheets, renewals missed. Here is the story."
+  description="We built Insighty because we lived the problem — 40 clients, 30+ projects, and every tool fell short. Here is the real story."
 >
-  <Header />
   <main>
 
-    <!-- Hero -->
+    <!-- =====================
+    Custom About Header
+    (minimal, full-width, transparent — blends into dark hero)
+    ======================== -->
+    <header class="dark absolute top-0 left-0 right-0 z-50 px-6 py-6 flex items-center justify-between">
+      <a href="/">
+        <Logo class="w-[120px]" />
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="/" class="text-white/50 hover:text-white text-tagline-2 uppercase tracking-wider font-medium transition-colors hidden sm:block">← Back</a>
+        <a href="/request-a-demo" class="btn btn-md btn-primary"><span>Request a demo</span></a>
+      </div>
+    </header>
+
+    <!-- =====================
+    Hero — personal, not corporate
+    ======================== -->
     <section
-      class="pt-[140px] sm:pt-[150px] md:pt-[160px] pb-16 md:pb-24 relative overflow-hidden"
-      style="background: linear-gradient(135deg, #0a1628 0%, #112445 50%, #1a3a70 100%)"
+      class="relative min-h-[90vh] flex items-end pb-20 overflow-hidden"
+      style="background: linear-gradient(160deg, #060d1e 0%, #0d1f42 55%, #162d60 100%)"
     >
-      <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 36px 36px;"></div>
+      <!-- grid texture -->
+      <div class="absolute inset-0 opacity-[0.035]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+      <!-- subtle glow -->
+      <div class="absolute top-1/3 right-1/4 w-[600px] h-[600px] rounded-full opacity-[0.06]" style="background: radial-gradient(circle, #6e8fd9 0%, transparent 70%);"></div>
+
       <div class="main-container relative z-10">
-        <div class="max-w-[680px] space-y-6">
-          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white/40 border border-white/10 px-4 py-1.5 rounded-full">Our story</span>
-          <h1 class="text-white">
-            Built for the agency running<br />
-            <span class="hero-text-gradient hero-text-color-1">its business on spreadsheets</span>
+        <div class="max-w-[800px] space-y-8">
+          <span class="inline-block text-tagline-3 uppercase tracking-[0.2em] font-medium text-white/30 border border-white/10 px-4 py-1.5 rounded-full">The story</span>
+          <h1 class="text-white leading-[1.1]">
+            I managed 40 clients,<br />
+            30+ projects, and tried<br />
+            <span class="hero-text-gradient hero-text-color-1">every tool that existed.</span><br />
+            None of them worked.
           </h1>
-          <p class="text-white/65 text-tagline-1 max-w-[520px] leading-relaxed">
-            Every agency has the same problem. Delivery lives in Jira or Asana. Revenue lives in a spreadsheet. Contracts live in another spreadsheet. Renewals fall through the cracks. We built Insighty to fix that.
+          <p class="text-white/55 text-tagline-1 max-w-[540px] leading-relaxed">
+            So I built the one that did.
           </p>
+
+          <!-- founder credit -->
+          <div class="flex items-center gap-4 pt-4 border-t border-white/10 max-w-[400px]">
+            <div class="w-10 h-10 rounded-full bg-white/10 border border-white/15 flex items-center justify-center flex-shrink-0">
+              <span class="text-white/70 text-tagline-2 font-semibold">N</span>
+            </div>
+            <div>
+              <p class="text-white/80 text-tagline-2 font-medium">Nino Erjavec</p>
+              <p class="text-white/35 text-tagline-3">Founder &amp; Digital Products Director</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- The problem we saw -->
-    <section class="bg-background-1 dark:bg-background-8 py-16 md:py-20">
+    <!-- =====================
+    The real story — first person
+    ======================== -->
+    <section class="bg-background-1 dark:bg-background-8 py-20 md:py-28">
       <div class="main-container">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-start">
+        <div class="max-w-[680px] mx-auto space-y-10">
+          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/30 dark:text-accent/30">How it started</span>
+
+          <div class="space-y-6 text-tagline-1 text-secondary/70 dark:text-accent/70 leading-[1.8]">
+            <p class="text-secondary dark:text-accent text-[1.25rem] font-medium leading-relaxed">
+              At the agency where I was Digital Products Director, we had 40 active clients and north of 30 projects running in parallel at any given time.
+            </p>
+            <p>
+              That sounds manageable on paper. It is not. Not when delivery lives in Jira, revenue targets live in a Google Sheet, contracts live in a folder no one has organized since 2021, and the question "are we actually profitable this quarter?" takes three people half a day to answer.
+            </p>
+            <p>
+              I am not someone who gives up on tools easily. I spent years trying to make it work — Asana, Monday, Teamwork, ClickUp, Harvest, custom Notion setups, spreadsheet automations. I benchmarked dozens of tools. I built internal processes around their limitations. I even customized some of them heavily to get closer to what we needed.
+            </p>
+            <p>
+              The problem was never the tools themselves. The problem is structural: none of them were built for an agency. They were built for product teams, or for freelancers, or for enterprise procurement. Nobody built the one thing an agency operations director actually needs — a single view that connects revenue, projects, contracts, retainers, and infrastructure, and tells you what is at risk before it becomes a problem.
+            </p>
+            <p>
+              So we built it.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================
+    The moment — dramatic beat
+    ======================== -->
+    <section class="bg-background-2 dark:bg-background-7 py-20 md:py-28 border-y border-stroke-2 dark:border-stroke-5">
+      <div class="main-container">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24 items-start">
+
           <div class="space-y-6">
-            <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Why we built this</span>
-            <h2 class="text-secondary dark:text-accent">The problem every growing agency knows</h2>
+            <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/30 dark:text-accent/30">The breaking point</span>
+            <h2 class="text-secondary dark:text-accent">The Monday morning spreadsheet</h2>
             <div class="space-y-4 text-tagline-1 text-secondary/65 dark:text-accent/65 leading-relaxed">
               <p>
-                You have project management tools. You have an accounting tool. You have time tracking. And yet every Monday morning, you still open a spreadsheet to answer the most basic questions: what did we invoice last month, which retainers renew next quarter, and are we on track to hit our revenue targets?
+                Every Monday, someone opened a spreadsheet to answer the same questions: what did we invoice last month, which retainers are renewing this quarter, which project is burning over budget right now.
               </p>
               <p>
-                The tools were not built for agencies. They were built for engineering teams, or for accountants, or for salespeople. Nobody built the operations layer for the agency owner who needs to see revenue, delivery, contracts, and pipeline all at once.
+                We had powerful tools. We had good processes. And we still could not answer basic operational questions without manual work.
               </p>
               <p>
-                Insighty is that layer. Six surfaces — revenue, projects, contracts, maintenance, infrastructure, and pipeline — unified into one intelligence platform. With Pixel AI surfacing the risks and anomalies before they become problems.
+                That was the moment. Not a dramatic failure — just the quiet realization that we were doing this every single week, and no tool was ever going to fix it unless it was actually designed for this specific problem.
               </p>
             </div>
           </div>
-          <div class="space-y-4">
+
+          <!-- stats — honest ones -->
+          <div class="space-y-4 lg:pt-12">
             {[
-              { num: '6', label: 'surfaces unified', sub: 'Revenue, projects, contracts, maintenance, infrastructure, and pipeline in one view.' },
-              { num: '27+', label: 'tools compared', sub: 'We benchmarked every major agency tool to understand exactly what was missing.' },
-              { num: '100%', label: 'agency-focused', sub: 'Built specifically for digital agencies, IT services firms, and creative studios.' },
+              { num: '40', label: 'clients managed', sub: 'Active clients across a full-service digital agency before building Insighty.' },
+              { num: '30+', label: 'parallel projects', sub: 'Simultaneous projects in delivery — each with its own budget, timeline, and contract.' },
+              { num: '27+', label: 'tools evaluated', sub: 'Every major agency tool benchmarked, tested, and customized before we gave up on finding one.' },
             ].map(stat => (
-              <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-7">
+              <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-6 p-7">
                 <div class="flex items-baseline gap-3 mb-2">
                   <span class="text-4xl font-bold text-secondary dark:text-accent">{stat.num}</span>
-                  <span class="text-tagline-1 font-medium text-secondary/60 dark:text-accent/60">{stat.label}</span>
+                  <span class="text-tagline-1 font-medium text-secondary/55 dark:text-accent/55">{stat.label}</span>
                 </div>
-                <p class="text-tagline-2 text-secondary/50 dark:text-accent/50 leading-relaxed">{stat.sub}</p>
+                <p class="text-tagline-2 text-secondary/45 dark:text-accent/45 leading-relaxed">{stat.sub}</p>
               </div>
             ))}
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================
+    Why existing tools failed
+    ======================== -->
+    <section class="bg-background-1 dark:bg-background-8 py-20 md:py-28">
+      <div class="main-container">
+        <div class="max-w-[760px] space-y-10">
+          <div class="space-y-3">
+            <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/30 dark:text-accent/30">The real problem</span>
+            <h2 class="text-secondary dark:text-accent">Every tool solved part of the problem.<br />None solved all of it.</h2>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              { tool: 'Project management tools', gap: 'Great for delivery. Blind to revenue, contracts, and what a project is actually costing the business.' },
+              { tool: 'Time tracking tools', gap: 'Track hours. Can\'t tell you if a retainer is profitable or which client is burning your team.' },
+              { tool: 'Accounting software', gap: 'Shows invoices sent. Has no concept of delivery progress, resource allocation, or project margin.' },
+              { tool: 'CRM tools', gap: 'Pipeline management. Disconnected from the delivery reality once a deal is closed.' },
+              { tool: 'Custom spreadsheets', gap: 'The actual workhorse. But manually maintained, always out of date, and impossible to act on in real time.' },
+              { tool: 'All-in-one platforms', gap: 'Feature-complete for generic teams. Missing the agency-specific workflows that are not negotiable.' },
+            ].map(item => (
+              <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-7 p-5 space-y-2">
+                <p class="text-tagline-2 font-semibold text-secondary dark:text-accent">{item.tool}</p>
+                <p class="text-tagline-2 text-secondary/50 dark:text-accent/50 leading-relaxed">{item.gap}</p>
+              </div>
+            ))}
+          </div>
+
+          <div class="border-l-2 border-stroke-3 dark:border-stroke-4 pl-6">
+            <p class="text-tagline-1 text-secondary/70 dark:text-accent/70 leading-relaxed italic">
+              "The gap was not about features. It was about the mental model. No tool was built around the way an agency actually operates — the intersection of delivery, revenue, contracts, and client relationships as one living system."
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- The platform -->
-    <section class="bg-background-2 dark:bg-background-7 py-16 md:py-20">
-      <div class="main-container space-y-10">
-        <div class="max-w-[560px] space-y-3">
-          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">The platform</span>
+    <!-- =====================
+    What we built
+    ======================== -->
+    <section class="bg-background-2 dark:bg-background-7 py-20 md:py-28 border-y border-stroke-2 dark:border-stroke-5">
+      <div class="main-container space-y-12">
+        <div class="max-w-[580px] space-y-3">
+          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/30 dark:text-accent/30">What we built</span>
           <h2 class="text-secondary dark:text-accent">Six surfaces. One source of truth.</h2>
-          <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
-            Each surface answers a different question your agency asks every week. Together, they replace the spreadsheets.
+          <p class="text-tagline-1 text-secondary/60 dark:text-accent/60 leading-relaxed">
+            Each surface answers a different question your agency asks every week. Together, they replace the spreadsheets and connect the tools you already use.
           </p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {[
-            { title: 'Revenue hub', body: 'Plan, track, and forecast every income stream — projects, retainers, hosting, domains, and pipeline — in one matrix view.' },
-            { title: 'Project management', body: 'Delivery tracking with budget burn visibility. Know which projects are profitable and which are at risk, in real time.' },
-            { title: 'Contract management', body: 'Client contracts, SLAs, and change requests — tracked against billing status so nothing slips through.' },
-            { title: 'Maintenance billing', body: 'Monthly and annual retainers with included hours, bug allowances, and automated recurring invoicing.' },
+            { title: 'Revenue hub', body: 'Every income stream in one matrix — projects, retainers, hosting, domains, and pipeline. Weekly targets. Monthly actuals. No more guessing.' },
+            { title: 'Project management', body: 'Delivery tracking with budget burn visibility. Know which projects are profitable and which are bleeding margin, in real time.' },
+            { title: 'Contract management', body: 'Contracts, SLAs, and change requests — tracked against billing status so nothing slips and no renewal is ever missed.' },
+            { title: 'Maintenance billing', body: 'Monthly and annual retainers with included hours, bug allowances, and automated recurring invoicing built in.' },
             { title: 'Infrastructure registry', body: 'Every hosting account, domain, and SSL certificate — with automated renewal alerts at 90, 60, and 30 days.' },
-            { title: 'Pixel AI', body: 'Proactive intelligence that surfaces anomalies, flags risks, and answers questions before you think to ask them.' },
+            { title: 'Pixel AI', body: 'Proactive intelligence that surfaces anomalies and flags risks before you think to look. The Monday morning spreadsheet, automated.' },
           ].map(item => (
             <div class="bg-background-1 dark:bg-background-6 rounded-2xl border border-stroke-2 dark:border-stroke-5 p-6 space-y-2">
               <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">{item.title}</p>
@@ -97,17 +203,21 @@ import Footer from '../components/organisms/Footer.astro'
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="bg-background-1 dark:bg-background-8 py-16 md:py-24">
-      <div class="main-container text-center space-y-6 max-w-[580px] mx-auto">
-        <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Join us early</span>
-        <h2 class="text-secondary dark:text-accent">We are building this in the open — with founding members who live the problem</h2>
-        <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
-          Insighty is pre-launch. We are onboarding a small group of founding members who will shape the product, lock in pre-launch pricing, and run on Insighty before the world does.
-        </p>
-        <div class="flex flex-wrap justify-center gap-3 pt-2">
-          <a href="/founding-member" class="btn btn-md btn-primary"><span>Become a founding member</span></a>
-          <a href="/request-a-demo" class="btn btn-md btn-secondary dark:btn-accent"><span>Request a demo</span></a>
+    <!-- =====================
+    CTA
+    ======================== -->
+    <section class="bg-background-1 dark:bg-background-8 py-20 md:py-28">
+      <div class="main-container">
+        <div class="max-w-[580px] space-y-6">
+          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/30 dark:text-accent/30">Join us early</span>
+          <h2 class="text-secondary dark:text-accent">Built with agencies who live this problem daily</h2>
+          <p class="text-tagline-1 text-secondary/60 dark:text-accent/60 leading-relaxed">
+            Insighty is pre-launch. We are onboarding a small group of founding members who will shape the product, lock in pre-launch pricing, and run on Insighty before the world does.
+          </p>
+          <div class="flex flex-wrap gap-3 pt-2">
+            <a href="/founding-member" class="btn btn-md btn-primary"><span>Become a founding member</span></a>
+            <a href="/request-a-demo" class="btn btn-md btn-secondary dark:btn-accent"><span>Request a demo</span></a>
+          </div>
         </div>
       </div>
     </section>

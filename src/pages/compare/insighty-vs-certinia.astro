@@ -3,8 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/organisms/Header.astro'
 import Footer from '../../components/organisms/Footer.astro'
 
-const title = 'Insighty vs ClickUp: Agency Financial Intelligence vs All-in-One PM'
-const description = 'ClickUp is everything in one project management tool. Insighty is the financial intelligence layer agencies need — revenue, contracts, retainer billing, and forecasting. Here is the difference.'
+const title = 'Insighty vs Certinia: Standalone Agency Ops vs Salesforce PSA'
+const description = 'Certinia is a Salesforce-native PSA and financial management platform for enterprise teams. Insighty is the standalone agency financial intelligence layer built for digital agencies that do not run on Salesforce.'
 
 const checks = [
   'Revenue planning across all income streams in one view',
@@ -15,50 +15,50 @@ const checks = [
   'Resource capacity planning with billability reports',
 ]
 
-const clickupStrengths = [
-  { label: 'Everything in one tool', detail: 'Tasks, docs, goals, whiteboards, time tracking, chat — all in a single platform to reduce tool sprawl.' },
-  { label: 'Highly customisable', detail: 'Custom statuses, fields, views, and workflows that adapt to any team or process.' },
-  { label: 'Multiple project views', detail: 'List, board, Gantt, calendar, timeline, workload, and mind map — any way you want to see work.' },
-  { label: 'Powerful automations', detail: 'Automated actions across spaces, folders, and lists with conditional logic.' },
-  { label: 'Native time tracking', detail: 'Built-in time tracking with reporting across projects and team members.' },
-  { label: 'Docs and wikis', detail: 'Collaborative documents connected to tasks and projects for team knowledge management.' },
+const competitorStrengths = [
+  { label: 'Native Salesforce CRM integration', detail: 'Built on Salesforce — seamless connection between CRM, pipeline, and PSA data.' },
+  { label: 'Professional services automation at enterprise scale', detail: 'Full PS delivery management for large enterprise professional services teams.' },
+  { label: 'Revenue recognition and financial management', detail: 'ASC 606 / IFRS 15 compliant revenue recognition and financial reporting.' },
+  { label: 'Resource management and scheduling', detail: 'Enterprise-grade resource planning, scheduling, and utilisation reporting.' },
+  { label: 'Project and contract management', detail: 'Project delivery tracking tied directly to contracts and revenue recognition.' },
+  { label: 'Services CPQ (configure, price, quote)', detail: 'Configure, price, and quote professional services engagements within Salesforce.' },
 ]
 
 const gaps = [
   {
-    title: 'Are we actually making money on this project?',
-    body: 'ClickUp tracks tasks and hours. It does not know the contract value, billing rate, or budget burn. Project profitability is invisible without a separate spreadsheet.',
+    title: 'Our agency does not use Salesforce — can we still use Certinia effectively?',
+    body: 'Certinia is built on top of Salesforce and requires it. Insighty is a standalone platform with no dependency on existing enterprise CRM infrastructure.',
   },
   {
-    title: 'Which maintenance clients need invoicing this month?',
-    body: 'Recurring retainers, hosting renewals, and maintenance contracts are not natively managed in ClickUp. Custom fields can track some of this, but they cannot drive invoicing.',
+    title: 'Which hosting plans and domain renewals are due across all clients?',
+    body: 'Infrastructure-level renewal tracking and automated alerts are not part of Certinia\'s PSA model.',
   },
   {
-    title: 'What is the revenue forecast for next quarter?',
-    body: 'ClickUp has no probability-weighted revenue model. Pipeline, committed contracts, retainers, and deferred invoices cannot be combined into a financial forecast without leaving the tool.',
+    title: 'Which maintenance contracts are at scope ceiling this month?',
+    body: 'Certinia manages professional services contracts at enterprise scale. Agency-specific maintenance contract scope management is not a core focus.',
   },
   {
-    title: 'Is this retainer over scope?',
-    body: 'ClickUp tracks hours and tasks. It does not know the included hours budget for a maintenance contract, the change request ceiling, or how tracked time translates to billing.',
+    title: 'Is the setup and cost appropriate for a 15-person digital agency?',
+    body: 'Certinia is designed for enterprise. Insighty is purpose-built and right-sized for digital agencies.',
   },
 ]
 
 type Mark = 'yes' | 'no' | 'partial'
-interface Row { feature: string; clickup: Mark; insighty: Mark; note?: string }
+interface Row { feature: string; competitor: Mark; insighty: Mark; note?: string }
 
 const rows: Row[] = [
-  { feature: 'Task & project management', clickup: 'yes', insighty: 'no', note: 'ClickUp is purpose-built as an all-in-one PM tool.' },
-  { feature: 'Native time tracking', clickup: 'yes', insighty: 'yes', note: 'ClickUp has built-in time. Insighty tracks billable hours against contracts.' },
-  { feature: 'Docs and wikis', clickup: 'yes', insighty: 'no', note: 'Not in scope for Insighty.' },
-  { feature: 'Maintenance contract billing', clickup: 'no', insighty: 'yes', note: 'Monthly/annual retainers with hours-included scope tracking.' },
-  { feature: 'Revenue planning (multi-stream)', clickup: 'no', insighty: 'yes', note: 'Projects, retainers, hosting, domains — unified matrix.' },
-  { feature: '"This Month" invoice view', clickup: 'no', insighty: 'yes', note: 'Every invoice due this month across all revenue types.' },
-  { feature: 'Hosting & domain renewal tracking', clickup: 'no', insighty: 'yes', note: 'Automated alerts at 90 / 60 / 30 days before expiry.' },
-  { feature: 'Sales pipeline & probability forecast', clickup: 'partial', insighty: 'yes', note: 'ClickUp has CRM. Insighty combines pipeline + contracts + retainers into a forecast.' },
-  { feature: 'Resource utilisation & billability', clickup: 'partial', insighty: 'yes', note: 'ClickUp has workload. Insighty adds billability % and utilisation reporting.' },
-  { feature: 'Client financial summary', clickup: 'no', insighty: 'yes', note: 'Annual revenue across all contract types per client.' },
-  { feature: 'Invoice automation (recurring)', clickup: 'no', insighty: 'yes', note: 'Scheduled invoice batches on a set day each month.' },
-  { feature: 'Budget vs actuals tracking', clickup: 'partial', insighty: 'yes', note: 'ClickUp has budget fields. Insighty connects budget to billing and contract scope.' },
+  { feature: 'Salesforce-native CRM integration', competitor: 'yes', insighty: 'partial', note: 'Certinia is built on Salesforce. Insighty includes its own CRM layer.' },
+  { feature: 'Revenue recognition', competitor: 'yes', insighty: 'yes', note: 'Certinia handles complex revenue recognition. Insighty tracks agency revenue streams.' },
+  { feature: 'Project & contract management', competitor: 'yes', insighty: 'yes', note: 'Both manage projects and contracts.' },
+  { feature: 'Resource management', competitor: 'yes', insighty: 'partial', note: 'Certinia is enterprise-grade. Insighty covers agency team capacity.' },
+  { feature: 'Time tracking', competitor: 'yes', insighty: 'yes', note: 'Both track billable hours; Insighty ties them to contract scope.' },
+  { feature: 'Hosting & domain renewal tracking', competitor: 'no', insighty: 'yes', note: 'Automated alerts at 90 / 60 / 30 days before expiry.' },
+  { feature: 'Maintenance contract scope alerts', competitor: 'partial', insighty: 'yes', note: 'Insighty flags when retainer hours or scope is being exceeded.' },
+  { feature: 'Agency-specific revenue matrix', competitor: 'partial', insighty: 'yes', note: 'Projects, retainers, hosting, domains — unified revenue matrix.' },
+  { feature: 'Standalone (no Salesforce required)', competitor: 'no', insighty: 'yes', note: 'Certinia requires Salesforce. Insighty runs independently.' },
+  { feature: '"This Month" invoice view', competitor: 'partial', insighty: 'yes', note: 'Every invoice due this month across all revenue types.' },
+  { feature: 'Invoice automation (recurring)', competitor: 'yes', insighty: 'yes', note: 'Both support scheduled recurring invoice batches.' },
+  { feature: 'Right-sized for SMB agencies', competitor: 'no', insighty: 'yes', note: 'Certinia is enterprise-priced and complex. Insighty is built for agencies.' },
 ]
 
 function mark(val: Mark) {
@@ -66,12 +66,19 @@ function mark(val: Mark) {
   if (val === 'partial') return { text: '~', cls: 'text-amber-500 font-semibold text-base' }
   return { text: '—', cls: 'text-secondary/25 dark:text-accent/20 text-base' }
 }
+
+const competitorColor = '#00A1E0'
+const competitorTagColor = '#5accf5'
+const competitorName = 'Certinia'
+const competitorTag = 'Salesforce PSA'
+const competitorRole = 'Salesforce-native PSA platform'
 ---
 
 <BaseLayout {title} {description}>
   <Header />
   <main>
 
+    <!-- Hero -->
     <section
       class="pt-[140px] sm:pt-[150px] md:pt-[160px] pb-16 md:pb-24 relative overflow-hidden"
       style="background: linear-gradient(135deg, #0a1628 0%, #112445 50%, #1a3a70 100%)"
@@ -83,17 +90,17 @@ function mark(val: Mark) {
           <span>/</span>
           <a href="/compare" class="hover:text-white transition-colors duration-200">Compare</a>
           <span>/</span>
-          <span class="text-white/70">Insighty vs ClickUp</span>
+          <span class="text-white/70">Insighty vs Certinia</span>
         </nav>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-center">
           <div class="space-y-6">
             <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white border border-white/30 px-4 py-1.5">Platform Comparison</span>
-            <h1 class="text-white">
-              Insighty vs ClickUp:<br />
-              <span class="hero-text-gradient hero-text-color-1">all-in-one PM vs financial intelligence</span>
+            <h1 class="text-white max-w-[560px]">
+              Insighty vs Certinia:<br />
+              <span class="hero-text-gradient hero-text-color-1">standalone agency ops vs Salesforce PSA</span>
             </h1>
             <p class="text-white max-w-[480px]">
-              ClickUp puts everything in one place — tasks, docs, goals, and time. Insighty is the financial intelligence layer that agencies need alongside it — revenue, retainers, contracts, and forecasting.
+              Certinia (formerly FinancialForce) is a Salesforce-native PSA and financial management platform for enterprise professional services teams. Insighty is the standalone agency financial intelligence layer built for digital agencies that don't run on Salesforce.
             </p>
             <div class="flex flex-wrap items-center gap-4 pt-2">
               <a href="/founding-member" class="btn btn-md btn-outline-white"><span>Join founding members</span></a>
@@ -107,18 +114,18 @@ function mark(val: Mark) {
           </div>
           <div class="flex flex-col gap-3">
             <div class="rounded-2xl p-5 flex flex-wrap items-center gap-4 border backdrop-blur-sm" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.13)">
-              <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-white p-2">
-                <img src="/images/icons/clickup.png" alt="ClickUp" class="w-full h-full object-contain" />
+              <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 text-white font-bold text-xl" style={`background: ${competitorColor}`}>
+                C
               </div>
               <div class="flex-1 min-w-0">
-                <p class="text-white font-semibold leading-tight">ClickUp</p>
-                <p class="text-white text-tagline-1 mt-1">All-in-one work management</p>
+                <p class="text-white font-semibold leading-tight">{competitorName}</p>
+                <p class="text-white text-tagline-1 mt-1">{competitorRole}</p>
               </div>
-              <span class="basis-full sm:basis-auto text-tagline-3 uppercase tracking-widest font-semibold px-3 py-1 pl-16 sm:pl-0" style="color: #b3a8ff; background: rgba(123,104,238,0.15); border: 1px solid rgba(123,104,238,0.3)">Work OS</span>
+              <span class="basis-full sm:basis-auto text-tagline-3 uppercase tracking-widest font-semibold px-3 py-1 pl-16 sm:pl-0" style={`color: ${competitorTagColor}; background: rgba(0,161,224,0.12); border: 1px solid rgba(0,161,224,0.3)`}>{competitorTag}</span>
             </div>
             <div class="flex items-center gap-4 py-0.5">
               <div class="flex-1 h-px bg-white/10"></div>
-              <span class="text-white/55 text-tagline-2 font-semibold tracking-widest uppercase">+ together</span>
+              <span class="text-white/35 text-tagline-3 font-medium tracking-widest uppercase">vs</span>
               <div class="flex-1 h-px bg-white/10"></div>
             </div>
             <div class="rounded-2xl p-5 flex items-center gap-4 border border-primary-500/30 backdrop-blur-sm" style="background: rgba(74,110,199,0.10)">
@@ -137,31 +144,32 @@ function mark(val: Mark) {
               </div>
               <span class="basis-full sm:basis-auto text-tagline-3 uppercase tracking-widest font-semibold px-3 py-1 text-primary-300 pl-16 sm:pl-0" style="background: rgba(74,110,199,0.15); border: 1px solid rgba(74,110,199,0.35)">Finance & Ops</span>
             </div>
-
+            <p class="text-white/30 text-tagline-3 text-center pt-1">Salesforce-native vs standalone agency intelligence.</p>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- What each tool is -->
     <section class="bg-background-1 dark:bg-background-8 py-16 md:py-20">
       <div class="main-container">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-8 space-y-4">
             <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-white p-1.5">
-                <img src="/images/icons/clickup.png" alt="ClickUp" class="w-full h-full object-contain" />
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 text-white font-bold" style={`background: ${competitorColor}`}>
+                C
               </div>
               <div>
-                <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">ClickUp</p>
-                <p class="text-tagline-3 text-secondary/50 dark:text-accent/50">All-in-one productivity platform</p>
+                <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">{competitorName}</p>
+                <p class="text-tagline-3 text-secondary/50 dark:text-accent/50">{competitorRole}</p>
               </div>
             </div>
             <p class="text-tagline-1 text-secondary/70 dark:text-accent/70 leading-relaxed">
-              An all-in-one productivity platform that combines tasks, documents, goals, whiteboards, and time tracking in a single, highly customisable workspace. Positioned as a replacement for multiple separate tools.
+              A Salesforce-native PSA and financial management platform (formerly FinancialForce) for enterprise professional services organisations. Built for teams already running on Salesforce that need PSA, revenue recognition, and resource management.
             </p>
             <p class="text-tagline-2 font-medium text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Best for</p>
             <ul class="space-y-1.5">
-              {['Teams wanting to consolidate tools', 'Complex project and task management', 'Custom workflows and automations', 'Documentation alongside delivery'].map(s => (
+              {['Enterprise Salesforce-native organisations', 'Revenue recognition and financial compliance', 'Large professional services delivery teams', 'Services CPQ and contract management'].map(s => (
                 <li class="flex items-center gap-2 text-tagline-2 text-secondary/70 dark:text-accent/70">
                   <span class="w-1 h-1 rounded-full bg-secondary/30 dark:bg-accent/30 shrink-0"></span>
                   {s}
@@ -174,7 +182,7 @@ function mark(val: Mark) {
             <div class="relative space-y-4">
               <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl bg-primary-500 flex items-center justify-center shrink-0">
-                  <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.5l7-7 4 4 7-7M3 19h18"/>
                   </svg>
                 </div>
@@ -184,7 +192,7 @@ function mark(val: Mark) {
                 </div>
               </div>
               <p class="text-tagline-1 text-secondary/70 dark:text-accent/70 leading-relaxed">
-                The financial and operational intelligence layer built specifically for agencies. Connects clients, contracts, maintenance retainers, hosting, domains, invoices, and pipeline into one unified revenue view.
+                The standalone financial intelligence layer for digital agencies. No enterprise infrastructure required. Connects clients, contracts, retainers, hosting, domains, invoices, and pipeline into one unified revenue view.
               </p>
               <p class="text-tagline-2 font-medium text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Best for</p>
               <ul class="space-y-1.5">
@@ -201,14 +209,18 @@ function mark(val: Mark) {
       </div>
     </section>
 
+    <!-- Certinia strengths -->
     <section class="bg-background-2 dark:bg-background-7 py-16 md:py-20">
       <div class="main-container space-y-10">
         <div class="max-w-[640px] space-y-3">
-          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Where ClickUp wins</span>
-          <h2 class="text-secondary dark:text-accent">ClickUp is excellent at consolidating work management</h2>
+          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Where Certinia wins</span>
+          <h2 class="text-secondary dark:text-accent">Certinia is exceptional for Salesforce-native enterprise PSA</h2>
+          <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
+            For enterprise organisations already running on Salesforce, Certinia offers deep integration with CRM, revenue recognition, and professional services delivery in one connected system.
+          </p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {clickupStrengths.map(s => (
+          {competitorStrengths.map(s => (
             <div class="bg-background-1 dark:bg-background-6 rounded-2xl border border-stroke-2 dark:border-stroke-5 p-6 space-y-2">
               <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">{s.label}</p>
               <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 leading-relaxed">{s.detail}</p>
@@ -218,11 +230,15 @@ function mark(val: Mark) {
       </div>
     </section>
 
+    <!-- Gaps -->
     <section class="bg-background-1 dark:bg-background-8 py-16 md:py-20">
       <div class="main-container space-y-10">
         <div class="max-w-[640px] space-y-3">
           <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">The agency blind spot</span>
-          <h2 class="text-secondary dark:text-accent">The questions ClickUp cannot answer for agency owners</h2>
+          <h2 class="text-secondary dark:text-accent">The questions Certinia cannot answer for agency owners</h2>
+          <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
+            Certinia is powerful for enterprise Salesforce users. Most digital agencies do not run on Salesforce — and need a platform that works without it.
+          </p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {gaps.map((g, i) => (
@@ -238,20 +254,22 @@ function mark(val: Mark) {
       </div>
     </section>
 
+    <!-- Comparison table -->
     <section class="bg-background-2 dark:bg-background-7 py-16 md:py-20">
       <div class="main-container space-y-8">
         <div class="max-w-[560px] space-y-3">
           <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Feature comparison</span>
           <h2 class="text-secondary dark:text-accent">What each tool handles</h2>
+          <p class="text-tagline-2 text-secondary/60 dark:text-accent/60">Enterprise Salesforce PSA vs standalone agency financial intelligence.</p>
         </div>
         <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 overflow-hidden">
           <div class="grid grid-cols-[1fr_100px_100px] md:grid-cols-[1fr_120px_120px] bg-background-1 dark:bg-background-6 border-b border-stroke-2 dark:border-stroke-5 px-6 py-4">
             <p class="text-tagline-2 font-semibold text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Capability</p>
-            <p class="text-tagline-2 font-semibold text-secondary/50 dark:text-accent/50 uppercase tracking-widest text-center">ClickUp</p>
+            <p class="text-tagline-2 font-semibold text-secondary/50 dark:text-accent/50 uppercase tracking-widest text-center">Certinia</p>
             <p class="text-tagline-2 font-semibold text-primary-400 uppercase tracking-widest text-center">Insighty</p>
           </div>
           {rows.map((row, i) => {
-            const c = mark(row.clickup)
+            const c = mark(row.competitor)
             const ins = mark(row.insighty)
             return (
               <div class={`grid grid-cols-[1fr_100px_100px] md:grid-cols-[1fr_120px_120px] px-6 py-4 border-b border-stroke-2 dark:border-stroke-5 last:border-0 ${i % 2 === 0 ? 'bg-background-1 dark:bg-background-8' : 'bg-background-2 dark:bg-background-7'}`}>
@@ -273,16 +291,17 @@ function mark(val: Mark) {
       </div>
     </section>
 
+    <!-- CTA -->
     <section class="bg-background-1 dark:bg-background-8 py-16 md:py-24">
       <div class="main-container text-center space-y-6 max-w-[640px] mx-auto">
         <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Ready to complete the picture?</span>
-        <h2 class="text-secondary dark:text-accent">Keep ClickUp. Add the financial intelligence it is missing.</h2>
+        <h2 class="text-secondary dark:text-accent">Certinia for Salesforce-native PSA. Insighty for standalone agency intelligence.</h2>
         <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
-          Insighty works alongside ClickUp. Your team keeps using ClickUp for delivery and collaboration. Your agency owner gets the revenue visibility they have been trying to build in custom ClickUp spaces.
+          Certinia is the right choice for professional services firms already running on Salesforce at enterprise scale. Insighty is built for digital agencies that need focused financial intelligence without enterprise infrastructure requirements.
         </p>
         <div class="flex flex-wrap justify-center gap-3 pt-2">
           <a href="/founding-member" class="btn btn-md btn-primary"><span>Join founding members</span></a>
-          <a href="/compare" class="btn btn-md btn-white"><span>All comparisons</span></a>
+          <a href="/compare" class="btn btn-md btn-secondary dark:btn-accent"><span>All comparisons</span></a>
         </div>
       </div>
     </section>

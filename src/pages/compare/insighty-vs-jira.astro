@@ -95,8 +95,8 @@ function mark(val: Mark) {
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-center">
           <div class="space-y-6">
-            <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white/40">Platform Comparison</span>
-            <h1 class="text-white max-w-[560px]">
+            <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white border border-white/30 px-4 py-1.5">Platform Comparison</span>
+            <h1 class="text-white">
               Insighty + Jira:<br />
               <span class="hero-text-gradient hero-text-color-1">the complete agency stack</span>
             </h1>
@@ -114,19 +114,39 @@ function mark(val: Mark) {
             </div>
           </div>
 
-          <div class="hidden lg:block">
-            <ul class="space-y-3">
-              {checks.map(c => (
-                <li class="flex items-start gap-3">
-                  <span class="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-primary-500 flex items-center justify-center">
-                    <svg class="w-3 h-3 text-white" viewBox="0 0 12 12" fill="none">
-                      <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                  <span class="text-tagline-1 text-white/75">{c}</span>
-                </li>
-              ))}
-            </ul>
+          <div class="flex flex-col gap-3">
+            <div class="rounded-2xl p-5 flex flex-wrap items-center gap-4 border backdrop-blur-sm" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.13)">
+              <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 bg-white p-2">
+                <img src="/images/icons/jira.png" alt="Jira" class="w-full h-full object-contain" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-white font-semibold leading-tight">Jira</p>
+                <p class="text-white text-tagline-1 mt-1">Issue tracking & sprint management</p>
+              </div>
+              <span class="basis-full sm:basis-auto text-tagline-3 uppercase tracking-widest font-semibold px-3 py-1 pl-16 sm:pl-0" style="color: #4d9fff; background: rgba(0,82,204,0.15); border: 1px solid rgba(0,82,204,0.35)">Engineering</span>
+            </div>
+            <div class="flex items-center gap-4 py-0.5">
+              <div class="flex-1 h-px bg-white/10"></div>
+              <span class="text-white/55 text-tagline-2 font-semibold tracking-widest uppercase">+ together</span>
+              <div class="flex-1 h-px bg-white/10"></div>
+            </div>
+            <div class="rounded-2xl p-5 flex items-center gap-4 border border-primary-500/30 backdrop-blur-sm" style="background: rgba(74,110,199,0.10)">
+              <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style="background: linear-gradient(135deg, #1b3a6b 0%, #4a6ec7 100%)">
+                <svg viewBox="0 0 24 24" class="w-7 h-7">
+                  <rect x="2" y="16" width="3.5" height="5" rx="1" fill="#a3b8ea"/>
+                  <rect x="6.5" y="12" width="3.5" height="9" rx="1" fill="#6e8fd9"/>
+                  <rect x="11" y="8" width="3.5" height="13" rx="1" fill="white" opacity="0.9"/>
+                  <rect x="15.5" y="4" width="3.5" height="17" rx="1" fill="white" opacity="0.6"/>
+                  <circle cx="17.25" cy="2.5" r="1.8" fill="#d4a574"/>
+                </svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-white font-semibold leading-tight">Insighty</p>
+                <p class="text-white text-tagline-1 mt-1">Client management, contracts & financial ops</p>
+              </div>
+              <span class="basis-full sm:basis-auto text-tagline-3 uppercase tracking-widest font-semibold px-3 py-1 text-primary-300 pl-16 sm:pl-0" style="background: rgba(74,110,199,0.15); border: 1px solid rgba(74,110,199,0.35)">Finance & Ops</span>
+            </div>
+
           </div>
         </div>
       </div>
@@ -139,10 +159,8 @@ function mark(val: Mark) {
           <!-- Jira card -->
           <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-8 space-y-4">
             <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-xl bg-[#0052CC] flex items-center justify-center shrink-0">
-                <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M11.571 11.571C9.37 9.37 9.256 5.982 11.214 3.638L6.165 8.687C3.945 10.907 3.945 14.513 6.165 16.733L11.571 22.14l5.572-5.572c-2.201-2.2-2.201-5.777-3.572-4.997zm.858-.858L17.835 5.267C20.055 3.047 20.055 6.454 17.835 8.674l-5.406 5.406C10.23 12.88 10.23 12.914 12.429 10.713z"/>
-                </svg>
+              <div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center shrink-0 p-1.5">
+                <img src="/images/icons/jira.png" alt="Jira" class="w-full h-full object-contain" />
               </div>
               <div>
                 <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">Jira</p>
@@ -295,7 +313,7 @@ function mark(val: Mark) {
                 <p class="text-white/65 text-tagline-1 leading-relaxed">
                   Connect a maintenance contract to a Jira project key and Insighty pulls live data from Jira and Tempo — bugs logged this month, change requests raised, hours consumed against the included quota. No double-entry. No sync setup.
                 </p>
-                <a href="/contact" class="btn btn-md btn-primary inline-flex"><span>See the integration</span></a>
+                <a href="/contact" class="btn btn-md btn-outline-white"><span>See the integration</span></a>
               </div>
               <div class="space-y-4">
                 {[
@@ -395,7 +413,7 @@ function mark(val: Mark) {
         </p>
         <div class="flex flex-wrap justify-center gap-3 pt-2">
           <a href="/contact" class="btn btn-md btn-primary"><span>Request early access</span></a>
-          <a href="/blog" class="btn btn-md btn-secondary"><span>Read the blog</span></a>
+          <a href="/blog" class="btn btn-md btn-white"><span>Read the blog</span></a>
         </div>
       </div>
     </section>
