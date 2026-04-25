@@ -4,21 +4,20 @@
   "version": "2.2.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
-    "build": "vite build && node post-build.js",
-    "build:clean": "vite build && node post-build.js",
-    "preview": "vite preview --host 0.0.0.0",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
     "format": "prettier --write ."
   },
   "devDependencies": {
-    "prettier": "^3.6.2",
-    "terser": "^5.43.1",
-    "vite": "^6.3.1"
+    "prettier": "^3.6.2"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
     "@tailwindcss/vite": "^4.1.4",
+    "astro": "^6.1.9",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4.1.4",
-    "vite-plugin-html-inject": "^1.1.2"
+    "typescript": "^5.9.3"
   }
 }
