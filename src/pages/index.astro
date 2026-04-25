@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/organisms/Header.astro'
+import Hero from '../components/organisms/Hero.astro'
+import Modules from '../components/organisms/Modules.astro'
+import Services from '../components/organisms/Services.astro'
+import Feature from '../components/organisms/Feature.astro'
+import FeatureV2 from '../components/organisms/FeatureV2.astro'
+import FeatureV3 from '../components/organisms/FeatureV3.astro'
+import FoundingMember from '../components/organisms/FoundingMember.astro'
+import FAQ from '../components/organisms/FAQ.astro'
+import CTA from '../components/organisms/CTA.astro'
+import Footer from '../components/organisms/Footer.astro'
+---
+<BaseLayout
+  title="Insighty — Coming Soon | Agency Operations Platform"
+  description="Insighty brings every client, project, contract, and revenue stream into one intelligent dashboard. Coming soon to help agencies scale profitably."
+>
+  <Header />
+  <main>
+    <Hero />
+    <Modules />
+    <Services />
+    <Feature />
+    <FeatureV2 />
+    <FeatureV3 />
+    <FoundingMember />
+    <FAQ />
+    <CTA />
+  </main>
+  <Footer />
+</BaseLayout>
