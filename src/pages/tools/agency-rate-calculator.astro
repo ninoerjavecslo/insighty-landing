@@ -1,0 +1,623 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/organisms/Header.astro'
+import Footer from '../../components/organisms/Footer.astro'
+import SidebarTOC from '../../components/molecules/SidebarTOC.astro'
+
+const toc = [
+  { id: 'calculator', label: 'Calculator' },
+  { id: 'how-to-set-rates', label: 'How to set your agency hourly rate' },
+  { id: 'loaded-cost', label: 'The true cost of an employee' },
+  { id: 'why-undercharge', label: 'Why most agencies undercharge' },
+  { id: 'rate-vs-value', label: 'Rate vs value-based pricing' },
+  { id: 'industry-benchmarks', label: 'Industry rate benchmarks' },
+  { id: 'raising-rates', label: 'How often to raise rates' },
+  { id: 'faq', label: 'Frequently asked questions' },
+]
+
+const benchmarkData = [
+  { discipline: 'Design', range: '$85–$150/hr', notes: 'Brand, UI/UX, motion' },
+  { discipline: 'Development', range: '$100–$200/hr', notes: 'Web, mobile, full-stack' },
+  { discipline: 'Strategy / Consulting', range: '$150–$300/hr', notes: 'Brand strategy, growth, ops' },
+  { discipline: 'Copywriting', range: '$75–$125/hr', notes: 'Web copy, content, ads' },
+  { discipline: 'Project Management', range: '$80–$130/hr', notes: 'Account, delivery, ops' },
+]
+
+const faqs = [
+  {
+    q: 'How do I calculate my minimum hourly rate?',
+    a: 'Add your target annual salary to your annual overhead costs, then divide by your billable hours per year. For example: ($90,000 salary + $30,000 overhead) ÷ 1,200 billable hours = $100/hr break-even rate. This is the floor — your minimum before any profit. Your actual rate should be higher to account for profit margin and business risk.',
+  },
+  {
+    q: 'What counts as billable hours per year?',
+    a: 'Billable hours are the hours you actually invoice clients — not total working hours. A standard 40-hour work week across 50 weeks is 2,000 hours. Subtract non-billable time: sales calls, admin, marketing, professional development, and internal meetings. Most solo freelancers realistically bill 1,000–1,400 hours. Agencies with dedicated account management can push higher. 1,200 hours per year is a conservative, realistic baseline.',
+  },
+  {
+    q: 'What should I include in annual overhead costs?',
+    a: 'Overhead includes every cost of running your business that is not a direct project expense: office rent or co-working fees, software subscriptions, accounting and legal fees, insurance, marketing and advertising spend, professional development, equipment depreciation, and any salaries or contractor costs not billed to a specific project. Do not forget the cost of your own health insurance and retirement contributions if you are self-employed — these are real costs that employees typically have covered by employers.',
+  },
+  {
+    q: 'What is the difference between my minimum rate and my target rate?',
+    a: 'Your minimum rate is the break-even point — the rate at which you cover all costs with zero profit. Your target rate adds a profit margin on top: typically 20–30% for healthy agencies. Profit is not a bonus; it is the buffer that lets you invest in growth, weather slow months, and build long-term sustainability. If your minimum rate is $100/hr and you want a 25% profit margin, your target rate is $100 ÷ (1 − 0.25) = $133/hr.',
+  },
+  {
+    q: 'Why is my day rate not just my hourly rate × 8?',
+    a: 'Technically it is — day rate = hourly rate × 8. But in practice, many agencies quote a day rate that is slightly less than 8× the hourly rate to make it feel like a volume discount. The calculator uses a straight 8-hour multiplier, which is mathematically correct. Whether you discount for full-day bookings is a sales and positioning decision, not a pricing one.',
+  },
+  {
+    q: 'How does value-based pricing differ from rate-based pricing?',
+    a: 'Rate-based pricing anchors your fee to your time (hourly rate × estimated hours). Value-based pricing anchors your fee to the outcome you create for the client. A new website that generates $500,000 in annual revenue is worth far more than the 80 hours it took to build. Value-based pricing lets you capture a share of that upside rather than being capped by an arbitrary hourly rate. It requires a deep understanding of your client\'s business and the confidence to have direct conversations about ROI.',
+  },
+  {
+    q: 'How often should I raise my rates?',
+    a: 'At minimum, annually — to account for inflation and rising overhead. Beyond that, you should raise rates whenever you are consistently fully booked (demand exceeds supply), when you land a meaningful new capability or credential, or when you move upmarket to larger clients. A useful rule of thumb: if no prospect has ever pushed back on your rates, they are too low. Some pushback is healthy and expected.',
+  },
+  {
+    q: 'Should I charge different rates for different types of work?',
+    a: 'Yes — tiered rates reflect the real difference in value delivered. Strategic work (brand positioning, growth consulting) commands higher rates than execution work (production design, QA). Many agencies use a blended rate for simplicity when scoping projects, but charge by seniority level when billing time-and-materials. Being transparent about tiering builds trust and helps clients understand what they are paying for.',
+  },
+]
+---
+
+<BaseLayout
+  title="Free Agency Rate Calculator — Insighty"
+  description="Calculate the minimum hourly rate your agency needs to charge to cover costs, pay yourself fairly, and hit your profit targets. Free tool, no account required."
+>
+  <Header />
+  <main>
+
+    <!-- Hero -->
+    <section
+      class="pt-[140px] sm:pt-[150px] md:pt-[160px] pb-14 md:pb-20 relative overflow-hidden"
+      style="background: linear-gradient(135deg, #0a1628 0%, #112245 50%, #1a3a70 100%)"
+    >
+      <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 36px 36px;"></div>
+      <div class="main-container relative z-10">
+        <nav class="flex items-center gap-2 text-tagline-3 text-white/50 mb-10" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-white transition-colors duration-200">Insighty</a>
+          <span aria-hidden="true">/</span>
+          <a href="/tools" class="hover:text-white transition-colors duration-200">Tools</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-white/70">Agency Rate Calculator</span>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-20 items-center">
+          <div class="space-y-5">
+            <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white border border-white/30 px-4 py-1.5">Free Tool · Pricing</span>
+            <h1 class="text-white">Free Agency Rate<br /><span class="hero-text-gradient hero-text-color-1">Calculator</span></h1>
+            <p class="text-white text-tagline-1 max-w-[480px]">
+              Set hourly rates that actually cover your costs, pay you fairly, and hit your profit targets. Stop guessing — calculate the minimum rate you need to charge.
+            </p>
+          </div>
+          <div class="hidden lg:block">
+            <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden">
+              <div class="px-5 py-4 border-b border-white/10">
+                <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Sample output</p>
+              </div>
+              <div class="p-5 space-y-3">
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="rounded-xl bg-emerald-500/10 border border-emerald-500/25 p-4 space-y-1">
+                    <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Min Rate</p>
+                    <p class="text-heading-4 font-semibold text-emerald-400">$85/hr</p>
+                    <p class="text-tagline-3 text-white/40">Break-even point</p>
+                  </div>
+                  <div class="rounded-xl bg-emerald-500/10 border border-emerald-500/25 p-4 space-y-1">
+                    <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Target Rate</p>
+                    <p class="text-heading-4 font-semibold text-emerald-400">$110/hr</p>
+                    <p class="text-tagline-3 text-white/40">With 25% margin</p>
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="rounded-xl bg-white/5 border border-white/10 p-4 space-y-1">
+                    <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Day Rate</p>
+                    <p class="text-heading-4 font-semibold text-white/80">$880</p>
+                    <p class="text-tagline-3 text-white/40">8h at target rate</p>
+                  </div>
+                  <div class="rounded-xl bg-white/5 border border-white/10 p-4 space-y-1">
+                    <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Monthly Revenue</p>
+                    <p class="text-heading-4 font-semibold text-white/80">$11,000</p>
+                    <p class="text-tagline-3 text-white/40">Needed to hit target</p>
+                  </div>
+                </div>
+                <div class="rounded-xl border border-emerald-500/25 bg-emerald-500/10 px-4 py-3">
+                  <p class="text-tagline-3 text-emerald-400">Your target rate of $110/hr covers costs and returns a healthy 25% profit margin — a strong position for sustainable growth.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="bg-background-1 dark:bg-background-8 py-14 md:py-20">
+      <div class="main-container">
+        <div class="grid grid-cols-1 lg:grid-cols-[220px_1fr] xl:grid-cols-[260px_1fr] gap-12 xl:gap-16 items-start">
+
+          <!-- Sidebar TOC -->
+          <div class="hidden lg:flex flex-col gap-8 sticky top-28">
+            <SidebarTOC items={toc} />
+          </div>
+
+          <!-- Main content -->
+          <div class="min-w-0 space-y-16">
+
+            <!-- CALCULATOR WIDGET -->
+            <div id="calculator" class="scroll-mt-28">
+              <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 overflow-hidden">
+                <div class="p-6 md:p-8 border-b border-stroke-2 dark:border-stroke-5">
+                  <h2 class="text-heading-5 font-semibold text-secondary dark:text-accent mb-1">Calculate Your Agency Rate</h2>
+                  <p class="text-tagline-2 text-secondary/55 dark:text-accent/55">Enter your costs and targets to see your minimum and ideal rates instantly</p>
+                </div>
+
+                <div class="p-6 md:p-8 space-y-8">
+                  <!-- Inputs -->
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div class="space-y-2">
+                      <label for="calc-salary" class="block text-tagline-2 font-medium text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Annual Salary / Target Income ($)</label>
+                      <input
+                        id="calc-salary"
+                        type="number"
+                        min="0"
+                        placeholder="e.g. 90000"
+                        class="auth-form-input w-full text-heading-6 font-semibold text-secondary dark:text-accent placeholder:font-normal placeholder:text-secondary/25 dark:placeholder:text-accent/25"
+                      />
+                    </div>
+                    <div class="space-y-2">
+                      <label for="calc-overhead" class="block text-tagline-2 font-medium text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Annual Overhead Costs ($)</label>
+                      <input
+                        id="calc-overhead"
+                        type="number"
+                        min="0"
+                        placeholder="e.g. 24000"
+                        class="auth-form-input w-full text-heading-6 font-semibold text-secondary dark:text-accent placeholder:font-normal placeholder:text-secondary/25 dark:placeholder:text-accent/25"
+                      />
+                    </div>
+                    <div class="space-y-2">
+                      <label for="calc-hours" class="block text-tagline-2 font-medium text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Billable Hours Per Year</label>
+                      <input
+                        id="calc-hours"
+                        type="number"
+                        min="1"
+                        value="1200"
+                        placeholder="e.g. 1200"
+                        class="auth-form-input w-full text-heading-6 font-semibold text-secondary dark:text-accent placeholder:font-normal placeholder:text-secondary/25 dark:placeholder:text-accent/25"
+                      />
+                    </div>
+                    <div class="space-y-2">
+                      <label for="calc-margin" class="block text-tagline-2 font-medium text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Target Profit Margin (%)</label>
+                      <input
+                        id="calc-margin"
+                        type="number"
+                        min="0"
+                        max="99"
+                        placeholder="e.g. 25"
+                        class="auth-form-input w-full text-heading-6 font-semibold text-secondary dark:text-accent placeholder:font-normal placeholder:text-secondary/25 dark:placeholder:text-accent/25"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Outputs -->
+                  <div id="results-section" class="space-y-4">
+                      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <!-- Min Rate -->
+                        <div id="out-min-card" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300">
+                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Min Rate</p>
+                          <p id="out-min-rate" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
+                          <p id="out-min-note" class="text-tagline-2 text-secondary/50 dark:text-accent/50">Break-even</p>
+                        </div>
+                        <!-- Target Rate -->
+                        <div id="out-target-card" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300">
+                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Target Rate</p>
+                          <p id="out-target-rate" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
+                          <p id="out-target-note" class="text-tagline-2 text-secondary/50 dark:text-accent/50">With margin</p>
+                        </div>
+                        <!-- Day Rate -->
+                        <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1">
+                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Day Rate</p>
+                          <p id="out-day-rate" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
+                          <p class="text-tagline-2 text-secondary/50 dark:text-accent/50">8h at target</p>
+                        </div>
+                        <!-- Monthly Revenue -->
+                        <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1">
+                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Monthly Revenue</p>
+                          <p id="out-monthly" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
+                          <p class="text-tagline-2 text-secondary/50 dark:text-accent/50">Needed</p>
+                        </div>
+                      </div>
+
+                      <!-- Health note -->
+                      <div id="health-note" class="hidden rounded-xl border px-5 py-4 text-tagline-2 leading-relaxed"></div>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- EDUCATIONAL CONTENT -->
+            <div class="space-y-12 tool-content">
+
+              <div id="how-to-set-rates" class="scroll-mt-28 space-y-4">
+                <h2>How to set your agency hourly rate</h2>
+                <p>Setting your hourly rate is one of the most consequential decisions you make in your agency. Set it too low and you work hard, stay busy, and still struggle to grow. Set it without a clear foundation and you either undersell your value or lose bids you should win. The right rate is not a guess — it is a calculation grounded in your actual costs, your financial goals, and the market you are operating in.</p>
+                <p>The starting point is always your cost floor: the rate at which you break even. This is your total annual costs — salary plus every overhead expense — divided by the number of hours you can realistically bill in a year. Everything above that floor is profit. Your target rate is the floor lifted by your desired profit margin. From there, market positioning, specialisation, and client mix determine how much more you can charge on top.</p>
+                <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                  <p class="font-semibold text-secondary dark:text-accent text-tagline-1">The three-step rate framework</p>
+                  <ul>
+                    <li><strong>Step 1 — Calculate your cost floor.</strong> (Salary + Overhead) ÷ Billable Hours = Minimum Rate. This is the rate at which you break even before any profit.</li>
+                    <li><strong>Step 2 — Apply your profit margin.</strong> Minimum Rate ÷ (1 − Target Margin) = Target Rate. A 25% target margin on a $100 minimum rate gives you a $133 target rate.</li>
+                    <li><strong>Step 3 — Pressure-test against the market.</strong> Compare your target rate to industry benchmarks. If it is well below market, you have room to charge more. If it is above market, you need stronger positioning or specialisation to justify the premium.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div id="loaded-cost" class="scroll-mt-28 space-y-4">
+                <h2>The true cost of an employee (loaded cost)</h2>
+                <p>When agencies set rates for team members, they often anchor on the employee's salary — which is a significant underestimate. The true cost of an employee, often called the "loaded cost" or "fully-burdened rate," includes every expense associated with that person working at your company.</p>
+                <p>A rule of thumb used across the industry: a fully-burdened employee costs 1.25–1.4× their base salary. An employee earning $80,000 per year actually costs the business $100,000–$112,000 once you factor in employer payroll taxes, benefits, equipment, and allocated overhead. For accurate rate-setting, this is the number you divide by billable hours — not the base salary.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Direct employee costs</p>
+                    <ul>
+                      <li>Base salary</li>
+                      <li>Employer payroll taxes (7.65% in the US)</li>
+                      <li>Health, dental, and vision insurance</li>
+                      <li>Retirement plan contributions</li>
+                      <li>Paid time off (salary days not worked)</li>
+                    </ul>
+                  </div>
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Allocated overhead</p>
+                    <ul>
+                      <li>Office space (per headcount)</li>
+                      <li>Software and tooling licences</li>
+                      <li>Hardware and equipment</li>
+                      <li>Training and development</li>
+                      <li>Recruitment and onboarding costs</li>
+                    </ul>
+                  </div>
+                </div>
+                <p>For solo freelancers and agency founders, the same logic applies — except you are both the employer and the employee. Your "salary" is your target personal income, and overhead is every cost of running the business. Both go into the numerator of your rate calculation.</p>
+              </div>
+
+              <div id="why-undercharge" class="scroll-mt-28 space-y-4">
+                <h2>Why most agencies undercharge</h2>
+                <p>Undercharging is endemic in the agency world. It is almost never about lack of skill or poor work quality — it is about how rates are set in the first place, and the psychological traps that keep them from rising.</p>
+                <div class="space-y-3">
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">The comparison trap</p>
+                    <p>Many agencies set rates by looking at what competitors charge and pricing slightly below to win on cost. This race-to-the-bottom logic ignores that your costs may differ significantly, your positioning may be stronger, and that low-price positioning attracts price-sensitive clients who are harder to retain and less profitable.</p>
+                  </div>
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Rate inertia</p>
+                    <p>Rates set three years ago often do not get updated. Costs rise with inflation, senior team members get more expensive, and overhead grows — but rates stay flat. The result is a silent margin squeeze that only becomes visible when cash flow tightens. If you have not raised rates in the past 12 months, you have almost certainly had an effective pay cut.</p>
+                  </div>
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Forgetting non-billable time</p>
+                    <p>A 40-hour work week does not mean 40 billable hours. Sales calls, proposals, account management, team meetings, professional development, and admin all consume time that is real cost but cannot be invoiced. Agencies that assume 80–90% billability and then fail to achieve it end up earning far less than their hourly rate suggests.</p>
+                  </div>
+                </div>
+                <div class="rounded-xl border border-primary-500/20 bg-primary-500/5 p-5">
+                  <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 leading-relaxed">
+                    <span class="font-semibold text-primary-500">Insighty tracks this automatically.</span> Instead of manually piecing together billable hours from timesheets, Insighty shows you actual utilisation, per-client margins, and revenue-per-hour across every team member — so you can price your next engagement with real data.
+                  </p>
+                </div>
+              </div>
+
+              <div id="rate-vs-value" class="scroll-mt-28 space-y-5">
+                <h2>Rate vs value-based pricing</h2>
+                <p>Hourly rate pricing is not the only model — and for many agencies, it is not the best one. Understanding the difference between rate-based and value-based pricing lets you choose the right approach for each engagement and client.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Rate-based pricing</p>
+                    <p>You charge a fixed amount per hour or day. Simple to explain and easy for clients to understand. Your income is capped by the number of hours you can sell. Works well for execution-heavy work with variable scope, time-and-materials engagements, and clients who require detailed time reporting.</p>
+                  </div>
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Value-based pricing</p>
+                    <p>You price based on the outcome and business impact you create, not the time you spend. A rebrand that enables a 30% revenue increase is worth a percentage of that uplift — not 60 hours at $150/hr. Requires a strong understanding of the client's business and the confidence to anchor on ROI rather than effort.</p>
+                  </div>
+                </div>
+                <p>In practice, most agencies blend both models. They use hourly rates as a floor and a cost-check, while positioning value-based arguments to justify higher fixed fees on strategic projects. The key insight is that your calculated rate is always a floor — never a ceiling. The ceiling is set by what the market will pay for the outcome you create.</p>
+                <p>Specialisation is the most reliable path to charging above-market rates. A generalist web agency competes on price. A specialist in e-commerce conversion optimisation for fashion brands competes on expertise — and can charge two to three times more for comparable work because the client's alternative is hiring someone less qualified.</p>
+              </div>
+
+              <div id="industry-benchmarks" class="scroll-mt-28 space-y-5">
+                <h2>Industry rate benchmarks by discipline</h2>
+                <p>Rates vary significantly by discipline, geography, experience level, and whether you are working with enterprise clients or small businesses. The figures below represent mid-market ranges for experienced practitioners in the US and Western Europe. Senior specialists and boutique agencies in high-demand niches regularly exceed the top of these ranges.</p>
+                <div class="overflow-x-auto rounded-xl border border-stroke-2 dark:border-stroke-5">
+                  <table class="w-full text-tagline-2">
+                    <thead>
+                      <tr class="bg-background-2 dark:bg-background-6 border-b border-stroke-2 dark:border-stroke-5">
+                        <th class="text-left px-5 py-3 font-semibold text-secondary/70 dark:text-accent/70 uppercase tracking-widest text-tagline-3">Discipline</th>
+                        <th class="text-left px-5 py-3 font-semibold text-secondary/70 dark:text-accent/70 uppercase tracking-widest text-tagline-3">Typical Range</th>
+                        <th class="text-left px-5 py-3 font-semibold text-secondary/70 dark:text-accent/70 uppercase tracking-widest text-tagline-3">Common Work Types</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {benchmarkData.map((row, i) => (
+                        <tr class={`border-b border-stroke-2 dark:border-stroke-5 last:border-0 ${i % 2 === 0 ? 'bg-background-1 dark:bg-background-8' : 'bg-background-2 dark:bg-background-6'}`}>
+                          <td class="px-5 py-3 font-medium text-secondary dark:text-accent">{row.discipline}</td>
+                          <td class="px-5 py-3">
+                            <span class="inline-block px-2.5 py-0.5 rounded-full bg-primary-500/10 text-primary-500 font-medium text-tagline-3">{row.range}</span>
+                          </td>
+                          <td class="px-5 py-3 text-secondary/70 dark:text-accent/70">{row.notes}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p>These benchmarks are meaningful as a sanity check, not as a pricing bible. If your calculated minimum rate is $120/hr and industry benchmarks for your discipline are $85–$150/hr, you are in a sound position. If your minimum rate is $180/hr but benchmarks top out at $125/hr, you need to either reduce costs, reduce overhead, or significantly differentiate your positioning to justify the premium.</p>
+              </div>
+
+              <div id="raising-rates" class="scroll-mt-28 space-y-5">
+                <h2>How often to raise rates</h2>
+                <p>Rates should be reviewed at least annually, and increased whenever two or more of the following conditions are true.</p>
+                <div class="space-y-3">
+                  <h3>Signals that it is time to raise rates</h3>
+                  <ul>
+                    <li><strong>You are consistently fully booked.</strong> If your pipeline is full and you are turning away work, demand exceeds supply. That is the most reliable signal that your rates are below market. Raise them until you see some natural attrition.</li>
+                    <li><strong>Your costs have risen but your rates have not.</strong> Inflation, salary increases, rising software costs — all of these eat margin silently. An annual cost-of-living increase to your rates is simply maintaining your real income, not getting more profitable.</li>
+                    <li><strong>You have gained meaningful new capabilities.</strong> A senior hire, a new certification, a major client win, or a completed case study with strong results all justify a rate increase. Your rates should reflect your current value, not the value you offered three years ago.</li>
+                    <li><strong>No one ever pushes back on your rates.</strong> Healthy rate conversations include some friction. If every prospect accepts your rates without hesitation, you are almost certainly leaving money on the table.</li>
+                    <li><strong>You are moving upmarket.</strong> Larger clients have larger budgets. If your client mix is shifting toward enterprise, your rates should reflect the complexity, accountability, and risk involved in that work.</li>
+                  </ul>
+                  <h3>How to communicate rate increases</h3>
+                  <ul>
+                    <li><strong>Give existing clients advance notice.</strong> A 30–60 day notice period for rate changes is professional and builds goodwill. Frame it as transparency, not a surprise.</li>
+                    <li><strong>Anchor on value delivered.</strong> Remind clients of the outcomes you have created together. A rate increase is easier to accept when the client can clearly see the return on what they are already paying.</li>
+                    <li><strong>Raise new client rates first.</strong> You do not have to raise all rates at once. Starting with new prospects is lower-risk and lets you test market acceptance before applying the change to existing retainers.</li>
+                    <li><strong>Do not apologise.</strong> Confident, clear communication outperforms lengthy justification. "Our rates for 2026 are X" is more effective than "We hate to do this, but we need to..."</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- FAQ -->
+              <div id="faq" class="scroll-mt-28 space-y-4">
+                <h2>Frequently asked questions</h2>
+                <div class="space-y-3" id="faq-list">
+                  {faqs.map((item, i) => (
+                    <div class="faq-item rounded-xl border border-stroke-2 dark:border-stroke-5 overflow-hidden">
+                      <button
+                        class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-4 text-left bg-background-2 dark:bg-background-6 hover:bg-background-3 dark:hover:bg-background-5 transition-colors duration-200"
+                        aria-expanded="false"
+                        data-index={i}
+                      >
+                        <span class="text-tagline-1 font-medium text-secondary dark:text-accent">{item.q}</span>
+                        <svg class="faq-chevron w-5 h-5 shrink-0 text-secondary/40 dark:text-accent/40 transition-transform duration-200" viewBox="0 0 20 20" fill="none">
+                          <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </button>
+                      <div class="faq-body hidden px-6 py-4 bg-background-1 dark:bg-background-7 border-t border-stroke-2 dark:border-stroke-5">
+                        <p class="text-tagline-2 text-secondary/65 dark:text-accent/65 leading-relaxed">{item.a}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+
+            <!-- CTA -->
+            <div class="rounded-2xl overflow-hidden" style="background: linear-gradient(135deg, #0a1628 0%, #112245 60%, #1a3a70 100%)">
+              <div class="p-8 md:p-10 space-y-4">
+                <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Want this tracked automatically?</p>
+                <h2 class="text-white text-heading-4">Know your real rate — per project, per client</h2>
+                <p class="text-white/60 text-tagline-1 max-w-[520px]">
+                  Insighty tracks utilisation, billable hours, and effective rate per client in real time. See exactly which projects are profitable and which ones are quietly draining your margin — without building another spreadsheet.
+                </p>
+                <div class="flex flex-wrap items-center gap-4 pt-2">
+                  <a href="/founding-member" class="btn btn-md btn-outline-white"><span>Request early access</span></a>
+                  <a href="/#platform" class="inline-flex items-center gap-2 text-white/75 hover:text-white text-tagline-2 font-medium uppercase tracking-wide transition-colors duration-200 group">
+                    <span>See the platform</span>
+                    <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  // ── Inputs ──────────────────────────────────────────────────────────────────
+  const salaryInput   = document.getElementById('calc-salary')   as HTMLInputElement
+  const overheadInput = document.getElementById('calc-overhead') as HTMLInputElement
+  const hoursInput    = document.getElementById('calc-hours')    as HTMLInputElement
+  const marginInput   = document.getElementById('calc-margin')   as HTMLInputElement
+
+  // ── Output elements ─────────────────────────────────────────────────────────
+  const outMinRate    = document.getElementById('out-min-rate')!
+  const outMinNote    = document.getElementById('out-min-note')!
+  const outMinCard    = document.getElementById('out-min-card')!
+  const outTargetRate = document.getElementById('out-target-rate')!
+  const outTargetNote = document.getElementById('out-target-note')!
+  const outTargetCard = document.getElementById('out-target-card')!
+  const outDayRate    = document.getElementById('out-day-rate')!
+  const outMonthly    = document.getElementById('out-monthly')!
+  const healthNote    = document.getElementById('health-note')!
+
+  // ── Formatters ───────────────────────────────────────────────────────────────
+  function fmtRate(n: number): string {
+    return '$' + Math.round(n).toLocaleString('en-US') + '/hr'
+  }
+
+  function fmtCurrency(n: number): string {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      maximumFractionDigits: 0,
+    }).format(n)
+  }
+
+  // ── Card colour helpers ──────────────────────────────────────────────────────
+  type ColorSet = { border: string; bg: string; text: string }
+
+  function rateColor(rate: number, minRate: number): ColorSet {
+    const ratio = rate / minRate
+    if (ratio >= 1.2)  return { border: 'border-emerald-500/30', bg: 'bg-emerald-500/5', text: 'text-emerald-600 dark:text-emerald-400' }
+    if (ratio >= 1.0)  return { border: 'border-amber-500/30',   bg: 'bg-amber-500/5',   text: 'text-amber-600 dark:text-amber-400' }
+    return                    { border: 'border-red-500/30',     bg: 'bg-red-500/5',     text: 'text-red-600 dark:text-red-400' }
+  }
+
+  function applyCardStyle(card: HTMLElement, valueEl: HTMLElement, colorSet: ColorSet | null) {
+    // Strip previously applied colour classes
+    card.className  = card.className.replace(/border-(emerald|amber|red)-\S+\/30\s?/g, '').replace(/bg-(emerald|amber|red)-\S+\/5\s?/g, '').trim()
+    valueEl.className = valueEl.className.replace(/text-(emerald|amber|red)-\S+\s?/g, '').trim()
+    if (!colorSet) return
+    card.classList.add(colorSet.border, colorSet.bg)
+    valueEl.classList.add(...colorSet.text.split(' '))
+  }
+
+  // ── Main calculation ─────────────────────────────────────────────────────────
+  function calculate(): void {
+    const salary   = parseFloat(salaryInput.value)
+    const overhead = parseFloat(overheadInput.value)
+    const hours    = parseFloat(hoursInput.value)
+    const margin   = parseFloat(marginInput.value)
+
+    const hasSalary   = !isNaN(salary)   && salary   >= 0
+    const hasOverhead = !isNaN(overhead) && overhead >= 0
+    const hasHours    = !isNaN(hours)    && hours     > 0
+    const hasMargin   = !isNaN(margin)   && margin   >= 0 && margin < 100
+
+    // Need at least salary + hours to produce a useful output
+    if (!hasSalary || !hasHours) {
+      outMinRate.textContent    = '—'
+      outMinNote.textContent    = 'Enter salary & hours'
+      outTargetRate.textContent = '—'
+      outTargetNote.textContent = hasMargin ? 'Add salary & hours' : 'Add margin %'
+      outDayRate.textContent    = '—'
+      outMonthly.textContent    = '—'
+      healthNote.classList.add('hidden')
+      applyCardStyle(outMinCard,    outMinRate,    null)
+      applyCardStyle(outTargetCard, outTargetRate, null)
+      return
+    }
+
+    const annualCosts = salary + (hasOverhead ? overhead : 0)
+    const minRate     = annualCosts / hours
+
+    // Min rate card
+    outMinRate.textContent = fmtRate(minRate)
+    outMinNote.textContent = hasOverhead ? 'Break-even (incl. overhead)' : 'Break-even (salary only)'
+    applyCardStyle(outMinCard, outMinRate, {
+      border: 'border-amber-500/30',
+      bg:     'bg-amber-500/5',
+      text:   'text-amber-600 dark:text-amber-400',
+    })
+
+    // Target rate card (only if margin is provided)
+    if (hasMargin) {
+      const targetRate  = minRate / (1 - margin / 100)
+      const dayRate     = targetRate * 8
+      const monthlyRev  = (annualCosts / (1 - margin / 100)) / 12
+
+      outTargetRate.textContent = fmtRate(targetRate)
+      outTargetNote.textContent = `With ${margin.toFixed(0)}% margin`
+      outDayRate.textContent    = fmtCurrency(dayRate)
+      outMonthly.textContent    = fmtCurrency(monthlyRev)
+
+      const colors = rateColor(targetRate, minRate)
+      applyCardStyle(outTargetCard, outTargetRate, colors)
+
+      // Health note
+      healthNote.classList.remove('hidden')
+      const noteColors = margin >= 25
+        ? { border: 'border-emerald-500/30', bg: 'bg-emerald-500/5', text: 'text-emerald-600 dark:text-emerald-400' }
+        : margin >= 15
+          ? { border: 'border-amber-500/30', bg: 'bg-amber-500/5', text: 'text-amber-600 dark:text-amber-400' }
+          : { border: 'border-red-500/30', bg: 'bg-red-500/5', text: 'text-red-600 dark:text-red-400' }
+
+      healthNote.className = `rounded-xl border ${noteColors.border} ${noteColors.bg} px-5 py-4 text-tagline-2 leading-relaxed ${noteColors.text}`
+
+      if (margin >= 25) {
+        healthNote.textContent = `At ${fmtRate(targetRate)} with a ${margin.toFixed(0)}% margin, your pricing is strong. Every hour billed at this rate returns ${fmtCurrency(targetRate - minRate)} of profit above your costs. Focus on protecting this margin as you scale.`
+      } else if (margin >= 15) {
+        healthNote.textContent = `Your target rate of ${fmtRate(targetRate)} covers costs and returns a ${margin.toFixed(0)}% profit margin — above the minimum sustainable threshold. Consider targeting 25%+ as you grow to create a buffer for slower periods.`
+      } else if (margin >= 0) {
+        healthNote.textContent = `A ${margin.toFixed(0)}% margin is thin. At ${fmtRate(targetRate)}, you are covering costs, but there is little room for error. Aim for at least 20% to build resilience and fund growth.`
+      } else {
+        healthNote.textContent = `A negative margin means you would spend more than you earn even at your target rate. Review your cost structure — either reduce overhead or increase your target income to bring the break-even rate down.`
+      }
+    } else {
+      outTargetRate.textContent = '—'
+      outTargetNote.textContent = 'Enter margin %'
+      outDayRate.textContent    = '—'
+      outMonthly.textContent    = '—'
+      applyCardStyle(outTargetCard, outTargetRate, null)
+      healthNote.classList.add('hidden')
+    }
+  }
+
+  salaryInput.addEventListener('input',   () => { calculate() })
+  overheadInput.addEventListener('input', () => { calculate() })
+  hoursInput.addEventListener('input',    () => { calculate() })
+  marginInput.addEventListener('input',   () => { calculate() })
+
+  // Run once on load (hours field has a default value of 1200)
+  calculate()
+
+  // ── FAQ accordion ────────────────────────────────────────────────────────────
+  document.querySelectorAll<HTMLButtonElement>('.faq-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const body    = btn.nextElementSibling as HTMLElement
+      const chevron = btn.querySelector('.faq-chevron') as HTMLElement
+      const isOpen  = btn.getAttribute('aria-expanded') === 'true'
+
+      btn.setAttribute('aria-expanded', String(!isOpen))
+      body.classList.toggle('hidden', isOpen)
+      chevron.style.transform = isOpen ? '' : 'rotate(180deg)'
+    })
+  })
+</script>
+
+<style>
+  .tool-content :global(h2) {
+    font-size: var(--text-heading-4);
+    line-height: var(--text-heading-4--line-height);
+    font-weight: 500;
+    color: var(--color-secondary);
+  }
+  :global(.dark) .tool-content :global(h2) { color: var(--color-accent); }
+
+  .tool-content :global(h3) {
+    font-size: var(--text-heading-5);
+    line-height: var(--text-heading-5--line-height);
+    font-weight: 500;
+    color: var(--color-secondary);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  :global(.dark) .tool-content :global(h3) { color: var(--color-accent); }
+
+  .tool-content :global(p) {
+    font-size: var(--text-tagline-1);
+    line-height: 1.75;
+    color: color-mix(in srgb, var(--color-secondary) 65%, transparent);
+  }
+  :global(.dark) .tool-content :global(p) { color: color-mix(in srgb, var(--color-accent) 65%, transparent); }
+
+  .tool-content :global(ul) {
+    font-size: var(--text-tagline-1);
+    line-height: 1.75;
+    color: color-mix(in srgb, var(--color-secondary) 65%, transparent);
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    space-y: 0.5rem;
+  }
+  :global(.dark) .tool-content :global(ul) { color: color-mix(in srgb, var(--color-accent) 65%, transparent); }
+  .tool-content :global(li) { margin-bottom: 0.5rem; }
+
+  .tool-content :global(strong) {
+    font-weight: 600;
+    color: var(--color-secondary);
+  }
+  :global(.dark) .tool-content :global(strong) { color: var(--color-accent); }
+</style>

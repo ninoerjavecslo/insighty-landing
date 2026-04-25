@@ -93,29 +93,40 @@ const faqs = [
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-20 items-center">
           <div class="space-y-5">
-            <span class="inline-flex items-center gap-2 text-tagline-3 uppercase tracking-widest font-medium text-white/40">
-              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-              Free Tool · Finance
-            </span>
+            <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white border border-white/30 px-4 py-1.5">Free Tool · Finance</span>
             <h1 class="text-white">Free Profit Margin<br /><span class="hero-text-gradient hero-text-color-1">Calculator</span></h1>
             <p class="text-white text-tagline-1 max-w-[480px]">
               Revenue means nothing if you do not know what you keep. Enter your numbers to see gross margin, net margin, and markup percentage instantly.
             </p>
           </div>
-          <div class="hidden lg:flex flex-col gap-4 text-white/70 text-tagline-1">
-            {[
-              'Works in your browser — no account needed',
-              'Gross margin, net margin, and markup in one view',
-              'Instant results as you type — no button to click',
-              'Built for agencies, consultants, and freelancers',
-            ].map(item => (
-              <div class="flex items-start gap-3">
-                <span class="mt-1 shrink-0 w-5 h-5 rounded-full bg-primary-500/20 border border-primary-500/40 flex items-center justify-center">
-                  <svg class="w-3 h-3 text-primary-400" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-                <span>{item}</span>
+          <div class="hidden lg:block">
+            <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden">
+              <div class="px-5 py-4 border-b border-white/10">
+                <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Sample output</p>
               </div>
-            ))}
+              <div class="p-5 space-y-3">
+                <div class="grid grid-cols-3 gap-3">
+                  <div class="rounded-xl bg-emerald-500/10 border border-emerald-500/25 p-4 space-y-1">
+                    <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Gross Margin</p>
+                    <p class="text-heading-4 font-semibold text-emerald-400">38.0%</p>
+                    <p class="text-tagline-3 text-white/40">$38,000 profit</p>
+                  </div>
+                  <div class="rounded-xl bg-emerald-500/10 border border-emerald-500/25 p-4 space-y-1">
+                    <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Net Margin</p>
+                    <p class="text-heading-4 font-semibold text-emerald-400">22.0%</p>
+                    <p class="text-tagline-3 text-white/40">$22,000 profit</p>
+                  </div>
+                  <div class="rounded-xl bg-white/5 border border-white/10 p-4 space-y-1">
+                    <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Markup</p>
+                    <p class="text-heading-4 font-semibold text-white/80">61.3%</p>
+                    <p class="text-tagline-3 text-white/40">On direct costs</p>
+                  </div>
+                </div>
+                <div class="rounded-xl border border-emerald-500/25 bg-emerald-500/10 px-4 py-3">
+                  <p class="text-tagline-3 text-emerald-400">Your net margin of 22.0% is healthy — above the 15% benchmark. There is room to push higher by raising rates or reducing overhead.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -200,7 +211,7 @@ const faqs = [
                   </div>
 
                   <!-- Health note -->
-                  <div id="health-note" class="hidden rounded-xl border px-5 py-4 text-tagline-2 leading-relaxed"></div>
+                  <div id="health-note" class="hidden rounded-xl border px-5 py-4 text-tagline-2 leading-relaxed mt-4"></div>
                 </div>
               </div>
             </div>
@@ -383,7 +394,7 @@ const faqs = [
 </BaseLayout>
 
 <script>
-  // Calculator logic
+  // ─── Element refs ───────────────────────────────────────────────────────────
   const revenue = document.getElementById('calc-revenue') as HTMLInputElement
   const cogs    = document.getElementById('calc-cogs')    as HTMLInputElement
   const opex    = document.getElementById('calc-opex')    as HTMLInputElement
@@ -397,6 +408,8 @@ const faqs = [
   const markupPct  = document.getElementById('out-markup-pct')!
   const markupNote = document.getElementById('out-markup-note')!
   const healthNote = document.getElementById('health-note')!
+
+  // ─── Calculator logic ────────────────────────────────────────────────────────
 
   function fmt(n: number) {
     return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n)
@@ -474,7 +487,7 @@ const faqs = [
       // Health note
       healthNote.classList.remove('hidden')
       const c2 = marginColor(nm)
-      healthNote.className = `rounded-xl border ${c2.border} ${c2.bg} px-5 py-4 text-tagline-2 leading-relaxed`
+      healthNote.className = `rounded-xl border ${c2.border} ${c2.bg} px-5 py-4 text-tagline-2 leading-relaxed mt-4`
       if (nm >= 25) {
         healthNote.textContent = `Your net margin of ${pct(nm)} is excellent. You're pricing confidently and controlling costs well. Focus on protecting this margin as you grow.`
       } else if (nm >= 15) {
@@ -491,11 +504,12 @@ const faqs = [
     }
   }
 
+  // Attach input listeners
   revenue.addEventListener('input', calculate)
   cogs.addEventListener('input', calculate)
   opex.addEventListener('input', calculate)
 
-  // FAQ accordion
+  // ─── FAQ accordion ───────────────────────────────────────────────────────────
   document.querySelectorAll<HTMLButtonElement>('.faq-trigger').forEach(btn => {
     btn.addEventListener('click', () => {
       const body    = btn.nextElementSibling as HTMLElement

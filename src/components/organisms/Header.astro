@@ -197,26 +197,22 @@ Header v1
               <li><a href="/use-cases/freelancer" class="nav-hamburger-close text-secondary/70 dark:text-accent/70 text-tagline-1 block py-2 hover:text-primary-500 transition-colors">Freelancer</a></li>
             </ul>
           </li>
-          <li class="pt-2 pb-1">
-            <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/35 dark:text-accent/35 py-2">Resources</p>
-          </li>
           <li>
-            <a
-              href="/blog"
-              class="nav-hamburger-close text-secondary dark:text-accent text-heading-6 font-normal block py-3 border-b border-stroke-1/10 dark:border-stroke-5 transition-colors hover:text-primary-500"
-            >Blog</a>
-          </li>
-          <li>
-            <a
-              href="/tools"
-              class="nav-hamburger-close text-secondary dark:text-accent text-heading-6 font-normal block py-3 border-b border-stroke-1/10 dark:border-stroke-5 transition-colors hover:text-primary-500"
-            >Free Tools</a>
-          </li>
-          <li>
-            <a
-              href="/compare"
-              class="nav-hamburger-close text-secondary dark:text-accent text-heading-6 font-normal block py-3 border-b border-stroke-1/10 dark:border-stroke-5 transition-colors hover:text-primary-500"
-            >Comparisons</a>
+            <button
+              id="mobile-resources-trigger"
+              class="w-full flex items-center justify-between text-secondary dark:text-accent text-heading-6 font-normal py-3 border-b border-stroke-1/10 dark:border-stroke-5 transition-colors hover:text-primary-500"
+            >
+              <span>Resources</span>
+              <svg id="mobile-resources-chevron" class="w-4 h-4 transition-transform duration-200 text-secondary/40 dark:text-accent/40" viewBox="0 0 16 16" fill="none">
+                <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <ul id="mobile-resources-panel" class="hidden pl-3 pb-1 space-y-0.5 pt-1">
+              <li><a href="/blog" class="nav-hamburger-close text-secondary/70 dark:text-accent/70 text-tagline-1 block py-2 hover:text-primary-500 transition-colors">Blog</a></li>
+              <li><a href="/tools" class="nav-hamburger-close text-secondary/70 dark:text-accent/70 text-tagline-1 block py-2 hover:text-primary-500 transition-colors">Free Tools</a></li>
+              <li><a href="/compare" class="nav-hamburger-close text-secondary/70 dark:text-accent/70 text-tagline-1 block py-2 hover:text-primary-500 transition-colors">Comparisons</a></li>
+              <li><a href="/success-stories" class="nav-hamburger-close text-secondary/70 dark:text-accent/70 text-tagline-1 block py-2 hover:text-primary-500 transition-colors">Success Stories</a></li>
+            </ul>
           </li>
         </ul>
       </nav>
@@ -413,6 +409,18 @@ Header v1
           <p class="text-tagline-3 text-secondary/45 dark:text-accent/45">How Insighty stacks up against 27 tools</p>
         </div>
       </a>
+
+      <a href="/success-stories" class="flex items-center gap-3 rounded-xl px-3 py-2.5 hover:bg-background-2 dark:hover:bg-background-7 transition-colors duration-150 group">
+        <span class="w-7 h-7 rounded-lg bg-primary-500/10 flex items-center justify-center shrink-0">
+          <svg class="w-3.5 h-3.5 text-primary-500" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 2l1.5 3 3.5.5-2.5 2.5.5 3.5L8 10l-3 1.5.5-3.5L3 5.5l3.5-.5z"/>
+          </svg>
+        </span>
+        <div>
+          <p class="text-tagline-1 font-semibold text-secondary dark:text-accent group-hover:text-primary-500 transition-colors duration-150">Success Stories</p>
+          <p class="text-tagline-3 text-secondary/45 dark:text-accent/45">How agencies grow with Insighty</p>
+        </div>
+      </a>
     </div>
 
     <!-- Right: two blog posts -->
@@ -577,23 +585,27 @@ Header v1
     }
   })();
 
-  // Mobile Use Cases accordion
+  // Mobile accordions (Use Cases + Resources)
   (function () {
-    function initMobileAccordion() {
-      var btn     = document.getElementById('mobile-use-cases-trigger');
-      var panel   = document.getElementById('mobile-use-cases-panel');
-      var chevron = document.getElementById('mobile-use-cases-chevron');
+    function initMobileAccordion(btnId, panelId, chevronId) {
+      var btn     = document.getElementById(btnId);
+      var panel   = document.getElementById(panelId);
+      var chevron = document.getElementById(chevronId);
       if (!btn || !panel) return;
       btn.addEventListener('click', function () {
         var open = !panel.classList.contains('hidden');
         panel.classList.toggle('hidden', open);
-        chevron.style.transform = open ? '' : 'rotate(180deg)';
+        if (chevron) chevron.style.transform = open ? '' : 'rotate(180deg)';
       });
     }
+    function init() {
+      initMobileAccordion('mobile-use-cases-trigger', 'mobile-use-cases-panel', 'mobile-use-cases-chevron');
+      initMobileAccordion('mobile-resources-trigger', 'mobile-resources-panel', 'mobile-resources-chevron');
+    }
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initMobileAccordion);
+      document.addEventListener('DOMContentLoaded', init);
     } else {
-      initMobileAccordion();
+      init();
     }
   })();
 </script>

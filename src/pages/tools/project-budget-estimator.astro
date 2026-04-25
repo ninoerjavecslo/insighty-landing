@@ -1,0 +1,689 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/organisms/Header.astro'
+import Footer from '../../components/organisms/Footer.astro'
+import SidebarTOC from '../../components/molecules/SidebarTOC.astro'
+
+const toc = [
+  { id: 'calculator', label: 'Calculator' },
+  { id: 'how-to-estimate', label: 'How to estimate budgets accurately' },
+  { id: 'overhead-loaded-costs', label: 'Understanding overhead and loaded costs' },
+  { id: 'hidden-costs', label: 'The hidden costs agencies forget' },
+  { id: 'contingency', label: 'How to add contingency without losing deals' },
+  { id: 'fixed-vs-tm', label: 'Fixed price vs time-and-materials' },
+  { id: 'why-projects-go-over', label: 'Why projects go over budget' },
+  { id: 'faq', label: 'Frequently asked questions' },
+]
+
+const faqs = [
+  {
+    q: 'What is an overhead multiplier and how do I calculate it?',
+    a: 'An overhead multiplier accounts for the indirect costs of running your business that are not directly tied to a single project — rent, accounting fees, software subscriptions, business insurance, non-billable staff time, and so on. To calculate it, add up all your annual overhead expenses and divide by your total annual direct labour costs. If your overhead is $60,000 and your direct labour costs are $300,000, your overhead rate is 20%. Apply this as a percentage on top of your base project costs so every project contributes to covering those fixed costs.',
+  },
+  {
+    q: 'What is a blended team rate and how do I choose one?',
+    a: 'A blended rate is a single average hourly cost that accounts for the mix of people working on a project. If a senior designer costs $90/hr and a junior developer costs $50/hr and they each work roughly equal hours, a blended rate of $70 is a fair starting point. For projects with a known team composition, calculate the weighted average. For estimates on new types of work, use historical blended rates from completed similar projects. Avoid using your highest rate for everything — it makes quotes uncompetitive — but never use your lowest, or margins will suffer on senior-heavy phases.',
+  },
+  {
+    q: 'What profit margin should I target on project quotes?',
+    a: 'For service businesses and agencies, a net profit margin of 20–30% on a project quote is a healthy target. Margins below 10% leave no cushion for scope changes, delays, or unexpected costs. Margins above 35% are achievable for highly specialised or productised services. When you are new to a client or project type, lean toward 25% to absorb learning costs. As you build efficiency on repeat work, margins naturally improve without raising your rates.',
+  },
+  {
+    q: 'What is break-even price and when do I use it?',
+    a: 'Break-even price is the minimum you can charge and still cover all your costs — labour, overhead, and any direct project expenses. It includes no profit. This number is useful for knowing your absolute floor during negotiations: you should never accept less than break-even. It is also useful when calculating the risk of discounting. If a client pushes back on your recommended quote, knowing your break-even tells you how much room you actually have before you start losing money.',
+  },
+  {
+    q: 'Should I include my own time when estimating hours?',
+    a: 'Yes, always. Whether you are a solo consultant or an agency owner who works on projects, your time has a cost equal to what you would pay a hire to do the same work, or the opportunity cost of not billing another client. If you are the lead on a project and you work 20 hours at your blended rate, those 20 hours should appear in the estimate. Leaving owner time out of estimates is one of the most common causes of projects that look profitable on paper but leave you financially exhausted.',
+  },
+  {
+    q: 'How do I handle contingency in a fixed-price quote?',
+    a: 'Build contingency into your estimate rather than tacking a visible line item on the quote. Most clients react negatively to seeing a "contingency" charge — it implies you cannot estimate properly. Instead, add 10–15% to your hours before calculating the quote price. For projects with unclear requirements or many stakeholders, go to 20%. Frame this internally as risk mitigation, not padding. If the project runs smoothly, the contingency funds become additional margin. If it runs over, you are protected.',
+  },
+  {
+    q: 'Why do fixed-price projects so often go over the original estimate?',
+    a: 'The most common causes are under-scoping during discovery, requirements that change after sign-off, underestimating client feedback loops and revision cycles, and failing to account for project management and communication time. A technical task that takes four hours to build might take eight hours in total when you add briefing, review, revisions, and handoff. Tracking actuals against estimates project by project is the only reliable way to find where your estimates consistently miss so you can correct them.',
+  },
+  {
+    q: 'Can I use this estimator for retainer pricing?',
+    a: 'Yes, with a small adjustment. For retainers, estimate the total monthly hours per role, apply the blended hourly cost and overhead multiplier, and then add your target margin to arrive at the monthly retainer fee. The break-even output tells you the minimum viable retainer price that covers costs without profit. If your current retainer fees are below the recommended quote output, you are likely subsidising the client relationship out of your own margin.',
+  },
+]
+---
+
+<BaseLayout
+  title="Free Project Budget Estimator — Insighty"
+  description="Estimate project budgets based on team roles, hours, and margin targets. Stop underquoting — build quotes that cover costs and protect profit. Free tool, no account required."
+>
+  <Header />
+  <main>
+
+    <!-- Hero -->
+    <section
+      class="pt-[140px] sm:pt-[150px] md:pt-[160px] pb-14 md:pb-20 relative overflow-hidden"
+      style="background: linear-gradient(135deg, #0a1628 0%, #112245 50%, #1a3a70 100%)"
+    >
+      <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 36px 36px;"></div>
+      <div class="main-container relative z-10">
+        <nav class="flex items-center gap-2 text-tagline-3 text-white/50 mb-10" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-white transition-colors duration-200">Insighty</a>
+          <span aria-hidden="true">/</span>
+          <a href="/tools" class="hover:text-white transition-colors duration-200">Tools</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-white/70">Project Budget Estimator</span>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-20 items-center">
+          <div class="space-y-5">
+            <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white border border-white/30 px-4 py-1.5">Free Tool · Projects</span>
+            <h1 class="text-white">Free Project Budget<br /><span class="hero-text-gradient hero-text-color-1">Estimator</span></h1>
+            <p class="text-white text-tagline-1 max-w-[480px]">
+              Estimate project budgets based on team roles, hours, and margin targets. Stop underquoting — build quotes that cover costs and protect profit.
+            </p>
+          </div>
+          <div class="hidden lg:block">
+            <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden">
+              <div class="px-5 py-4 border-b border-white/10">
+                <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Sample output</p>
+              </div>
+              <div class="p-5 space-y-3">
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="rounded-xl bg-white/5 border border-white/10 p-4 space-y-1">
+                    <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Base Cost</p>
+                    <p class="text-heading-4 font-semibold text-white/80">$12,000</p>
+                    <p class="text-tagline-3 text-white/40">200 hrs × $60</p>
+                  </div>
+                  <div class="rounded-xl bg-emerald-500/10 border border-emerald-500/25 p-4 space-y-1">
+                    <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Recommended Quote</p>
+                    <p class="text-heading-4 font-semibold text-emerald-400">$18,000</p>
+                    <p class="text-tagline-3 text-white/40">With 20% margin</p>
+                  </div>
+                  <div class="rounded-xl bg-emerald-500/10 border border-emerald-500/25 p-4 space-y-1">
+                    <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Profit</p>
+                    <p class="text-heading-4 font-semibold text-emerald-400">$3,600</p>
+                    <p class="text-tagline-3 text-white/40">At this price</p>
+                  </div>
+                  <div class="rounded-xl bg-white/5 border border-white/10 p-4 space-y-1">
+                    <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Break-even</p>
+                    <p class="text-heading-4 font-semibold text-white/80">$14,400</p>
+                    <p class="text-tagline-3 text-white/40">Minimum to charge</p>
+                  </div>
+                </div>
+                <div class="rounded-xl border border-emerald-500/25 bg-emerald-500/10 px-4 py-3">
+                  <p class="text-tagline-3 text-emerald-400">Margin of 20.0% is healthy — your quote covers costs and protects profit.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="bg-background-1 dark:bg-background-8 py-14 md:py-20">
+      <div class="main-container">
+        <div class="grid grid-cols-1 lg:grid-cols-[220px_1fr] xl:grid-cols-[260px_1fr] gap-12 xl:gap-16 items-start">
+
+          <!-- Sidebar TOC -->
+          <div class="hidden lg:flex flex-col gap-8 sticky top-28">
+            <SidebarTOC items={toc} />
+          </div>
+
+          <!-- Main content -->
+          <div class="min-w-0 space-y-16">
+
+            <!-- CALCULATOR WIDGET -->
+            <div id="calculator" class="scroll-mt-28">
+              <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 overflow-hidden">
+                <div class="p-6 md:p-8 border-b border-stroke-2 dark:border-stroke-5">
+                  <h2 class="text-heading-5 font-semibold text-secondary dark:text-accent mb-1">Estimate Your Project Budget</h2>
+                  <p class="text-tagline-2 text-secondary/55 dark:text-accent/55">Enter your project details to see a recommended quote price instantly</p>
+                </div>
+
+                <div class="p-6 md:p-8 space-y-8">
+                  <!-- Inputs -->
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div class="space-y-2">
+                      <label for="calc-hours" class="block text-tagline-2 font-medium text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Estimated Hours</label>
+                      <input
+                        id="calc-hours"
+                        type="number"
+                        min="0"
+                        placeholder="e.g. 200"
+                        class="auth-form-input w-full text-heading-6 font-semibold text-secondary dark:text-accent placeholder:font-normal placeholder:text-secondary/25 dark:placeholder:text-accent/25"
+                      />
+                    </div>
+                    <div class="space-y-2">
+                      <label for="calc-rate" class="block text-tagline-2 font-medium text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Average Hourly Cost ($)</label>
+                      <input
+                        id="calc-rate"
+                        type="number"
+                        min="0"
+                        placeholder="e.g. 60"
+                        class="auth-form-input w-full text-heading-6 font-semibold text-secondary dark:text-accent placeholder:font-normal placeholder:text-secondary/25 dark:placeholder:text-accent/25"
+                      />
+                    </div>
+                    <div class="space-y-2">
+                      <label for="calc-overhead" class="block text-tagline-2 font-medium text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Overhead Multiplier (%)</label>
+                      <input
+                        id="calc-overhead"
+                        type="number"
+                        min="0"
+                        max="200"
+                        placeholder="e.g. 20"
+                        value="20"
+                        class="auth-form-input w-full text-heading-6 font-semibold text-secondary dark:text-accent placeholder:font-normal placeholder:text-secondary/25 dark:placeholder:text-accent/25"
+                      />
+                    </div>
+                    <div class="space-y-2">
+                      <label for="calc-margin" class="block text-tagline-2 font-medium text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Target Profit Margin (%)</label>
+                      <input
+                        id="calc-margin"
+                        type="number"
+                        min="0"
+                        max="99"
+                        placeholder="e.g. 25"
+                        class="auth-form-input w-full text-heading-6 font-semibold text-secondary dark:text-accent placeholder:font-normal placeholder:text-secondary/25 dark:placeholder:text-accent/25"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Results wrapper (gated) -->
+                  <div id="results-wrapper" class="relative">
+
+                    <!-- Outputs -->
+                    <div id="results-content" class="space-y-4">
+                      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <!-- Base Cost -->
+                        <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1">
+                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Base Cost</p>
+                          <p id="out-base" class="text-heading-4 font-semibold text-secondary dark:text-accent">—</p>
+                          <p id="out-base-note" class="text-tagline-3 text-secondary/50 dark:text-accent/50">Hours × rate</p>
+                        </div>
+                        <!-- Total Cost with Overhead -->
+                        <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1">
+                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Total with Overhead</p>
+                          <p id="out-total" class="text-heading-4 font-semibold text-secondary dark:text-accent">—</p>
+                          <p id="out-total-note" class="text-tagline-3 text-secondary/50 dark:text-accent/50">Including overhead</p>
+                        </div>
+                        <!-- Recommended Quote -->
+                        <div id="out-quote-card" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300">
+                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Recommended Quote</p>
+                          <p id="out-quote" class="text-heading-4 font-semibold text-secondary dark:text-accent">—</p>
+                          <p id="out-quote-note" class="text-tagline-3 text-secondary/50 dark:text-accent/50">Enter numbers above</p>
+                        </div>
+                        <!-- Profit -->
+                        <div id="out-profit-card" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300">
+                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Profit at This Price</p>
+                          <p id="out-profit" class="text-heading-4 font-semibold text-secondary dark:text-accent">—</p>
+                          <p id="out-profit-note" class="text-tagline-3 text-secondary/50 dark:text-accent/50">After all costs</p>
+                        </div>
+                      </div>
+
+                      <!-- Break-even row -->
+                      <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 px-5 py-4 flex flex-wrap items-center gap-3">
+                        <p class="text-tagline-2 font-medium text-secondary/60 dark:text-accent/60 uppercase tracking-widest shrink-0">Break-even Price</p>
+                        <p id="out-breakeven" class="text-tagline-1 font-semibold text-secondary dark:text-accent">—</p>
+                        <p id="out-breakeven-note" class="text-tagline-2 text-secondary/50 dark:text-accent/50 ml-auto">Minimum to charge (no profit)</p>
+                      </div>
+
+                      <!-- Health note -->
+                      <div id="health-note" class="hidden rounded-xl border px-5 py-4 text-tagline-2 leading-relaxed"></div>
+                    </div>
+
+                    <!-- Email gate overlay -->
+                    <div
+                      id="email-gate"
+                      class="hidden absolute inset-0 z-10 flex items-center justify-center"
+                      style="backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); background: rgba(var(--color-background-1-rgb, 255 255 255) / 0.5);"
+                    >
+                      <div class="bg-background-2 dark:bg-background-6 border border-stroke-2 dark:border-stroke-5 rounded-2xl p-6 w-full max-w-sm mx-4 shadow-xl">
+                        <div class="space-y-1 mb-5">
+                          <h3 class="text-heading-6 font-semibold text-secondary dark:text-accent">See your budget estimate</h3>
+                          <p class="text-tagline-2 text-secondary/55 dark:text-accent/55">Enter your email and we'll show your results instantly. No spam, ever.</p>
+                        </div>
+                        <form id="gate-form" class="space-y-3" novalidate>
+                          <div>
+                            <input
+                              id="gate-email"
+                              type="email"
+                              placeholder="you@company.com"
+                              autocomplete="email"
+                              class="auth-form-input w-full"
+                            />
+                            <p id="gate-error" class="hidden mt-1.5 text-tagline-3 text-red-500 dark:text-red-400">Please enter a valid email address.</p>
+                          </div>
+                          <button
+                            type="submit"
+                            id="gate-submit"
+                            class="w-full flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-tagline-2 font-semibold text-white transition-opacity duration-200"
+                            style="background-color: #0a1628;"
+                          >
+                            Get Results
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- EDUCATIONAL CONTENT -->
+            <div class="space-y-12 tool-content">
+
+              <div id="how-to-estimate" class="scroll-mt-28 space-y-4">
+                <h2>How to estimate project budgets accurately</h2>
+                <p>Accurate project budget estimation is part analytical, part historical. The most reliable estimates come from agencies that track actuals obsessively — they know how long every type of task really takes, not just how long they assume it should take. If you are just starting out, you are working from intuition and should build in more contingency. If you have delivered dozens of similar projects, your estimates should tighten considerably.</p>
+                <p>The core formula is straightforward: multiply the number of hours required by the fully-loaded cost per hour, add overhead, then apply your target margin to arrive at your quote price. The challenge is in the inputs. Hours are almost always underestimated, especially for discovery phases, client communication, revisions, and project management overhead. Hourly cost is often understated when people forget to include employer taxes, benefits, and non-billable time. Overhead is skipped entirely until it quietly erodes the bottom line.</p>
+                <p>Break the project into phases and estimate hours for each phase separately. A website project is not one monolithic 200-hour block — it is a discovery phase, an information architecture phase, a design phase, a development phase, a testing phase, and a launch phase, each with its own complexity and risk profile. Detailed phase-level estimates catch gaps that top-down estimates miss entirely.</p>
+              </div>
+
+              <div id="overhead-loaded-costs" class="scroll-mt-28 space-y-4">
+                <h2>Understanding overhead and loaded costs</h2>
+                <p>Your direct hourly cost is the rate you pay a person to do the work. Your loaded cost is what that person actually costs your business once you account for payroll taxes, benefits, paid leave, and their share of overhead. For employees, the difference between direct cost and loaded cost is typically 25–40%. For contractors, the difference is smaller — but overhead still exists and must be recovered somewhere.</p>
+                <p>Overhead includes every business expense not tied directly to a single client project: rent and utilities, accounting and legal fees, software subscriptions used across all projects, marketing and sales costs, insurance, management time, and the unbilled hours your team spends on internal work, training, and business development. These are real costs, and every client project must contribute to covering them.</p>
+                <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                  <p class="font-semibold text-secondary dark:text-accent text-tagline-1">How to calculate your overhead rate</p>
+                  <p>Total all overhead expenses for a year. Divide by total direct labour costs for the same period. If overhead is $80,000 and direct labour is $400,000, your rate is 20%. Apply this as a percentage on top of base project costs in every quote — so every project is contributing its fair share to keeping the lights on.</p>
+                </div>
+                <p>A common mistake is calculating overhead once and never revisiting it. As your team grows, overhead tends to grow faster than revenue in the short term. Review your overhead rate quarterly and update your estimating assumptions accordingly. If you have recently hired, your rate may have jumped — and your quotes should reflect that.</p>
+              </div>
+
+              <div id="hidden-costs" class="scroll-mt-28 space-y-5">
+                <h2>The hidden costs agencies forget to include</h2>
+                <p>Even experienced agencies routinely leave money on the table by forgetting certain cost categories in their estimates. These omissions look small per project but accumulate into significant margin erosion over the course of a year.</p>
+                <div class="space-y-3">
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Project management time</p>
+                    <p>Briefings, weekly status calls, Slack threads, internal reviews, and client feedback sessions all take time. On most projects, project management accounts for 10–15% of total hours. If you do not estimate it, someone is working unpaid.</p>
+                  </div>
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Revision cycles</p>
+                    <p>Almost every creative or development deliverable requires revisions. If your estimate says "three rounds of revisions" but you do not price the time for those rounds, you are giving away hours. A realistic revision budget should be 15–25% of the primary delivery hours for design, and 10–15% for development.</p>
+                  </div>
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Onboarding and discovery</p>
+                    <p>Every new client requires time to understand their business, review existing materials, align on goals, and establish workflows. This rarely appears in estimates, yet it can consume a full week of unbilled time on larger engagements.</p>
+                  </div>
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Quality assurance and testing</p>
+                    <p>QA is often treated as a phase that "shouldn't take long." It always takes longer. Budget at least 15% of development time for testing, bug fixing, and cross-browser or cross-device verification.</p>
+                  </div>
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Third-party integrations and dependencies</p>
+                    <p>If your project depends on a client-side API, a payment gateway, a CRM integration, or an external data source, any delay or documentation gap on their end will cost you hours. Build this risk into your estimate, not into your goodwill.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div id="contingency" class="scroll-mt-28 space-y-4">
+                <h2>How to add contingency without losing the deal</h2>
+                <p>Contingency is not padding — it is honest risk pricing. Every project carries uncertainty. Unclear requirements, shifting priorities, client delays, and technical surprises are not exceptional events; they are the normal reality of project work. A quote that does not account for them is not lean or competitive, it is underpriced.</p>
+                <p>The right way to add contingency is to embed it in your hours estimate, not as a visible line item. Clients accept "200 hours of development" more readily than "170 hours of development plus 30 hours contingency." The quote looks the same from the outside, but internally you are pricing the work honestly.</p>
+                <p>For projects with well-defined requirements and a trusted client relationship, a 10% contingency on hours is usually sufficient. For new clients, new technology, or projects with vague scope, 20–25% is more appropriate. For anything that involves regulatory approval, third-party dependencies outside your control, or complex stakeholder environments, consider 30% or more.</p>
+                <div class="rounded-xl border border-primary-500/20 bg-primary-500/5 p-5">
+                  <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 leading-relaxed">
+                    <span class="font-semibold text-primary-500">Insighty tracks estimate vs actual.</span> You can see exactly where hours were over- or under-estimated across all your projects — making your next contingency decision data-driven rather than guesswork.
+                  </p>
+                </div>
+                <p>If a client pushes back on price, the first thing to negotiate is scope, not margin. Remove a phase, defer features, or reduce deliverable depth before you reduce your rate. Protecting margin protects your ability to deliver excellent work. A client who wants the same scope for less money will get less attention, less thoroughness, or a burned-out team — none of which serves either party.</p>
+              </div>
+
+              <div id="fixed-vs-tm" class="scroll-mt-28 space-y-5">
+                <h2>Fixed price vs time-and-materials budgets</h2>
+                <p>The choice between a fixed-price contract and a time-and-materials (T&M) arrangement is one of the most consequential decisions in project commercial management. Both models have legitimate uses, and the best agencies choose based on the nature of the work rather than habit or fear of negotiation.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-3">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Fixed price</p>
+                    <p>Best when scope is well-defined, requirements are stable, and the client values budget certainty. You absorb the risk of over-running, but you also capture the upside if you deliver efficiently. Requires a disciplined change-order process — any scope addition must be priced separately and approved before work begins.</p>
+                  </div>
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-3">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Time and materials</p>
+                    <p>Best for exploratory, research-heavy, or rapidly evolving work where locking in scope upfront would be artificial. The client pays for actual hours at agreed rates. Risk of over-spending transfers to the client, but you must earn their trust by delivering value per hour, not just per deliverable.</p>
+                  </div>
+                </div>
+                <p>A hybrid approach works well for many agencies: a fixed-price discovery phase followed by a T&M delivery phase based on the outputs of that discovery. This gives clients the budget certainty they want for the initial investment while protecting your margin on the more variable delivery work. It also creates a natural milestone where the client can reassess before committing to the full engagement.</p>
+                <p>Regardless of model, your internal budget tracking discipline should be the same. Know your estimated hours, track actuals in real time, and have a conversation with the client well before you hit any budget ceiling — not after.</p>
+              </div>
+
+              <div id="why-projects-go-over" class="scroll-mt-28 space-y-5">
+                <h2>Why most projects go over budget (and how to prevent it)</h2>
+                <p>Project budget overruns are not primarily a talent problem or a client problem — they are a systems problem. When teams do not track time, do not compare actuals to estimates during delivery, and do not have clear escalation processes for scope changes, overruns are structurally inevitable regardless of how well-intentioned everyone is.</p>
+                <div class="space-y-3">
+                  <h3>The most common causes</h3>
+                  <ul>
+                    <li><strong>Estimating from optimism, not history.</strong> Teams estimate how long they wish a task would take, not how long similar tasks have historically taken. The fix is reviewing completed project actuals before writing new estimates.</li>
+                    <li><strong>Scope expansion without billing.</strong> Small additions accumulate. A quick extra page, a last-minute design variant, an extra round of feedback — each feels minor, but together they represent unrecovered costs. Every change should be logged and, beyond a threshold, priced.</li>
+                    <li><strong>No mid-project budget checks.</strong> Many teams only look at hours and budget at project completion, by which point nothing can be done. A weekly five-minute check of hours-burned vs hours-budgeted gives you time to course-correct or have a proactive conversation with the client.</li>
+                    <li><strong>Unclear ownership of project management.</strong> If no one is explicitly responsible for watching the budget, no one will. Assign a budget owner to every project, give them visibility into actuals in real time, and make them responsible for flagging issues early.</li>
+                    <li><strong>Underpriced fixed-fee contracts.</strong> When initial pricing is too low, there is no margin buffer to absorb normal project complexity. Every small overrun immediately becomes a loss. Price with honest contingency upfront, or accept T&M terms.</li>
+                  </ul>
+                </div>
+                <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                  <p class="font-semibold text-secondary dark:text-accent text-tagline-1">The single most effective prevention</p>
+                  <p>Track hours per project in real time and compare them to the estimate weekly. Most teams that do this consistently find they catch overruns while there is still 30–40% of the project left — early enough to adjust scope, have a pricing conversation, or accelerate delivery before costs compound.</p>
+                </div>
+              </div>
+
+              <!-- FAQ -->
+              <div id="faq" class="scroll-mt-28 space-y-4">
+                <h2>Frequently asked questions</h2>
+                <div class="space-y-3" id="faq-list">
+                  {faqs.map((item, i) => (
+                    <div class="faq-item rounded-xl border border-stroke-2 dark:border-stroke-5 overflow-hidden">
+                      <button
+                        class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-4 text-left bg-background-2 dark:bg-background-6 hover:bg-background-3 dark:hover:bg-background-5 transition-colors duration-200"
+                        aria-expanded="false"
+                        data-index={i}
+                      >
+                        <span class="text-tagline-1 font-medium text-secondary dark:text-accent">{item.q}</span>
+                        <svg class="faq-chevron w-5 h-5 shrink-0 text-secondary/40 dark:text-accent/40 transition-transform duration-200" viewBox="0 0 20 20" fill="none">
+                          <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </button>
+                      <div class="faq-body hidden px-6 py-4 bg-background-1 dark:bg-background-7 border-t border-stroke-2 dark:border-stroke-5">
+                        <p class="text-tagline-2 text-secondary/65 dark:text-accent/65 leading-relaxed">{item.a}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+
+            <!-- CTA -->
+            <div class="rounded-2xl overflow-hidden" style="background: linear-gradient(135deg, #0a1628 0%, #112245 60%, #1a3a70 100%)">
+              <div class="p-8 md:p-10 space-y-4">
+                <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Want this tracked automatically?</p>
+                <h2 class="text-white text-heading-4">See project budget vs actual — in real time</h2>
+                <p class="text-white/60 text-tagline-1 max-w-[520px]">
+                  Insighty tracks estimated vs actual hours, project margin, and cost overruns across every engagement. Spot overruns while you can still act on them — not in the post-mortem.
+                </p>
+                <div class="flex flex-wrap items-center gap-4 pt-2">
+                  <a href="/founding-member" class="btn btn-md btn-outline-white"><span>Become a founding member</span></a>
+                  <a href="/#platform" class="inline-flex items-center gap-2 text-white/75 hover:text-white text-tagline-2 font-medium uppercase tracking-wide transition-colors duration-200 group">
+                    <span>See the platform</span>
+                    <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  // ── Email gate ──────────────────────────────────────────────────────────────
+  const GATE_KEY       = 'insighty_tool_email'
+  const emailGate      = document.getElementById('email-gate')!
+  const gateForm       = document.getElementById('gate-form')   as HTMLFormElement
+  const gateEmailInput = document.getElementById('gate-email')  as HTMLInputElement
+  const gateError      = document.getElementById('gate-error')!
+
+  // Tracks whether the gate has been dismissed (email stored or already had one)
+  let gateUnlocked = !!localStorage.getItem(GATE_KEY)
+
+  function showGate() {
+    emailGate.classList.remove('hidden')
+  }
+
+  function hideGate() {
+    emailGate.classList.add('hidden')
+    gateUnlocked = true
+  }
+
+  // Check on page load — if email already stored, skip gate entirely
+  if (!gateUnlocked) {
+    // Gate will appear once the user enters at least one input (handled in calculate())
+  }
+
+  function isValidEmail(val: string): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim())
+  }
+
+  gateForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const val = gateEmailInput.value
+    if (!isValidEmail(val)) {
+      gateError.classList.remove('hidden')
+      return
+    }
+    gateError.classList.add('hidden')
+    localStorage.setItem(GATE_KEY, val.trim())
+    hideGate()
+    calculate()
+  })
+
+  gateEmailInput.addEventListener('input', () => {
+    if (!gateError.classList.contains('hidden')) {
+      gateError.classList.add('hidden')
+    }
+  })
+
+  // ── Calculator logic ────────────────────────────────────────────────────────
+  const hoursInput    = document.getElementById('calc-hours')    as HTMLInputElement
+  const rateInput     = document.getElementById('calc-rate')     as HTMLInputElement
+  const overheadInput = document.getElementById('calc-overhead') as HTMLInputElement
+  const marginInput   = document.getElementById('calc-margin')   as HTMLInputElement
+
+  const outBase         = document.getElementById('out-base')!
+  const outBaseNote     = document.getElementById('out-base-note')!
+  const outTotal        = document.getElementById('out-total')!
+  const outTotalNote    = document.getElementById('out-total-note')!
+  const outQuote        = document.getElementById('out-quote')!
+  const outQuoteCard    = document.getElementById('out-quote-card')!
+  const outQuoteNote    = document.getElementById('out-quote-note')!
+  const outProfit       = document.getElementById('out-profit')!
+  const outProfitCard   = document.getElementById('out-profit-card')!
+  const outProfitNote   = document.getElementById('out-profit-note')!
+  const outBreakeven    = document.getElementById('out-breakeven')!
+  const outBreakevenNote = document.getElementById('out-breakeven-note')!
+  const healthNote      = document.getElementById('health-note')!
+
+  function fmt(n: number): string {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      maximumFractionDigits: 0,
+    }).format(n)
+  }
+
+  function pct(n: number): string {
+    return n.toFixed(1) + '%'
+  }
+
+  function marginColor(n: number): { border: string; bg: string; text: string } {
+    if (n >= 20) return { border: 'border-emerald-500/30', bg: 'bg-emerald-500/5', text: 'text-emerald-600 dark:text-emerald-400' }
+    if (n >= 10) return { border: 'border-amber-500/30',   bg: 'bg-amber-500/5',   text: 'text-amber-600 dark:text-amber-400' }
+    return             { border: 'border-red-500/30',     bg: 'bg-red-500/5',     text: 'text-red-600 dark:text-red-400' }
+  }
+
+  function applyCardStyle(card: HTMLElement, valueEl: HTMLElement, value: number, active: boolean) {
+    card.className = card.className
+      .replace(/border-\S+\/30\s?/g, '')
+      .replace(/bg-\S+\/5\s?/g, '')
+      .trim()
+    valueEl.className = valueEl.className
+      .replace(/text-(emerald|amber|red)-\S+\s?/g, '')
+      .trim()
+    if (!active) return
+    const c = marginColor(value)
+    card.classList.add(c.border, c.bg)
+    valueEl.classList.add(...c.text.split(' '))
+  }
+
+  function calculate() {
+    const hours    = parseFloat(hoursInput.value)
+    const rate     = parseFloat(rateInput.value)
+    const overhead = parseFloat(overheadInput.value)
+    const margin   = parseFloat(marginInput.value)
+
+    const hasHours    = !isNaN(hours)    && hours > 0
+    const hasRate     = !isNaN(rate)     && rate > 0
+    const hasOverhead = !isNaN(overhead) && overhead >= 0
+    const hasMargin   = !isNaN(margin)   && margin >= 0 && margin < 100
+
+    // Show gate when user has entered at least one meaningful input and is not yet unlocked
+    const hasAnyInput = hasHours || hasRate ||
+      (!isNaN(parseFloat(marginInput.value)) && marginInput.value !== '20')
+    if (!gateUnlocked && hasAnyInput) {
+      showGate()
+      return
+    }
+
+    // If gate is showing but user hasn't submitted, bail out
+    if (!gateUnlocked) {
+      return
+    }
+
+    // Reset outputs
+    if (!hasHours || !hasRate) {
+      outBase.textContent         = '—'
+      outBaseNote.textContent     = 'Hours × rate'
+      outTotal.textContent        = '—'
+      outTotalNote.textContent    = 'Including overhead'
+      outQuote.textContent        = '—'
+      outQuoteNote.textContent    = 'Enter numbers above'
+      outProfit.textContent       = '—'
+      outProfitNote.textContent   = 'After all costs'
+      outBreakeven.textContent    = '—'
+      healthNote.classList.add('hidden')
+      applyCardStyle(outQuoteCard, outQuote, 0, false)
+      applyCardStyle(outProfitCard, outProfit, 0, false)
+      return
+    }
+
+    // Base cost
+    const baseCost = hours * rate
+    outBase.textContent     = fmt(baseCost)
+    outBaseNote.textContent = `${hours} hrs × ${fmt(rate)}/hr`
+
+    // Total cost with overhead
+    const overheadRate  = hasOverhead ? overhead / 100 : 0
+    const totalCost     = baseCost * (1 + overheadRate)
+    outTotal.textContent     = fmt(totalCost)
+    outTotalNote.textContent = hasOverhead
+      ? `Base + ${overhead}% overhead`
+      : 'No overhead applied'
+
+    // Break-even (total cost = minimum price)
+    outBreakeven.textContent     = fmt(totalCost)
+    outBreakevenNote.textContent = 'Minimum to charge (no profit)'
+
+    if (!hasMargin) {
+      outQuote.textContent     = '—'
+      outQuoteNote.textContent = 'Enter target margin'
+      outProfit.textContent    = '—'
+      outProfitNote.textContent = 'After all costs'
+      applyCardStyle(outQuoteCard, outQuote, 0, false)
+      applyCardStyle(outProfitCard, outProfit, 0, false)
+      healthNote.classList.add('hidden')
+      return
+    }
+
+    // Recommended quote price: price = totalCost / (1 − margin)
+    const quotePrice  = totalCost / (1 - margin / 100)
+    const profit      = quotePrice - totalCost
+    const actualMargin = (profit / quotePrice) * 100
+
+    outQuote.textContent     = fmt(quotePrice)
+    outQuoteNote.textContent = `At ${pct(margin)} margin`
+    applyCardStyle(outQuoteCard, outQuote, actualMargin, true)
+
+    outProfit.textContent     = fmt(profit)
+    outProfitNote.textContent = `${pct(actualMargin)} margin`
+    applyCardStyle(outProfitCard, outProfit, actualMargin, true)
+
+    // Health note
+    healthNote.classList.remove('hidden')
+    const c = marginColor(actualMargin)
+    healthNote.className = `rounded-xl border ${c.border} ${c.bg} px-5 py-4 text-tagline-2 leading-relaxed`
+
+    if (actualMargin >= 25) {
+      healthNote.textContent = `Margin of ${pct(actualMargin)} is excellent. Your quote covers all costs and delivers strong profit. Quote with confidence.`
+    } else if (actualMargin >= 20) {
+      healthNote.textContent = `Margin of ${pct(actualMargin)} is healthy. Your quote covers costs and protects profit. This is a sustainable price for this type of work.`
+    } else if (actualMargin >= 10) {
+      healthNote.textContent = `Margin of ${pct(actualMargin)} is tight. Your quote covers costs but leaves limited room for scope changes or delays. Consider increasing your target margin or reducing hours.`
+    } else if (actualMargin >= 0) {
+      healthNote.textContent = `Margin of ${pct(actualMargin)} is dangerously low. Any scope change or overrun will put this project in the red. Raise your margin target or reduce your cost base.`
+    } else {
+      healthNote.textContent = `Your quote price is below break-even — you would lose money on this project. Increase your target margin so the quote price exceeds total costs.`
+    }
+  }
+
+  hoursInput.addEventListener('input', calculate)
+  rateInput.addEventListener('input', calculate)
+  overheadInput.addEventListener('input', calculate)
+  marginInput.addEventListener('input', calculate)
+
+  // Run once on load in case overhead field has a default value
+  calculate()
+
+  // FAQ accordion
+  document.querySelectorAll<HTMLButtonElement>('.faq-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const body    = btn.nextElementSibling as HTMLElement
+      const chevron = btn.querySelector('.faq-chevron') as HTMLElement
+      const isOpen  = btn.getAttribute('aria-expanded') === 'true'
+
+      btn.setAttribute('aria-expanded', String(!isOpen))
+      body.classList.toggle('hidden', isOpen)
+      chevron.style.transform = isOpen ? '' : 'rotate(180deg)'
+    })
+  })
+</script>
+
+<style>
+  .tool-content :global(h2) {
+    font-size: var(--text-heading-4);
+    line-height: var(--text-heading-4--line-height);
+    font-weight: 500;
+    color: var(--color-secondary);
+  }
+  :global(.dark) .tool-content :global(h2) { color: var(--color-accent); }
+
+  .tool-content :global(h3) {
+    font-size: var(--text-heading-5);
+    line-height: var(--text-heading-5--line-height);
+    font-weight: 500;
+    color: var(--color-secondary);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  :global(.dark) .tool-content :global(h3) { color: var(--color-accent); }
+
+  .tool-content :global(p) {
+    font-size: var(--text-tagline-1);
+    line-height: 1.75;
+    color: color-mix(in srgb, var(--color-secondary) 65%, transparent);
+  }
+  :global(.dark) .tool-content :global(p) { color: color-mix(in srgb, var(--color-accent) 65%, transparent); }
+
+  .tool-content :global(ul) {
+    font-size: var(--text-tagline-1);
+    line-height: 1.75;
+    color: color-mix(in srgb, var(--color-secondary) 65%, transparent);
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    space-y: 0.5rem;
+  }
+  :global(.dark) .tool-content :global(ul) { color: color-mix(in srgb, var(--color-accent) 65%, transparent); }
+  .tool-content :global(li) { margin-bottom: 0.5rem; }
+
+  .tool-content :global(strong) {
+    font-weight: 600;
+    color: var(--color-secondary);
+  }
+  :global(.dark) .tool-content :global(strong) { color: var(--color-accent); }
+</style>

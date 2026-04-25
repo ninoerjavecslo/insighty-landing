@@ -1,0 +1,671 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/organisms/Header.astro'
+import Footer from '../../components/organisms/Footer.astro'
+import SidebarTOC from '../../components/molecules/SidebarTOC.astro'
+
+const toc = [
+  { id: 'calculator', label: 'Calculator' },
+  { id: 'what-is-a-retainer', label: 'What is a retainer and why agencies love them' },
+  { id: 'how-to-price', label: 'How to price a retainer correctly' },
+  { id: 'scoping-hours', label: 'Scoping retainer hours: the biggest mistake' },
+  { id: 'fixed-vs-flexible', label: 'Fixed vs flexible retainer models' },
+  { id: 'contract-structure', label: 'How to structure retainer contracts' },
+  { id: 'red-flags', label: 'Retainer red flags to watch for' },
+  { id: 'faq', label: 'Frequently asked questions' },
+]
+
+const faqs = [
+  {
+    q: 'What is a fair monthly retainer price?',
+    a: 'A fair retainer price covers your fully loaded costs — labour, overhead, and tools — plus a target profit margin. A typical agency retainer should be priced so that net margin after all costs sits between 20–30%. Use this calculator to determine your specific number: enter your committed hours, blended hourly cost, overhead allocation, and target margin. The output gives you the minimum you should charge and the recommended price that actually hits your profit goals.',
+  },
+  {
+    q: 'How many hours should a retainer include?',
+    a: 'That depends on the scope of work, but the key is to be conservative. Most agencies underestimate retainer hours by 20–30%, which destroys margin quietly over time. Start by listing every recurring deliverable and estimating time per deliverable per month. Add a 15% buffer for internal comms, revisions, and admin. Review hours monthly for the first three months and adjust the scope or price accordingly.',
+  },
+  {
+    q: 'Should retainer hours roll over if unused?',
+    a: 'Generally, no. Rollover hours create unpredictable workload spikes and erode margin. The retainer should be priced as access to your capacity and expertise, not as a prepaid bucket of hours. Communicate this clearly in your contract. If a client consistently uses far fewer hours than contracted, that is a signal the scope needs to be renegotiated — not that they should accumulate a credit.',
+  },
+  {
+    q: 'What is blended hourly cost and how do I calculate it?',
+    a: 'Blended hourly cost is the average fully loaded cost of an hour of work delivered on the retainer, factoring in whoever works on it. If the retainer uses your time at $80/hr cost and a junior\'s time at $35/hr cost, and the split is 50/50, the blended cost is $57.50/hr. Include salary, employer taxes, benefits, and a proportional share of overhead (tools, rent, insurance) in each person\'s hourly cost. A simple method: take annual fully-loaded salary + overhead share, divide by 2,000 working hours per year.',
+  },
+  {
+    q: 'What is the difference between break-even and recommended retainer price?',
+    a: 'Break-even is the absolute minimum you can charge without losing money on the engagement. It covers your direct labour cost plus overhead allocation but leaves zero profit. The recommended price applies your target profit margin on top of costs. Always price at or above the recommended price. The break-even number exists to show you the floor — not as a target.',
+  },
+  {
+    q: 'How often should retainer prices be reviewed?',
+    a: 'At least annually, and any time your costs change significantly. Build an annual price review clause into your retainer contracts. A 3–5% cost increase per year is standard and almost universally expected by clients who value the relationship. If you have not raised retainer rates in two or more years, your margins have eroded silently through inflation, salary increases, and software cost growth.',
+  },
+  {
+    q: 'What should be included in a retainer contract?',
+    a: 'At minimum: scope of services with clear deliverables, monthly hours committed, what happens when hours are exceeded, billing and payment terms, termination notice period (typically 30–90 days), a definition of what constitutes out-of-scope work, and an annual price review clause. The more precisely the scope is defined, the less scope creep you will face. Ambiguity always benefits the client at your expense.',
+  },
+  {
+    q: 'Can I offer a discount for a longer retainer commitment?',
+    a: 'Yes, but only if the discount is genuinely offset by lower delivery risk and reduced sales overhead. A 12-month commitment versus month-to-month justifies a 5–8% discount at most — not 15–20%. Deeper discounts eat your margin without meaningfully improving your cash flow. A better incentive than discounting is to bundle additional value (quarterly strategy sessions, priority turnaround) at no extra cost rather than cutting price.',
+  },
+]
+---
+
+<BaseLayout
+  title="Free Retainer Value Calculator — Insighty"
+  description="Price recurring retainers to cover your costs, protect your margins, and build predictable revenue. Know exactly what to charge before you sign."
+>
+  <Header />
+  <main>
+
+    <!-- Hero -->
+    <section
+      class="pt-[140px] sm:pt-[150px] md:pt-[160px] pb-14 md:pb-20 relative overflow-hidden"
+      style="background: linear-gradient(135deg, #0a1628 0%, #112245 50%, #1a3a70 100%)"
+    >
+      <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 36px 36px;"></div>
+      <div class="main-container relative z-10">
+        <nav class="flex items-center gap-2 text-tagline-3 text-white/50 mb-10" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-white transition-colors duration-200">Insighty</a>
+          <span aria-hidden="true">/</span>
+          <a href="/tools" class="hover:text-white transition-colors duration-200">Tools</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-white/70">Retainer Value Calculator</span>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-20 items-center">
+          <div class="space-y-5">
+            <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white border border-white/30 px-4 py-1.5">Free Tool · Contracts</span>
+            <h1 class="text-white">Free Retainer Value<br /><span class="hero-text-gradient hero-text-color-1">Calculator</span></h1>
+            <p class="text-white text-tagline-1 max-w-[480px]">
+              Price recurring retainers to cover your costs, protect your margins, and build predictable revenue. Know exactly what to charge before you sign.
+            </p>
+          </div>
+          <div class="hidden lg:block">
+            <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden">
+              <div class="px-5 py-4 border-b border-white/10">
+                <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Sample output</p>
+              </div>
+              <div class="p-5 space-y-3">
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="rounded-xl bg-emerald-500/10 border border-emerald-500/25 p-4 space-y-1">
+                    <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Monthly</p>
+                    <p class="text-heading-4 font-semibold text-emerald-400">$4,200</p>
+                    <p class="text-tagline-3 text-white/40">Recommended</p>
+                  </div>
+                  <div class="rounded-xl bg-emerald-500/10 border border-emerald-500/25 p-4 space-y-1">
+                    <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Annual</p>
+                    <p class="text-heading-4 font-semibold text-emerald-400">$50,400</p>
+                    <p class="text-tagline-3 text-white/40">Contract value</p>
+                  </div>
+                  <div class="rounded-xl bg-white/5 border border-white/10 p-4 space-y-1">
+                    <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Profit</p>
+                    <p class="text-heading-4 font-semibold text-white/80">$840/mo</p>
+                    <p class="text-tagline-3 text-white/40">After all costs</p>
+                  </div>
+                  <div class="rounded-xl bg-white/5 border border-white/10 p-4 space-y-1">
+                    <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Margin</p>
+                    <p class="text-heading-4 font-semibold text-white/80">20%</p>
+                    <p class="text-tagline-3 text-white/40">Net margin</p>
+                  </div>
+                </div>
+                <div class="rounded-xl border border-emerald-500/25 bg-emerald-500/10 px-4 py-3">
+                  <p class="text-tagline-3 text-emerald-400">A 20% margin is healthy. Consider raising the rate to push above 25% for a stronger buffer.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="bg-background-1 dark:bg-background-8 py-14 md:py-20">
+      <div class="main-container">
+        <div class="grid grid-cols-1 lg:grid-cols-[220px_1fr] xl:grid-cols-[260px_1fr] gap-12 xl:gap-16 items-start">
+
+          <!-- Sidebar TOC -->
+          <div class="hidden lg:flex flex-col gap-8 sticky top-28">
+            <SidebarTOC items={toc} />
+          </div>
+
+          <!-- Main content -->
+          <div class="min-w-0 space-y-16">
+
+            <!-- CALCULATOR WIDGET -->
+            <div id="calculator" class="scroll-mt-28">
+              <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 overflow-hidden">
+                <div class="p-6 md:p-8 border-b border-stroke-2 dark:border-stroke-5">
+                  <h2 class="text-heading-5 font-semibold text-secondary dark:text-accent mb-1">Calculate Your Retainer Price</h2>
+                  <p class="text-tagline-2 text-secondary/55 dark:text-accent/55">Enter your costs and margin target to see exactly what to charge</p>
+                </div>
+
+                <div class="p-6 md:p-8 space-y-8">
+                  <!-- Inputs -->
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div class="space-y-2">
+                      <label for="calc-hours" class="block text-tagline-2 font-medium text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Monthly Hours Committed</label>
+                      <input
+                        id="calc-hours"
+                        type="number"
+                        min="0"
+                        placeholder="e.g. 40"
+                        class="auth-form-input w-full text-heading-6 font-semibold text-secondary dark:text-accent placeholder:font-normal placeholder:text-secondary/25 dark:placeholder:text-accent/25"
+                      />
+                    </div>
+                    <div class="space-y-2">
+                      <label for="calc-hourly-cost" class="block text-tagline-2 font-medium text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Hourly Cost (blended, $)</label>
+                      <input
+                        id="calc-hourly-cost"
+                        type="number"
+                        min="0"
+                        placeholder="e.g. 75"
+                        class="auth-form-input w-full text-heading-6 font-semibold text-secondary dark:text-accent placeholder:font-normal placeholder:text-secondary/25 dark:placeholder:text-accent/25"
+                      />
+                    </div>
+                    <div class="space-y-2">
+                      <label for="calc-overhead" class="block text-tagline-2 font-medium text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Monthly Overhead Allocation ($)</label>
+                      <input
+                        id="calc-overhead"
+                        type="number"
+                        min="0"
+                        placeholder="e.g. 500"
+                        class="auth-form-input w-full text-heading-6 font-semibold text-secondary dark:text-accent placeholder:font-normal placeholder:text-secondary/25 dark:placeholder:text-accent/25"
+                      />
+                    </div>
+                    <div class="space-y-2">
+                      <label for="calc-margin" class="block text-tagline-2 font-medium text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Target Profit Margin (%)</label>
+                      <input
+                        id="calc-margin"
+                        type="number"
+                        min="0"
+                        max="99"
+                        placeholder="e.g. 25"
+                        class="auth-form-input w-full text-heading-6 font-semibold text-secondary dark:text-accent placeholder:font-normal placeholder:text-secondary/25 dark:placeholder:text-accent/25"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Outputs -->
+                  <div id="outputs-region" class="relative">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                      <!-- Monthly Retainer Price -->
+                      <div id="out-monthly-card" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300 sm:col-span-2 lg:col-span-1">
+                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Monthly Retainer Price</p>
+                        <p id="out-monthly" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
+                        <p id="out-monthly-note" class="text-tagline-2 text-secondary/50 dark:text-accent/50">Enter numbers above</p>
+                      </div>
+                      <!-- Annual Value -->
+                      <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1">
+                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Annual Retainer Value</p>
+                        <p id="out-annual" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
+                        <p class="text-tagline-2 text-secondary/50 dark:text-accent/50">12-month contract</p>
+                      </div>
+                      <!-- Effective Hourly Rate -->
+                      <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1">
+                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Effective Hourly Rate</p>
+                        <p id="out-hourly-rate" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
+                        <p class="text-tagline-2 text-secondary/50 dark:text-accent/50">Per committed hour</p>
+                      </div>
+                      <!-- Monthly Profit -->
+                      <div id="out-profit-card" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300">
+                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Monthly Profit</p>
+                        <p id="out-profit" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
+                        <p class="text-tagline-2 text-secondary/50 dark:text-accent/50">After all costs</p>
+                      </div>
+                      <!-- Break-even -->
+                      <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1">
+                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Break-even Retainer</p>
+                        <p id="out-breakeven" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
+                        <p class="text-tagline-2 text-secondary/50 dark:text-accent/50">Minimum to charge</p>
+                      </div>
+                    </div>
+
+                    <!-- Health note -->
+                    <div id="health-note" class="hidden rounded-xl border px-5 py-4 text-tagline-2 leading-relaxed mt-4"></div>
+
+                    <!-- Email gate overlay -->
+                    <div id="email-gate" class="hidden absolute inset-0 z-10 flex items-center justify-center" style="background: linear-gradient(to bottom, transparent 0%, rgba(var(--color-background-1-rgb, 255 255 255) / 0.15) 20%);">
+                      <div class="bg-background-2 dark:bg-background-6 border border-stroke-2 dark:border-stroke-5 rounded-2xl p-6 w-full max-w-sm shadow-xl">
+                        <h3 class="text-heading-5 font-semibold text-secondary dark:text-accent mb-1">See your retainer value</h3>
+                        <p class="text-tagline-2 text-secondary/55 dark:text-accent/55 mb-5">Enter your email and we'll show your results instantly. No spam, ever.</p>
+                        <form id="gate-form" class="space-y-3" novalidate>
+                          <div>
+                            <input
+                              id="gate-email"
+                              type="email"
+                              placeholder="you@company.com"
+                              autocomplete="email"
+                              class="auth-form-input w-full"
+                            />
+                            <p id="gate-error" class="hidden mt-1.5 text-tagline-3 text-red-500 dark:text-red-400">Please enter a valid email address.</p>
+                          </div>
+                          <button
+                            type="submit"
+                            class="w-full flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-tagline-2 font-semibold text-white transition-opacity duration-200 hover:opacity-90"
+                            style="background-color: #0f2044;"
+                          >
+                            Get Results
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- EDUCATIONAL CONTENT -->
+            <div class="space-y-12 tool-content">
+
+              <div id="what-is-a-retainer" class="scroll-mt-28 space-y-4">
+                <h2>What is a retainer and why agencies love them</h2>
+                <p>A retainer is an ongoing contract where a client pays a fixed monthly fee in exchange for a defined set of services or a committed block of your capacity. Unlike project-based work, retainers create recurring, predictable revenue — the kind that lets you plan hiring, invest in growth, and stop chasing the next project before the current one is done.</p>
+                <p>Agencies that build a retainer base typically experience significantly more stable cash flow than those relying on project revenue alone. When half your monthly income is already committed before the month begins, you can focus on delivery and client relationships rather than constant business development. Retainers also deepen client relationships: the longer you work with someone, the better you understand their business, and the more valuable your contribution becomes.</p>
+                <p>From the client's perspective, retainers offer access to a trusted partner without the friction of re-engaging for every request. They buy certainty — knowing a capable team is reserved and accountable each month. That certainty has real value, and it is why well-priced retainers are not only accepted by good clients but actively preferred.</p>
+                <div class="rounded-xl border border-primary-500/20 bg-primary-500/5 p-5">
+                  <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 leading-relaxed">
+                    <span class="font-semibold text-primary-500">Insighty tracks retainer health automatically.</span> Instead of manually reviewing whether a retainer is still profitable each quarter, Insighty shows you actual hours logged against retainer budget, profit per client, and whether each engagement is worth renewing — across your entire book of business.
+                  </p>
+                </div>
+              </div>
+
+              <div id="how-to-price" class="scroll-mt-28 space-y-4">
+                <h2>How to price a retainer correctly</h2>
+                <p>The most common retainer pricing mistake is starting from what the client seems willing to pay and working backwards. This leaves you with no principled floor and no guarantee of profitability. Instead, build retainer prices from your costs upward.</p>
+                <p>Start with your total monthly cost to deliver the engagement: multiply committed hours by your blended hourly cost, then add the overhead you need to allocate to this client (a proportional share of rent, software, admin, and management time). That total is your break-even number — the absolute minimum you can charge without losing money.</p>
+                <p>Then apply your target profit margin. If your total costs are $3,360 and you want a 20% net margin, use the formula: Price = Cost ÷ (1 − Target Margin). At 20%, that is $3,360 ÷ 0.80 = $4,200. The $840 difference is your profit. This is not a guess or a gut-feel — it is a defensible price grounded in your actual economics.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Break-even formula</p>
+                    <p class="font-mono text-tagline-2 bg-background-1 dark:bg-background-7 rounded-lg px-3 py-2">(Hours × Hourly Cost) + Overhead</p>
+                  </div>
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Recommended price formula</p>
+                    <p class="font-mono text-tagline-2 bg-background-1 dark:bg-background-7 rounded-lg px-3 py-2">Break-even ÷ (1 − Target Margin)</p>
+                  </div>
+                </div>
+                <p>Review this calculation before signing any retainer. If the resulting price feels high relative to the market, that is a signal to examine whether the scope is too broad, your costs are too high, or you are simply not positioning the engagement's value effectively enough. Do not drop the price to close the deal — renegotiate the scope or walk away.</p>
+              </div>
+
+              <div id="scoping-hours" class="scroll-mt-28 space-y-4">
+                <h2>Scoping retainer hours: the biggest mistake</h2>
+                <p>Underscoping hours is the most common and most expensive retainer mistake agencies make. It typically happens because the initial scope conversation focuses on deliverables — "we'll do 4 blog posts and 8 social media updates per month" — without accounting for all the time those deliverables actually require.</p>
+                <p>Every deliverable has invisible surrounding work: briefing calls, research, internal review, revision rounds, client feedback cycles, project management, and reporting. A blog post is not just the writing time. A social media post is not just the design time. When you add up these invisible hours across a month, the real time commitment is often 30–50% higher than the stated deliverables suggest.</p>
+                <div class="space-y-3">
+                  <h3>How to scope retainer hours accurately</h3>
+                  <ul>
+                    <li><strong>List every recurring task, not just deliverables.</strong> Include internal review time, client communications, reporting, and project management. These are real costs even if the client never sees them.</li>
+                    <li><strong>Use actuals from past projects.</strong> If you have delivered similar work before, pull your time tracking data. Estimates based on actual past performance are far more accurate than gut feel.</li>
+                    <li><strong>Add a revision buffer.</strong> Build in at least one round of revisions per deliverable. Clients who pay for a retainer expect revisions to be included — do not be surprised when they happen.</li>
+                    <li><strong>Apply a 15% miscellaneous buffer.</strong> No matter how carefully you scope, unexpected work will arise: ad hoc requests, urgent turnarounds, additional context-setting calls. Budget for this explicitly.</li>
+                    <li><strong>Review actuals monthly for the first quarter.</strong> Treat the first three months as a calibration period. If you are consistently over or under the committed hours, adjust the scope or the price for month four onward.</li>
+                  </ul>
+                </div>
+                <p>If a retainer that seemed profitable at signing becomes unprofitable after three months of actuals, you have a scoping problem — not a pricing problem. Fix it at the root by negotiating a scope reduction or a price increase backed by your time tracking data.</p>
+              </div>
+
+              <div id="fixed-vs-flexible" class="scroll-mt-28 space-y-4">
+                <h2>Fixed vs flexible retainer models</h2>
+                <p>There are two broad retainer structures agencies use, and the right choice depends on the nature of the work and the relationship with the client.</p>
+                <div class="space-y-4">
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Fixed scope retainer</p>
+                    <p>A defined set of deliverables is agreed upfront: four blog posts, two strategy calls, a monthly report. The price is fixed regardless of how long it takes. This model protects the client from bill shock and gives you a predictable cost of delivery — but it requires accurate scoping to remain profitable. Fixed retainers work best for mature, repeatable service lines where you have confident time estimates.</p>
+                  </div>
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Flexible capacity retainer</p>
+                    <p>The client purchases a block of hours at a defined monthly rate. They can direct that capacity toward different types of work each month. This model is more adaptive and suits clients with varied or unpredictable needs, but it requires strict tracking and a clear policy on what happens when hours are exceeded. Flexible retainers generally command a slightly higher effective hourly rate because of the flexibility premium — and because you are also absorbing the planning risk on the client's behalf.</p>
+                  </div>
+                </div>
+                <p>A hybrid approach works well for many agencies: a defined base scope (fixed, predictable) plus a rate card for out-of-scope requests. This gives the client the predictability they want while protecting you from unbounded scope expansion at no additional revenue.</p>
+              </div>
+
+              <div id="contract-structure" class="scroll-mt-28 space-y-5">
+                <h2>How to structure retainer contracts</h2>
+                <p>A retainer contract should be specific enough to prevent scope creep but concise enough for clients to actually read it. The goal is a document that both parties reference confidently when questions arise — not one that gets filed away after signing.</p>
+                <div class="space-y-3">
+                  <h3>Essential clauses for every retainer</h3>
+                  <ul>
+                    <li><strong>Scope of services.</strong> Enumerate every recurring deliverable and activity covered. Be explicit: "up to two rounds of revisions per deliverable" rather than "revisions as needed."</li>
+                    <li><strong>Monthly hours (if applicable).</strong> State clearly how many hours are included, that unused hours do not roll over, and the rate for hours beyond the commitment.</li>
+                    <li><strong>Payment terms.</strong> Invoice monthly in advance, due within 15 days. Never deliver a month of work before being paid for it. For new clients, consider requiring the first month upfront before work begins.</li>
+                    <li><strong>Termination notice.</strong> Require a minimum of 30–60 days written notice to end the agreement. This protects your revenue when a client needs to exit and gives you time to fill the capacity.</li>
+                    <li><strong>Out-of-scope definition.</strong> Clearly define what falls outside the retainer and the rate at which it will be billed. This converts scope conversations from awkward negotiations into simple references to a pre-agreed document.</li>
+                    <li><strong>Annual price review.</strong> State explicitly that the retainer fee will be reviewed annually and may increase to reflect changes in costs, market rates, and scope of services.</li>
+                  </ul>
+                </div>
+                <p>The more clearly the contract defines the relationship, the healthier that relationship will be. Ambiguity breeds resentment on both sides — clients who feel they are not getting enough, and agencies who feel they are giving too much.</p>
+              </div>
+
+              <div id="red-flags" class="scroll-mt-28 space-y-4">
+                <h2>Retainer red flags to watch for</h2>
+                <p>Not every retainer opportunity is worth taking. Some clients and engagement structures are structurally unprofitable or damaging to your business regardless of what you charge. Learn to recognise these warning signs before signing.</p>
+                <div class="space-y-3">
+                  <h3>Client-side red flags</h3>
+                  <ul>
+                    <li><strong>Pushback on any form of contract.</strong> A client who refuses to sign a formal agreement — or insists on a vague one — has no intention of respecting boundaries. Without a contract, every conversation about scope or price becomes a negotiation from scratch.</li>
+                    <li><strong>Slow payment on project work.</strong> If a client took 60 days to pay a project invoice, they will take 60 days to pay your retainer. Chronic late payment destroys the cash flow benefit that makes retainers valuable in the first place.</li>
+                    <li><strong>Scope creep on the sales call.</strong> If a prospect keeps adding requests during the scoping conversation — "could you also just..." — before the retainer even starts, the scope will be unmanageable once work begins.</li>
+                    <li><strong>Unwillingness to define success metrics.</strong> Retainers with no defined outcomes are difficult to renew and easy to cancel. If a client cannot articulate what good looks like, it is difficult to demonstrate that your work is valuable.</li>
+                  </ul>
+                  <h3>Structural red flags</h3>
+                  <ul>
+                    <li><strong>Price based on what the client wants to pay, not what you need to charge.</strong> If you started with their budget and worked backwards, run the numbers through this calculator to check whether you are actually profitable. Many retainers that feel sustainable are quietly subsidised by project revenue.</li>
+                    <li><strong>No termination notice period.</strong> A retainer with no notice period is just a project with a monthly invoice. You have no revenue protection and no time to replace the income if the client exits suddenly.</li>
+                    <li><strong>Deliverable-based retainers with unlimited revisions.</strong> Unlimited is never unlimited in practice, but it is unlimited in client expectation. Always define revision rounds in the contract.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- FAQ -->
+              <div id="faq" class="scroll-mt-28 space-y-4">
+                <h2>Frequently asked questions</h2>
+                <div class="space-y-3" id="faq-list">
+                  {faqs.map((item, i) => (
+                    <div class="faq-item rounded-xl border border-stroke-2 dark:border-stroke-5 overflow-hidden">
+                      <button
+                        class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-4 text-left bg-background-2 dark:bg-background-6 hover:bg-background-3 dark:hover:bg-background-5 transition-colors duration-200"
+                        aria-expanded="false"
+                        data-index={i}
+                      >
+                        <span class="text-tagline-1 font-medium text-secondary dark:text-accent">{item.q}</span>
+                        <svg class="faq-chevron w-5 h-5 shrink-0 text-secondary/40 dark:text-accent/40 transition-transform duration-200" viewBox="0 0 20 20" fill="none">
+                          <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </button>
+                      <div class="faq-body hidden px-6 py-4 bg-background-1 dark:bg-background-7 border-t border-stroke-2 dark:border-stroke-5">
+                        <p class="text-tagline-2 text-secondary/65 dark:text-accent/65 leading-relaxed">{item.a}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+
+            <!-- CTA -->
+            <div class="rounded-2xl overflow-hidden" style="background: linear-gradient(135deg, #0a1628 0%, #112245 60%, #1a3a70 100%)">
+              <div class="p-8 md:p-10 space-y-4">
+                <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Want this tracked automatically?</p>
+                <h2 class="text-white text-heading-4">See retainer profitability in real time — not at invoice time</h2>
+                <p class="text-white/60 text-tagline-1 max-w-[520px]">
+                  Insighty tracks actual hours against retainer budget, profit per client, and renewal health across your entire book of recurring work. Know which retainers to protect and which to reprice before it costs you.
+                </p>
+                <div class="flex flex-wrap items-center gap-4 pt-2">
+                  <a href="/founding-member" class="btn btn-md btn-outline-white"><span>Become a founding member</span></a>
+                  <a href="/#platform" class="inline-flex items-center gap-2 text-white/75 hover:text-white text-tagline-2 font-medium uppercase tracking-wide transition-colors duration-200 group">
+                    <span>See the platform</span>
+                    <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  // ── DOM refs ──────────────────────────────────────────────────────────────
+  const hoursInput      = document.getElementById('calc-hours')       as HTMLInputElement
+  const hourlyCostInput = document.getElementById('calc-hourly-cost') as HTMLInputElement
+  const overheadInput   = document.getElementById('calc-overhead')    as HTMLInputElement
+  const marginInput     = document.getElementById('calc-margin')      as HTMLInputElement
+
+  const outMonthly      = document.getElementById('out-monthly')!
+  const outMonthlyNote  = document.getElementById('out-monthly-note')!
+  const outMonthlyCard  = document.getElementById('out-monthly-card')!
+  const outAnnual       = document.getElementById('out-annual')!
+  const outHourlyRate   = document.getElementById('out-hourly-rate')!
+  const outProfit       = document.getElementById('out-profit')!
+  const outProfitCard   = document.getElementById('out-profit-card')!
+  const outBreakeven    = document.getElementById('out-breakeven')!
+  const healthNote      = document.getElementById('health-note')!
+
+  // ── Email gate refs ───────────────────────────────────────────────────────
+  const emailGate  = document.getElementById('email-gate')!
+  const gateForm   = document.getElementById('gate-form')!
+  const gateEmail  = document.getElementById('gate-email')  as HTMLInputElement
+  const gateError  = document.getElementById('gate-error')!
+
+  const LS_KEY = 'insighty_tool_email'
+
+  // Whether the gate has been passed (email stored or submitted this session)
+  let gatePassed = Boolean(localStorage.getItem(LS_KEY))
+
+  // Whether the user has touched at least one input
+  let hasAnyInput = false
+
+  // ── Helpers ───────────────────────────────────────────────────────────────
+  function fmt(n: number) {
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n)
+  }
+
+  function fmtDec(n: number) {
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n)
+  }
+
+  function isValidEmail(v: string) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())
+  }
+
+  function marginColor(n: number): { border: string; bg: string; text: string } {
+    if (n >= 25) return { border: 'border-emerald-500/30', bg: 'bg-emerald-500/5', text: 'text-emerald-600 dark:text-emerald-400' }
+    if (n >= 15) return { border: 'border-amber-500/30',   bg: 'bg-amber-500/5',   text: 'text-amber-600 dark:text-amber-400' }
+    return             { border: 'border-red-500/30',     bg: 'bg-red-500/5',     text: 'text-red-600 dark:text-red-400' }
+  }
+
+  function applyCardStyle(card: HTMLElement, pctEl: HTMLElement, value: number, hasValue: boolean) {
+    card.className = card.className.replace(/border-\S+\/30\s?/g, '').replace(/bg-\S+\/5\s?/g, '').trim()
+    pctEl.className = pctEl.className.replace(/text-(emerald|amber|red)-\S+\s?/g, '').trim()
+    if (!hasValue) return
+    const c = marginColor(value)
+    card.classList.add(c.border, c.bg)
+    pctEl.classList.add(...c.text.split(' '))
+  }
+
+  // ── Gate visibility ───────────────────────────────────────────────────────
+  function showGate() {
+    emailGate.classList.remove('hidden')
+    emailGate.classList.add('flex')
+  }
+
+  function hideGate() {
+    emailGate.classList.add('hidden')
+    emailGate.classList.remove('flex')
+  }
+
+  // ── Calculator core ───────────────────────────────────────────────────────
+  function reset() {
+    outMonthly.textContent     = '—'
+    outMonthlyNote.textContent = 'Enter numbers above'
+    outAnnual.textContent      = '—'
+    outHourlyRate.textContent  = '—'
+    outProfit.textContent      = '—'
+    outBreakeven.textContent   = '—'
+    healthNote.classList.add('hidden')
+    applyCardStyle(outMonthlyCard, outMonthly, 0, false)
+    applyCardStyle(outProfitCard,  outProfit,  0, false)
+  }
+
+  function calculate() {
+    const hours    = parseFloat(hoursInput.value)
+    const hCost    = parseFloat(hourlyCostInput.value)
+    const overhead = parseFloat(overheadInput.value)
+    const margin   = parseFloat(marginInput.value)
+
+    const hasHours    = !isNaN(hours)    && hours > 0
+    const hasHCost    = !isNaN(hCost)    && hCost >= 0
+    const hasOverhead = !isNaN(overhead) && overhead >= 0
+    const hasMargin   = !isNaN(margin)   && margin >= 0 && margin < 100
+
+    if (!hasHours || !hasHCost) {
+      reset()
+      return
+    }
+
+    const labourCost = hours * hCost
+    const totalCost  = labourCost + (hasOverhead ? overhead : 0)
+    const breakEven  = totalCost
+
+    outBreakeven.textContent = fmt(breakEven)
+
+    if (hasMargin) {
+      const recommendedPrice = totalCost / (1 - margin / 100)
+      const monthlyProfit    = recommendedPrice - totalCost
+      const annualValue      = recommendedPrice * 12
+      const effectiveRate    = hours > 0 ? recommendedPrice / hours : 0
+
+      outMonthly.textContent     = fmt(recommendedPrice)
+      outMonthlyNote.textContent = 'Recommended price'
+      outAnnual.textContent      = fmt(annualValue)
+      outHourlyRate.textContent  = fmtDec(effectiveRate)
+      outProfit.textContent      = fmt(monthlyProfit) + '/mo'
+
+      applyCardStyle(outMonthlyCard, outMonthly, margin, true)
+      applyCardStyle(outProfitCard,  outProfit,  margin, true)
+
+      healthNote.classList.remove('hidden')
+      const c = marginColor(margin)
+      healthNote.className = `rounded-xl border ${c.border} ${c.bg} px-5 py-4 text-tagline-2 leading-relaxed mt-4`
+
+      if (margin >= 25) {
+        healthNote.textContent = `At a ${margin}% margin, this retainer is priced well. You keep ${fmt(monthlyProfit)} per month after all costs. Protect this margin — resist discount requests and enforce your scope boundary.`
+      } else if (margin >= 15) {
+        healthNote.textContent = `A ${margin}% margin is within the healthy range for agencies, but leaving room to improve. Consider targeting 25%+ on your next renewal by increasing the rate or tightening the scope.`
+      } else {
+        healthNote.textContent = `A ${margin}% margin is below the 15% minimum recommended for retainer work. At this rate, one bad month of scope creep makes the engagement unprofitable. Revisit your price or scope before signing.`
+      }
+    } else {
+      outMonthly.textContent     = '—'
+      outMonthlyNote.textContent = 'Add a target margin'
+      outAnnual.textContent      = '—'
+      outHourlyRate.textContent  = '—'
+      outProfit.textContent      = '—'
+      applyCardStyle(outMonthlyCard, outMonthly, 0, false)
+      applyCardStyle(outProfitCard,  outProfit,  0, false)
+      healthNote.classList.add('hidden')
+    }
+  }
+
+  // ── Input handler: gate-aware ──────────────────────────────────────────────
+  function onInputChange() {
+    // Track whether any input has a value
+    const anyFilled = [hoursInput, hourlyCostInput, overheadInput, marginInput]
+      .some(el => el.value.trim() !== '')
+    hasAnyInput = anyFilled
+
+    if (!gatePassed) {
+      if (hasAnyInput) {
+        showGate()
+      } else {
+        hideGate()
+      }
+      // Do not run calculate while gate is blocking
+      return
+    }
+
+    // Gate already passed — calculate freely
+    calculate()
+  }
+
+  // ── Gate form submit ──────────────────────────────────────────────────────
+  gateForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const val = gateEmail.value.trim()
+
+    if (!isValidEmail(val)) {
+      gateError.classList.remove('hidden')
+      gateEmail.focus()
+      return
+    }
+
+    gateError.classList.add('hidden')
+    localStorage.setItem(LS_KEY, val)
+    gatePassed = true
+    hideGate()
+    calculate()
+  })
+
+  // Clear error as user types
+  gateEmail.addEventListener('input', () => {
+    gateError.classList.add('hidden')
+  })
+
+  // ── Wire inputs ────────────────────────────────────────────────────────────
+  hoursInput.addEventListener('input', onInputChange)
+  hourlyCostInput.addEventListener('input', onInputChange)
+  overheadInput.addEventListener('input', onInputChange)
+  marginInput.addEventListener('input', onInputChange)
+
+  // ── On load: if email already stored, skip gate ────────────────────────────
+  if (gatePassed) {
+    hideGate()
+    // No inputs yet, so nothing to calculate — just ensure gate stays hidden
+  }
+
+  // ── FAQ accordion ─────────────────────────────────────────────────────────
+  document.querySelectorAll<HTMLButtonElement>('.faq-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const body    = btn.nextElementSibling as HTMLElement
+      const chevron = btn.querySelector('.faq-chevron') as HTMLElement
+      const isOpen  = btn.getAttribute('aria-expanded') === 'true'
+
+      btn.setAttribute('aria-expanded', String(!isOpen))
+      body.classList.toggle('hidden', isOpen)
+      chevron.style.transform = isOpen ? '' : 'rotate(180deg)'
+    })
+  })
+</script>
+
+<style>
+  .tool-content :global(h2) {
+    font-size: var(--text-heading-4);
+    line-height: var(--text-heading-4--line-height);
+    font-weight: 500;
+    color: var(--color-secondary);
+  }
+  :global(.dark) .tool-content :global(h2) { color: var(--color-accent); }
+
+  .tool-content :global(h3) {
+    font-size: var(--text-heading-5);
+    line-height: var(--text-heading-5--line-height);
+    font-weight: 500;
+    color: var(--color-secondary);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  :global(.dark) .tool-content :global(h3) { color: var(--color-accent); }
+
+  .tool-content :global(p) {
+    font-size: var(--text-tagline-1);
+    line-height: 1.75;
+    color: color-mix(in srgb, var(--color-secondary) 65%, transparent);
+  }
+  :global(.dark) .tool-content :global(p) { color: color-mix(in srgb, var(--color-accent) 65%, transparent); }
+
+  .tool-content :global(ul) {
+    font-size: var(--text-tagline-1);
+    line-height: 1.75;
+    color: color-mix(in srgb, var(--color-secondary) 65%, transparent);
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    space-y: 0.5rem;
+  }
+  :global(.dark) .tool-content :global(ul) { color: color-mix(in srgb, var(--color-accent) 65%, transparent); }
+  .tool-content :global(li) { margin-bottom: 0.5rem; }
+
+  .tool-content :global(strong) {
+    font-weight: 600;
+    color: var(--color-secondary);
+  }
+  :global(.dark) .tool-content :global(strong) { color: var(--color-accent); }
+</style>

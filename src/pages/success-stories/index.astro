@@ -37,23 +37,24 @@ const stories = [
   <main>
 
     <!-- Hero -->
-    <section class="bg-background-1 dark:bg-background-8 pt-[140px] sm:pt-[150px] md:pt-[160px] pb-16 md:pb-20 border-b border-stroke-2 dark:border-stroke-6">
-      <div class="main-container">
+    <section class="pt-[140px] sm:pt-[150px] md:pt-[160px] pb-16 md:pb-20 relative overflow-hidden" style="background: linear-gradient(135deg, #0a1628 0%, #112445 50%, #1a3a70 100%)">
+      <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 36px 36px;"></div>
+      <div class="main-container relative z-10">
         <div class="max-w-[680px] space-y-5">
           <span
             data-ns-animate
             data-delay="0.05"
-            class="inline-block text-tagline-3 uppercase tracking-widest font-semibold text-secondary/40 dark:text-accent/40 border border-secondary/15 dark:border-accent/15 px-4 py-1.5 rounded-full"
+            class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white border border-white/30 px-4 py-1.5"
           >Success Stories</span>
           <h1
             data-ns-animate
             data-delay="0.1"
-            class="text-secondary dark:text-accent"
+            class="text-white"
           >Revenue you didn't<br/> know you were losing.</h1>
           <p
             data-ns-animate
             data-delay="0.2"
-            class="text-tagline-1 text-secondary/60 dark:text-accent/60 max-w-[520px] leading-relaxed"
+            class="text-tagline-1 text-white/60 max-w-[520px] leading-relaxed"
           >
             These aren't marketing numbers. They're the exact amounts found, recovered, and turned into profit by agencies who finally had a single view of their operations.
           </p>

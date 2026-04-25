@@ -1,0 +1,516 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/organisms/Header.astro'
+import Footer from '../../components/organisms/Footer.astro'
+import SidebarTOC from '../../components/molecules/SidebarTOC.astro'
+
+const toc = [
+  { id: 'calculator', label: 'Calculator' },
+  { id: 'what-is-billable-hours-calculator', label: 'What is a billable hours calculator' },
+  { id: 'understanding-utilisation-rate', label: 'Understanding utilisation rate' },
+  { id: 'non-billable-time', label: 'How non-billable time kills revenue' },
+  { id: 'industry-benchmarks', label: 'Industry benchmarks by role' },
+  { id: 'how-to-increase-billable-hours', label: 'How to increase billable hours' },
+  { id: 'faq', label: 'Frequently asked questions' },
+]
+
+const benchmarkData = [
+  { role: 'Account Manager', typical: '60–70%', note: 'Client management & coordination' },
+  { role: 'Designer', typical: '65–75%', note: 'Creative & production work' },
+  { role: 'Developer', typical: '70–80%', note: 'Build, review & QA' },
+  { role: 'Project Manager', typical: '50–60%', note: 'Oversight & admin heavy' },
+  { role: 'Freelancer', typical: '50–65%', note: 'Sales & admin eat significant time' },
+]
+
+const faqs = [
+  {
+    q: 'What is a good billable hours utilisation rate?',
+    a: 'For most agency roles, a utilisation rate between 65% and 80% is considered healthy and sustainable. Below 60% suggests there is capacity going to waste — either through too much non-billable work, poor project flow, or underpricing. Above 85% is technically efficient but risky: it leaves no buffer for unexpected work, creates burnout, and signals you may have a capacity problem rather than an efficiency one.',
+  },
+  {
+    q: 'How do I calculate billable hours needed per month?',
+    a: 'Divide your monthly revenue target by your hourly rate to get the raw billable hours required before accounting for non-billable time. Then adjust upward using the formula: Billable Hours Needed = (Revenue Target ÷ Hourly Rate) ÷ (1 − Non-Billable %). For example, targeting $12,000/month at $100/hour with 30% non-billable time requires: (120 hours) ÷ 0.70 = approximately 171 total working hours, of which 120 need to be billed.',
+  },
+  {
+    q: 'What counts as non-billable time?',
+    a: 'Non-billable time is any work that does not get invoiced to a client. It typically includes: business development and sales calls, writing proposals and responding to RFPs, team meetings and internal planning, professional development and training, finance and admin tasks like invoicing and bookkeeping, marketing your own business, and tool setup or internal process work. For most freelancers and small agencies, non-billable time accounts for 25–40% of the working week.',
+  },
+  {
+    q: 'Should I track non-billable time?',
+    a: 'Absolutely. Most professionals who do not track non-billable time significantly underestimate how much of their capacity it consumes. Time-tracking studies consistently show that business development, admin, and internal coordination take 30–50% more time than people guess. Even a simple daily log reveals patterns — for example, you may discover that proposal writing consumes two full days per month but converts poorly, and redirecting that time could dramatically improve profitability.',
+  },
+  {
+    q: 'How many billable hours per year is realistic?',
+    a: 'A useful starting point is 2,080 working hours per year (52 weeks × 40 hours). After removing vacation (15–20 days), public holidays (8–10 days), sick time, and non-billable overhead, most professionals have roughly 1,400–1,600 productive hours available. At a 70% utilisation rate, that yields 980–1,120 billable hours annually. Freelancers who handle their own sales and admin typically land in the 900–1,100 range; agency employees with support structures may reach 1,200–1,400.',
+  },
+  {
+    q: 'What is the difference between utilisation rate and efficiency?',
+    a: 'Utilisation rate measures the proportion of your working time that is billable. Efficiency measures how well you use that billable time — whether projects are delivered on budget, within estimated hours. You can have high utilisation but low efficiency (billing lots of hours, but going over budget on every project). The healthiest position is moderate-to-high utilisation combined with strong efficiency: billing close to your target hours while consistently delivering within scope.',
+  },
+  {
+    q: 'How do I raise my effective hourly rate without charging more?',
+    a: 'The fastest way to increase your effective hourly rate is to reduce non-billable time — particularly proposal writing for low-close-rate prospects, repetitive admin tasks, and unstructured meetings. Every hour you recover from non-billable activities is an hour you can potentially bill. Secondly, improving project scoping accuracy means you stop absorbing unbilled hours when work runs over. A project scoped at 40 hours that takes 60 delivers a 33% discount you never advertised.',
+  },
+  {
+    q: 'Can I use this calculator to set my hourly rate?',
+    a: 'Yes, in reverse. If you know how many billable hours you can realistically achieve (based on your capacity and non-billable overhead) and you have a revenue target, dividing target revenue by available billable hours gives you your required rate. For example: $120,000 annual target ÷ 1,000 billable hours = $120/hour minimum. Add a buffer of 10–20% for scope creep, slower months, and rate negotiations, and your floor rate should be closer to $135–$145/hour.',
+  },
+]
+---
+
+<BaseLayout
+  title="Free Billable Hours Calculator — Insighty"
+  description="Calculate exactly how many billable hours you need each month to hit your revenue targets — factoring in your rate, overhead, and non-billable time. Free tool, no account required."
+>
+  <Header />
+  <main>
+
+    <!-- Hero -->
+    <section
+      class="pt-[140px] sm:pt-[150px] md:pt-[160px] pb-14 md:pb-20 relative overflow-hidden"
+      style="background: linear-gradient(135deg, #0a1628 0%, #112245 50%, #1a3a70 100%)"
+    >
+      <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 36px 36px;"></div>
+      <div class="main-container relative z-10">
+        <nav class="flex items-center gap-2 text-tagline-3 text-white/50 mb-10" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-white transition-colors duration-200">Insighty</a>
+          <span aria-hidden="true">/</span>
+          <a href="/tools" class="hover:text-white transition-colors duration-200">Tools</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-white/70">Billable Hours Calculator</span>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-20 items-center">
+          <div class="space-y-5">
+            <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white border border-white/30 px-4 py-1.5">Free Tool · Finance</span>
+            <h1 class="text-white">Free Billable Hours<br /><span class="hero-text-gradient hero-text-color-1">Calculator</span></h1>
+            <p class="text-white text-tagline-1 max-w-[480px]">
+              Calculate exactly how many billable hours you need each month to hit your revenue targets — factoring in your rate, overhead, and non-billable time.
+            </p>
+          </div>
+          <div class="hidden lg:block">
+            <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden">
+              <div class="px-5 py-4 border-b border-white/10">
+                <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Sample output</p>
+              </div>
+              <div class="p-5 space-y-3">
+                <div class="grid grid-cols-3 gap-3">
+                  <div class="rounded-xl bg-emerald-500/10 border border-emerald-500/25 p-4 space-y-1">
+                    <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Billable Hrs</p>
+                    <p class="text-heading-4 font-semibold text-emerald-400">120 hrs</p>
+                    <p class="text-tagline-3 text-white/40">per month</p>
+                  </div>
+                  <div class="rounded-xl bg-white/5 border border-white/10 p-4 space-y-1">
+                    <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Billable Days</p>
+                    <p class="text-heading-4 font-semibold text-white/80">15 days</p>
+                    <p class="text-tagline-3 text-white/40">at 8h/day</p>
+                  </div>
+                  <div class="rounded-xl bg-emerald-500/10 border border-emerald-500/25 p-4 space-y-1">
+                    <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Utilisation</p>
+                    <p class="text-heading-4 font-semibold text-emerald-400">75%</p>
+                    <p class="text-tagline-3 text-white/40">required</p>
+                  </div>
+                </div>
+                <div class="rounded-xl border border-emerald-500/25 bg-emerald-500/10 px-4 py-3">
+                  <p class="text-tagline-3 text-emerald-400">Utilisation of 75% is healthy — achievable without burning out. You have room to handle scope creep and admin.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="bg-background-1 dark:bg-background-8 py-14 md:py-20">
+      <div class="main-container">
+        <div class="grid grid-cols-1 lg:grid-cols-[220px_1fr] xl:grid-cols-[260px_1fr] gap-12 xl:gap-16 items-start">
+
+          <!-- Sidebar TOC -->
+          <div class="hidden lg:flex flex-col gap-8 sticky top-28">
+            <SidebarTOC items={toc} />
+          </div>
+
+          <!-- Main content -->
+          <div class="min-w-0 space-y-16">
+
+            <!-- CALCULATOR WIDGET -->
+            <div id="calculator" class="scroll-mt-28">
+              <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 overflow-hidden">
+                <div class="p-6 md:p-8 border-b border-stroke-2 dark:border-stroke-5">
+                  <h2 class="text-heading-5 font-semibold text-secondary dark:text-accent mb-1">Calculate Your Billable Hours</h2>
+                  <p class="text-tagline-2 text-secondary/55 dark:text-accent/55">Enter your target, rate, and non-billable overhead to see what you need to hit</p>
+                </div>
+
+                <div class="p-6 md:p-8 space-y-8">
+                  <!-- Inputs -->
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                    <div class="space-y-2">
+                      <label for="calc-target" class="block text-tagline-2 font-medium text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Monthly Revenue Target ($)</label>
+                      <input
+                        id="calc-target"
+                        type="number"
+                        min="0"
+                        placeholder="e.g. 12000"
+                        class="auth-form-input w-full text-heading-6 font-semibold text-secondary dark:text-accent placeholder:font-normal placeholder:text-secondary/25 dark:placeholder:text-accent/25"
+                      />
+                    </div>
+                    <div class="space-y-2">
+                      <label for="calc-rate" class="block text-tagline-2 font-medium text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Hourly Rate ($)</label>
+                      <input
+                        id="calc-rate"
+                        type="number"
+                        min="0"
+                        placeholder="e.g. 100"
+                        class="auth-form-input w-full text-heading-6 font-semibold text-secondary dark:text-accent placeholder:font-normal placeholder:text-secondary/25 dark:placeholder:text-accent/25"
+                      />
+                    </div>
+                    <div class="space-y-2">
+                      <label for="calc-nonbillable" class="block text-tagline-2 font-medium text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Non-Billable Time (%)</label>
+                      <input
+                        id="calc-nonbillable"
+                        type="number"
+                        min="0"
+                        max="99"
+                        placeholder="e.g. 30"
+                        class="auth-form-input w-full text-heading-6 font-semibold text-secondary dark:text-accent placeholder:font-normal placeholder:text-secondary/25 dark:placeholder:text-accent/25"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Outputs -->
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <!-- Billable Hours Needed -->
+                    <div id="out-hours-card" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300">
+                      <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Billable Hours Needed</p>
+                      <p id="out-hours" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
+                      <p id="out-hours-note" class="text-tagline-2 text-secondary/50 dark:text-accent/50">Enter numbers above</p>
+                    </div>
+                    <!-- Billable Days -->
+                    <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1">
+                      <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Billable Days</p>
+                      <p id="out-days" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
+                      <p id="out-days-note" class="text-tagline-2 text-secondary/50 dark:text-accent/50">Assumes 8h days</p>
+                    </div>
+                    <!-- Utilisation Rate -->
+                    <div id="out-util-card" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300">
+                      <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Utilisation Rate Required</p>
+                      <p id="out-util" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
+                      <p id="out-util-note" class="text-tagline-2 text-secondary/50 dark:text-accent/50">Of total working time</p>
+                    </div>
+                  </div>
+
+                  <!-- Health note -->
+                  <div id="health-note" class="hidden rounded-xl border px-5 py-4 text-tagline-2 leading-relaxed mt-4"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- EDUCATIONAL CONTENT -->
+            <div class="space-y-12 tool-content">
+
+              <div id="what-is-billable-hours-calculator" class="scroll-mt-28 space-y-4">
+                <h2>What is a billable hours calculator</h2>
+                <p>A billable hours calculator tells you how many client-facing, invoiceable hours you need to work each month to meet a specific revenue goal. It bridges the gap between what you want to earn and what you actually need to do to get there — accounting for variables that most people ignore when setting targets.</p>
+                <p>The core insight is that not all working hours translate into revenue. If you spend 30% of your week on sales, admin, and internal meetings, you have 30% fewer hours available to bill clients. Ignoring this when setting revenue targets is one of the most common reasons freelancers and agency owners consistently fall short of their goals: they plan for the revenue they need, not the hours that actually generate it.</p>
+                <p>This calculator takes three inputs — your revenue target, your hourly rate, and the percentage of your working week that is non-billable — and returns the exact number of billable hours you need each month, broken down into working days and expressed as a utilisation rate. If the utilisation rate comes back higher than you can realistically achieve, you know immediately that either your rate needs to increase or your revenue target needs to be recalibrated.</p>
+              </div>
+
+              <div id="understanding-utilisation-rate" class="scroll-mt-28 space-y-4">
+                <h2>Understanding utilisation rate</h2>
+                <p>Utilisation rate is the percentage of your total working time that is billable to clients. If you work 160 hours in a month and bill 112 of them, your utilisation rate is 70%. It is the single most important operational metric for any professional services business — more revealing than revenue alone, because it tells you whether your capacity is being used effectively.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Utilisation rate formula</p>
+                    <p class="font-mono text-tagline-2 bg-background-1 dark:bg-background-7 rounded-lg px-3 py-2">Billable Hours ÷ Total Working Hours × 100</p>
+                  </div>
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Required utilisation formula</p>
+                    <p class="font-mono text-tagline-2 bg-background-1 dark:bg-background-7 rounded-lg px-3 py-2">1 − (Non-Billable % ÷ 100)</p>
+                  </div>
+                </div>
+                <p>Low utilisation (below 60%) is a warning sign, but not always an emergency. It may indicate you are in a business development phase, ramping up a new service, or dealing with a project gap. Sustained low utilisation over multiple months, however, points to a structural problem: too much overhead, poor pipeline, or rates that require more hours than your schedule allows.</p>
+                <p>High utilisation (above 85%) looks great on paper but creates fragility. When every hour is accounted for, there is no room to absorb unexpected project complexity, respond to new opportunities, or simply think clearly. Agencies that consistently push utilisation above 85% typically see rising error rates, client satisfaction problems, and team burnout — all of which eventually cost more than the extra revenue earned.</p>
+                <div class="rounded-xl border border-primary-500/20 bg-primary-500/5 p-5">
+                  <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 leading-relaxed">
+                    <span class="font-semibold text-primary-500">Insighty tracks utilisation automatically.</span> Instead of calculating this manually each month, Insighty shows you real-time utilisation per team member, per client, and per project — so you can spot capacity gaps and over-allocation before they become problems.
+                  </p>
+                </div>
+              </div>
+
+              <div id="non-billable-time" class="scroll-mt-28 space-y-5">
+                <h2>How non-billable time kills revenue</h2>
+                <p>Non-billable time is not a rounding error — it is often the largest single category of work in a professional services business. Sales calls, proposal writing, internal meetings, admin, bookkeeping, marketing, and professional development all consume real hours. The problem is that these hours are invisible on most invoices, which makes it easy to undercount them.</p>
+                <p>Consider the compounding effect: a freelancer working 160 hours per month with 35% non-billable overhead has just 104 hours available to bill. At $100/hour, their theoretical monthly ceiling is $10,400 — not $16,000. If they set a $12,000 revenue target without accounting for non-billable time, they would need to bill 120 hours, but only have 104 available. The target is structurally impossible at current rates.</p>
+                <div class="space-y-3">
+                  <h3>The most common non-billable time sinks</h3>
+                  <ul>
+                    <li><strong>Proposals and scope documents.</strong> Writing proposals takes 4–8 hours on average for a mid-sized project. At a 30% proposal conversion rate, two of every three proposals represent entirely lost time. Standardising your process and qualifying leads more rigorously reduces this drain significantly.</li>
+                    <li><strong>Internal meetings and status updates.</strong> For agencies with employees, internal coordination can consume 15–25% of the working week. Stand-ups, project reviews, and informal check-ins add up faster than anyone realises. Asynchronous communication tools and clear project documentation reduce this without sacrificing alignment.</li>
+                    <li><strong>Finance and administration.</strong> Invoicing, chasing late payments, bookkeeping, and contractor management typically take 2–4 hours per week for solo operators and more for small agencies. Automated invoicing and clear payment terms (with late fees) reduce this materially.</li>
+                    <li><strong>Business development.</strong> Sales calls, networking, content creation, and marketing your own work are essential long-term activities, but they need to be budgeted against your capacity honestly. A 10% allocation is realistic for referral-driven businesses; agencies growing through outbound marketing may allocate 20–25%.</li>
+                  </ul>
+                </div>
+                <p>The practical fix is to track non-billable time with the same rigour as billable time. Once you have two or three months of data, patterns emerge — and patterns can be improved. You may find that a recurring internal report takes six hours monthly and could be automated in an afternoon, or that a category of client generates disproportionate non-billable admin relative to the revenue they produce.</p>
+              </div>
+
+              <div id="industry-benchmarks" class="scroll-mt-28 space-y-5">
+                <h2>Industry benchmarks: agency utilisation rates by role</h2>
+                <p>Utilisation targets vary significantly by role. Client-facing roles tend to have lower billable percentages because relationship management and business development are inherently non-billable. Production roles — development, design — can sustain higher utilisation because their work is more directly mappable to deliverables.</p>
+                <div class="overflow-x-auto rounded-xl border border-stroke-2 dark:border-stroke-5">
+                  <table class="w-full text-tagline-2">
+                    <thead>
+                      <tr class="bg-background-2 dark:bg-background-6 border-b border-stroke-2 dark:border-stroke-5">
+                        <th class="text-left px-5 py-3 font-semibold text-secondary/70 dark:text-accent/70 uppercase tracking-widest text-tagline-3">Role</th>
+                        <th class="text-left px-5 py-3 font-semibold text-secondary/70 dark:text-accent/70 uppercase tracking-widest text-tagline-3">Typical Utilisation</th>
+                        <th class="text-left px-5 py-3 font-semibold text-secondary/70 dark:text-accent/70 uppercase tracking-widest text-tagline-3">Why</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {benchmarkData.map((row, i) => (
+                        <tr class={`border-b border-stroke-2 dark:border-stroke-5 last:border-0 ${i % 2 === 0 ? 'bg-background-1 dark:bg-background-8' : 'bg-background-2 dark:bg-background-6'}`}>
+                          <td class="px-5 py-3 font-medium text-secondary dark:text-accent">{row.role}</td>
+                          <td class="px-5 py-3">
+                            <span class="inline-block px-2.5 py-0.5 rounded-full bg-primary-500/10 text-primary-500 font-medium text-tagline-3">{row.typical}</span>
+                          </td>
+                          <td class="px-5 py-3 text-secondary/70 dark:text-accent/70">{row.note}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p>These benchmarks are averages across well-run agencies. Early-stage businesses and solo operators typically land 5–10 percentage points lower as they build pipelines and systems. If your current utilisation is significantly below the benchmark for your role, the gap is almost always explained by one of three things: too much unstructured non-billable time, a gap in billable work (pipeline problem), or a rate that requires more hours than available capacity allows.</p>
+                <p>It is also worth noting that utilisation benchmarks should not be targets for maximisation — they are indicators of healthy operating ranges. Pushing a developer consistently above 80% without project buffer time degrades code quality and creates hidden technical debt. Pushing a project manager above 60% typically means project health is being sacrificed for billable appearances.</p>
+              </div>
+
+              <div id="how-to-increase-billable-hours" class="scroll-mt-28 space-y-5">
+                <h2>How to increase billable hours</h2>
+                <p>Increasing billable hours is not simply a matter of working longer. The most effective strategies reduce the non-billable overhead that competes with client work, improve pipeline consistency so there are always projects to bill against, and create structural conditions where more of your expertise can be invoiced directly.</p>
+                <div class="space-y-3">
+                  <h3>Reduce non-billable overhead</h3>
+                  <ul>
+                    <li><strong>Systematise proposals.</strong> Build a proposal template that covers 80% of your typical scope. The remaining 20% that requires custom thinking is what you spend time on — not reformatting the same document structure each time. This alone can recover 4–6 hours per month for most freelancers.</li>
+                    <li><strong>Automate invoicing and follow-ups.</strong> Manual invoicing and payment chasing are pure overhead. Automated systems send invoices on project milestones and follow up on late payments without consuming your attention.</li>
+                    <li><strong>Batch administrative work.</strong> Grouping all admin into a single dedicated block (Friday afternoons, for example) prevents it from fragmenting your week. Interruptions from switching contexts cost far more time than the tasks themselves.</li>
+                    <li><strong>Qualify leads earlier.</strong> Most non-billable sales time is spent on prospects who were never going to convert. A simple qualification framework — budget, timeline, decision-maker access — filters out bad-fit leads before you invest proposal time.</li>
+                  </ul>
+                  <h3>Improve pipeline consistency</h3>
+                  <ul>
+                    <li><strong>Introduce retainer structures.</strong> Project-based work creates utilisation feast-and-famine cycles. Monthly retainers provide predictable billable hours, improve cash flow, and reduce the proportion of time spent selling. Even a small base retainer from key clients smooths the curve significantly.</li>
+                    <li><strong>Systematise your pipeline.</strong> Inconsistent pipeline management is the leading cause of low utilisation. Agencies that maintain a short list of warm prospects — and keep them warm with regular touchpoints — have far fewer dry spells than those who start selling reactively when a project ends.</li>
+                    <li><strong>Sell adjacent services.</strong> Existing clients already trust you and require minimal non-billable sales time to convert. Expanding the scope of what you offer — maintenance, analytics, training, audits — increases billable hours per client without proportional increases in sales overhead.</li>
+                  </ul>
+                  <h3>Structure engagements for higher billability</h3>
+                  <ul>
+                    <li><strong>Define scope rigorously.</strong> Unbounded scope is the primary cause of projects delivering fewer effective billable hours than planned. Clear contracts with a formal change-order process ensure that scope expansion generates additional revenue rather than eroding margin on existing work.</li>
+                    <li><strong>Track time on every project.</strong> You cannot improve what you do not measure. Even rough time tracking reveals which project types run over budget, which client relationships generate disproportionate admin, and where your actual capacity is being consumed.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- FAQ -->
+              <div id="faq" class="scroll-mt-28 space-y-4">
+                <h2>Frequently asked questions</h2>
+                <div class="space-y-3" id="faq-list">
+                  {faqs.map((item, i) => (
+                    <div class="faq-item rounded-xl border border-stroke-2 dark:border-stroke-5 overflow-hidden">
+                      <button
+                        class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-4 text-left bg-background-2 dark:bg-background-6 hover:bg-background-3 dark:hover:bg-background-5 transition-colors duration-200"
+                        aria-expanded="false"
+                        data-index={i}
+                      >
+                        <span class="text-tagline-1 font-medium text-secondary dark:text-accent">{item.q}</span>
+                        <svg class="faq-chevron w-5 h-5 shrink-0 text-secondary/40 dark:text-accent/40 transition-transform duration-200" viewBox="0 0 20 20" fill="none">
+                          <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </button>
+                      <div class="faq-body hidden px-6 py-4 bg-background-1 dark:bg-background-7 border-t border-stroke-2 dark:border-stroke-5">
+                        <p class="text-tagline-2 text-secondary/65 dark:text-accent/65 leading-relaxed">{item.a}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+
+            <!-- CTA -->
+            <div class="rounded-2xl overflow-hidden" style="background: linear-gradient(135deg, #0a1628 0%, #112245 60%, #1a3a70 100%)">
+              <div class="p-8 md:p-10 space-y-4">
+                <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Want this tracked automatically?</p>
+                <h2 class="text-white text-heading-4">See utilisation and billable hours — in real time</h2>
+                <p class="text-white/60 text-tagline-1 max-w-[520px]">
+                  Insighty tracks billable hours, utilisation rate, and revenue per team member automatically — across every project and client. No manual calculations at the end of each month.
+                </p>
+                <div class="flex flex-wrap items-center gap-4 pt-2">
+                  <a href="/founding-member" class="btn btn-md btn-outline-white"><span>Request early access</span></a>
+                  <a href="/#platform" class="inline-flex items-center gap-2 text-white/75 hover:text-white text-tagline-2 font-medium uppercase tracking-wide transition-colors duration-200 group">
+                    <span>See the platform</span>
+                    <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  // ── Element refs ──────────────────────────────────────────────────────────
+  const targetInput      = document.getElementById('calc-target')      as HTMLInputElement
+  const rateInput        = document.getElementById('calc-rate')        as HTMLInputElement
+  const nonBillableInput = document.getElementById('calc-nonbillable') as HTMLInputElement
+
+  const outHours     = document.getElementById('out-hours')!
+  const outHoursNote = document.getElementById('out-hours-note')!
+  const outHoursCard = document.getElementById('out-hours-card')!
+  const outDays      = document.getElementById('out-days')!
+  const outDaysNote  = document.getElementById('out-days-note')!
+  const outUtil      = document.getElementById('out-util')!
+  const outUtilNote  = document.getElementById('out-util-note')!
+  const outUtilCard  = document.getElementById('out-util-card')!
+  const healthNote   = document.getElementById('health-note')!
+
+  // ── Calculator helpers ────────────────────────────────────────────────────
+  function pct(n: number): string {
+    return n.toFixed(1) + '%'
+  }
+
+  function utilColor(u: number): { border: string; bg: string; text: string } {
+    if (u < 70)  return { border: 'border-emerald-500/30', bg: 'bg-emerald-500/5', text: 'text-emerald-600 dark:text-emerald-400' }
+    if (u <= 85) return { border: 'border-amber-500/30',   bg: 'bg-amber-500/5',   text: 'text-amber-600 dark:text-amber-400' }
+    return              { border: 'border-red-500/30',     bg: 'bg-red-500/5',     text: 'text-red-600 dark:text-red-400' }
+  }
+
+  function applyCardStyle(card: HTMLElement, valueEl: HTMLElement, value: number, active: boolean): void {
+    card.className    = card.className.replace(/border-\S+\/30\s?/g, '').replace(/bg-\S+\/5\s?/g, '').trim()
+    valueEl.className = valueEl.className.replace(/text-(emerald|amber|red)-\S+\s?/g, '').trim()
+    if (!active) return
+    const c = utilColor(value)
+    card.classList.add(c.border, c.bg)
+    valueEl.classList.add(...c.text.split(' '))
+  }
+
+  function calculate(): void {
+    const target      = parseFloat(targetInput.value)
+    const rate        = parseFloat(rateInput.value)
+    const nonBillable = parseFloat(nonBillableInput.value)
+
+    const hasTarget      = !isNaN(target) && target > 0
+    const hasRate        = !isNaN(rate) && rate > 0
+    const hasNonBillable = !isNaN(nonBillable) && nonBillable >= 0 && nonBillable < 100
+
+    if (!hasTarget || !hasRate) {
+      outHours.textContent     = '—'
+      outHoursNote.textContent = 'Enter numbers above'
+      outDays.textContent      = '—'
+      outDaysNote.textContent  = 'Assumes 8h days'
+      outUtil.textContent      = '—'
+      outUtilNote.textContent  = 'Of total working time'
+      healthNote.classList.add('hidden')
+      applyCardStyle(outHoursCard, outHours, 0, false)
+      applyCardStyle(outUtilCard,  outUtil,  0, false)
+      return
+    }
+
+    const rawBillableHours = target / rate
+    const nb               = hasNonBillable ? nonBillable : 0
+    const billableFraction = 1 - nb / 100
+
+    const standardMonthHours  = 160
+    const requiredUtilisation = (rawBillableHours / standardMonthHours) * 100
+    const billableDays        = rawBillableHours / 8
+
+    outHours.textContent     = Math.ceil(rawBillableHours) + ' hrs'
+    outHoursNote.textContent = 'per month'
+    outDays.textContent      = billableDays.toFixed(1) + ' days'
+    outDaysNote.textContent  = 'at 8h per day'
+    outUtil.textContent      = pct(requiredUtilisation)
+    outUtilNote.textContent  = 'of total working time'
+
+    applyCardStyle(outHoursCard, outHours, requiredUtilisation, true)
+    applyCardStyle(outUtilCard,  outUtil,  requiredUtilisation, true)
+
+    healthNote.classList.remove('hidden')
+    const c = utilColor(requiredUtilisation)
+    healthNote.className = `rounded-xl border ${c.border} ${c.bg} px-5 py-4 text-tagline-2 leading-relaxed mt-4`
+
+    if (requiredUtilisation < 70) {
+      healthNote.textContent = `Utilisation of ${pct(requiredUtilisation)} is healthy — achievable without burning out. You have capacity to handle scope creep, unexpected work, and still take proper breaks.`
+    } else if (requiredUtilisation <= 85) {
+      healthNote.textContent = `Utilisation of ${pct(requiredUtilisation)} is ambitious but achievable. Keep a close eye on scope and pipeline — there is limited buffer if projects run over or a slow month arrives.`
+    } else {
+      healthNote.textContent = `Utilisation of ${pct(requiredUtilisation)} is unsustainable long-term. At this level, any project overrun, admin overhead, or quiet week will leave you short. Consider raising your rate or adjusting your revenue target.`
+    }
+  }
+
+  // ── Input listeners ───────────────────────────────────────────────────────
+  targetInput.addEventListener('input', calculate)
+  rateInput.addEventListener('input', calculate)
+  nonBillableInput.addEventListener('input', calculate)
+
+  // ── FAQ accordion ─────────────────────────────────────────────────────────
+  document.querySelectorAll<HTMLButtonElement>('.faq-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const body    = btn.nextElementSibling as HTMLElement
+      const chevron = btn.querySelector('.faq-chevron') as HTMLElement
+      const isOpen  = btn.getAttribute('aria-expanded') === 'true'
+
+      btn.setAttribute('aria-expanded', String(!isOpen))
+      body.classList.toggle('hidden', isOpen)
+      chevron.style.transform = isOpen ? '' : 'rotate(180deg)'
+    })
+  })
+</script>
+
+<style>
+  .tool-content :global(h2) {
+    font-size: var(--text-heading-4);
+    line-height: var(--text-heading-4--line-height);
+    font-weight: 500;
+    color: var(--color-secondary);
+  }
+  :global(.dark) .tool-content :global(h2) { color: var(--color-accent); }
+
+  .tool-content :global(h3) {
+    font-size: var(--text-heading-5);
+    line-height: var(--text-heading-5--line-height);
+    font-weight: 500;
+    color: var(--color-secondary);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  :global(.dark) .tool-content :global(h3) { color: var(--color-accent); }
+
+  .tool-content :global(p) {
+    font-size: var(--text-tagline-1);
+    line-height: 1.75;
+    color: color-mix(in srgb, var(--color-secondary) 65%, transparent);
+  }
+  :global(.dark) .tool-content :global(p) { color: color-mix(in srgb, var(--color-accent) 65%, transparent); }
+
+  .tool-content :global(ul) {
+    font-size: var(--text-tagline-1);
+    line-height: 1.75;
+    color: color-mix(in srgb, var(--color-secondary) 65%, transparent);
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    space-y: 0.5rem;
+  }
+  :global(.dark) .tool-content :global(ul) { color: color-mix(in srgb, var(--color-accent) 65%, transparent); }
+  .tool-content :global(li) { margin-bottom: 0.5rem; }
+
+  .tool-content :global(strong) {
+    font-weight: 600;
+    color: var(--color-secondary);
+  }
+  :global(.dark) .tool-content :global(strong) { color: var(--color-accent); }
+</style>
