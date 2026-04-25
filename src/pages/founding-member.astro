@@ -1,0 +1,604 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/organisms/Header.astro'
+import Footer from '../components/organisms/Footer.astro'
+
+const spotsRemaining = 20
+const spotsClaimed = 4
+
+const benefits = [
+  {
+    icon: `<svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2L13.09 8.26L20 9.27L15 14.14L16.18 21.02L11 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L11 2Z"/></svg>`,
+    title: 'Lifetime pricing lock',
+    body: 'The rate you sign up at is yours permanently. No annual price increases, no "market adjustment" emails. Founding member rates are frozen for life — regardless of where pricing goes after launch.',
+  },
+  {
+    icon: `<svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="9"/><path d="M11 7v4l3 3"/></svg>`,
+    title: 'First access to every release',
+    body: 'New modules, feature updates, Pixel AI improvements — you get access weeks before public release. You run on the most advanced version of Insighty, every time.',
+  },
+  {
+    icon: `<svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+    title: 'Direct line to the product team',
+    body: "Your workflow, your pain points, your agency's reality shapes the roadmap. Founding members get a direct channel to the team — not a feedback form. We built the first version from real agency input; you help build the next.",
+  },
+  {
+    icon: `<svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+    title: 'White-glove onboarding',
+    body: "We migrate your data, map your projects, and configure your workspace ourselves. No reading docs alone. Founding members get a dedicated onboarding session — we're not done until you're running.",
+  },
+  {
+    icon: `<svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="18" height="14" rx="2"/><path d="M16 7V5a4 4 0 0 0-8 0v2"/><line x1="12" y1="12" x2="12" y2="15"/><circle cx="12" cy="15" r="1" fill="currentColor"/></svg>`,
+    title: 'Private founding member community',
+    body: 'A closed group of agency operators who got in early. Compare notes, share what works, and talk directly to the Insighty team. No noise, no vendors, no outsiders — just people building serious agencies.',
+  },
+  {
+    icon: `<svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>`,
+    title: 'Founding member badge',
+    body: "Permanently marked in your account as someone who believed in Insighty before it launched. The agencies that built this with us — acknowledged, always.",
+  },
+]
+
+const roadmapBuilt = [
+  'Revenue & financial operations hub',
+  'Project & delivery management with budget tracking',
+  'Client health scoring & churn risk indicators',
+  'Contract renewal pipeline',
+  'Hosting & domain infrastructure registry',
+  'Time tracking & resource utilisation view',
+  'Pixel AI v1.0 — queries, proactive alerts, anomaly detection',
+  'Integrations: Jira, Asana, ClickUp, Linear, HubSpot, Xero, QuickBooks, Slack',
+]
+
+const roadmapComing = [
+  { label: 'Q3 2026', items: ['Mobile app (iOS + Android)', 'Pixel AI 2.0 — proposal builder & contract analysis'] },
+  { label: 'Q4 2026', items: ['White-label client portal', 'Advanced resource planning & capacity management'] },
+  { label: '2027', items: ['Custom API access & webhooks', 'Agency network & referral tracking'] },
+]
+---
+
+<BaseLayout
+  title="Founding Member — Insighty"
+  description="Join Insighty as a founding member. Get lifetime pricing, first access to every release, and a direct line to shape the product. Limited to 20 spots."
+>
+  <Header />
+  <main>
+
+    <!-- ========================= Hero ========================= -->
+    <section
+      class="relative overflow-hidden pt-[130px] sm:pt-[145px] md:pt-[160px] pb-20 md:pb-28"
+      style="background: linear-gradient(160deg, #080e1f 0%, #0c1832 35%, #112444 65%, #1a3468 100%)"
+    >
+      <div class="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] select-none" style="background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(74,110,199,0.28) 0%, transparent 70%);"></div>
+      <div class="absolute inset-0 opacity-[0.035]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 36px 36px;"></div>
+
+      <div class="main-container relative z-10">
+        <div class="max-w-[760px] mx-auto text-center space-y-7">
+
+          <!-- Badge -->
+          <span class="inline-flex items-center gap-2.5 text-tagline-3 uppercase tracking-widest font-medium text-white/40 border border-white/10 px-4 py-1.5 rounded-full">
+            <span class="w-2 h-2 rounded-full bg-primary-400 animate-pulse"></span>
+            {spotsRemaining} founding spots remaining
+          </span>
+
+          <h1 class="text-white leading-tight">
+            Join the agencies<br />
+            <span class="hero-text-gradient hero-text-color-1">building with us.</span>
+          </h1>
+
+          <p class="text-white/60 text-tagline-1 max-w-[560px] mx-auto leading-relaxed">
+            Insighty is launching soon — and it's already operational for early agencies. We're opening {spotsRemaining} founding spots for the operators who want to grow with us, not wait for us.
+          </p>
+
+          <!-- Spot progress bar -->
+          <div class="max-w-[400px] mx-auto space-y-2.5">
+            <div class="flex justify-between text-tagline-3 text-white/35">
+              <span>{spotsClaimed} spots claimed</span>
+              <span>{spotsRemaining} remaining of 24</span>
+            </div>
+            <div class="h-1.5 w-full rounded-full bg-white/10">
+              <div
+                class="h-full rounded-full bg-primary-400"
+                style={`width: ${(spotsClaimed / 24) * 100}%;`}
+              ></div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <a href="#claim-spot" class="btn btn-secondary dark:btn-accent btn-md">
+              <span>Claim my founding spot</span>
+            </a>
+            <a href="#why-now" class="btn btn-md" style="background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.15); border-radius: 9999px;">
+              <span>Why join now?</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= Why join now ========================= -->
+    <section id="why-now" class="bg-background-1 dark:bg-background-8 py-20 md:py-28 border-b border-stroke-2 dark:border-stroke-6">
+      <div class="main-container">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-start">
+
+          <!-- Left: narrative -->
+          <div class="space-y-8">
+            <div class="space-y-4">
+              <span class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">The honest pitch</span>
+              <h2 class="text-secondary dark:text-accent">We're building in public. You should be part of it.</h2>
+            </div>
+            <div class="space-y-5 text-tagline-1 text-secondary/65 dark:text-accent/65 leading-relaxed">
+              <p>
+                Insighty's core platform is already running — revenue operations, project management, client health, hosting registry, and Pixel AI are all live. Agencies are using it today to replace 4–6 separate tools.
+              </p>
+              <p>
+                But we're not done. The roadmap ahead — mobile app, AI proposal builder, white-label client portals, advanced capacity planning — is ambitious. We're building it fast, and we're building it with input from the agencies using it.
+              </p>
+              <p>
+                A founding member isn't buying a finished product. They're joining the team that's finishing it. In exchange for that trust, you get pricing, access, and influence that nobody who joins after launch ever will.
+              </p>
+            </div>
+            <div class="border-t border-stroke-2 dark:border-stroke-6 pt-8 space-y-5">
+              {[
+                { label: 'Locked forever', desc: "Your founding rate never increases — even when Insighty raises prices after launch." },
+                { label: 'You shape the roadmap', desc: "Direct access to the product team. Your agency's workflows influence what we build next." },
+                { label: 'Full platform access, now', desc: "Not a waitlist. You're in from day one — using the platform while it grows around you." },
+              ].map(item => (
+                <div class="flex items-start gap-4">
+                  <div class="w-5 h-5 rounded-full bg-primary-500/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <svg class="w-3 h-3 text-primary-500" viewBox="0 0 12 12" fill="none"><path d="M2 6l2.5 2.5 5.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+                  <div>
+                    <p class="text-tagline-2 font-semibold text-secondary dark:text-accent">{item.label}</p>
+                    <p class="text-tagline-2 text-secondary/55 dark:text-accent/55 mt-0.5 leading-relaxed">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Right: what's built vs what's coming -->
+          <div class="space-y-5">
+
+            <!-- Built & live -->
+            <div class="rounded-2xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 overflow-hidden">
+              <div class="px-6 py-4 border-b border-stroke-2 dark:border-stroke-6 flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                <span class="text-tagline-3 uppercase tracking-widest font-bold text-secondary/40 dark:text-accent/40">Built & live today</span>
+              </div>
+              <ul class="p-6 space-y-3">
+                {roadmapBuilt.map(item => (
+                  <li class="flex items-start gap-3">
+                    <svg class="w-4 h-4 text-green-500 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" fill="currentColor" opacity="0.15"/><path d="M4.5 8l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="text-tagline-2 text-secondary/70 dark:text-accent/70 leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Roadmap coming -->
+            <div class="rounded-2xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 overflow-hidden">
+              <div class="px-6 py-4 border-b border-stroke-2 dark:border-stroke-6 flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-primary-400 animate-pulse"></span>
+                <span class="text-tagline-3 uppercase tracking-widest font-bold text-secondary/40 dark:text-accent/40">Coming next</span>
+              </div>
+              <div class="p-6 space-y-6">
+                {roadmapComing.map((phase, i) => (
+                  <div class="flex gap-4">
+                    <div class="flex flex-col items-center">
+                      <div class="w-7 h-7 rounded-full border-2 border-primary-500/30 bg-primary-500/8 flex items-center justify-center shrink-0">
+                        <div class="w-2 h-2 rounded-full bg-primary-500"></div>
+                      </div>
+                      {i < roadmapComing.length - 1 && <div class="w-px flex-1 mt-2 bg-primary-500/15"></div>}
+                    </div>
+                    <div class="pb-6 space-y-1.5">
+                      <span class="text-tagline-3 font-bold uppercase tracking-wider text-primary-500">{phase.label}</span>
+                      <ul class="space-y-1.5">
+                        {phase.items.map(item => (
+                          <li class="text-tagline-2 text-secondary/65 dark:text-accent/65">{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= Benefits ========================= -->
+    <section
+      class="py-20 md:py-28 relative overflow-hidden"
+      style="background: linear-gradient(160deg, #080e1f 0%, #0c1832 40%, #112444 100%)"
+    >
+      <div class="pointer-events-none absolute -top-64 left-1/2 -translate-x-1/2 w-[800px] h-[600px] select-none" style="background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(74,110,199,0.2) 0%, transparent 70%);"></div>
+
+      <div class="main-container relative z-10">
+        <div class="text-center max-w-[560px] mx-auto mb-14 space-y-4">
+          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white/40 border border-white/10 px-4 py-1.5 rounded-full">Founding member benefits</span>
+          <h2 class="text-white">Why founding members get what nobody else will</h2>
+          <p class="text-white/55 text-tagline-1 leading-relaxed">
+            These benefits don't transfer. They don't expire. They exist specifically for the agencies who joined before Insighty was a household name.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+          {benefits.map(b => (
+            <div
+              class="rounded-2xl p-7 space-y-5"
+              style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);"
+            >
+              <span class="w-11 h-11 rounded-xl bg-primary-500/15 text-primary-400 flex items-center justify-center">
+                <span class="w-5 h-5 block" set:html={b.icon} />
+              </span>
+              <div class="space-y-2.5">
+                <p class="text-heading-6 font-semibold text-white">{b.title}</p>
+                <p class="text-tagline-2 text-white/55 leading-relaxed">{b.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Pricing callout -->
+        <div class="mt-14 rounded-2xl p-8 md:p-10 grid grid-cols-1 md:grid-cols-3 gap-8 items-center" style="background: rgba(74,110,199,0.1); border: 1px solid rgba(74,110,199,0.25);">
+          <div class="md:col-span-2 space-y-3">
+            <span class="inline-block text-tagline-3 uppercase tracking-widest font-semibold text-primary-400 border border-primary-500/25 px-3 py-1 rounded-full">Founding member pricing</span>
+            <h3 class="text-white" style="font-size: 1.5rem; font-weight: 600; line-height: 1.3;">30% off Growth plan. Locked forever.</h3>
+            <p class="text-white/55 text-tagline-1 leading-relaxed">
+              Growth plan at $90/mo instead of $129/mo — locked for life. When Insighty raises prices, your rate stays. When we add features, you get them. Forever.
+            </p>
+          </div>
+          <div class="text-center md:text-right space-y-4">
+            <div>
+              <span class="text-white/30 text-tagline-2 line-through">$129 / mo</span>
+              <p class="text-white font-bold mt-1" style="font-size: 2.5rem; line-height: 1; letter-spacing: -0.02em;">$90<span class="text-tagline-1 font-normal text-white/45"> / mo</span></p>
+              <p class="text-tagline-3 text-white/35 mt-1">Billed annually · Save $468/yr</p>
+            </div>
+            <a href="#claim-spot" class="inline-block btn btn-secondary dark:btn-accent btn-md">
+              <span>Claim this rate</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================= Form split ========================= -->
+    <section id="claim-spot" class="min-h-screen flex flex-col lg:grid lg:grid-cols-2">
+
+      <!-- Left: pitch -->
+      <div
+        class="founding-left relative overflow-hidden flex flex-col justify-between px-8 pt-16 pb-12 md:px-12 md:pt-20 md:pb-16 xl:px-16 xl:pt-24 xl:pb-20 lg:min-h-screen"
+        style="background: linear-gradient(160deg, #0c1932 0%, #112445 40%, #1b3a6b 100%);"
+      >
+        <div class="pointer-events-none absolute -top-32 -left-32 w-[600px] h-[600px] rounded-full opacity-25 select-none" style="background: radial-gradient(circle, #4a6ec7 0%, transparent 70%);"></div>
+
+        <div class="relative z-10 flex flex-col gap-10 lg:gap-12 h-full">
+
+          <!-- Headline -->
+          <div class="space-y-5 max-w-[480px]">
+            <span class="inline-flex items-center gap-2 text-tagline-3 uppercase tracking-widest font-medium text-white/40 border border-white/10 px-3 py-1.5 rounded-full">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary-400 animate-pulse"></span>
+              {spotsRemaining} spots left
+            </span>
+            <h2 class="text-white leading-tight" style="font-size: clamp(1.75rem, 3vw, 2.75rem);">
+              Claim your founding spot before they're gone
+            </h2>
+            <p class="text-white/60 text-tagline-1 leading-relaxed">
+              Fill in your details. We'll confirm your founding spot and reach out within one business day to get you onboarded.
+            </p>
+          </div>
+
+          <!-- What happens next -->
+          <div class="space-y-5">
+            <p class="text-tagline-3 uppercase tracking-widest font-semibold text-white/30">What happens after you submit</p>
+            <ul class="space-y-5">
+              {[
+                { step: '01', title: 'We confirm your spot', desc: "You'll hear from us within one business day. We personally review every founding member application." },
+                { step: '02', title: 'Onboarding call', desc: "We schedule a 30-minute call to understand your agency and configure Insighty around your workflow." },
+                { step: '03', title: "You're live", desc: "Your workspace is ready. Your founding member rate is locked. You're in." },
+              ].map(item => (
+                <li class="flex items-start gap-4">
+                  <span class="text-tagline-3 font-bold shrink-0 mt-0.5 text-primary-400/60">{item.step}</span>
+                  <div>
+                    <p class="text-tagline-2 font-semibold text-white">{item.title}</p>
+                    <p class="text-tagline-2 text-white/50 mt-0.5 leading-relaxed">{item.desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Social proof -->
+          <div class="mt-auto border-t border-white/10 pt-8">
+            <p class="text-tagline-3 text-white/30 uppercase tracking-widest font-medium mb-4">Founding members so far</p>
+            <div class="flex items-center gap-4 flex-wrap">
+              <div class="flex -space-x-2">
+                {['SA', 'MK', 'JL', 'TR'].map(initials => (
+                  <div class="size-9 rounded-full border border-white/15 flex items-center justify-center text-[11px] font-bold text-white" style="background: rgba(74,110,199,0.35);">{initials}</div>
+                ))}
+              </div>
+              <div>
+                <p class="text-tagline-2 text-white/70">{spotsClaimed} agencies already in</p>
+                <p class="text-tagline-3 text-white/35">Spots filling quickly</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <div class="founding-right bg-background-1 dark:bg-background-6 flex flex-col justify-center px-8 pt-16 pb-12 md:px-12 md:pt-20 md:pb-16 xl:px-16 xl:pt-24 xl:pb-20 lg:min-h-screen">
+        <div class="w-full max-w-[480px] mx-auto space-y-8">
+
+          <!-- Form header -->
+          <div id="founding-form-header" class="space-y-2">
+            <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40 border border-stroke-2 dark:border-stroke-5 px-3 py-1.5 rounded-full">Founding Member Application</span>
+            <h3 class="text-secondary dark:text-accent" style="font-size: 1.375rem; font-weight: 600; line-height: 1.3;">
+              Tell us about your agency
+            </h3>
+            <p class="text-tagline-2 text-secondary/50 dark:text-accent/50">
+              We review every application personally and will confirm your spot within one business day.
+            </p>
+          </div>
+
+          <!-- Form -->
+          <form class="space-y-4" id="founding-form" novalidate>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div class="space-y-1.5">
+                <label for="fm-first-name" class="text-tagline-2 font-medium text-secondary dark:text-accent">
+                  First name <span class="text-primary-500">*</span>
+                </label>
+                <input
+                  id="fm-first-name"
+                  name="first_name"
+                  type="text"
+                  placeholder="Sam"
+                  required
+                  autocomplete="given-name"
+                  class="founding-input w-full rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent placeholder:text-secondary/30 dark:placeholder:text-accent/30 focus:outline-none focus:border-primary-500 transition-colors"
+                />
+              </div>
+              <div class="space-y-1.5">
+                <label for="fm-last-name" class="text-tagline-2 font-medium text-secondary dark:text-accent">
+                  Last name <span class="text-primary-500">*</span>
+                </label>
+                <input
+                  id="fm-last-name"
+                  name="last_name"
+                  type="text"
+                  placeholder="Carter"
+                  required
+                  autocomplete="family-name"
+                  class="founding-input w-full rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent placeholder:text-secondary/30 dark:placeholder:text-accent/30 focus:outline-none focus:border-primary-500 transition-colors"
+                />
+              </div>
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="fm-email" class="text-tagline-2 font-medium text-secondary dark:text-accent">
+                Work email <span class="text-primary-500">*</span>
+              </label>
+              <input
+                id="fm-email"
+                name="email"
+                type="email"
+                placeholder="sam@youragency.com"
+                required
+                autocomplete="email"
+                class="founding-input w-full rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent placeholder:text-secondary/30 dark:placeholder:text-accent/30 focus:outline-none focus:border-primary-500 transition-colors"
+              />
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="fm-agency" class="text-tagline-2 font-medium text-secondary dark:text-accent">
+                Agency name <span class="text-primary-500">*</span>
+              </label>
+              <input
+                id="fm-agency"
+                name="agency_name"
+                type="text"
+                placeholder="Your agency"
+                required
+                autocomplete="organization"
+                class="founding-input w-full rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent placeholder:text-secondary/30 dark:placeholder:text-accent/30 focus:outline-none focus:border-primary-500 transition-colors"
+              />
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div class="space-y-1.5">
+                <label for="fm-team-size" class="text-tagline-2 font-medium text-secondary dark:text-accent">
+                  Team size <span class="text-primary-500">*</span>
+                </label>
+                <div class="relative">
+                  <select
+                    id="fm-team-size"
+                    name="team_size"
+                    required
+                    class="founding-input w-full rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent focus:outline-none focus:border-primary-500 transition-colors appearance-none cursor-pointer"
+                  >
+                    <option value="" disabled selected>Select</option>
+                    <option value="1-5">1–5 people</option>
+                    <option value="6-15">6–15 people</option>
+                    <option value="16-30">16–30 people</option>
+                    <option value="31+">31+ people</option>
+                  </select>
+                  <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-secondary/30 dark:text-accent/30">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </div>
+              </div>
+              <div class="space-y-1.5">
+                <label for="fm-role" class="text-tagline-2 font-medium text-secondary dark:text-accent">
+                  Your role <span class="text-primary-500">*</span>
+                </label>
+                <div class="relative">
+                  <select
+                    id="fm-role"
+                    name="role"
+                    required
+                    class="founding-input w-full rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent focus:outline-none focus:border-primary-500 transition-colors appearance-none cursor-pointer"
+                  >
+                    <option value="" disabled selected>Select</option>
+                    <option value="owner">Agency Owner / CEO</option>
+                    <option value="pm">Project Manager</option>
+                    <option value="ops">Operations Manager</option>
+                    <option value="finance">Finance / Accounting</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-secondary/30 dark:text-accent/30">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="fm-challenge" class="text-tagline-2 font-medium text-secondary dark:text-accent">
+                Biggest ops challenge right now <span class="text-primary-500">*</span>
+              </label>
+              <div class="relative">
+                <select
+                  id="fm-challenge"
+                  name="challenge"
+                  required
+                  class="founding-input w-full rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent focus:outline-none focus:border-primary-500 transition-colors appearance-none cursor-pointer"
+                >
+                  <option value="" disabled selected>Select</option>
+                  <option value="revenue">Revenue visibility & forecasting</option>
+                  <option value="profitability">Project & client profitability</option>
+                  <option value="tools">Too many tools, no single source of truth</option>
+                  <option value="reporting">Client & management reporting</option>
+                  <option value="capacity">Resource planning & capacity</option>
+                  <option value="all">Honestly, all of the above</option>
+                </select>
+                <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-secondary/30 dark:text-accent/30">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </div>
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="fm-message" class="text-tagline-2 font-medium text-secondary dark:text-accent">
+                Anything else we should know? <span class="text-secondary/30 dark:text-accent/30">(optional)</span>
+              </label>
+              <textarea
+                id="fm-message"
+                name="message"
+                rows="3"
+                placeholder="Tell us about your current stack, how many clients you manage, or what you'd want to see first..."
+                class="founding-input w-full rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent placeholder:text-secondary/30 dark:placeholder:text-accent/30 focus:outline-none focus:border-primary-500 transition-colors resize-none"
+              ></textarea>
+            </div>
+
+            <div class="pt-1 space-y-3">
+              <button
+                type="submit"
+                id="founding-submit-btn"
+                class="btn btn-secondary dark:btn-accent hover:btn-primary btn-md w-full"
+              >
+                <span>Claim my founding spot</span>
+              </button>
+              <p class="text-tagline-3 text-secondary/35 dark:text-accent/35 text-center leading-relaxed">
+                {spotsRemaining} spots remaining. We'll reply within one business day.
+              </p>
+            </div>
+
+          </form>
+
+          <!-- Success state -->
+          <div id="founding-success" style="display:none;" class="text-center space-y-5 py-8">
+            <div class="size-14 rounded-2xl bg-primary-500/8 border border-primary-500/20 flex items-center justify-center mx-auto">
+              <svg class="w-6 h-6 text-primary-500" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="space-y-2">
+              <p class="text-heading-6 font-semibold text-secondary dark:text-accent">You're on the list.</p>
+              <p class="text-tagline-1 text-secondary/55 dark:text-accent/55 max-w-[340px] mx-auto leading-relaxed">
+                Thanks for applying. We review every founding member personally and will reach out within one business day to confirm your spot.
+              </p>
+            </div>
+            <div class="pt-2 flex flex-wrap justify-center gap-3">
+              <a href="/blog" class="btn btn-secondary dark:btn-accent btn-md">
+                <span>Read the blog</span>
+              </a>
+              <a href="/" class="btn btn-md border border-stroke-2 dark:border-stroke-6 text-secondary/70 dark:text-accent/70">
+                <span>Back to home</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .founding-left,
+  .founding-right {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: panel-in 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .founding-right { animation-delay: 0.1s; }
+
+  @keyframes panel-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .founding-input:focus {
+    box-shadow: 0 0 0 3px rgba(27, 58, 107, 0.08);
+  }
+  :global(.dark) .founding-input:focus {
+    box-shadow: 0 0 0 3px rgba(74, 110, 199, 0.12);
+  }
+  .founding-input.error {
+    border-color: #ef4444 !important;
+  }
+</style>
+
+<script>
+  const form = document.getElementById('founding-form') as HTMLFormElement | null;
+  const formHeader = document.getElementById('founding-form-header');
+  const successState = document.getElementById('founding-success');
+  const submitBtn = document.getElementById('founding-submit-btn');
+
+  if (form && successState && submitBtn) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const inputs = form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
+        'input[required], select[required]'
+      );
+      let valid = true;
+
+      inputs.forEach(input => {
+        input.classList.remove('error');
+        if (!input.value.trim()) {
+          input.classList.add('error');
+          valid = false;
+        }
+      });
+
+      if (!valid) return;
+
+      const btnSpan = submitBtn.querySelector('span');
+      if (btnSpan) btnSpan.textContent = 'Submitting...';
+      submitBtn.setAttribute('disabled', 'true');
+
+      setTimeout(() => {
+        form.style.display = 'none';
+        if (formHeader) formHeader.style.display = 'none';
+        successState.style.display = 'block';
+      }, 800);
+    });
+  }
+</script>

@@ -10,6 +10,11 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
 const comparePages = [
   { href: '/compare', label: 'Compare — Insighty vs. the field' },
   { href: '/compare/insighty-vs-jira', label: 'Insighty vs Jira' },
+  { href: '/compare/insighty-vs-asana', label: 'Insighty vs Asana' },
+  { href: '/compare/insighty-vs-monday', label: 'Insighty vs Monday.com' },
+  { href: '/compare/insighty-vs-clickup', label: 'Insighty vs ClickUp' },
+  { href: '/compare/insighty-vs-harvest', label: 'Insighty vs Harvest' },
+  { href: '/compare/insighty-vs-teamwork', label: 'Insighty vs Teamwork' },
 ]
 
 const sections = [
@@ -17,7 +22,26 @@ const sections = [
     title: 'Main',
     links: [
       { href: '/', label: 'Home' },
+      { href: '/pricing', label: 'Pricing' },
+      { href: '/founding-member', label: 'Founding Member' },
       { href: '/request-a-demo', label: 'Request a Demo' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { href: '/about', label: 'About' },
+      { href: '/contact', label: 'Contact' },
+    ],
+  },
+  {
+    title: 'Solutions',
+    links: [
+      { href: '/use-cases/agency', label: 'Agency' },
+      { href: '/use-cases/it-services', label: 'IT Services' },
+      { href: '/use-cases/accounting-finance', label: 'Accounting & Finance' },
+      { href: '/use-cases/business-operations', label: 'Business Operations' },
+      { href: '/use-cases/freelancer', label: 'Freelancer' },
     ],
   },
   {
@@ -25,6 +49,7 @@ const sections = [
     links: [
       { href: '/blog', label: 'Blog — All articles' },
       { href: '/tools', label: 'Free Tools' },
+      { href: '/tools/profit-margin-calculator', label: 'Profit Margin Calculator' },
     ],
   },
   {
@@ -35,6 +60,7 @@ const sections = [
     title: 'Legal',
     links: [
       { href: '/privacy-policy', label: 'Privacy Policy' },
+      { href: '/sitemap', label: 'Sitemap' },
     ],
   },
 ]

@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/organisms/Header.astro'
+import Footer from '../components/organisms/Footer.astro'
+---
+
+<BaseLayout
+  title="About Insighty — Built for the Agencies Running on Spreadsheets"
+  description="We built Insighty because we lived the problem — revenue scattered across tools, retainers tracked in spreadsheets, renewals missed. Here is the story."
+>
+  <Header />
+  <main>
+
+    <!-- Hero -->
+    <section
+      class="pt-[140px] sm:pt-[150px] md:pt-[160px] pb-16 md:pb-24 relative overflow-hidden"
+      style="background: linear-gradient(135deg, #0a1628 0%, #112445 50%, #1a3a70 100%)"
+    >
+      <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 36px 36px;"></div>
+      <div class="main-container relative z-10">
+        <div class="max-w-[680px] space-y-6">
+          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white/40 border border-white/10 px-4 py-1.5 rounded-full">Our story</span>
+          <h1 class="text-white">
+            Built for the agency running<br />
+            <span class="hero-text-gradient hero-text-color-1">its business on spreadsheets</span>
+          </h1>
+          <p class="text-white/65 text-tagline-1 max-w-[520px] leading-relaxed">
+            Every agency has the same problem. Delivery lives in Jira or Asana. Revenue lives in a spreadsheet. Contracts live in another spreadsheet. Renewals fall through the cracks. We built Insighty to fix that.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- The problem we saw -->
+    <section class="bg-background-1 dark:bg-background-8 py-16 md:py-20">
+      <div class="main-container">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-start">
+          <div class="space-y-6">
+            <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Why we built this</span>
+            <h2 class="text-secondary dark:text-accent">The problem every growing agency knows</h2>
+            <div class="space-y-4 text-tagline-1 text-secondary/65 dark:text-accent/65 leading-relaxed">
+              <p>
+                You have project management tools. You have an accounting tool. You have time tracking. And yet every Monday morning, you still open a spreadsheet to answer the most basic questions: what did we invoice last month, which retainers renew next quarter, and are we on track to hit our revenue targets?
+              </p>
+              <p>
+                The tools were not built for agencies. They were built for engineering teams, or for accountants, or for salespeople. Nobody built the operations layer for the agency owner who needs to see revenue, delivery, contracts, and pipeline all at once.
+              </p>
+              <p>
+                Insighty is that layer. Six surfaces — revenue, projects, contracts, maintenance, infrastructure, and pipeline — unified into one intelligence platform. With Pixel AI surfacing the risks and anomalies before they become problems.
+              </p>
+            </div>
+          </div>
+          <div class="space-y-4">
+            {[
+              { num: '6', label: 'surfaces unified', sub: 'Revenue, projects, contracts, maintenance, infrastructure, and pipeline in one view.' },
+              { num: '27+', label: 'tools compared', sub: 'We benchmarked every major agency tool to understand exactly what was missing.' },
+              { num: '100%', label: 'agency-focused', sub: 'Built specifically for digital agencies, IT services firms, and creative studios.' },
+            ].map(stat => (
+              <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-7">
+                <div class="flex items-baseline gap-3 mb-2">
+                  <span class="text-4xl font-bold text-secondary dark:text-accent">{stat.num}</span>
+                  <span class="text-tagline-1 font-medium text-secondary/60 dark:text-accent/60">{stat.label}</span>
+                </div>
+                <p class="text-tagline-2 text-secondary/50 dark:text-accent/50 leading-relaxed">{stat.sub}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The platform -->
+    <section class="bg-background-2 dark:bg-background-7 py-16 md:py-20">
+      <div class="main-container space-y-10">
+        <div class="max-w-[560px] space-y-3">
+          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">The platform</span>
+          <h2 class="text-secondary dark:text-accent">Six surfaces. One source of truth.</h2>
+          <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
+            Each surface answers a different question your agency asks every week. Together, they replace the spreadsheets.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {[
+            { title: 'Revenue hub', body: 'Plan, track, and forecast every income stream — projects, retainers, hosting, domains, and pipeline — in one matrix view.' },
+            { title: 'Project management', body: 'Delivery tracking with budget burn visibility. Know which projects are profitable and which are at risk, in real time.' },
+            { title: 'Contract management', body: 'Client contracts, SLAs, and change requests — tracked against billing status so nothing slips through.' },
+            { title: 'Maintenance billing', body: 'Monthly and annual retainers with included hours, bug allowances, and automated recurring invoicing.' },
+            { title: 'Infrastructure registry', body: 'Every hosting account, domain, and SSL certificate — with automated renewal alerts at 90, 60, and 30 days.' },
+            { title: 'Pixel AI', body: 'Proactive intelligence that surfaces anomalies, flags risks, and answers questions before you think to ask them.' },
+          ].map(item => (
+            <div class="bg-background-1 dark:bg-background-6 rounded-2xl border border-stroke-2 dark:border-stroke-5 p-6 space-y-2">
+              <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">{item.title}</p>
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 leading-relaxed">{item.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-background-1 dark:bg-background-8 py-16 md:py-24">
+      <div class="main-container text-center space-y-6 max-w-[580px] mx-auto">
+        <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Join us early</span>
+        <h2 class="text-secondary dark:text-accent">We are building this in the open — with founding members who live the problem</h2>
+        <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
+          Insighty is pre-launch. We are onboarding a small group of founding members who will shape the product, lock in pre-launch pricing, and run on Insighty before the world does.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3 pt-2">
+          <a href="/founding-member" class="btn btn-md btn-primary"><span>Become a founding member</span></a>
+          <a href="/request-a-demo" class="btn btn-md btn-secondary dark:btn-accent"><span>Request a demo</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>

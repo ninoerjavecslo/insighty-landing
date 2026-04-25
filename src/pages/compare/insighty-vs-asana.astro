@@ -1,0 +1,282 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/organisms/Header.astro'
+import Footer from '../../components/organisms/Footer.astro'
+
+const title = 'Insighty vs Asana: Financial Intelligence for Agency Teams'
+const description = 'Asana manages your projects. Insighty manages the financial reality behind them — revenue, contracts, retainer billing, and forecasting. Here is why agencies use both.'
+
+const checks = [
+  'Revenue planning across all income streams in one view',
+  'Maintenance contract billing with hours and scope tracking',
+  '"This Month" dashboard — every invoice visible before it slips',
+  'Hosting and domain renewal tracking with automated alerts',
+  'Probability-weighted sales pipeline and forecast',
+  'Resource capacity planning with billability reports',
+]
+
+const asanaStrengths = [
+  { label: 'Task and project management', detail: 'Lists, boards, timelines, and calendar views with rich task detail and dependencies.' },
+  { label: 'Team goals and portfolios', detail: 'Align projects to company objectives and track progress across portfolios.' },
+  { label: 'Workflow automation', detail: 'Rules-based automation that triggers actions across projects and forms.' },
+  { label: 'Cross-project reporting', detail: 'Status dashboards showing workload distribution and milestone progress.' },
+  { label: 'Team collaboration', detail: 'Comments, @mentions, file attachments, and approval workflows.' },
+  { label: 'Integrations', detail: '200+ integrations including Slack, Google Drive, Salesforce, and Zoom.' },
+]
+
+const gaps = [
+  {
+    title: 'Which projects are actually profitable this month?',
+    body: 'Asana tracks delivery and tasks. It does not know the contract value, billing rate, or budget burn. Profitability is invisible unless you build it in a spreadsheet alongside Asana.',
+  },
+  {
+    title: 'Which retainer clients need invoicing this month?',
+    body: 'Maintenance contracts, hosting plans, and domain renewals are recurring but not managed in Asana. They live in a spreadsheet — until something is missed.',
+  },
+  {
+    title: 'What will revenue look like next quarter?',
+    body: 'Asana has no concept of sales pipeline, probability weighting, or deferred invoice value. Forecasting means leaving Asana and opening a spreadsheet.',
+  },
+  {
+    title: 'Is this retainer client consuming more than they are paying for?',
+    body: 'Asana tracks tasks but does not know the hours budget, billing scope, or change request value for a maintenance contract. Over-delivery is invisible.',
+  },
+]
+
+type Mark = 'yes' | 'no' | 'partial'
+interface Row { feature: string; asana: Mark; insighty: Mark; note?: string }
+
+const rows: Row[] = [
+  { feature: 'Task & project management', asana: 'yes', insighty: 'no', note: 'Asana is purpose-built for this. Insighty does not track tasks.' },
+  { feature: 'Timeline and Gantt view', asana: 'yes', insighty: 'no', note: 'Insighty is not a PM tool.' },
+  { feature: 'Time tracking', asana: 'partial', insighty: 'yes', note: 'Asana has native time; Insighty tracks billable hours against contracts.' },
+  { feature: 'Maintenance contract billing', asana: 'no', insighty: 'yes', note: 'Monthly/annual retainers with hours-included scope tracking.' },
+  { feature: 'Revenue planning (multi-stream)', asana: 'no', insighty: 'yes', note: 'Projects, retainers, hosting, domains — unified matrix.' },
+  { feature: '"This Month" invoice view', asana: 'no', insighty: 'yes', note: 'Every invoice due this month across all revenue types.' },
+  { feature: 'Hosting & domain renewal tracking', asana: 'no', insighty: 'yes', note: 'Automated alerts at 90 / 60 / 30 days before expiry.' },
+  { feature: 'Sales pipeline & probability forecast', asana: 'no', insighty: 'yes', note: 'Weighted deal values integrated with committed revenue.' },
+  { feature: 'Resource capacity & utilisation', asana: 'partial', insighty: 'yes', note: 'Asana has workload view. Insighty adds billability and utilisation %.' },
+  { feature: 'Client financial summary', asana: 'no', insighty: 'yes', note: 'Annual revenue per client across all contract types.' },
+  { feature: 'Invoice automation (recurring)', asana: 'no', insighty: 'yes', note: 'Scheduled invoice batches on a set day each month.' },
+  { feature: 'Change request value tracking', asana: 'partial', insighty: 'yes', note: 'Asana tracks CRs as tasks. Insighty tracks the monetary value and billing status.' },
+]
+
+function mark(val: Mark) {
+  if (val === 'yes') return { text: '✓', cls: 'text-emerald-500 font-semibold text-base' }
+  if (val === 'partial') return { text: '~', cls: 'text-amber-500 font-semibold text-base' }
+  return { text: '—', cls: 'text-secondary/25 dark:text-accent/20 text-base' }
+}
+---
+
+<BaseLayout {title} {description}>
+  <Header />
+  <main>
+
+    <!-- Hero -->
+    <section
+      class="pt-[140px] sm:pt-[150px] md:pt-[160px] pb-16 md:pb-24 relative overflow-hidden"
+      style="background: linear-gradient(135deg, #0a1628 0%, #112445 50%, #1a3a70 100%)"
+    >
+      <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 36px 36px;"></div>
+      <div class="main-container relative z-10">
+        <nav class="flex items-center gap-2 text-tagline-3 text-white/50 mb-10" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-white transition-colors duration-200">Insighty</a>
+          <span>/</span>
+          <a href="/compare" class="hover:text-white transition-colors duration-200">Compare</a>
+          <span>/</span>
+          <span class="text-white/70">Insighty vs Asana</span>
+        </nav>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-center">
+          <div class="space-y-6">
+            <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white/40">Platform Comparison</span>
+            <h1 class="text-white max-w-[560px]">
+              Insighty + Asana:<br />
+              <span class="hero-text-gradient hero-text-color-1">delivery plus the financial layer</span>
+            </h1>
+            <p class="text-white/65 max-w-[480px]">
+              Asana handles project delivery. Insighty handles the financial reality behind it — revenue, contracts, retainer billing, and forecasting. They answer different questions. Together, they cover everything.
+            </p>
+            <div class="flex flex-wrap gap-3 pt-2">
+              <a href="/founding-member" class="btn btn-md btn-primary"><span>Join founding members</span></a>
+              <a href="/#platform" class="btn btn-md btn-secondary !border-white/20 !text-white hover:!bg-white/10"><span>See the platform</span></a>
+            </div>
+          </div>
+          <div class="hidden lg:block">
+            <ul class="space-y-3">
+              {checks.map(c => (
+                <li class="flex items-start gap-3">
+                  <span class="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-primary-500 flex items-center justify-center">
+                    <svg class="w-3 h-3 text-white" viewBox="0 0 12 12" fill="none">
+                      <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span class="text-tagline-1 text-white/75">{c}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What each tool is -->
+    <section class="bg-background-1 dark:bg-background-8 py-16 md:py-20">
+      <div class="main-container">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-8 space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background: #FF5F5F">
+                <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">Asana</p>
+                <p class="text-tagline-3 text-secondary/50 dark:text-accent/50">Work management platform</p>
+              </div>
+            </div>
+            <p class="text-tagline-1 text-secondary/70 dark:text-accent/70 leading-relaxed">
+              A leading work management platform built around tasks, projects, and team collaboration. Asana gives teams a visual, organised way to plan and track delivery across lists, boards, timelines, and calendars.
+            </p>
+            <p class="text-tagline-2 font-medium text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Best for</p>
+            <ul class="space-y-1.5">
+              {['Project and task management', 'Team goal setting and alignment', 'Creative and marketing workflows', 'Cross-functional team collaboration'].map(s => (
+                <li class="flex items-center gap-2 text-tagline-2 text-secondary/70 dark:text-accent/70">
+                  <span class="w-1 h-1 rounded-full bg-secondary/30 dark:bg-accent/30 shrink-0"></span>
+                  {s}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="rounded-2xl border border-primary-500/30 bg-background-2 dark:bg-background-6 p-8 space-y-4 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-[0.03]" style="background: linear-gradient(135deg, #4a6ec7, #a585ff)"></div>
+            <div class="relative space-y-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-primary-500 flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.5l7-7 4 4 7-7M3 19h18"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">Insighty</p>
+                  <p class="text-tagline-3 text-secondary/50 dark:text-accent/50">Agency Intelligence Platform</p>
+                </div>
+              </div>
+              <p class="text-tagline-1 text-secondary/70 dark:text-accent/70 leading-relaxed">
+                The financial and operational intelligence layer agencies need alongside their PM tools. Connects clients, contracts, retainers, hosting, domains, invoices, and pipeline into one unified revenue view.
+              </p>
+              <p class="text-tagline-2 font-medium text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Best for</p>
+              <ul class="space-y-1.5">
+                {['Agency owners and operations managers', 'Revenue planning and invoice tracking', 'Retainer and contract management', 'Financial forecasting and pipeline'].map(s => (
+                  <li class="flex items-center gap-2 text-tagline-2 text-secondary/70 dark:text-accent/70">
+                    <span class="w-1 h-1 rounded-full bg-primary-400/50 shrink-0"></span>
+                    {s}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Asana strengths -->
+    <section class="bg-background-2 dark:bg-background-7 py-16 md:py-20">
+      <div class="main-container space-y-10">
+        <div class="max-w-[640px] space-y-3">
+          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Where Asana wins</span>
+          <h2 class="text-secondary dark:text-accent">Asana is exceptional at project and work management</h2>
+          <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
+            This is not a "switch away from Asana" argument. Asana is one of the best work management platforms available. Teams love its visual clarity and flexibility.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {asanaStrengths.map(s => (
+            <div class="bg-background-1 dark:bg-background-6 rounded-2xl border border-stroke-2 dark:border-stroke-5 p-6 space-y-2">
+              <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">{s.label}</p>
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 leading-relaxed">{s.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Gaps -->
+    <section class="bg-background-1 dark:bg-background-8 py-16 md:py-20">
+      <div class="main-container space-y-10">
+        <div class="max-w-[640px] space-y-3">
+          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">The agency blind spot</span>
+          <h2 class="text-secondary dark:text-accent">The questions Asana cannot answer for agency owners</h2>
+          <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
+            Asana knows everything about delivery. It knows nothing about whether you are getting paid for it.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {gaps.map((g, i) => (
+            <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-7 space-y-3">
+              <div class="flex items-start gap-3">
+                <span class="shrink-0 text-tagline-3 font-bold text-secondary/20 dark:text-accent/20 mt-0.5 tabular-nums">0{i + 1}</span>
+                <p class="text-tagline-1 font-semibold text-secondary dark:text-accent leading-snug">"{g.title}"</p>
+              </div>
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 leading-relaxed pl-7">{g.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison table -->
+    <section class="bg-background-2 dark:bg-background-7 py-16 md:py-20">
+      <div class="main-container space-y-8">
+        <div class="max-w-[560px] space-y-3">
+          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Feature comparison</span>
+          <h2 class="text-secondary dark:text-accent">What each tool handles</h2>
+          <p class="text-tagline-2 text-secondary/60 dark:text-accent/60">Different tools, different jobs. The overlap is minimal by design.</p>
+        </div>
+        <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 overflow-hidden">
+          <div class="grid grid-cols-[1fr_100px_100px] md:grid-cols-[1fr_120px_120px] bg-background-1 dark:bg-background-6 border-b border-stroke-2 dark:border-stroke-5 px-6 py-4">
+            <p class="text-tagline-2 font-semibold text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Capability</p>
+            <p class="text-tagline-2 font-semibold text-secondary/50 dark:text-accent/50 uppercase tracking-widest text-center">Asana</p>
+            <p class="text-tagline-2 font-semibold text-primary-400 uppercase tracking-widest text-center">Insighty</p>
+          </div>
+          {rows.map((row, i) => {
+            const a = mark(row.asana)
+            const ins = mark(row.insighty)
+            return (
+              <div class={`grid grid-cols-[1fr_100px_100px] md:grid-cols-[1fr_120px_120px] px-6 py-4 border-b border-stroke-2 dark:border-stroke-5 last:border-0 ${i % 2 === 0 ? 'bg-background-1 dark:bg-background-8' : 'bg-background-2 dark:bg-background-7'}`}>
+                <div class="space-y-0.5 pr-4">
+                  <p class="text-tagline-2 font-medium text-secondary dark:text-accent">{row.feature}</p>
+                  {row.note && <p class="text-tagline-3 text-secondary/45 dark:text-accent/45 leading-snug hidden md:block">{row.note}</p>}
+                </div>
+                <p class={`text-center self-center ${a.cls}`}>{a.text}</p>
+                <p class={`text-center self-center ${ins.cls}`}>{ins.text}</p>
+              </div>
+            )
+          })}
+        </div>
+        <div class="flex flex-wrap items-center gap-6 text-tagline-3 text-secondary/50 dark:text-accent/50">
+          <span class="flex items-center gap-1.5"><span class="text-emerald-500 font-semibold">✓</span> Fully supported</span>
+          <span class="flex items-center gap-1.5"><span class="text-amber-500 font-semibold">~</span> Partial / via integration</span>
+          <span class="flex items-center gap-1.5"><span class="opacity-40">—</span> Not applicable</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-background-1 dark:bg-background-8 py-16 md:py-24">
+      <div class="main-container text-center space-y-6 max-w-[640px] mx-auto">
+        <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Ready to complete the picture?</span>
+        <h2 class="text-secondary dark:text-accent">Keep Asana. Add the financial layer it is missing.</h2>
+        <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
+          Insighty works alongside Asana. Your project team stays in Asana. Your agency owner and ops team get the revenue visibility they have been building spreadsheets to replace.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3 pt-2">
+          <a href="/founding-member" class="btn btn-md btn-primary"><span>Join founding members</span></a>
+          <a href="/compare" class="btn btn-md btn-secondary dark:btn-accent"><span>All comparisons</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>

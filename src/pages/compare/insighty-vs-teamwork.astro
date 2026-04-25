@@ -1,0 +1,269 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/organisms/Header.astro'
+import Footer from '../../components/organisms/Footer.astro'
+
+const title = 'Insighty vs Teamwork: Agency Intelligence Beyond Project Management'
+const description = 'Teamwork is a project management platform built for agencies. Insighty is the financial intelligence layer — revenue, retainer billing, contracts, and forecasting — that sits on top of it.'
+
+const checks = [
+  'Revenue planning across all income streams in one view',
+  'Maintenance contract billing with included hours and scope',
+  '"This Month" dashboard — every invoice visible before it slips',
+  'Hosting and domain renewal tracking with automated alerts',
+  'Probability-weighted sales pipeline and forecast',
+  'Client health scoring and churn risk indicators',
+]
+
+const teamworkStrengths = [
+  { label: 'Agency-focused PM', detail: 'Built specifically for agencies — client projects, tasks, and milestones with a client portal.' },
+  { label: 'Client portal', detail: 'Branded client access to projects, documents, and messages without team visibility.' },
+  { label: 'Time and budget tracking', detail: 'Log hours against tasks and track project budget alongside estimated vs. actual hours.' },
+  { label: 'Billing and invoicing', detail: 'Basic invoicing from tracked time and project budgets, with Stripe payment integration.' },
+  { label: 'Teamwork CRM', detail: 'An optional CRM add-on for pipeline management and client relationship tracking.' },
+  { label: 'Resource management', detail: 'Workload view and resource scheduling to plan team capacity across projects.' },
+]
+
+const gaps = [
+  {
+    title: 'What does total agency revenue look like this month — across every income stream?',
+    body: 'Teamwork tracks project budgets and invoiced time. It does not aggregate revenue across maintenance retainers, hosting contracts, domain renewals, and pipeline into a single live view.',
+  },
+  {
+    title: 'Which maintenance contracts have over-delivery this month?',
+    body: 'Teamwork tracks time against projects. It does not know the hours budget for a maintenance retainer, or whether your team has exceeded the included hours for a specific client.',
+  },
+  {
+    title: 'What does next quarter\'s revenue forecast look like — including pipeline?',
+    body: 'Teamwork has project budgets but no probability-weighted pipeline model. Combining committed contracts, retainers, and sales pipeline into a forecast requires leaving Teamwork.',
+  },
+  {
+    title: 'Which hosting and domain renewals are coming up in the next 90 days?',
+    body: 'Teamwork is a project management tool. Hosting accounts, domain registrations, and infrastructure renewals are not tracked in it — those live in a spreadsheet, if at all.',
+  },
+]
+
+type Mark = 'yes' | 'no' | 'partial'
+interface Row { feature: string; teamwork: Mark; insighty: Mark; note?: string }
+
+const rows: Row[] = [
+  { feature: 'Project & task management', teamwork: 'yes', insighty: 'no', note: 'Teamwork is purpose-built for agency PM. Insighty is not a PM tool.' },
+  { feature: 'Client portal', teamwork: 'yes', insighty: 'no', note: 'Teamwork\'s client portal is a core differentiator.' },
+  { feature: 'Time tracking', teamwork: 'yes', insighty: 'yes', note: 'Both track time. Insighty ties it to contract scope and billing.' },
+  { feature: 'Project budget tracking', teamwork: 'yes', insighty: 'yes', note: 'Teamwork tracks budget hours. Insighty tracks budget burn vs. contract value.' },
+  { feature: 'Basic invoicing', teamwork: 'yes', insighty: 'yes', note: 'Teamwork has per-project invoicing. Insighty automates recurring invoice batches.' },
+  { feature: 'Maintenance contract billing', teamwork: 'no', insighty: 'yes', note: 'Monthly/annual retainers with hours-included scope — not in Teamwork.' },
+  { feature: 'Revenue planning (multi-stream)', teamwork: 'no', insighty: 'yes', note: 'Projects, retainers, hosting, domains — unified matrix view.' },
+  { feature: '"This Month" invoice view', teamwork: 'partial', insighty: 'yes', note: 'Teamwork shows invoices. Insighty surfaces all due including recurring.' },
+  { feature: 'Hosting & domain renewal tracking', teamwork: 'no', insighty: 'yes', note: 'Automated alerts at 90 / 60 / 30 days before expiry.' },
+  { feature: 'Sales pipeline & probability forecast', teamwork: 'partial', insighty: 'yes', note: 'Teamwork has a CRM add-on. Insighty combines pipeline + contracts + retainers.' },
+  { feature: 'Client financial summary (all streams)', teamwork: 'partial', insighty: 'yes', note: 'Teamwork shows per-project value. Insighty shows total annual value per client.' },
+  { feature: 'Pixel AI anomaly detection', teamwork: 'no', insighty: 'yes', note: 'Proactive alerts on revenue risks, over-delivery, and anomalies.' },
+]
+
+function mark(val: Mark) {
+  if (val === 'yes') return { text: '✓', cls: 'text-emerald-500 font-semibold text-base' }
+  if (val === 'partial') return { text: '~', cls: 'text-amber-500 font-semibold text-base' }
+  return { text: '—', cls: 'text-secondary/25 dark:text-accent/20 text-base' }
+}
+---
+
+<BaseLayout {title} {description}>
+  <Header />
+  <main>
+
+    <section
+      class="pt-[140px] sm:pt-[150px] md:pt-[160px] pb-16 md:pb-24 relative overflow-hidden"
+      style="background: linear-gradient(135deg, #0a1628 0%, #112445 50%, #1a3a70 100%)"
+    >
+      <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 36px 36px;"></div>
+      <div class="main-container relative z-10">
+        <nav class="flex items-center gap-2 text-tagline-3 text-white/50 mb-10" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-white transition-colors duration-200">Insighty</a>
+          <span>/</span>
+          <a href="/compare" class="hover:text-white transition-colors duration-200">Compare</a>
+          <span>/</span>
+          <span class="text-white/70">Insighty vs Teamwork</span>
+        </nav>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-center">
+          <div class="space-y-6">
+            <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white/40">Platform Comparison</span>
+            <h1 class="text-white max-w-[560px]">
+              Insighty + Teamwork:<br />
+              <span class="hero-text-gradient hero-text-color-1">agency PM plus financial intelligence</span>
+            </h1>
+            <p class="text-white/65 max-w-[480px]">
+              Teamwork is a strong agency-focused PM platform. Insighty is the financial intelligence layer it is missing — revenue planning, retainer billing, infrastructure tracking, and AI-powered forecasting.
+            </p>
+            <div class="flex flex-wrap gap-3 pt-2">
+              <a href="/founding-member" class="btn btn-md btn-primary"><span>Join founding members</span></a>
+              <a href="/#platform" class="btn btn-md btn-secondary !border-white/20 !text-white hover:!bg-white/10"><span>See the platform</span></a>
+            </div>
+          </div>
+          <div class="hidden lg:block">
+            <ul class="space-y-3">
+              {checks.map(c => (
+                <li class="flex items-start gap-3">
+                  <span class="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-primary-500 flex items-center justify-center">
+                    <svg class="w-3 h-3 text-white" viewBox="0 0 12 12" fill="none">
+                      <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span class="text-tagline-1 text-white/75">{c}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-background-1 dark:bg-background-8 py-16 md:py-20">
+      <div class="main-container">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-8 space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background: #4DA1FF">
+                <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div>
+                <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">Teamwork</p>
+                <p class="text-tagline-3 text-secondary/50 dark:text-accent/50">Agency project management platform</p>
+              </div>
+            </div>
+            <p class="text-tagline-1 text-secondary/70 dark:text-accent/70 leading-relaxed">
+              A project management platform built specifically for agencies and client-services teams. Teamwork combines task management, time tracking, invoicing, and a branded client portal in a single product.
+            </p>
+            <p class="text-tagline-2 font-medium text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Best for</p>
+            <ul class="space-y-1.5">
+              {['Agency project and task management', 'Client-facing project portals', 'Time tracking and budget management', 'Team resource and workload planning'].map(s => (
+                <li class="flex items-center gap-2 text-tagline-2 text-secondary/70 dark:text-accent/70">
+                  <span class="w-1 h-1 rounded-full bg-secondary/30 dark:bg-accent/30 shrink-0"></span>
+                  {s}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="rounded-2xl border border-primary-500/30 bg-background-2 dark:bg-background-6 p-8 space-y-4 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-[0.03]" style="background: linear-gradient(135deg, #4a6ec7, #a585ff)"></div>
+            <div class="relative space-y-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-primary-500 flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.5l7-7 4 4 7-7M3 19h18"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">Insighty</p>
+                  <p class="text-tagline-3 text-secondary/50 dark:text-accent/50">Agency Intelligence Platform</p>
+                </div>
+              </div>
+              <p class="text-tagline-1 text-secondary/70 dark:text-accent/70 leading-relaxed">
+                The financial and operational intelligence layer built for agencies. Connects clients, contracts, retainers, hosting, domains, invoices, and pipeline into one unified revenue and intelligence platform.
+              </p>
+              <p class="text-tagline-2 font-medium text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Best for</p>
+              <ul class="space-y-1.5">
+                {['Agency owners and finance managers', 'Revenue planning across all income streams', 'Retainer, contract, and infrastructure billing', 'Financial forecasting, pipeline, and Pixel AI'].map(s => (
+                  <li class="flex items-center gap-2 text-tagline-2 text-secondary/70 dark:text-accent/70">
+                    <span class="w-1 h-1 rounded-full bg-primary-400/50 shrink-0"></span>
+                    {s}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-background-2 dark:bg-background-7 py-16 md:py-20">
+      <div class="main-container space-y-10">
+        <div class="max-w-[640px] space-y-3">
+          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Where Teamwork wins</span>
+          <h2 class="text-secondary dark:text-accent">Teamwork is purpose-built for agency project delivery</h2>
+          <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">Unlike generic PM tools, Teamwork was designed with agencies in mind. The client portal, billing features, and project structure all reflect real agency workflows.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {teamworkStrengths.map(s => (
+            <div class="bg-background-1 dark:bg-background-6 rounded-2xl border border-stroke-2 dark:border-stroke-5 p-6 space-y-2">
+              <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">{s.label}</p>
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 leading-relaxed">{s.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-background-1 dark:bg-background-8 py-16 md:py-20">
+      <div class="main-container space-y-10">
+        <div class="max-w-[640px] space-y-3">
+          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">The financial blind spot</span>
+          <h2 class="text-secondary dark:text-accent">Where even the best agency PM tools leave gaps</h2>
+          <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">Teamwork handles delivery better than most. But agency financial operations require more than project-level tracking.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {gaps.map((g, i) => (
+            <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-7 space-y-3">
+              <div class="flex items-start gap-3">
+                <span class="shrink-0 text-tagline-3 font-bold text-secondary/20 dark:text-accent/20 mt-0.5 tabular-nums">0{i + 1}</span>
+                <p class="text-tagline-1 font-semibold text-secondary dark:text-accent leading-snug">"{g.title}"</p>
+              </div>
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 leading-relaxed pl-7">{g.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-background-2 dark:bg-background-7 py-16 md:py-20">
+      <div class="main-container space-y-8">
+        <div class="max-w-[560px] space-y-3">
+          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Feature comparison</span>
+          <h2 class="text-secondary dark:text-accent">What each tool handles</h2>
+        </div>
+        <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 overflow-hidden">
+          <div class="grid grid-cols-[1fr_100px_100px] md:grid-cols-[1fr_120px_120px] bg-background-1 dark:bg-background-6 border-b border-stroke-2 dark:border-stroke-5 px-6 py-4">
+            <p class="text-tagline-2 font-semibold text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Capability</p>
+            <p class="text-tagline-2 font-semibold text-secondary/50 dark:text-accent/50 uppercase tracking-widest text-center">Teamwork</p>
+            <p class="text-tagline-2 font-semibold text-primary-400 uppercase tracking-widest text-center">Insighty</p>
+          </div>
+          {rows.map((row, i) => {
+            const t = mark(row.teamwork)
+            const ins = mark(row.insighty)
+            return (
+              <div class={`grid grid-cols-[1fr_100px_100px] md:grid-cols-[1fr_120px_120px] px-6 py-4 border-b border-stroke-2 dark:border-stroke-5 last:border-0 ${i % 2 === 0 ? 'bg-background-1 dark:bg-background-8' : 'bg-background-2 dark:bg-background-7'}`}>
+                <div class="space-y-0.5 pr-4">
+                  <p class="text-tagline-2 font-medium text-secondary dark:text-accent">{row.feature}</p>
+                  {row.note && <p class="text-tagline-3 text-secondary/45 dark:text-accent/45 leading-snug hidden md:block">{row.note}</p>}
+                </div>
+                <p class={`text-center self-center ${t.cls}`}>{t.text}</p>
+                <p class={`text-center self-center ${ins.cls}`}>{ins.text}</p>
+              </div>
+            )
+          })}
+        </div>
+        <div class="flex flex-wrap items-center gap-6 text-tagline-3 text-secondary/50 dark:text-accent/50">
+          <span class="flex items-center gap-1.5"><span class="text-emerald-500 font-semibold">✓</span> Fully supported</span>
+          <span class="flex items-center gap-1.5"><span class="text-amber-500 font-semibold">~</span> Partial / via integration</span>
+          <span class="flex items-center gap-1.5"><span class="opacity-40">—</span> Not applicable</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-background-1 dark:bg-background-8 py-16 md:py-24">
+      <div class="main-container text-center space-y-6 max-w-[640px] mx-auto">
+        <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Ready to complete the picture?</span>
+        <h2 class="text-secondary dark:text-accent">Keep Teamwork. Add the financial intelligence it is missing.</h2>
+        <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
+          Insighty works alongside Teamwork. Your project team stays in Teamwork for delivery. Your agency owner gets the revenue visibility, retainer billing, and forecasting that even the best PM tools do not provide.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3 pt-2">
+          <a href="/founding-member" class="btn btn-md btn-primary"><span>Join founding members</span></a>
+          <a href="/compare" class="btn btn-md btn-secondary dark:btn-accent"><span>All comparisons</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>

@@ -1,75 +1,121 @@
 ---
 ---
 
-<!-- =========================
-Footer
-===========================-->
 <footer class="footer bg-secondary dark:bg-background-8 relative z-0 overflow-hidden">
   <figure class="pointer-events-none absolute -top-[1320px] left-1/2 -z-1 size-[1635px] -translate-x-1/2 select-none">
     <img src="/images/ns-img-532.png" alt="" class="size-full object-cover" />
   </figure>
 
-  <div class="main-container px-5 py-14 md:py-20">
-    <div class="flex flex-col items-center gap-8 text-center">
+  <div class="main-container px-5 pt-14 md:pt-20 pb-8 md:pb-10">
 
-      <!-- Logo -->
-      <figure class="max-w-[140px]">
-        <img src="/images/shared/insighty_logo.png" alt="Insighty" class="w-full brightness-0 invert" />
-      </figure>
+    <!-- Top: brand + nav columns -->
+    <div class="flex flex-col lg:flex-row lg:items-start gap-12 lg:gap-16 pb-12 border-b border-accent/8">
 
-      <!-- Tagline -->
-      <p class="text-accent/60 text-tagline-1 max-w-[400px]">
-        The unified platform for agency operations. Coming soon to help agencies scale profitably.
-      </p>
-
-      <!-- Social links -->
-      <div class="flex items-center gap-4">
-        <!-- TODO: add real social URL -->
-        <a href="#" aria-label="Insighty on LinkedIn (coming soon)" aria-hidden="true" tabindex="-1" class="text-accent/50 hover:text-accent transition-colors">
-          <span class="sr-only">LinkedIn</span>
-          <img class="size-5" src="/images/icons/linkedin.svg" alt="LinkedIn" />
-        </a>
-        <div class="bg-stroke-1/20 h-4 w-px"></div>
-        <!-- TODO: add real social URL -->
-        <a href="#" aria-label="Insighty on Instagram (coming soon)" aria-hidden="true" tabindex="-1" class="text-accent/50 hover:text-accent transition-colors">
-          <span class="sr-only">Instagram</span>
-          <img class="size-5" src="/images/icons/instagram.svg" alt="Instagram" />
-        </a>
-        <div class="bg-stroke-1/20 h-4 w-px"></div>
-        <!-- TODO: add real social URL -->
-        <a href="#" aria-label="Insighty on Facebook (coming soon)" aria-hidden="true" tabindex="-1" class="text-accent/50 hover:text-accent transition-colors">
-          <span class="sr-only">Facebook</span>
-          <img class="size-5" src="/images/icons/facebook.svg" alt="Facebook" />
-        </a>
-        <div class="bg-stroke-1/20 h-4 w-px"></div>
-        <!-- TODO: add real social URL -->
-        <a href="#" aria-label="Insighty on YouTube (coming soon)" aria-hidden="true" tabindex="-1" class="text-accent/50 hover:text-accent transition-colors">
-          <span class="sr-only">Youtube</span>
-          <img class="size-5" src="/images/icons/youtube.svg" alt="Youtube" />
-        </a>
+      <!-- Brand column -->
+      <div class="shrink-0 space-y-5 lg:w-[220px]">
+        <figure class="max-w-[130px]">
+          <img src="/images/shared/insighty_logo.png" alt="Insighty" class="w-full brightness-0 invert" />
+        </figure>
+        <p class="text-accent/45 text-tagline-2 leading-relaxed">
+          The unified platform for agency operations — revenue, projects, and intelligence in one place.
+        </p>
+        <div class="flex items-center gap-3 pt-1">
+          <a href="#" aria-label="Insighty on LinkedIn (coming soon)" class="opacity-40 hover:opacity-80 transition-opacity duration-200">
+            <img class="size-4" src="/images/icons/linkedin.svg" alt="LinkedIn" />
+          </a>
+          <span class="w-px h-3 bg-accent/15"></span>
+          <a href="#" aria-label="Insighty on Instagram (coming soon)" class="opacity-40 hover:opacity-80 transition-opacity duration-200">
+            <img class="size-4" src="/images/icons/instagram.svg" alt="Instagram" />
+          </a>
+          <span class="w-px h-3 bg-accent/15"></span>
+          <a href="#" aria-label="Insighty on Facebook (coming soon)" class="opacity-40 hover:opacity-80 transition-opacity duration-200">
+            <img class="size-4" src="/images/icons/facebook.svg" alt="Facebook" />
+          </a>
+          <span class="w-px h-3 bg-accent/15"></span>
+          <a href="#" aria-label="Insighty on YouTube (coming soon)" class="opacity-40 hover:opacity-80 transition-opacity duration-200">
+            <img class="size-4" src="/images/icons/youtube.svg" alt="YouTube" />
+          </a>
+        </div>
       </div>
 
-      <!-- Links -->
-      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-        <a href="/blog" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">Blog</a>
-        <span class="w-px h-3 bg-accent/20"></span>
-        <a href="/tools" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">Free Tools</a>
-        <span class="w-px h-3 bg-accent/20"></span>
-        <a href="/compare" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">Compare</a>
-        <span class="w-px h-3 bg-accent/20"></span>
-        <a href="/privacy-policy" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">Privacy Policy</a>
-        <span class="w-px h-3 bg-accent/20"></span>
-        <a href="/sitemap" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">Sitemap</a>
+      <!-- Nav columns -->
+      <div class="flex-1 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-5">
+
+        <!-- Product -->
+        <div class="space-y-4">
+          <h3 class="text-tagline-3 uppercase tracking-widest font-semibold text-white">Product</h3>
+          <ul class="space-y-3">
+            <li><a href="/#platform" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">Platform</a></li>
+            <li><a href="/#pixel-ai" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">Pixel AI</a></li>
+            <li><a href="/#integrations" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">Integrations</a></li>
+            <li><a href="/pricing" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">Pricing</a></li>
+            <li><a href="/founding-member" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">Founding Member</a></li>
+            <li><a href="/request-a-demo" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">Request a Demo</a></li>
+          </ul>
+        </div>
+
+        <!-- Solutions -->
+        <div class="space-y-4">
+          <h3 class="text-tagline-3 uppercase tracking-widest font-semibold text-white">Solutions</h3>
+          <ul class="space-y-3">
+            <li><a href="/use-cases/agency" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">Agency</a></li>
+            <li><a href="/use-cases/it-services" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">IT Services</a></li>
+            <li><a href="/use-cases/accounting-finance" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">Accounting & Finance</a></li>
+            <li><a href="/use-cases/business-operations" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">Business Operations</a></li>
+            <li><a href="/use-cases/freelancer" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">Freelancer</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div class="space-y-4">
+          <h3 class="text-tagline-3 uppercase tracking-widest font-semibold text-white">Resources</h3>
+          <ul class="space-y-3">
+            <li><a href="/blog" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">Blog</a></li>
+            <li><a href="/tools" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">Free Tools</a></li>
+            <li><a href="/tools/profit-margin-calculator" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">Profit Margin Calculator</a></li>
+            <li><a href="/compare" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">All Comparisons</a></li>
+          </ul>
+        </div>
+
+        <!-- Compare -->
+        <div class="space-y-4">
+          <h3 class="text-tagline-3 uppercase tracking-widest font-semibold text-white">Compare</h3>
+          <ul class="space-y-3">
+            <li><a href="/compare/insighty-vs-jira" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">vs Jira</a></li>
+            <li><a href="/compare/insighty-vs-asana" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">vs Asana</a></li>
+            <li><a href="/compare/insighty-vs-monday" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">vs Monday.com</a></li>
+            <li><a href="/compare/insighty-vs-clickup" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">vs ClickUp</a></li>
+            <li><a href="/compare/insighty-vs-harvest" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">vs Harvest</a></li>
+            <li><a href="/compare/insighty-vs-teamwork" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">vs Teamwork</a></li>
+            <li><a href="/compare" class="text-tagline-2 text-primary-400 hover:text-primary-300 transition-colors duration-200">See all →</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div class="space-y-4">
+          <h3 class="text-tagline-3 uppercase tracking-widest font-semibold text-white">Company</h3>
+          <ul class="space-y-3">
+            <li><a href="/about" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">About</a></li>
+            <li><a href="/contact" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">Contact</a></li>
+            <li><a href="/privacy-policy" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">Privacy Policy</a></li>
+            <li><a href="/sitemap" class="text-tagline-2 text-accent/50 hover:text-accent transition-colors duration-200">Sitemap</a></li>
+          </ul>
+        </div>
+
       </div>
+    </div>
 
-      <!-- Divider -->
-      <div class="w-full h-px bg-accent/10"></div>
-
-      <!-- Copyright -->
-      <p class="text-tagline-2 text-accent/40">
+    <!-- Bottom bar -->
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-tagline-2 text-white">
         Copyright &copy;2026 Insighty. All rights reserved.
       </p>
-
+      <div class="flex items-center gap-5">
+        <a href="/privacy-policy" class="text-tagline-2 text-white hover:text-accent/60 transition-colors duration-200">Privacy Policy</a>
+        <span class="w-px h-3 bg-accent/15"></span>
+        <a href="/sitemap" class="text-tagline-2 text-white hover:text-accent/60 transition-colors duration-200">Sitemap</a>
+      </div>
     </div>
+
   </div>
 </footer>

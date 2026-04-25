@@ -1,0 +1,338 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/organisms/Header.astro'
+import Footer from '../../components/organisms/Footer.astro'
+
+const useCase = {
+  title: "Insighty for Business Operations — Resource Planning, Capacity & Profitability",
+  description: "Operations managers use Insighty to track team capacity, project profitability, resource utilization, and pipeline health — all in one operations intelligence platform.",
+
+  eyebrow: "For Business Operations",
+  heroHeadline: "Operations intelligence",
+  heroHeadlineEm: "for the whole business.",
+  heroSubtext: "Insighty gives operations managers real-time visibility into team capacity, resource utilization, project profitability, and revenue health — so they can make better decisions faster.",
+
+  problemEyebrow: "The Problem",
+  problemHeadline: "What operations teams can't see",
+  problems: [
+    {
+      icon: "chart",
+      title: "Invisible team utilization",
+      body: "Who's overloaded? Who has capacity? Without a unified resource view, work gets stacked on the same people while others go underutilized."
+    },
+    {
+      icon: "grid",
+      title: "Project profitability unknown",
+      body: "Budget burn, change request impact, and actual vs. planned revenue per project all live in different places — making profitability analysis impossible without a spreadsheet audit."
+    },
+    {
+      icon: "alert",
+      title: "Fragmented ops data",
+      body: "Clients, projects, contracts, hosting, domains, and pipeline all managed separately. No single operations dashboard for the business."
+    },
+  ],
+
+  feature1: {
+    eyebrow: "Resource Planning",
+    headline: "Team capacity.",
+    headlineEm: "Day by day.",
+    body: "A day-by-day allocation grid for every team member — showing billable project work, meetings, admin, and leave. Capacity calculations factor in hours per day, overhead, and holidays. Over- and under-utilization visible at a glance.",
+    bullets: [
+      "Day-level allocation per team member",
+      "Billable utilization % calculated live",
+      "Capacity vs. planned hours per week",
+    ],
+  },
+
+  feature2: {
+    eyebrow: "Projects & Profitability",
+    headline: "Budget burn.",
+    headlineEm: "Live per project.",
+    body: "Every project shows contract value, planned vs. invoiced revenue, approved change requests, and deliverable status. Budget overruns surface immediately — not at month-end when it's too late to act.",
+    bullets: [
+      "Contract value + approved CR total",
+      "Planned vs. actual invoiced comparison",
+      "Per-project deliverable status tracking",
+    ],
+  },
+
+  feature3: {
+    eyebrow: "Dashboard & Reports",
+    headline: "Agency health",
+    headlineEm: "at a glance.",
+    body: "The dashboard surfaces active project count, this month's revenue status, pipeline weighted value, team utilization this week, and critical alerts — domains expiring, contracts ending, overdue invoices — all in one view when you log in.",
+    bullets: [
+      "Revenue, pipeline, and capacity in one view",
+      "Alerts for domains, contracts, overdue items",
+      "Monthly digest with key performance metrics",
+    ],
+  },
+
+  stats: [
+    { value: "12w", label: "Forward capacity view" },
+    { value: "100%", label: "Project budget visibility" },
+    { value: "1", label: "Operations dashboard" },
+    { value: "0", label: "Excel spreadsheets needed" },
+  ],
+
+  testimonial: {
+    quote: "\"I used to spend Monday mornings piecing together resource data from three different tools. Now I open Insighty and I know exactly where every person is, what every project costs, and what's coming in this month.\"",
+    name: "Julia Barker",
+    role: "COO, Meridian Digital",
+  },
+
+  ctaHeadline: "See your whole business from one dashboard.",
+  ctaSubtext: "Join the founding member waitlist and get pre-launch pricing locked in for your operations team.",
+}
+---
+
+<BaseLayout title={useCase.title} description={useCase.description}>
+  <Header />
+  <main>
+
+    <!-- HERO -->
+    <section class="relative pt-[140px] pb-20 sm:pt-[160px] md:pb-[120px] xl:pb-[160px] overflow-hidden bg-white dark:bg-background-8">
+      <div class="pointer-events-none absolute inset-0 -z-0 overflow-hidden">
+        <div class="absolute -top-[80px] left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full bg-primary-100/60 dark:bg-primary-500/20 blur-[120px]"></div>
+        <div class="absolute bottom-0 -left-[200px] w-[500px] h-[400px] rounded-full bg-ns-green-light/30 dark:bg-ns-green/8 blur-[120px]"></div>
+      </div>
+      <div class="main-container relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 xl:gap-20 items-center">
+          <div class="space-y-8">
+            <div class="space-y-5">
+              <div data-ns-animate data-delay="0.05">
+                <span class="inline-block border border-primary-400/40 dark:border-primary-400/40 text-primary-500 dark:text-primary-300 text-tagline-3 font-semibold tracking-widest uppercase px-4 py-1.5">{useCase.eyebrow}</span>
+              </div>
+              <h1 data-ns-animate data-delay="0.1" class="max-w-[560px]">
+                {useCase.heroHeadline}<br/>
+                <em class="not-italic text-primary-400">{useCase.heroHeadlineEm}</em>
+              </h1>
+              <p data-ns-animate data-delay="0.2" class="max-w-[500px] text-secondary/70 dark:text-accent/70">{useCase.heroSubtext}</p>
+            </div>
+            <div data-ns-animate data-delay="0.3" class="flex flex-wrap gap-3">
+              <a href="/founding-member" class="btn btn-primary btn-md"><span>Get Early Access</span></a>
+              <a href="/#platform" class="btn btn-white dark:btn-white-dark btn-md"><span>See the Platform</span></a>
+            </div>
+            <div data-ns-animate data-delay="0.4" class="flex items-center gap-3 pt-2">
+              <div class="flex -space-x-2">
+                {["J","C","O","P"].map(l => (
+                  <div class="size-8 rounded-full bg-background-3 dark:bg-background-7 border-2 border-white dark:border-background-8 flex items-center justify-center text-tagline-3 font-semibold text-secondary/40 dark:text-accent/40">{l}</div>
+                ))}
+              </div>
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60">Joined by <strong class="text-secondary dark:text-accent font-medium">operations leaders</strong> across Europe</p>
+            </div>
+          </div>
+          <div data-ns-animate data-delay="0.4" data-direction="up" data-offset="60">
+            <div class="relative">
+              <!-- MOCKUP PLACEHOLDER: Dashboard overview or Resource Planning grid, 1200×900px -->
+              <div class="bg-background-3 dark:bg-background-7 border border-stroke-2 dark:border-stroke-6 rounded-2xl overflow-hidden aspect-[4/3] flex items-center justify-center shadow-3">
+                <div class="text-center space-y-3 p-8">
+                  <div class="size-12 rounded-xl bg-background-4 dark:bg-background-6 flex items-center justify-center mx-auto">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-secondary/30 dark:text-accent/30"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
+                  </div>
+                  <p class="text-tagline-2 text-secondary/40 dark:text-accent/40 font-medium">Ops dashboard mockup</p>
+                  <p class="text-tagline-3 text-secondary/25 dark:text-accent/25">1200 × 900 px</p>
+                </div>
+              </div>
+              <div class="absolute -bottom-3 -right-3 w-20 h-20 border-r-2 border-b-2 border-primary-400/30 -z-10 rounded-br-xl"></div>
+              <div class="absolute -top-3 -left-3 w-20 h-20 border-l-2 border-t-2 border-ns-green/20 -z-10 rounded-tl-xl"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST BAR -->
+    <section class="py-10 md:py-14 border-y border-stroke-1 dark:border-stroke-5 bg-background-2 dark:bg-background-7">
+      <div class="main-container">
+        <div class="flex flex-col items-center gap-8">
+          <p class="text-tagline-3 font-semibold tracking-widest uppercase text-secondary/40 dark:text-accent/40">Trusted by operations teams</p>
+          <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            {[1,2,3,4,5].map(i => (
+              <div class="h-7 w-[100px] bg-background-3 dark:bg-background-6 rounded flex items-center justify-center">
+                <span class="text-tagline-3 text-secondary/25 dark:text-accent/25 font-medium">Org {i}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEM BLOCK -->
+    <section class="py-16 md:py-[100px] xl:py-[130px] bg-white dark:bg-background-8">
+      <div class="main-container space-y-14 md:space-y-16">
+        <div class="max-w-[560px]">
+          <span data-ns-animate data-delay="0.05" class="inline-block text-tagline-3 font-semibold tracking-widest uppercase text-primary-400 mb-4">{useCase.problemEyebrow}</span>
+          <h2 data-ns-animate data-delay="0.1">{useCase.problemHeadline}</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-stroke-1 dark:bg-stroke-5">
+          {useCase.problems.map((p, i) => (
+            <div data-ns-animate data-delay={String(0.1 + i * 0.1)} class="bg-white dark:bg-background-8 p-8 xl:p-10 space-y-4 group">
+              <div class="size-10 rounded-xl bg-background-3 dark:bg-background-7 flex items-center justify-center group-hover:bg-primary-50 dark:group-hover:bg-primary-500/15 transition-colors duration-300">
+                {p.icon === "grid" && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-secondary/50 dark:text-accent/50"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>}
+                {p.icon === "alert" && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-secondary/50 dark:text-accent/50"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>}
+                {p.icon === "chart" && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-secondary/50 dark:text-accent/50"><path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>}
+              </div>
+              <h3 class="text-heading-6 font-medium text-secondary dark:text-accent">{p.title}</h3>
+              <p class="text-tagline-1 text-secondary/60 dark:text-accent/60 leading-relaxed">{p.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE 1 -->
+    <section class="py-16 md:py-[100px] xl:py-[130px] bg-background-2 dark:bg-background-5">
+      <div class="main-container">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-center">
+          <div class="space-y-6 lg:max-w-[480px]">
+            <span data-ns-animate data-delay="0.05" class="inline-block border border-secondary/20 dark:border-accent/20 text-secondary dark:text-accent text-tagline-3 font-semibold tracking-widest uppercase px-4 py-1.5">{useCase.feature1.eyebrow}</span>
+            <h2 data-ns-animate data-delay="0.1" class="leading-tight">{useCase.feature1.headline}<br/><em class="not-italic text-primary-400">{useCase.feature1.headlineEm}</em></h2>
+            <p data-ns-animate data-delay="0.2" class="text-secondary/70 dark:text-accent/70 leading-relaxed">{useCase.feature1.body}</p>
+            <ul data-ns-animate data-delay="0.3" class="space-y-3">
+              {useCase.feature1.bullets.map(b => (
+                <li class="flex items-start gap-3">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="shrink-0 mt-0.5"><rect width="18" height="18" rx="9" class="fill-secondary dark:fill-accent"/><path d="M8.317 12.756L13.749 7.42a1 1 0 00-1.41-1.416L7.712 10.99l-2.25-2.202a1 1 0 00-1.413 1.415l2.856 2.79a1 1 0 001.412 0z" class="fill-white dark:fill-secondary"/></svg>
+                  <span class="text-tagline-1 text-secondary dark:text-accent">{b}</span>
+                </li>
+              ))}
+            </ul>
+            <div data-ns-animate data-delay="0.35"><a href="/founding-member" class="btn btn-primary btn-md"><span>Get Early Access</span></a></div>
+          </div>
+          <div data-ns-animate data-delay="0.2" data-direction="up" data-offset="60">
+            <!-- MOCKUP PLACEHOLDER: Resource Planning grid, 1200×900px -->
+            <div class="bg-background-3 dark:bg-background-7 border border-stroke-2 dark:border-stroke-6 rounded-2xl overflow-hidden aspect-[4/3] flex items-center justify-center shadow-3">
+              <div class="text-center space-y-3 p-8">
+                <div class="size-12 rounded-xl bg-background-4 dark:bg-background-6 flex items-center justify-center mx-auto"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-secondary/30 dark:text-accent/30"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="1.5"/></svg></div>
+                <p class="text-tagline-2 text-secondary/40 dark:text-accent/40 font-medium">Resource Planning grid</p>
+                <p class="text-tagline-3 text-secondary/25 dark:text-accent/25">1200 × 900 px</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE 2 -->
+    <section class="py-16 md:py-[100px] xl:py-[130px] bg-white dark:bg-background-8">
+      <div class="main-container">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-center">
+          <div data-ns-animate data-delay="0.1" data-direction="up" data-offset="60" class="order-2 lg:order-1">
+            <!-- MOCKUP PLACEHOLDER: Project detail with budget burn, 1200×900px -->
+            <div class="bg-background-3 dark:bg-background-7 border border-stroke-2 dark:border-stroke-6 rounded-2xl overflow-hidden aspect-[4/3] flex items-center justify-center shadow-3">
+              <div class="text-center space-y-3 p-8">
+                <div class="size-12 rounded-xl bg-background-4 dark:bg-background-6 flex items-center justify-center mx-auto"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-secondary/30 dark:text-accent/30"><path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <p class="text-tagline-2 text-secondary/40 dark:text-accent/40 font-medium">Project profitability view</p>
+                <p class="text-tagline-3 text-secondary/25 dark:text-accent/25">1200 × 900 px</p>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-6 order-1 lg:order-2 lg:max-w-[480px]">
+            <span data-ns-animate data-delay="0.05" class="inline-block border border-secondary/20 dark:border-accent/20 text-secondary dark:text-accent text-tagline-3 font-semibold tracking-widest uppercase px-4 py-1.5">{useCase.feature2.eyebrow}</span>
+            <h2 data-ns-animate data-delay="0.1" class="leading-tight">{useCase.feature2.headline}<br/><em class="not-italic text-primary-400">{useCase.feature2.headlineEm}</em></h2>
+            <p data-ns-animate data-delay="0.2" class="text-secondary/70 dark:text-accent/70 leading-relaxed">{useCase.feature2.body}</p>
+            <ul data-ns-animate data-delay="0.3" class="space-y-3">
+              {useCase.feature2.bullets.map(b => (
+                <li class="flex items-start gap-3">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="shrink-0 mt-0.5"><rect width="18" height="18" rx="9" class="fill-secondary dark:fill-accent"/><path d="M8.317 12.756L13.749 7.42a1 1 0 00-1.41-1.416L7.712 10.99l-2.25-2.202a1 1 0 00-1.413 1.415l2.856 2.79a1 1 0 001.412 0z" class="fill-white dark:fill-secondary"/></svg>
+                  <span class="text-tagline-1 text-secondary dark:text-accent">{b}</span>
+                </li>
+              ))}
+            </ul>
+            <div data-ns-animate data-delay="0.35"><a href="/founding-member" class="btn btn-primary btn-md"><span>Get Early Access</span></a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE 3 — dark -->
+    <section class="py-16 md:py-[100px] xl:py-[130px] bg-[#0e1120] relative overflow-hidden">
+      <div class="pointer-events-none absolute inset-0 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-primary-500/20 blur-[120px]"></div>
+      </div>
+      <div class="main-container relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-center">
+          <div class="space-y-6 lg:max-w-[480px]">
+            <span data-ns-animate data-delay="0.05" class="inline-block border border-white/20 text-white/70 text-tagline-3 font-semibold tracking-widest uppercase px-4 py-1.5">{useCase.feature3.eyebrow}</span>
+            <h2 data-ns-animate data-delay="0.1" class="text-white leading-tight">{useCase.feature3.headline}<br/><em class="not-italic text-primary-400">{useCase.feature3.headlineEm}</em></h2>
+            <p data-ns-animate data-delay="0.2" class="text-white/60 leading-relaxed">{useCase.feature3.body}</p>
+            <ul data-ns-animate data-delay="0.3" class="space-y-3">
+              {useCase.feature3.bullets.map(b => (
+                <li class="flex items-start gap-3">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="shrink-0 mt-0.5"><rect width="18" height="18" rx="9" fill="white" fill-opacity="0.15"/><path d="M8.317 12.756L13.749 7.42a1 1 0 00-1.41-1.416L7.712 10.99l-2.25-2.202a1 1 0 00-1.413 1.415l2.856 2.79a1 1 0 001.412 0z" fill="white"/></svg>
+                  <span class="text-tagline-1 text-white/85">{b}</span>
+                </li>
+              ))}
+            </ul>
+            <div data-ns-animate data-delay="0.35"><a href="/founding-member" class="btn btn-white btn-md"><span>Get Early Access</span></a></div>
+          </div>
+          <div data-ns-animate data-delay="0.2" data-direction="up" data-offset="60">
+            <!-- MOCKUP PLACEHOLDER: Dashboard with alerts, 1200×900px -->
+            <div class="bg-[#161929] border border-white/8 rounded-2xl overflow-hidden aspect-[4/3] flex items-center justify-center shadow-3">
+              <div class="text-center space-y-3 p-8">
+                <div class="size-12 rounded-xl bg-white/5 flex items-center justify-center mx-auto"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-white/30"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/></svg></div>
+                <p class="text-tagline-2 text-white/30 font-medium">Dashboard overview</p>
+                <p class="text-tagline-3 text-white/20">1200 × 900 px</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="py-14 md:py-20 bg-primary-500">
+      <div class="main-container">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
+          {useCase.stats.map((s, i) => (
+            <div data-ns-animate data-delay={String(0.05 + i * 0.08)} class="bg-primary-500 px-8 py-10 text-center space-y-1">
+              <p class="text-4xl md:text-5xl font-semibold text-white tracking-tight">{s.value}</p>
+              <p class="text-tagline-2 text-white/60 uppercase tracking-wider font-medium">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIAL -->
+    <section class="py-16 md:py-[100px] xl:py-[140px] bg-background-2 dark:bg-background-5">
+      <div class="main-container">
+        <div class="max-w-[800px] mx-auto">
+          <div data-ns-animate data-delay="0.1" class="bg-white dark:bg-background-8 border border-stroke-1 dark:border-stroke-5 rounded-2xl p-10 md:p-14 xl:p-16 space-y-8">
+            <svg width="40" height="30" viewBox="0 0 40 30" fill="none" class="text-primary-200 dark:text-primary-500/40"><path d="M0 30V18C0 7.333 5.333 1.667 16 0l2 3C12.667 4.333 10 7.667 10 13v1h8V30H0zm22 0V18C22 7.333 27.333 1.667 38 0l2 3C34.667 4.333 32 7.667 32 13v1h8V30H22z" fill="currentColor"/></svg>
+            <blockquote><p class="text-heading-5 md:text-heading-4 font-normal text-secondary dark:text-accent leading-relaxed">{useCase.testimonial.quote}</p></blockquote>
+            <div class="flex items-center gap-4 pt-2 border-t border-stroke-1 dark:border-stroke-5">
+              <div class="size-12 rounded-full bg-background-3 dark:bg-background-7 border-2 border-stroke-2 dark:border-stroke-6 flex items-center justify-center text-tagline-2 font-semibold text-secondary/40 dark:text-accent/40 shrink-0">{useCase.testimonial.name.charAt(0)}</div>
+              <div>
+                <p class="text-tagline-1 font-medium text-secondary dark:text-accent">{useCase.testimonial.name}</p>
+                <p class="text-tagline-2 text-secondary/50 dark:text-accent/50">{useCase.testimonial.role}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOTTOM CTA -->
+    <section class="py-16 md:py-[100px] xl:py-[140px] bg-white dark:bg-background-8 relative overflow-hidden">
+      <div class="pointer-events-none absolute inset-0 overflow-hidden">
+        <div class="absolute -bottom-[100px] left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-primary-100/80 dark:bg-primary-500/15 blur-[120px]"></div>
+      </div>
+      <div class="main-container relative z-10">
+        <div class="max-w-[680px] mx-auto text-center space-y-8">
+          <div class="space-y-4">
+            <h2 data-ns-animate data-delay="0.1" class="leading-tight">{useCase.ctaHeadline}</h2>
+            <p data-ns-animate data-delay="0.2" class="text-secondary/70 dark:text-accent/70 max-w-[480px] mx-auto">{useCase.ctaSubtext}</p>
+          </div>
+          <div data-ns-animate data-delay="0.3" class="flex flex-wrap justify-center gap-3">
+            <a href="/founding-member" class="btn btn-primary btn-xl"><span>Become a Founding Member</span></a>
+            <a href="/#platform" class="btn btn-white dark:btn-white-dark btn-xl"><span>Explore the Platform</span></a>
+          </div>
+          <p data-ns-animate data-delay="0.4" class="text-tagline-3 text-secondary/35 dark:text-accent/35">No credit card required &middot; Founding member pricing locked for life</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,204 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/organisms/Header.astro'
+import Footer from '../components/organisms/Footer.astro'
+---
+
+<BaseLayout
+  title="Contact Insighty — Get in Touch"
+  description="Questions about Insighty, partnership enquiries, or press requests — get in touch with the team."
+>
+  <Header />
+  <main>
+
+    <!-- Hero -->
+    <section class="bg-background-1 dark:bg-background-8 pt-[140px] sm:pt-[150px] md:pt-[160px] pb-12 md:pb-16 border-b border-stroke-2 dark:border-stroke-6">
+      <div class="main-container space-y-3">
+        <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40 border border-secondary/15 dark:border-accent/15 px-4 py-1.5 rounded-full">Contact</span>
+        <h1 class="text-secondary dark:text-accent">Get in touch</h1>
+        <p class="text-tagline-1 text-secondary/55 dark:text-accent/55 max-w-[480px]">
+          Questions, partnership enquiries, press requests, or just want to talk about the product — we are listening.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact options + form -->
+    <section class="bg-background-1 dark:bg-background-8 py-14 md:py-20">
+      <div class="main-container">
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_480px] gap-12 xl:gap-16 items-start">
+
+          <!-- Left: contact options -->
+          <div class="space-y-8">
+
+            <div class="space-y-5">
+              {[
+                {
+                  icon: `<svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h14c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`,
+                  title: 'General enquiries',
+                  body: 'Questions about pricing, features, or anything else about Insighty.',
+                  cta: 'hello@insighty.io',
+                  href: 'mailto:hello@insighty.io',
+                },
+                {
+                  icon: `<svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="18" height="14" rx="2"/><path d="M16 7V5a4 4 0 0 0-8 0v2"/></svg>`,
+                  title: 'Early access & demo',
+                  body: 'Want to see Insighty in action or get on the founding member waitlist?',
+                  cta: 'Request a demo →',
+                  href: '/request-a-demo',
+                },
+                {
+                  icon: `<svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+                  title: 'Press & partnerships',
+                  body: 'Media enquiries, integration partnerships, or reseller discussions.',
+                  cta: 'press@insighty.io',
+                  href: 'mailto:press@insighty.io',
+                },
+              ].map(item => (
+                <div class="flex items-start gap-4 p-6 rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6">
+                  <span class="shrink-0 w-10 h-10 rounded-xl bg-primary-500/10 flex items-center justify-center text-primary-500">
+                    <span class="w-5 h-5" set:html={item.icon} />
+                  </span>
+                  <div class="space-y-1">
+                    <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">{item.title}</p>
+                    <p class="text-tagline-2 text-secondary/55 dark:text-accent/55">{item.body}</p>
+                    <a href={item.href} class="text-tagline-2 text-primary-500 hover:text-primary-400 transition-colors duration-200 font-medium">{item.cta}</a>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-6 space-y-2">
+              <p class="text-tagline-2 font-semibold text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Response time</p>
+              <p class="text-tagline-1 text-secondary/70 dark:text-accent/70">We aim to respond to all messages within one business day. For urgent matters, use the subject line "URGENT" and we will prioritise.</p>
+            </div>
+          </div>
+
+          <!-- Right: form -->
+          <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-8">
+            <div class="space-y-2 mb-8">
+              <h2 class="text-secondary dark:text-accent">Send us a message</h2>
+              <p class="text-tagline-2 text-secondary/55 dark:text-accent/55">We will get back to you within one business day.</p>
+            </div>
+
+            <form id="contact-form" class="space-y-5" novalidate>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="space-y-1.5">
+                  <label for="cf-first" class="text-tagline-2 font-medium text-secondary/70 dark:text-accent/70">First name</label>
+                  <input
+                    id="cf-first"
+                    name="first_name"
+                    type="text"
+                    placeholder="Alex"
+                    class="w-full rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent placeholder:text-secondary/30 dark:placeholder:text-accent/30 focus:outline-none focus:border-primary-500 transition-colors duration-200"
+                    required
+                  />
+                </div>
+                <div class="space-y-1.5">
+                  <label for="cf-last" class="text-tagline-2 font-medium text-secondary/70 dark:text-accent/70">Last name</label>
+                  <input
+                    id="cf-last"
+                    name="last_name"
+                    type="text"
+                    placeholder="Johnson"
+                    class="w-full rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent placeholder:text-secondary/30 dark:placeholder:text-accent/30 focus:outline-none focus:border-primary-500 transition-colors duration-200"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="space-y-1.5">
+                <label for="cf-email" class="text-tagline-2 font-medium text-secondary/70 dark:text-accent/70">Work email</label>
+                <input
+                  id="cf-email"
+                  name="email"
+                  type="email"
+                  placeholder="alex@youragency.com"
+                  class="w-full rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent placeholder:text-secondary/30 dark:placeholder:text-accent/30 focus:outline-none focus:border-primary-500 transition-colors duration-200"
+                  required
+                />
+              </div>
+
+              <div class="space-y-1.5">
+                <label for="cf-subject" class="text-tagline-2 font-medium text-secondary/70 dark:text-accent/70">Subject</label>
+                <select
+                  id="cf-subject"
+                  name="subject"
+                  class="w-full rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent focus:outline-none focus:border-primary-500 transition-colors duration-200"
+                  required
+                >
+                  <option value="">Select a topic...</option>
+                  <option value="general">General enquiry</option>
+                  <option value="demo">Request a demo</option>
+                  <option value="founding">Founding member</option>
+                  <option value="partnership">Partnership</option>
+                  <option value="press">Press</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div class="space-y-1.5">
+                <label for="cf-message" class="text-tagline-2 font-medium text-secondary/70 dark:text-accent/70">Message</label>
+                <textarea
+                  id="cf-message"
+                  name="message"
+                  rows="5"
+                  placeholder="Tell us what's on your mind..."
+                  class="w-full rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent placeholder:text-secondary/30 dark:placeholder:text-accent/30 focus:outline-none focus:border-primary-500 transition-colors duration-200 resize-none"
+                  required
+                ></textarea>
+              </div>
+
+              <button type="submit" id="cf-submit" class="btn btn-primary btn-md w-full">
+                <span id="cf-btn-text">Send message</span>
+              </button>
+            </form>
+
+            <!-- Success -->
+            <div id="cf-success" class="hidden text-center py-8 space-y-4">
+              <span class="inline-flex w-12 h-12 rounded-full bg-primary-500/10 items-center justify-center mx-auto">
+                <svg class="w-6 h-6 text-primary-500" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">Message sent</p>
+              <p class="text-tagline-2 text-secondary/55 dark:text-accent/55">We will be back in touch within one business day.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  input.error, textarea.error, select.error {
+    border-color: #f87171;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var form = document.getElementById('contact-form');
+    var success = document.getElementById('cf-success');
+    var btnText = document.getElementById('cf-btn-text');
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var valid = true;
+      form.querySelectorAll('[required]').forEach(function (el) {
+        el.classList.remove('error');
+        if (!el.value.trim()) { el.classList.add('error'); valid = false; }
+      });
+      if (!valid) return;
+
+      btnText.textContent = 'Sending...';
+      setTimeout(function () {
+        form.style.display = 'none';
+        success.classList.remove('hidden');
+      }, 800);
+    });
+  })();
+</script>

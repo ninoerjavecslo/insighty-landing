@@ -7,9 +7,10 @@ interface Props {
   ogImage?: string;
   ogType?: string;
   ogPublishedTime?: string;
+  preloadImage?: string;
 }
 
-const { title, description, ogImage = '/images/og-image.png', ogType = 'website', ogPublishedTime } = Astro.props;
+const { title, description, ogImage = '/images/og-image.png', ogType = 'website', ogPublishedTime, preloadImage } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -41,13 +42,24 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
 
-    <!-- Google Fonts -->
+    <!-- LCP image preload -->
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} type="image/webp" fetchpriority="high" />}
+
+    <!-- Google Fonts (non-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
     <!-- FOUC prevention -->
     <script is:inline>
@@ -65,18 +77,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <slot />
 
     <!-- Vendor scripts -->
-    <script is:inline src="/vendor/lenis.min.js"></script>
-    <script is:inline src="/vendor/gsap.min.js"></script>
-    <script is:inline src="/vendor/scroll-trigger.min.js"></script>
-    <script is:inline src="/vendor/split-text.min.js"></script>
-    <script is:inline src="/vendor/draw-svg.min.js"></script>
-    <script is:inline src="/vendor/motionpathplugin.min.js"></script>
-    <script is:inline src="/vendor/springer.min.js"></script>
-    <script is:inline src="/vendor/swiper.min.js"></script>
-    <script is:inline src="/vendor/leaflet.min.js"></script>
-    <script is:inline src="/vendor/vanilla-infinite-marquee.min.js"></script>
-    <script is:inline src="/vendor/number-counter.js"></script>
-    <script is:inline src="/vendor/stack-card.min.js"></script>
+    <script is:inline defer src="/vendor/lenis.min.js"></script>
+    <script is:inline defer src="/vendor/gsap.min.js"></script>
+    <script is:inline defer src="/vendor/scroll-trigger.min.js"></script>
+    <script is:inline defer src="/vendor/split-text.min.js"></script>
+    <script is:inline defer src="/vendor/draw-svg.min.js"></script>
+    <script is:inline defer src="/vendor/motionpathplugin.min.js"></script>
+    <script is:inline defer src="/vendor/springer.min.js"></script>
+    <script is:inline defer src="/vendor/swiper.min.js"></script>
+    <script is:inline defer src="/vendor/leaflet.min.js"></script>
+    <script is:inline defer src="/vendor/vanilla-infinite-marquee.min.js"></script>
+    <script is:inline defer src="/vendor/number-counter.js"></script>
+    <script is:inline defer src="/vendor/stack-card.min.js"></script>
 
     <!-- Main app bundle -->
     <script>import '../main.js'</script>

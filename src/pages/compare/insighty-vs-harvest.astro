@@ -1,0 +1,268 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/organisms/Header.astro'
+import Footer from '../../components/organisms/Footer.astro'
+
+const title = 'Insighty vs Harvest: Beyond Time Tracking and Basic Invoicing'
+const description = 'Harvest does time tracking and simple invoicing well. Insighty is the full financial operations platform agencies need — retainer billing, revenue planning, contracts, and forecasting in one place.'
+
+const checks = [
+  'Revenue planning across projects, retainers, and hosting in one view',
+  'Maintenance contract billing with scope and hours tracking',
+  '"This Month" dashboard — every invoice visible before it slips',
+  'Hosting and domain renewal tracking with automated alerts',
+  'Probability-weighted sales pipeline and forecast',
+  'Client health scoring and churn risk indicators',
+]
+
+const harvestStrengths = [
+  { label: 'Time tracking', detail: 'Clean, simple time entry across projects and tasks. Browser, desktop, and mobile apps that teams actually use.' },
+  { label: 'Project budgets', detail: 'Set budget hours or fees per project and get alerts when approaching the limit.' },
+  { label: 'Basic invoicing', detail: 'Generate invoices from tracked time and expenses. Simple, clean, and quick.' },
+  { label: 'Expense tracking', detail: 'Log and categorise project expenses, attach receipts, and include in invoices.' },
+  { label: 'Integrations', detail: 'Connects with Asana, Jira, Slack, QuickBooks, and other tools teams already use.' },
+  { label: 'Reporting', detail: 'Time and expense reports per project, person, or client for billing and analysis.' },
+]
+
+const gaps = [
+  {
+    title: 'What is our total revenue forecast for next quarter?',
+    body: 'Harvest knows what you have invoiced. It does not know your maintenance retainer pipeline, deferred project revenue, or what probability-weighted deals are in your sales pipeline.',
+  },
+  {
+    title: 'Which maintenance contracts renew next month — and at what value?',
+    body: 'Harvest tracks time and invoices. It has no concept of recurring maintenance contracts with included hours, bug allowances, or automatic monthly invoicing based on scope.',
+  },
+  {
+    title: 'Are any of our hosting or domain renewals at risk of lapsing?',
+    body: 'Harvest does not track hosting accounts, domain registrations, or infrastructure renewals. These live in a spreadsheet — and get missed when they expire.',
+  },
+  {
+    title: 'Which clients are the most valuable — across all revenue streams?',
+    body: 'Harvest shows per-project revenue. It cannot show you a client\'s total annual value across projects, retainers, hosting contracts, and pending work simultaneously.',
+  },
+]
+
+type Mark = 'yes' | 'no' | 'partial'
+interface Row { feature: string; harvest: Mark; insighty: Mark; note?: string }
+
+const rows: Row[] = [
+  { feature: 'Time tracking', harvest: 'yes', insighty: 'yes', note: 'Both track time. Insighty ties it directly to contract scope and billing.' },
+  { feature: 'Project budget tracking', harvest: 'yes', insighty: 'yes', note: 'Harvest has hour/fee budgets. Insighty adds budget burn vs. contract value.' },
+  { feature: 'Invoice generation', harvest: 'yes', insighty: 'yes', note: 'Both generate invoices. Insighty automates recurring invoicing by contract.' },
+  { feature: 'Expense tracking', harvest: 'yes', insighty: 'partial', note: 'Harvest has full expense management. Insighty tracks project costs.' },
+  { feature: 'Maintenance contract billing', harvest: 'no', insighty: 'yes', note: 'Monthly/annual retainers with hours-included scope — not in Harvest.' },
+  { feature: 'Revenue planning (multi-stream)', harvest: 'no', insighty: 'yes', note: 'Projects, retainers, hosting, domains — unified matrix view.' },
+  { feature: '"This Month" invoice view', harvest: 'partial', insighty: 'yes', note: 'Harvest shows open invoices. Insighty shows everything due including recurring.' },
+  { feature: 'Hosting & domain renewal tracking', harvest: 'no', insighty: 'yes', note: 'Automated alerts at 90 / 60 / 30 days before expiry.' },
+  { feature: 'Sales pipeline & probability forecast', harvest: 'no', insighty: 'yes', note: 'No pipeline in Harvest. Insighty combines pipeline + contracts + retainers.' },
+  { feature: 'Client financial summary (all streams)', harvest: 'partial', insighty: 'yes', note: 'Harvest shows per-project. Insighty shows total annual value per client.' },
+  { feature: 'Resource utilisation & billability', harvest: 'partial', insighty: 'yes', note: 'Harvest has basic utilisation. Insighty adds billability % and capacity planning.' },
+  { feature: 'Change request value tracking', harvest: 'no', insighty: 'yes', note: 'Harvest does not track CR monetary values or billing status.' },
+]
+
+function mark(val: Mark) {
+  if (val === 'yes') return { text: '✓', cls: 'text-emerald-500 font-semibold text-base' }
+  if (val === 'partial') return { text: '~', cls: 'text-amber-500 font-semibold text-base' }
+  return { text: '—', cls: 'text-secondary/25 dark:text-accent/20 text-base' }
+}
+---
+
+<BaseLayout {title} {description}>
+  <Header />
+  <main>
+
+    <section
+      class="pt-[140px] sm:pt-[150px] md:pt-[160px] pb-16 md:pb-24 relative overflow-hidden"
+      style="background: linear-gradient(135deg, #0a1628 0%, #112445 50%, #1a3a70 100%)"
+    >
+      <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 36px 36px;"></div>
+      <div class="main-container relative z-10">
+        <nav class="flex items-center gap-2 text-tagline-3 text-white/50 mb-10" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-white transition-colors duration-200">Insighty</a>
+          <span>/</span>
+          <a href="/compare" class="hover:text-white transition-colors duration-200">Compare</a>
+          <span>/</span>
+          <span class="text-white/70">Insighty vs Harvest</span>
+        </nav>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-center">
+          <div class="space-y-6">
+            <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white/40">Platform Comparison</span>
+            <h1 class="text-white max-w-[560px]">
+              Insighty vs Harvest:<br />
+              <span class="hero-text-gradient hero-text-color-1">time tracking vs full financial ops</span>
+            </h1>
+            <p class="text-white/65 max-w-[480px]">
+              Harvest is excellent at time tracking and simple invoicing. Insighty is the complete financial operations platform — retainer billing, revenue planning, contract management, and forecasting in one place.
+            </p>
+            <div class="flex flex-wrap gap-3 pt-2">
+              <a href="/founding-member" class="btn btn-md btn-primary"><span>Join founding members</span></a>
+              <a href="/#platform" class="btn btn-md btn-secondary !border-white/20 !text-white hover:!bg-white/10"><span>See the platform</span></a>
+            </div>
+          </div>
+          <div class="hidden lg:block">
+            <ul class="space-y-3">
+              {checks.map(c => (
+                <li class="flex items-start gap-3">
+                  <span class="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-primary-500 flex items-center justify-center">
+                    <svg class="w-3 h-3 text-white" viewBox="0 0 12 12" fill="none">
+                      <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span class="text-tagline-1 text-white/75">{c}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-background-1 dark:bg-background-8 py-16 md:py-20">
+      <div class="main-container">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-8 space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background: #FA5C00">
+                <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              <div>
+                <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">Harvest</p>
+                <p class="text-tagline-3 text-secondary/50 dark:text-accent/50">Time tracking and invoicing</p>
+              </div>
+            </div>
+            <p class="text-tagline-1 text-secondary/70 dark:text-accent/70 leading-relaxed">
+              A focused time tracking and invoicing tool trusted by agencies and freelancers. Harvest's strength is its simplicity — easy time entry, project budgets, and clean invoice generation from tracked hours.
+            </p>
+            <p class="text-tagline-2 font-medium text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Best for</p>
+            <ul class="space-y-1.5">
+              {['Time tracking and timesheet management', 'Project budget monitoring', 'Invoice generation from tracked time', 'Expense logging and reporting'].map(s => (
+                <li class="flex items-center gap-2 text-tagline-2 text-secondary/70 dark:text-accent/70">
+                  <span class="w-1 h-1 rounded-full bg-secondary/30 dark:bg-accent/30 shrink-0"></span>
+                  {s}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="rounded-2xl border border-primary-500/30 bg-background-2 dark:bg-background-6 p-8 space-y-4 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-[0.03]" style="background: linear-gradient(135deg, #4a6ec7, #a585ff)"></div>
+            <div class="relative space-y-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-primary-500 flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.5l7-7 4 4 7-7M3 19h18"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">Insighty</p>
+                  <p class="text-tagline-3 text-secondary/50 dark:text-accent/50">Agency Intelligence Platform</p>
+                </div>
+              </div>
+              <p class="text-tagline-1 text-secondary/70 dark:text-accent/70 leading-relaxed">
+                The complete financial operations platform for agencies. Connects clients, contracts, maintenance retainers, hosting, domains, invoices, and pipeline into one unified revenue and intelligence platform.
+              </p>
+              <p class="text-tagline-2 font-medium text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Best for</p>
+              <ul class="space-y-1.5">
+                {['Agency owners and finance managers', 'Revenue planning across all income streams', 'Retainer, contract, and infrastructure billing', 'Financial forecasting, pipeline, and Pixel AI'].map(s => (
+                  <li class="flex items-center gap-2 text-tagline-2 text-secondary/70 dark:text-accent/70">
+                    <span class="w-1 h-1 rounded-full bg-primary-400/50 shrink-0"></span>
+                    {s}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-background-2 dark:bg-background-7 py-16 md:py-20">
+      <div class="main-container space-y-10">
+        <div class="max-w-[640px] space-y-3">
+          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Where Harvest wins</span>
+          <h2 class="text-secondary dark:text-accent">Harvest is excellent at time tracking and simple invoicing</h2>
+          <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">Harvest earns its place in the stack for time-focused billing workflows. For agencies that primarily bill by the hour, it is a clean, reliable tool.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {harvestStrengths.map(s => (
+            <div class="bg-background-1 dark:bg-background-6 rounded-2xl border border-stroke-2 dark:border-stroke-5 p-6 space-y-2">
+              <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">{s.label}</p>
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 leading-relaxed">{s.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-background-1 dark:bg-background-8 py-16 md:py-20">
+      <div class="main-container space-y-10">
+        <div class="max-w-[640px] space-y-3">
+          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Where agencies outgrow Harvest</span>
+          <h2 class="text-secondary dark:text-accent">The questions Harvest cannot answer as your agency scales</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {gaps.map((g, i) => (
+            <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-7 space-y-3">
+              <div class="flex items-start gap-3">
+                <span class="shrink-0 text-tagline-3 font-bold text-secondary/20 dark:text-accent/20 mt-0.5 tabular-nums">0{i + 1}</span>
+                <p class="text-tagline-1 font-semibold text-secondary dark:text-accent leading-snug">"{g.title}"</p>
+              </div>
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 leading-relaxed pl-7">{g.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-background-2 dark:bg-background-7 py-16 md:py-20">
+      <div class="main-container space-y-8">
+        <div class="max-w-[560px] space-y-3">
+          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Feature comparison</span>
+          <h2 class="text-secondary dark:text-accent">What each tool handles</h2>
+        </div>
+        <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 overflow-hidden">
+          <div class="grid grid-cols-[1fr_100px_100px] md:grid-cols-[1fr_120px_120px] bg-background-1 dark:bg-background-6 border-b border-stroke-2 dark:border-stroke-5 px-6 py-4">
+            <p class="text-tagline-2 font-semibold text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Capability</p>
+            <p class="text-tagline-2 font-semibold text-secondary/50 dark:text-accent/50 uppercase tracking-widest text-center">Harvest</p>
+            <p class="text-tagline-2 font-semibold text-primary-400 uppercase tracking-widest text-center">Insighty</p>
+          </div>
+          {rows.map((row, i) => {
+            const h = mark(row.harvest)
+            const ins = mark(row.insighty)
+            return (
+              <div class={`grid grid-cols-[1fr_100px_100px] md:grid-cols-[1fr_120px_120px] px-6 py-4 border-b border-stroke-2 dark:border-stroke-5 last:border-0 ${i % 2 === 0 ? 'bg-background-1 dark:bg-background-8' : 'bg-background-2 dark:bg-background-7'}`}>
+                <div class="space-y-0.5 pr-4">
+                  <p class="text-tagline-2 font-medium text-secondary dark:text-accent">{row.feature}</p>
+                  {row.note && <p class="text-tagline-3 text-secondary/45 dark:text-accent/45 leading-snug hidden md:block">{row.note}</p>}
+                </div>
+                <p class={`text-center self-center ${h.cls}`}>{h.text}</p>
+                <p class={`text-center self-center ${ins.cls}`}>{ins.text}</p>
+              </div>
+            )
+          })}
+        </div>
+        <div class="flex flex-wrap items-center gap-6 text-tagline-3 text-secondary/50 dark:text-accent/50">
+          <span class="flex items-center gap-1.5"><span class="text-emerald-500 font-semibold">✓</span> Fully supported</span>
+          <span class="flex items-center gap-1.5"><span class="text-amber-500 font-semibold">~</span> Partial / via integration</span>
+          <span class="flex items-center gap-1.5"><span class="opacity-40">—</span> Not applicable</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-background-1 dark:bg-background-8 py-16 md:py-24">
+      <div class="main-container text-center space-y-6 max-w-[640px] mx-auto">
+        <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Ready to go beyond time tracking?</span>
+        <h2 class="text-secondary dark:text-accent">Insighty is what agencies need when Harvest is no longer enough.</h2>
+        <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
+          Time tracking is one piece of the financial picture. Insighty unifies revenue planning, retainer billing, contract management, infrastructure renewals, and pipeline forecasting in one platform built for agencies.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3 pt-2">
+          <a href="/founding-member" class="btn btn-md btn-primary"><span>Join founding members</span></a>
+          <a href="/compare" class="btn btn-md btn-secondary dark:btn-accent"><span>All comparisons</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>

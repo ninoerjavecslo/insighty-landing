@@ -53,11 +53,18 @@ Hero section
         <figure
           class="pointer-events-none mx-auto flex size-[350px] items-center justify-center select-none min-[425px]:size-[400px] sm:size-[550px] md:size-[650px] lg:size-[700px] xl:size-[897px]"
         >
-          <img
-            src="/images/ns-img-506.png"
-            alt="Decorative gradient background"
-            class="h-full w-full object-cover"
-          />
+          <picture>
+            <source srcset="/images/ns-img-506.webp" type="image/webp" />
+            <img
+              src="/images/ns-img-506.png"
+              alt="Decorative gradient background"
+              class="h-full w-full object-cover"
+              width="898"
+              height="898"
+              fetchpriority="high"
+              decoding="sync"
+            />
+          </picture>
         </figure>
       </div>
       <!-- dashboard + floating cards wrapper -->

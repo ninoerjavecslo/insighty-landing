@@ -1,0 +1,430 @@
+- generic [active] [ref=e1]:
+  - banner:
+    - generic [ref=e2]:
+      - link "Home Insighty" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e5]: Home
+        - img "Insighty" [ref=e6]:
+          - generic [ref=e12]: insighty
+      - navigation [ref=e13]:
+        - list [ref=e14]:
+          - listitem [ref=e15]:
+            - link "Platform" [ref=e16] [cursor=pointer]:
+              - /url: "#platform"
+              - generic [ref=e17]: Platform
+          - listitem [ref=e18]:
+            - link "Product Tour" [ref=e19] [cursor=pointer]:
+              - /url: "#product-tour"
+              - generic [ref=e20]: Product Tour
+          - listitem [ref=e21]:
+            - link "Pixel AI" [ref=e22] [cursor=pointer]:
+              - /url: "#pixel-ai"
+              - generic [ref=e23]: Pixel AI
+          - listitem [ref=e24]:
+            - link "Integrations" [ref=e25] [cursor=pointer]:
+              - /url: "#integrations"
+              - generic [ref=e26]: Integrations
+          - listitem [ref=e27]:
+            - link "Impact" [ref=e28] [cursor=pointer]:
+              - /url: "#impact"
+              - generic [ref=e29]: Impact
+          - listitem [ref=e30]:
+            - link "FAQ" [ref=e31] [cursor=pointer]:
+              - /url: "#faq"
+              - generic [ref=e32]: FAQ
+          - listitem [ref=e33]:
+            - link "Pricing" [ref=e34] [cursor=pointer]:
+              - /url: /pricing
+              - generic [ref=e35]: Pricing
+          - listitem [ref=e36]:
+            - button "Use Cases" [ref=e37]:
+              - generic [ref=e38]: Use Cases
+              - img [ref=e39]
+          - listitem [ref=e41]
+          - listitem [ref=e42]:
+            - button "Resources" [ref=e43]:
+              - generic [ref=e44]: Resources
+              - img [ref=e45]
+      - link "Request a Demo" [ref=e48] [cursor=pointer]:
+        - /url: /request-a-demo
+        - generic [ref=e49]: Request a Demo
+    - button "Theme toggle button" [ref=e50] [cursor=pointer]:
+      - img [ref=e52]
+  - region "Use Cases menu":
+    - generic:
+      - generic:
+        - paragraph: Who it's for
+        - generic:
+          - link "Agency Revenue, projects & retainers":
+            - /url: /use-cases/agency
+            - generic:
+              - img
+            - generic:
+              - paragraph: Agency
+              - paragraph: Revenue, projects & retainers
+          - link "IT Services Hosting, domains & contracts":
+            - /url: /use-cases/it-services
+            - generic:
+              - img
+            - generic:
+              - paragraph: IT Services
+              - paragraph: Hosting, domains & contracts
+          - link "Accounting & Finance Automate invoicing & track revenue":
+            - /url: /use-cases/accounting-finance
+            - generic:
+              - img
+            - generic:
+              - paragraph: Accounting & Finance
+              - paragraph: Automate invoicing & track revenue
+          - link "Business Operations Capacity & project profitability":
+            - /url: /use-cases/business-operations
+            - generic:
+              - img
+            - generic:
+              - paragraph: Business Operations
+              - paragraph: Capacity & project profitability
+          - link "Freelancer Clients, projects & pipeline":
+            - /url: /use-cases/freelancer
+            - generic:
+              - img
+            - generic:
+              - paragraph: Freelancer
+              - paragraph: Clients, projects & pipeline
+      - generic:
+        - paragraph: Early access
+        - link "Founding Member 20 spots left at pre-launch pricing Lock in your rate before we go public. Claim your spot":
+          - /url: /founding-member
+          - generic:
+            - generic:
+              - generic: Founding Member
+              - paragraph: 20 spots left at pre-launch pricing
+              - paragraph: Lock in your rate before we go public.
+            - generic:
+              - generic: Claim your spot
+              - img
+  - region "Resources menu":
+    - generic:
+      - generic:
+        - paragraph: Discover
+        - link "Blog Agency insights, ops guides, and growth tactics":
+          - /url: /blog
+          - generic:
+            - img
+          - generic:
+            - paragraph: Blog
+            - paragraph: Agency insights, ops guides, and growth tactics
+        - link "Free Tools Calculators and resources, free to use in your browser":
+          - /url: /tools
+          - generic:
+            - img
+          - generic:
+            - paragraph: Free Tools
+            - paragraph: Calculators and resources, free to use in your browser
+        - link "Comparisons How Insighty compares to 27 agency and PM tools":
+          - /url: /compare
+          - generic:
+            - img
+          - generic:
+            - paragraph: Comparisons
+            - paragraph: How Insighty compares to 27 agency and PM tools
+      - generic:
+        - paragraph: Latest post
+        - link "Agency Ops Stop Rebuilding Your Agency's Reality Every Monday 6 min read":
+          - /url: /blog/stop-rebuilding-agency-reality
+          - generic:
+            - generic: Agency Ops
+          - generic:
+            - paragraph: Stop Rebuilding Your Agency's Reality Every Monday
+            - paragraph: 6 min read
+  - main [ref=e54]:
+    - generic [ref=e58]:
+      - generic [ref=e59]: 20 founding spots remaining
+      - heading "Join the agencies building with us." [level=1] [ref=e61]:
+        - text: Join the agencies
+        - generic [ref=e62]: building with us.
+      - paragraph [ref=e63]: Insighty is launching soon — and it's already operational for early agencies. We're opening 20 founding spots for the operators who want to grow with us, not wait for us.
+      - generic [ref=e65]:
+        - generic [ref=e66]: 4 spots claimed
+        - generic [ref=e67]: 20 remaining of 24
+      - generic [ref=e70]:
+        - link "Claim my founding spot" [ref=e71] [cursor=pointer]:
+          - /url: "#claim-spot"
+          - generic [ref=e72]: Claim my founding spot
+        - link "Why join now?" [ref=e73] [cursor=pointer]:
+          - /url: "#why-now"
+          - generic [ref=e74]: Why join now?
+    - generic [ref=e77]:
+      - generic [ref=e78]:
+        - generic [ref=e79]:
+          - text: The honest pitch
+          - heading "We're building in public. You should be part of it." [level=2] [ref=e80]
+        - generic [ref=e81]:
+          - paragraph [ref=e82]: Insighty's core platform is already running — revenue operations, project management, client health, hosting registry, and Pixel AI are all live. Agencies are using it today to replace 4–6 separate tools.
+          - paragraph [ref=e83]: But we're not done. The roadmap ahead — mobile app, AI proposal builder, white-label client portals, advanced capacity planning — is ambitious. We're building it fast, and we're building it with input from the agencies using it.
+          - paragraph [ref=e84]: A founding member isn't buying a finished product. They're joining the team that's finishing it. In exchange for that trust, you get pricing, access, and influence that nobody who joins after launch ever will.
+        - generic [ref=e85]:
+          - generic [ref=e86]:
+            - img [ref=e88]
+            - generic [ref=e90]:
+              - paragraph [ref=e91]: Locked forever
+              - paragraph [ref=e92]: Your founding rate never increases — even when Insighty raises prices after launch.
+          - generic [ref=e93]:
+            - img [ref=e95]
+            - generic [ref=e97]:
+              - paragraph [ref=e98]: You shape the roadmap
+              - paragraph [ref=e99]: Direct access to the product team. Your agency's workflows influence what we build next.
+          - generic [ref=e100]:
+            - img [ref=e102]
+            - generic [ref=e104]:
+              - paragraph [ref=e105]: Full platform access, now
+              - paragraph [ref=e106]: Not a waitlist. You're in from day one — using the platform while it grows around you.
+      - generic [ref=e107]:
+        - generic [ref=e108]:
+          - generic [ref=e111]: Built & live today
+          - list [ref=e112]:
+            - listitem [ref=e113]:
+              - img [ref=e114]
+              - generic [ref=e117]: Revenue & financial operations hub
+            - listitem [ref=e118]:
+              - img [ref=e119]
+              - generic [ref=e122]: Project & delivery management with budget tracking
+            - listitem [ref=e123]:
+              - img [ref=e124]
+              - generic [ref=e127]: Client health scoring & churn risk indicators
+            - listitem [ref=e128]:
+              - img [ref=e129]
+              - generic [ref=e132]: Contract renewal pipeline
+            - listitem [ref=e133]:
+              - img [ref=e134]
+              - generic [ref=e137]: Hosting & domain infrastructure registry
+            - listitem [ref=e138]:
+              - img [ref=e139]
+              - generic [ref=e142]: Time tracking & resource utilisation view
+            - listitem [ref=e143]:
+              - img [ref=e144]
+              - generic [ref=e147]: Pixel AI v1.0 — queries, proactive alerts, anomaly detection
+            - listitem [ref=e148]:
+              - img [ref=e149]
+              - generic [ref=e152]: "Integrations: Jira, Asana, ClickUp, Linear, HubSpot, Xero, QuickBooks, Slack"
+        - generic [ref=e153]:
+          - generic [ref=e156]: Coming next
+          - generic [ref=e157]:
+            - generic [ref=e163]:
+              - text: Q3 2026
+              - list [ref=e164]:
+                - listitem [ref=e165]: Mobile app (iOS + Android)
+                - listitem [ref=e166]: Pixel AI 2.0 — proposal builder & contract analysis
+            - generic [ref=e172]:
+              - text: Q4 2026
+              - list [ref=e173]:
+                - listitem [ref=e174]: White-label client portal
+                - listitem [ref=e175]: Advanced resource planning & capacity management
+            - generic [ref=e180]:
+              - text: "2027"
+              - list [ref=e181]:
+                - listitem [ref=e182]: Custom API access & webhooks
+                - listitem [ref=e183]: Agency network & referral tracking
+    - generic [ref=e185]:
+      - generic [ref=e186]:
+        - generic [ref=e187]: Founding member benefits
+        - heading "Why founding members get what nobody else will" [level=2] [ref=e188]
+        - paragraph [ref=e189]: These benefits don't transfer. They don't expire. They exist specifically for the agencies who joined before Insighty was a household name.
+      - generic [ref=e190]:
+        - generic [ref=e191]:
+          - img [ref=e194]
+          - generic [ref=e196]:
+            - paragraph [ref=e197]: Lifetime pricing lock
+            - paragraph [ref=e198]: The rate you sign up at is yours permanently. No annual price increases, no "market adjustment" emails. Founding member rates are frozen for life — regardless of where pricing goes after launch.
+        - generic [ref=e199]:
+          - img [ref=e202]
+          - generic [ref=e205]:
+            - paragraph [ref=e206]: First access to every release
+            - paragraph [ref=e207]: New modules, feature updates, Pixel AI improvements — you get access weeks before public release. You run on the most advanced version of Insighty, every time.
+        - generic [ref=e208]:
+          - img [ref=e211]
+          - generic [ref=e213]:
+            - paragraph [ref=e214]: Direct line to the product team
+            - paragraph [ref=e215]: Your workflow, your pain points, your agency's reality shapes the roadmap. Founding members get a direct channel to the team — not a feedback form. We built the first version from real agency input; you help build the next.
+        - generic [ref=e216]:
+          - img [ref=e219]
+          - generic [ref=e224]:
+            - paragraph [ref=e225]: White-glove onboarding
+            - paragraph [ref=e226]: We migrate your data, map your projects, and configure your workspace ourselves. No reading docs alone. Founding members get a dedicated onboarding session — we're not done until you're running.
+        - generic [ref=e227]:
+          - img [ref=e230]
+          - generic [ref=e234]:
+            - paragraph [ref=e235]: Private founding member community
+            - paragraph [ref=e236]: A closed group of agency operators who got in early. Compare notes, share what works, and talk directly to the Insighty team. No noise, no vendors, no outsiders — just people building serious agencies.
+        - generic [ref=e237]:
+          - img [ref=e240]
+          - generic [ref=e243]:
+            - paragraph [ref=e244]: Founding member badge
+            - paragraph [ref=e245]: Permanently marked in your account as someone who believed in Insighty before it launched. The agencies that built this with us — acknowledged, always.
+      - generic [ref=e246]:
+        - generic [ref=e247]:
+          - generic [ref=e248]: Founding member pricing
+          - heading "30% off Growth plan. Locked forever." [level=3] [ref=e249]
+          - paragraph [ref=e250]: Growth plan at $90/mo instead of $129/mo — locked for life. When Insighty raises prices, your rate stays. When we add features, you get them. Forever.
+        - generic [ref=e251]:
+          - generic [ref=e252]:
+            - text: $129 / mo
+            - paragraph [ref=e253]: $90 / mo
+            - paragraph [ref=e254]: Billed annually · Save $468/yr
+          - link "Claim this rate" [ref=e255] [cursor=pointer]:
+            - /url: "#claim-spot"
+            - generic [ref=e256]: Claim this rate
+    - generic [ref=e257]:
+      - generic [ref=e259]:
+        - generic [ref=e260]:
+          - generic [ref=e261]: 20 spots left
+          - heading "Claim your founding spot before they're gone" [level=2] [ref=e263]
+          - paragraph [ref=e264]: Fill in your details. We'll confirm your founding spot and reach out within one business day to get you onboarded.
+        - generic [ref=e265]:
+          - paragraph [ref=e266]: What happens after you submit
+          - list [ref=e267]:
+            - listitem [ref=e268]:
+              - generic [ref=e269]: "01"
+              - generic [ref=e270]:
+                - paragraph [ref=e271]: We confirm your spot
+                - paragraph [ref=e272]: You'll hear from us within one business day. We personally review every founding member application.
+            - listitem [ref=e273]:
+              - generic [ref=e274]: "02"
+              - generic [ref=e275]:
+                - paragraph [ref=e276]: Onboarding call
+                - paragraph [ref=e277]: We schedule a 30-minute call to understand your agency and configure Insighty around your workflow.
+            - listitem [ref=e278]:
+              - generic [ref=e279]: "03"
+              - generic [ref=e280]:
+                - paragraph [ref=e281]: You're live
+                - paragraph [ref=e282]: Your workspace is ready. Your founding member rate is locked. You're in.
+        - generic [ref=e283]:
+          - paragraph [ref=e284]: Founding members so far
+          - generic [ref=e285]:
+            - generic [ref=e286]:
+              - generic [ref=e287]: SA
+              - generic [ref=e288]: MK
+              - generic [ref=e289]: JL
+              - generic [ref=e290]: TR
+            - generic [ref=e291]:
+              - paragraph [ref=e292]: 4 agencies already in
+              - paragraph [ref=e293]: Spots filling quickly
+      - generic [ref=e295]:
+        - generic [ref=e296]:
+          - generic [ref=e297]: Founding Member Application
+          - heading "Tell us about your agency" [level=3] [ref=e298]
+          - paragraph [ref=e299]: We review every application personally and will confirm your spot within one business day.
+        - generic [ref=e300]:
+          - generic [ref=e301]:
+            - generic [ref=e302]:
+              - generic [ref=e303]: First name *
+              - textbox "First name *" [ref=e304]:
+                - /placeholder: Sam
+            - generic [ref=e305]:
+              - generic [ref=e306]: Last name *
+              - textbox "Last name *" [ref=e307]:
+                - /placeholder: Carter
+          - generic [ref=e308]:
+            - generic [ref=e309]: Work email *
+            - textbox "Work email *" [ref=e310]:
+              - /placeholder: sam@youragency.com
+          - generic [ref=e311]:
+            - generic [ref=e312]: Agency name *
+            - textbox "Agency name *" [ref=e313]:
+              - /placeholder: Your agency
+          - generic [ref=e314]:
+            - generic [ref=e315]:
+              - generic [ref=e316]: Team size *
+              - generic [ref=e317]:
+                - combobox "Team size *" [ref=e318] [cursor=pointer]:
+                  - option "Select" [disabled] [selected]
+                  - option "1–5 people"
+                  - option "6–15 people"
+                  - option "16–30 people"
+                  - option "31+ people"
+                - generic:
+                  - img
+            - generic [ref=e319]:
+              - generic [ref=e320]: Your role *
+              - generic [ref=e321]:
+                - combobox "Your role *" [ref=e322] [cursor=pointer]:
+                  - option "Select" [disabled] [selected]
+                  - option "Agency Owner / CEO"
+                  - option "Project Manager"
+                  - option "Operations Manager"
+                  - option "Finance / Accounting"
+                  - option "Other"
+                - generic:
+                  - img
+          - generic [ref=e323]:
+            - generic [ref=e324]: Biggest ops challenge right now *
+            - generic [ref=e325]:
+              - combobox "Biggest ops challenge right now *" [ref=e326] [cursor=pointer]:
+                - option "Select" [disabled] [selected]
+                - option "Revenue visibility & forecasting"
+                - option "Project & client profitability"
+                - option "Too many tools, no single source of truth"
+                - option "Client & management reporting"
+                - option "Resource planning & capacity"
+                - option "Honestly, all of the above"
+              - generic:
+                - img
+          - generic [ref=e327]:
+            - generic [ref=e328]: Anything else we should know? (optional)
+            - textbox "Anything else we should know? (optional)" [ref=e329]:
+              - /placeholder: Tell us about your current stack, how many clients you manage, or what you'd want to see first...
+          - generic [ref=e330]:
+            - button "Claim my founding spot" [ref=e331] [cursor=pointer]:
+              - generic [ref=e332]: Claim my founding spot
+            - paragraph [ref=e333]: 20 spots remaining. We'll reply within one business day.
+  - contentinfo [ref=e334]:
+    - figure
+    - generic [ref=e336]:
+      - figure [ref=e337]:
+        - img "Insighty" [ref=e338]
+      - paragraph [ref=e339]: The unified platform for agency operations. Coming soon to help agencies scale profitably.
+      - generic [ref=e340]:
+        - link [ref=e341] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e342]: LinkedIn
+          - img [ref=e343]
+        - link [ref=e345] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e346]: Instagram
+          - img [ref=e347]
+        - link [ref=e349] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e350]: Facebook
+          - img [ref=e351]
+        - link [ref=e353] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e354]: Youtube
+          - img [ref=e355]
+      - generic [ref=e356]:
+        - link "Pricing" [ref=e357] [cursor=pointer]:
+          - /url: /pricing
+        - link "Blog" [ref=e359] [cursor=pointer]:
+          - /url: /blog
+        - link "Free Tools" [ref=e361] [cursor=pointer]:
+          - /url: /tools
+        - link "Compare" [ref=e363] [cursor=pointer]:
+          - /url: /compare
+        - link "Founding Member" [ref=e365] [cursor=pointer]:
+          - /url: /founding-member
+        - link "Privacy Policy" [ref=e367] [cursor=pointer]:
+          - /url: /privacy-policy
+        - link "Sitemap" [ref=e369] [cursor=pointer]:
+          - /url: /sitemap
+      - paragraph [ref=e371]: Copyright ©2026 Insighty. All rights reserved.
+  - generic [ref=e374]:
+    - button "Menu" [ref=e375]:
+      - img [ref=e377]
+      - generic: Menu
+    - button "Inspect" [ref=e381]:
+      - img [ref=e383]
+      - generic: Inspect
+    - button "Audit" [ref=e385]:
+      - img [ref=e387]
+      - generic: Audit
+    - button "Settings" [ref=e390]:
+      - img [ref=e392]
+      - generic: Settings
