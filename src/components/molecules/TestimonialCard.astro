@@ -1,0 +1,22 @@
+---
+import TestimonialStar from '../atoms/TestimonialStar.astro'
+
+interface Props {
+  quote: string
+  author: string
+  role: string
+  avatar?: string
+}
+const { quote, author, role, avatar } = Astro.props
+---
+<div class="bg-white dark:bg-background-8 border border-stroke-1/10 dark:border-stroke-5 rounded-[20px] p-6 md:p-8 space-y-5">
+  <TestimonialStar />
+  <p class="text-tagline-1 font-normal text-secondary dark:text-accent">"{quote}"</p>
+  <div class="flex items-center gap-3">
+    {avatar && <img src={avatar} alt={author} class="size-10 rounded-full object-cover" />}
+    <div>
+      <p class="text-tagline-2 font-medium text-secondary dark:text-accent">{author}</p>
+      <p class="text-tagline-3 text-secondary/60 dark:text-accent/60">{role}</p>
+    </div>
+  </div>
+</div>

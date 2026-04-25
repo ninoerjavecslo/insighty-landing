@@ -1,0 +1,24 @@
+---
+interface Props {
+  iconClass: string
+  title: string
+  description: string
+  delay?: number
+}
+const { iconClass, title, description, delay = 0.2 } = Astro.props
+---
+<div
+  data-ns-animate
+  data-delay={String(delay)}
+  class="bg-white dark:bg-background-8 border border-stroke-1/10 dark:border-stroke-5 rounded-[20px] p-6 md:p-8 space-y-5"
+>
+  <div class="flex items-start gap-4">
+    <span class="bg-background-3 dark:bg-background-6 inline-flex items-center justify-center size-11 rounded-xl">
+      <span class={`${iconClass} text-secondary dark:text-accent text-[22px]`}></span>
+    </span>
+  </div>
+  <div class="space-y-2">
+    <p class="text-heading-6 font-medium text-secondary dark:text-accent">{title}</p>
+    <p class="text-tagline-1 font-normal">{description}</p>
+  </div>
+</div>

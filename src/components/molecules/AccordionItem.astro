@@ -1,0 +1,25 @@
+---
+interface Props {
+  question: string
+  answer: string
+  isOpen?: boolean
+}
+const { question, answer, isOpen = false } = Astro.props
+---
+<div class={`accordion-item border-stroke-1 dark:border-stroke-6 rounded-[20px] border ${isOpen ? 'active-accordion' : ''}`}>
+  <button class="accordion-action flex w-full cursor-pointer items-center justify-between p-4 md:p-6 lg:p-8">
+    <span class="xl:text-heading-6 text-tagline-1 text-secondary dark:text-accent flex-1 text-left font-normal">
+      {question}
+    </span>
+    <span class="data-[state=true]:bg-secondary dark:data-[state=true]:bg-accent data-[state=false]:bg-primary-700 accordion-arrow ml-2.5 flex size-7 items-center justify-center rounded-full transition-colors duration-300 ease-in-out sm:ml-auto">
+      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none" class="dark:data-[state=true]:stroke-secondary data-[state=false]:stroke-white transition-colors duration-300 ease-in-out data-[state=true]:stroke-white">
+        <path d="M9 0.910156L5 4.91016L1 0.910156" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </button>
+  <div class="accordion-content">
+    <div class="px-8 pb-8">
+      <p>{answer}</p>
+    </div>
+  </div>
+</div>
