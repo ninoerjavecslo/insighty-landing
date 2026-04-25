@@ -1,0 +1,159 @@
+---
+import ThemeToggle from "../atoms/ThemeToggle.astro";
+---
+
+<!-- =========================
+Header v1
+===========================-->
+<header>
+  <div
+    class="header-one lp:!max-w-[1290px] bg-background-2 dark:border-stroke-6 dark:bg-background-9 fixed top-5 left-1/2 z-50 mx-auto flex w-full max-w-[350px] -translate-x-1/2 items-center justify-between rounded-2xl px-2.5 py-2.5 opacity-0 backdrop-blur-[15px] max-[400px]:max-w-[350px] min-[425px]:max-w-[375px] min-[500px]:max-w-[450px] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] xl:py-0 dark:border"
+    data-ns-animate
+    data-direction="up"
+    data-offset="100"
+  >
+    <div>
+      <a href="/">
+        <span class="sr-only">Home</span>
+        <figure class="hidden lg:block lg:max-w-[140px]">
+          <img src="/images/shared/insighty_logo.png" alt="Insighty" class="w-full" />
+        </figure>
+        <figure class="block max-w-[110px] lg:hidden">
+          <img src="/images/shared/insighty_logo.png" alt="Insighty" class="w-full" />
+        </figure>
+      </a>
+    </div>
+    <nav class="hidden items-center xl:flex">
+      <ul class="flex items-center">
+        <li class="py-2.5">
+          <a href="#platform" class="hover:border-stroke-2 dark:hover:border-stroke-7 text-tagline-2 uppercase tracking-wider text-secondary/85 hover:text-secondary dark:text-accent/80 dark:hover:text-accent flex items-center rounded-full border border-transparent px-4 py-2 font-medium transition-all duration-200">
+            <span>Platform</span>
+          </a>
+        </li>
+        <li class="py-2.5">
+          <a href="#product-tour" class="hover:border-stroke-2 dark:hover:border-stroke-7 text-tagline-2 uppercase tracking-wider text-secondary/85 hover:text-secondary dark:text-accent/80 dark:hover:text-accent flex items-center rounded-full border border-transparent px-4 py-2 font-medium transition-all duration-200">
+            <span>Product Tour</span>
+          </a>
+        </li>
+        <li class="py-2.5">
+          <a href="#pixel-ai" class="hover:border-stroke-2 dark:hover:border-stroke-7 text-tagline-2 uppercase tracking-wider text-secondary/85 hover:text-secondary dark:text-accent/80 dark:hover:text-accent flex items-center rounded-full border border-transparent px-4 py-2 font-medium transition-all duration-200">
+            <span>Pixel AI</span>
+          </a>
+        </li>
+        <li class="py-2.5">
+          <a href="#integrations" class="hover:border-stroke-2 dark:hover:border-stroke-7 text-tagline-2 uppercase tracking-wider text-secondary/85 hover:text-secondary dark:text-accent/80 dark:hover:text-accent flex items-center rounded-full border border-transparent px-4 py-2 font-medium transition-all duration-200">
+            <span>Integrations</span>
+          </a>
+        </li>
+        <li class="py-2.5">
+          <a href="#impact" class="hover:border-stroke-2 dark:hover:border-stroke-7 text-tagline-2 uppercase tracking-wider text-secondary/85 hover:text-secondary dark:text-accent/80 dark:hover:text-accent flex items-center rounded-full border border-transparent px-4 py-2 font-medium transition-all duration-200">
+            <span>Impact</span>
+          </a>
+        </li>
+        <li class="py-2.5">
+          <a href="#faq" class="hover:border-stroke-2 dark:hover:border-stroke-7 text-tagline-2 uppercase tracking-wider text-secondary/85 hover:text-secondary dark:text-accent/80 dark:hover:text-accent flex items-center rounded-full border border-transparent px-4 py-2 font-medium transition-all duration-200">
+            <span>FAQ</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="hidden items-center justify-center xl:flex">
+      <a
+        href="/signup"
+        class="btn btn-md btn-secondary dark:btn-accent hover:btn-primary !rounded-none"
+      >
+        <span>Request a Demo</span>
+      </a>
+    </div>
+    <div class="block xl:hidden">
+      <button
+        class="nav-hamburger bg-background-4 dark:bg-background-6 flex size-12 cursor-pointer flex-col items-center justify-center gap-[5px] rounded-full"
+      >
+        <span class="sr-only">Menu</span>
+        <span class="bg-stroke-9 dark:bg-stroke-1 block h-0.5 w-6"></span>
+        <span class="bg-stroke-9 dark:bg-stroke-1 block h-0.5 w-6"></span>
+        <span class="bg-stroke-9 dark:bg-stroke-1 block h-0.5 w-6"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================
+  Mobile Menu
+  ===========================-->
+  <aside
+    class="sidebar dark:bg-background-8 scroll-bar fixed top-0 right-0 z-[9999] h-screen w-full translate-x-full bg-white transition-all duration-300 sm:w-[380px] xl:hidden"
+  >
+    <div class="flex flex-col h-full p-6 sm:p-8">
+
+      <!-- Header -->
+      <div class="flex items-center justify-between mb-8">
+        <a href="/">
+          <span class="sr-only">Home</span>
+          <figure class="max-w-[120px]">
+            <img src="/images/shared/insighty_logo.png" alt="Insighty" class="w-full" />
+          </figure>
+        </a>
+        <button
+          class="nav-hamburger-close bg-background-4 dark:bg-background-9 relative flex size-10 cursor-pointer items-center justify-center rounded-full"
+        >
+          <span class="sr-only">Close Menu</span>
+          <span class="bg-stroke-9/60 dark:bg-stroke-1 absolute block h-0.5 w-4 rotate-45"></span>
+          <span class="bg-stroke-9/60 dark:bg-stroke-1 absolute block h-0.5 w-4 -rotate-45"></span>
+        </button>
+      </div>
+
+      <!-- Nav links -->
+      <nav class="flex-1">
+        <ul class="space-y-1">
+          <li>
+            <a
+              href="#platform"
+              class="nav-hamburger-close text-secondary dark:text-accent text-heading-6 font-normal block py-3 border-b border-stroke-1/10 dark:border-stroke-5 transition-colors hover:text-primary-500"
+            >Platform</a>
+          </li>
+          <li>
+            <a
+              href="#product-tour"
+              class="nav-hamburger-close text-secondary dark:text-accent text-heading-6 font-normal block py-3 border-b border-stroke-1/10 dark:border-stroke-5 transition-colors hover:text-primary-500"
+            >Product Tour</a>
+          </li>
+          <li>
+            <a
+              href="#pixel-ai"
+              class="nav-hamburger-close text-secondary dark:text-accent text-heading-6 font-normal block py-3 border-b border-stroke-1/10 dark:border-stroke-5 transition-colors hover:text-primary-500"
+            >Pixel AI</a>
+          </li>
+          <li>
+            <a
+              href="#integrations"
+              class="nav-hamburger-close text-secondary dark:text-accent text-heading-6 font-normal block py-3 border-b border-stroke-1/10 dark:border-stroke-5 transition-colors hover:text-primary-500"
+            >Integrations</a>
+          </li>
+          <li>
+            <a
+              href="#impact"
+              class="nav-hamburger-close text-secondary dark:text-accent text-heading-6 font-normal block py-3 border-b border-stroke-1/10 dark:border-stroke-5 transition-colors hover:text-primary-500"
+            >Impact</a>
+          </li>
+          <li>
+            <a
+              href="#faq"
+              class="nav-hamburger-close text-secondary dark:text-accent text-heading-6 font-normal block py-3 border-b border-stroke-1/10 dark:border-stroke-5 transition-colors hover:text-primary-500"
+            >FAQ</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- CTA -->
+      <div class="mt-8">
+        <a href="/signup" class="btn btn-secondary btn-md w-full">
+          <span>Request a Demo</span>
+        </a>
+      </div>
+
+    </div>
+  </aside>
+
+  <ThemeToggle />
+</header>
