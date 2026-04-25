@@ -1,0 +1,439 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/organisms/Header.astro'
+import Footer from '../../components/organisms/Footer.astro'
+
+interface Tool {
+  slug: string
+  name: string
+  category: string
+  tagline: string
+  color: string
+  available: boolean
+  icon?: string
+}
+
+const projectManagement: Tool[] = [
+  {
+    slug: 'asana',
+    name: 'Asana',
+    category: 'Project Management',
+    tagline: 'Task workflows done right. Insighty adds the revenue layer Asana leaves to spreadsheets.',
+    color: '#F06A6A',
+    available: false,
+    icon: '/images/icons/asana-v2.svg',
+  },
+  {
+    slug: 'monday-com',
+    name: 'Monday.com',
+    category: 'Project Management',
+    tagline: 'Flexible work OS. Missing the agency financial model Insighty was built to provide.',
+    color: '#FF3D57',
+    available: false,
+  },
+  {
+    slug: 'wrike',
+    name: 'Wrike',
+    category: 'Project Management',
+    tagline: 'Enterprise PM with resource planning. Insighty adds contract and billing intelligence.',
+    color: '#1CAE42',
+    available: false,
+  },
+  {
+    slug: 'productive-io',
+    name: 'Productive.io',
+    category: 'Agency Management',
+    tagline: "Agency PM with profitability tracking. See where Insighty's financial depth differs.",
+    color: '#3B5BDB',
+    available: false,
+  },
+  {
+    slug: 'clickup',
+    name: 'ClickUp',
+    category: 'Project Management',
+    tagline: 'Everything-in-one workspace — except multi-stream agency revenue and contract management.',
+    color: '#7B68EE',
+    available: false,
+  },
+  {
+    slug: 'jira',
+    name: 'Jira',
+    category: 'Issue Tracking',
+    tagline: 'The best issue tracker. Insighty fills the financial and ops gap Jira leaves for agencies.',
+    color: '#0052CC',
+    available: true,
+  },
+  {
+    slug: 'trello',
+    name: 'Trello',
+    category: 'Project Management',
+    tagline: 'Simple Kanban for task flow. Insighty for the financial complexity underneath.',
+    color: '#0079BF',
+    available: false,
+  },
+  {
+    slug: 'basecamp',
+    name: 'Basecamp',
+    category: 'Project Management',
+    tagline: 'Clean team collaboration. Insighty for the billing and contract visibility Basecamp avoids.',
+    color: '#1D2D35',
+    available: false,
+  },
+  {
+    slug: 'teamwork',
+    name: 'Teamwork',
+    category: 'Agency Management',
+    tagline: 'Agency-focused PM with invoicing. Compare how Teamwork and Insighty handle agency finances.',
+    color: '#2DA94F',
+    available: false,
+  },
+  {
+    slug: 'smartsheet',
+    name: 'Smartsheet',
+    category: 'Project Management',
+    tagline: 'Spreadsheet-power PM that still needs a real retainer and domain tracking layer.',
+    color: '#0073E6',
+    available: false,
+  },
+  {
+    slug: 'plane',
+    name: 'Plane',
+    category: 'Open Source PM',
+    tagline: 'Modern open-source project management. Insighty adds the agency intelligence layer.',
+    color: '#2A2A2A',
+    available: false,
+  },
+  {
+    slug: 'openproject',
+    name: 'OpenProject',
+    category: 'Open Source PM',
+    tagline: 'Open-source Jira alternative. Insighty for agency revenue visibility above the projects.',
+    color: '#1A67A3',
+    available: false,
+  },
+  {
+    slug: 'taiga',
+    name: 'Taiga',
+    category: 'Open Source PM',
+    tagline: 'Open-source agile for cross-functional teams. Insighty for the ops layer those teams need.',
+    color: '#45BF6A',
+    available: false,
+  },
+  {
+    slug: 'orangescrum',
+    name: 'Orangescrum',
+    category: 'Project Management',
+    tagline: 'Self-hosted PM with time tracking. Insighty for the financial picture on top.',
+    color: '#F7941E',
+    available: false,
+  },
+  {
+    slug: 'redmine',
+    name: 'Redmine',
+    category: 'Issue Tracking',
+    tagline: 'Classic, proven issue tracking. Insighty for the modern financial ops layer alongside it.',
+    color: '#B32024',
+    available: false,
+  },
+]
+
+const agencyPsa: Tool[] = [
+  {
+    slug: 'scoro',
+    name: 'Scoro',
+    category: 'PSA',
+    tagline: "Full-suite PSA. Compare how Scoro's all-in-one approach differs from Insighty's focused model.",
+    color: '#5C4EFF',
+    available: false,
+  },
+  {
+    slug: 'accelo',
+    name: 'Accelo',
+    category: 'PSA',
+    tagline: 'Broad professional services automation. Insighty focused exclusively on agency revenue intelligence.',
+    color: '#00A5A8',
+    available: false,
+  },
+  {
+    slug: 'kantata',
+    name: 'Kantata',
+    category: 'Enterprise PSA',
+    tagline: 'Enterprise PSA for large professional services teams. Insighty for depth without the complexity.',
+    color: '#FF6B35',
+    available: false,
+  },
+  {
+    slug: 'certinia',
+    name: 'Certinia',
+    category: 'PSA',
+    tagline: 'Salesforce-native PSA and financial management. Insighty as the focused agency alternative.',
+    color: '#00A1E0',
+    available: false,
+  },
+  {
+    slug: 'rocketlane',
+    name: 'Rocketlane',
+    category: 'PSA & Client Portal',
+    tagline: 'Client onboarding and delivery PSA. Insighty for the contract and revenue layer post-launch.',
+    color: '#6366F1',
+    available: false,
+  },
+  {
+    slug: 'plutio',
+    name: 'Plutio',
+    category: 'All-in-One',
+    tagline: 'All-in-one for freelancers and small agencies. Insighty for teams that need deeper financial ops.',
+    color: '#4F46E5',
+    available: false,
+  },
+  {
+    slug: 'flowlu',
+    name: 'Flowlu',
+    category: 'Work Management',
+    tagline: "CRM, projects, and invoicing in one platform. Compare with Insighty's agency revenue model.",
+    color: '#0B8FE8',
+    available: false,
+  },
+  {
+    slug: 'worklenz',
+    name: 'Worklenz',
+    category: 'Agency Management',
+    tagline: 'Open-source agency management with time tracking. Insighty adds deeper financial intelligence.',
+    color: '#059669',
+    available: false,
+  },
+  {
+    slug: 'paymo',
+    name: 'Paymo',
+    category: 'Project & Billing',
+    tagline: 'Time tracking and invoicing first. Insighty for multi-stream contract and revenue management.',
+    color: '#FF5B5B',
+    available: false,
+  },
+  {
+    slug: 'proofhub',
+    name: 'ProofHub',
+    category: 'Project Management',
+    tagline: "Collaboration-first PM with client tools. Insighty for the financial visibility it doesn't provide.",
+    color: '#F04E37',
+    available: false,
+  },
+  {
+    slug: 'activecollab',
+    name: 'ActiveCollab',
+    category: 'Project & Billing',
+    tagline: "Tasks and billing for service businesses. Compare with Insighty's agency financial model.",
+    color: '#F2792A',
+    available: false,
+  },
+  {
+    slug: 'forecast',
+    name: 'Forecast',
+    category: 'PSA & Forecasting',
+    tagline: "AI-powered project forecasting and resource management. See how Insighty's revenue model differs.",
+    color: '#5B4FBF',
+    available: false,
+  },
+]
+
+const totalCount = projectManagement.length + agencyPsa.length
+---
+
+<BaseLayout
+  title="Insighty vs. Competitors — Agency Software Comparisons"
+  description={`Compare Insighty with ${totalCount} agency management, project management, and PSA tools. Understand how Insighty's financial intelligence layer differs from each alternative.`}
+>
+  <Header />
+  <main>
+
+    <!-- Hero -->
+    <section
+      class="pt-[140px] sm:pt-[150px] md:pt-[160px] pb-16 md:pb-24 relative overflow-hidden"
+      style="background: linear-gradient(135deg, #0a1628 0%, #112445 50%, #1a3a70 100%)"
+    >
+      <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 36px 36px;"></div>
+      <div class="main-container relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-center">
+
+          <!-- Left: copy -->
+          <div class="space-y-6">
+            <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white/40">Platform Comparisons</span>
+            <h1 class="text-white">Insighty vs.<br /><span class="hero-text-gradient hero-text-color-1">the field</span></h1>
+            <p class="text-white/65 max-w-[480px] text-tagline-1">
+              Insighty is not a project management tool. It's the financial and operations intelligence layer that sits on top of the tools your agency already uses. Here's how it compares with {totalCount} alternatives.
+            </p>
+            <div class="flex flex-wrap gap-3 pt-2">
+              <a href="/contact" class="btn btn-md btn-primary"><span>Request early access</span></a>
+              <a href="/#platform" class="btn btn-md btn-secondary !border-white/20 !text-white hover:!bg-white/10"><span>See the platform</span></a>
+            </div>
+          </div>
+
+          <!-- Right: tool mosaic -->
+          <div class="hidden lg:grid grid-cols-5 gap-3">
+            {[...projectManagement, ...agencyPsa].slice(0, 15).map(tool => (
+              <div
+                class="aspect-square rounded-2xl flex items-center justify-center text-white font-bold text-heading-5 opacity-80"
+                style={`background: color-mix(in srgb, ${tool.color} 80%, #0a1628 20%)`}
+                title={tool.name}
+              >
+                {tool.icon ? (
+                  <img src={tool.icon} alt={tool.name} class="h-6 w-auto object-contain brightness-0 invert opacity-90" loading="lazy" decoding="async" />
+                ) : (
+                  tool.name[0]
+                )}
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Management section -->
+    <section class="bg-background-2 dark:bg-background-7 py-14 md:py-20">
+      <div class="main-container space-y-8">
+        <div class="flex items-end justify-between gap-4 flex-wrap border-b border-stroke-2 dark:border-stroke-6 pb-6">
+          <div class="space-y-1.5">
+            <span class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Category 01</span>
+            <h2 class="text-secondary dark:text-accent">Project Management Tools</h2>
+          </div>
+          <span class="text-tagline-2 text-secondary/40 dark:text-accent/40">{projectManagement.length} tools</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+          {projectManagement.map(tool => (
+            <a
+              href={tool.available ? `/compare/insighty-vs-${tool.slug}` : undefined}
+              class={`group relative flex flex-col bg-background-1 dark:bg-background-6 rounded-2xl border border-stroke-2 dark:border-stroke-5 p-6 gap-4 transition-all duration-300 ${tool.available ? 'hover:border-primary-500/40 hover:shadow-2 cursor-pointer' : 'cursor-default'}`}
+              aria-label={`Insighty vs ${tool.name}`}
+            >
+              <!-- Top row -->
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex flex-col gap-3">
+                  {tool.icon ? (
+                    <span class="h-14 px-4 rounded-xl flex items-center bg-white dark:bg-white/10 w-fit">
+                      <img src={tool.icon} alt={tool.name} class="h-8 w-auto object-contain" loading="lazy" decoding="async" />
+                    </span>
+                  ) : (
+                    <span
+                      class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 text-white text-heading-6 font-bold"
+                      style={`background: ${tool.color}`}
+                    >
+                      {tool.name[0]}
+                    </span>
+                  )}
+                  <div>
+                    <p class="text-heading-6 font-semibold text-secondary dark:text-accent leading-tight">{tool.name}</p>
+                    <p class="text-tagline-2 text-secondary/40 dark:text-accent/40">{tool.category}</p>
+                  </div>
+                </div>
+                {tool.available ? (
+                  <span class="shrink-0 text-secondary/30 dark:text-accent/30 group-hover:text-primary-400 transition-colors duration-200">
+                    <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                ) : (
+                  <span class="shrink-0 text-tagline-3 text-secondary/25 dark:text-accent/25 font-medium uppercase tracking-widest">Soon</span>
+                )}
+              </div>
+
+              <!-- Tagline -->
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 leading-relaxed flex-1">{tool.tagline}</p>
+
+              <!-- Footer -->
+              <div class="flex items-center justify-between pt-3 border-t border-stroke-2 dark:border-stroke-5">
+                <span class="text-tagline-3 font-medium text-secondary/35 dark:text-accent/35">Insighty vs {tool.name}</span>
+                {tool.available && (
+                  <span class="badge badge-primary text-tagline-3">Live</span>
+                )}
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Agency & PSA section -->
+    <section class="bg-background-1 dark:bg-background-8 py-14 md:py-20">
+      <div class="main-container space-y-8">
+        <div class="flex items-end justify-between gap-4 flex-wrap border-b border-stroke-2 dark:border-stroke-6 pb-6">
+          <div class="space-y-1.5">
+            <span class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Category 02</span>
+            <h2 class="text-secondary dark:text-accent">Agency Management & PSA</h2>
+          </div>
+          <span class="text-tagline-2 text-secondary/40 dark:text-accent/40">{agencyPsa.length} tools</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+          {agencyPsa.map(tool => (
+            <a
+              href={tool.available ? `/compare/insighty-vs-${tool.slug}` : undefined}
+              class={`group relative flex flex-col bg-background-2 dark:bg-background-6 rounded-2xl border border-stroke-2 dark:border-stroke-5 p-6 gap-4 transition-all duration-300 ${tool.available ? 'hover:border-primary-500/40 hover:shadow-2 cursor-pointer' : 'cursor-default'}`}
+              aria-label={`Insighty vs ${tool.name}`}
+            >
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex flex-col gap-3">
+                  {tool.icon ? (
+                    <span class="h-14 px-4 rounded-xl flex items-center bg-white dark:bg-white/10 w-fit">
+                      <img src={tool.icon} alt={tool.name} class="h-8 w-auto object-contain" loading="lazy" decoding="async" />
+                    </span>
+                  ) : (
+                    <span
+                      class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 text-white text-heading-6 font-bold"
+                      style={`background: ${tool.color}`}
+                    >
+                      {tool.name[0]}
+                    </span>
+                  )}
+                  <div>
+                    <p class="text-heading-6 font-semibold text-secondary dark:text-accent leading-tight">{tool.name}</p>
+                    <p class="text-tagline-2 text-secondary/40 dark:text-accent/40">{tool.category}</p>
+                  </div>
+                </div>
+                {tool.available ? (
+                  <span class="shrink-0 text-secondary/30 dark:text-accent/30 group-hover:text-primary-400 transition-colors duration-200">
+                    <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                ) : (
+                  <span class="shrink-0 text-tagline-3 text-secondary/25 dark:text-accent/25 font-medium uppercase tracking-widest">Soon</span>
+                )}
+              </div>
+
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 leading-relaxed flex-1">{tool.tagline}</p>
+
+              <div class="flex items-center justify-between pt-3 border-t border-stroke-2 dark:border-stroke-5">
+                <span class="text-tagline-3 font-medium text-secondary/35 dark:text-accent/35">Insighty vs {tool.name}</span>
+                {tool.available && (
+                  <span class="badge badge-primary text-tagline-3">Live</span>
+                )}
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-background-2 dark:bg-background-7 py-16 md:py-20">
+      <div class="main-container">
+        <div class="rounded-2xl overflow-hidden" style="background: linear-gradient(135deg, #112445 0%, #1a3a70 100%)">
+          <div class="px-8 py-12 md:px-16 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div class="space-y-4">
+              <h2 class="text-white">Not sure which category fits your agency?</h2>
+              <p class="text-white/65 text-tagline-1 leading-relaxed">
+                Insighty isn't a task manager or a CRM. It's the financial intelligence layer — revenue planning, maintenance contracts, hosting, domains, invoicing, and forecasting in one view. Request a demo and we'll show you where it fits in your current stack.
+              </p>
+            </div>
+            <div class="flex flex-col sm:flex-row md:flex-col xl:flex-row gap-3 md:justify-start xl:justify-end">
+              <a href="/contact" class="btn btn-md btn-primary"><span>Request early access</span></a>
+              <a href="/blog" class="btn btn-md btn-secondary !border-white/20 !text-white hover:!bg-white/10"><span>Read the blog</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>

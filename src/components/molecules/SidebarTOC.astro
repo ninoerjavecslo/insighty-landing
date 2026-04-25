@@ -1,0 +1,31 @@
+---
+interface Item {
+  id: string
+  label: string
+  depth?: number  // 2 = top-level, 3 = indented
+}
+
+interface Props {
+  items: Item[]
+}
+
+const { items } = Astro.props
+---
+
+<aside class="hidden lg:block sticky top-28" aria-label="Table of contents">
+  <p class="text-tagline-2 uppercase tracking-widest font-bold text-secondary dark:text-accent mb-4">Contents</p>
+  <nav>
+    <ul class="space-y-1">
+      {items.map(item => (
+        <li class={item.depth === 3 ? 'pl-4' : ''}>
+          <a
+            href={`#${item.id}`}
+            class="block py-1 text-tagline-2 text-secondary/70 dark:text-accent/70 hover:text-secondary dark:hover:text-accent transition-colors duration-200 leading-snug"
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</aside>

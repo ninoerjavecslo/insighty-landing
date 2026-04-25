@@ -3,6 +3,13 @@ import ThemeToggle from "../atoms/ThemeToggle.astro";
 import Logo from "../atoms/Logo.astro";
 ---
 
+<style>
+  .header-one {
+    opacity: var(--header-opacity, 0);
+  }
+</style>
+<noscript><style>.header-one { opacity: 1 !important; }</style></noscript>
+
 <!-- =========================
 Header v1
 ===========================-->
@@ -52,12 +59,28 @@ Header v1
             <span>FAQ</span>
           </a>
         </li>
+        <li class="bg-stroke-2 dark:bg-stroke-6 w-px h-4 mx-1"></li>
+        <li class="py-2.5">
+          <a href="/blog" class="hover:border-stroke-2 dark:hover:border-stroke-7 text-tagline-2 uppercase tracking-wider text-secondary/85 hover:text-secondary dark:text-accent/80 dark:hover:text-accent flex items-center rounded-full border border-transparent px-4 py-2 font-medium transition-all duration-200">
+            <span>Blog</span>
+          </a>
+        </li>
+        <li class="py-2.5">
+          <a href="/tools" class="hover:border-stroke-2 dark:hover:border-stroke-7 text-tagline-2 uppercase tracking-wider text-secondary/85 hover:text-secondary dark:text-accent/80 dark:hover:text-accent flex items-center rounded-full border border-transparent px-4 py-2 font-medium transition-all duration-200">
+            <span>Tools</span>
+          </a>
+        </li>
+        <li class="py-2.5">
+          <a href="/compare" class="hover:border-stroke-2 dark:hover:border-stroke-7 text-tagline-2 uppercase tracking-wider text-secondary/85 hover:text-secondary dark:text-accent/80 dark:hover:text-accent flex items-center rounded-full border border-transparent px-4 py-2 font-medium transition-all duration-200">
+            <span>Compare</span>
+          </a>
+        </li>
       </ul>
     </nav>
 
     <div class="hidden items-center justify-center xl:flex">
       <a
-        href="/signup"
+        href="/request-a-demo"
         class="btn btn-md btn-secondary dark:btn-accent hover:btn-primary !rounded-none"
       >
         <span>Request a Demo</span>
@@ -137,12 +160,30 @@ Header v1
               class="nav-hamburger-close text-secondary dark:text-accent text-heading-6 font-normal block py-3 border-b border-stroke-1/10 dark:border-stroke-5 transition-colors hover:text-primary-500"
             >FAQ</a>
           </li>
+          <li>
+            <a
+              href="/blog"
+              class="nav-hamburger-close text-secondary dark:text-accent text-heading-6 font-normal block py-3 border-b border-stroke-1/10 dark:border-stroke-5 transition-colors hover:text-primary-500"
+            >Blog</a>
+          </li>
+          <li>
+            <a
+              href="/tools"
+              class="nav-hamburger-close text-secondary dark:text-accent text-heading-6 font-normal block py-3 border-b border-stroke-1/10 dark:border-stroke-5 transition-colors hover:text-primary-500"
+            >Tools</a>
+          </li>
+          <li>
+            <a
+              href="/compare"
+              class="nav-hamburger-close text-secondary dark:text-accent text-heading-6 font-normal block py-3 border-b border-stroke-1/10 dark:border-stroke-5 transition-colors hover:text-primary-500"
+            >Compare</a>
+          </li>
         </ul>
       </nav>
 
       <!-- CTA -->
       <div class="mt-8">
-        <a href="/signup" class="btn btn-secondary btn-md w-full">
+        <a href="/request-a-demo" class="btn btn-secondary btn-md w-full">
           <span>Request a Demo</span>
         </a>
       </div>

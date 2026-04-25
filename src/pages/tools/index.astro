@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/organisms/Header.astro'
+import Footer from '../../components/organisms/Footer.astro'
+
+const tools = [
+  {
+    slug: 'profit-margin-calculator',
+    name: 'Profit Margin Calculator',
+    description: 'Know if your projects are actually profitable. Calculate gross margin, net margin, and markup percentage so you can price with confidence.',
+    tag: 'Finance',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
+    color: '#4a6ec7',
+    free: true,
+  },
+]
+
+const comingSoon = [
+  { name: 'Billable Hours Calculator', tag: 'Finance', description: 'Calculate how many billable hours you need to hit your revenue targets.' },
+  { name: 'Agency Rate Calculator', tag: 'Pricing', description: 'Set hourly rates that cover your costs and hit your profit goals.' },
+  { name: 'Project Budget Estimator', tag: 'Projects', description: 'Estimate project budgets based on scope, team size, and margin targets.' },
+  { name: 'Retainer Value Calculator', tag: 'Contracts', description: 'Price recurring retainers to cover costs and maintain healthy margins.' },
+  { name: 'Resource Utilisation Tracker', tag: 'Operations', description: 'See what percentage of your team\'s time is billable vs. non-billable.' },
+]
+---
+
+<BaseLayout
+  title="Free Agency Tools — Insighty"
+  description="Free calculators and tools for digital agencies. Profit margin calculator, billable rate calculator, and more — built for agency operators who need real numbers fast."
+>
+  <Header />
+  <main>
+
+    <!-- Hero -->
+    <section
+      class="pt-[140px] sm:pt-[150px] md:pt-[160px] pb-16 md:pb-24 relative overflow-hidden"
+      style="background: linear-gradient(135deg, #0a1628 0%, #112445 50%, #1a3a70 100%)"
+    >
+      <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 36px 36px;"></div>
+      <div class="main-container relative z-10">
+        <div class="max-w-[680px] space-y-6">
+          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white/40">Free Tools</span>
+          <h1 class="text-white">Agency tools.<br /><span class="hero-text-gradient hero-text-color-1">No subscription.</span></h1>
+          <p class="text-white/65 text-tagline-1 max-w-[520px]">
+            Calculators and resources built for agency operators. Use them directly in your browser — no account, no trial, no credit card.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Available tools -->
+    <section class="bg-background-2 dark:bg-background-7 py-16 md:py-20">
+      <div class="main-container space-y-10">
+        <div class="flex items-end justify-between gap-4 flex-wrap border-b border-stroke-2 dark:border-stroke-6 pb-6">
+          <div class="space-y-1.5">
+            <span class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Available now</span>
+            <h2 class="text-secondary dark:text-accent">Free tools</h2>
+          </div>
+          <span class="text-tagline-2 text-secondary/40 dark:text-accent/40">{tools.length} tool{tools.length !== 1 ? 's' : ''}</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+          {tools.map(tool => (
+            <a
+              href={`/tools/${tool.slug}`}
+              class="group flex flex-col bg-background-1 dark:bg-background-6 rounded-2xl border border-stroke-2 dark:border-stroke-5 p-7 gap-5 hover:border-primary-500/40 hover:shadow-2 transition-all duration-300"
+            >
+              <div class="flex flex-col gap-4">
+                <div class="flex items-start justify-between gap-3">
+                  <span class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 text-white" style={`background: ${tool.color}`}>
+                    <span class="w-6 h-6" set:html={tool.icon} />
+                  </span>
+                  <span class="badge badge-primary text-tagline-3">Free</span>
+                </div>
+                <div class="space-y-1.5">
+                  <p class="text-heading-6 font-semibold text-secondary dark:text-accent">{tool.name}</p>
+                  <span class="inline-block text-tagline-3 text-secondary/40 dark:text-accent/40 uppercase tracking-widest font-medium">{tool.tag}</span>
+                </div>
+              </div>
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 leading-relaxed flex-1">{tool.description}</p>
+              <div class="flex items-center justify-between pt-4 border-t border-stroke-2 dark:border-stroke-5">
+                <span class="text-tagline-2 font-medium text-primary-500 group-hover:text-primary-400 transition-colors duration-200">Open calculator</span>
+                <svg class="w-4 h-4 text-primary-500 group-hover:translate-x-0.5 transition-transform duration-200" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Coming soon -->
+    <section class="bg-background-1 dark:bg-background-8 py-16 md:py-20">
+      <div class="main-container space-y-10">
+        <div class="flex items-end justify-between gap-4 flex-wrap border-b border-stroke-2 dark:border-stroke-6 pb-6">
+          <div class="space-y-1.5">
+            <span class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Coming soon</span>
+            <h2 class="text-secondary dark:text-accent">More tools on the way</h2>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+          {comingSoon.map(tool => (
+            <div class="flex flex-col bg-background-2 dark:bg-background-6 rounded-2xl border border-stroke-2 dark:border-stroke-5 p-6 gap-3 opacity-60">
+              <div class="flex items-start justify-between gap-3">
+                <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">{tool.name}</p>
+                <span class="shrink-0 text-tagline-3 text-secondary/25 dark:text-accent/25 font-medium uppercase tracking-widest">Soon</span>
+              </div>
+              <p class="text-tagline-2 text-secondary/55 dark:text-accent/55 leading-relaxed">{tool.description}</p>
+              <span class="text-tagline-3 text-secondary/35 dark:text-accent/35 uppercase tracking-widest font-medium">{tool.tag}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="background: linear-gradient(135deg, #0a1628 0%, #112445 60%, #1a3a70 100%)" class="py-16 md:py-20">
+      <div class="main-container text-center space-y-6 max-w-[600px] mx-auto">
+        <h2 class="text-white">Want these numbers tracked automatically?</h2>
+        <p class="text-white/60 text-tagline-1">
+          Insighty tracks margins, revenue, and project profitability in real time — across all your clients, projects, and income streams. No spreadsheets.
+        </p>
+        <a href="/contact" class="btn btn-primary btn-md inline-flex"><span>Request early access</span></a>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>

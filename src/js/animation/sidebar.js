@@ -16,7 +16,7 @@ const sidebarAnimation = {
   cacheElements() {
     this.elements = {
       navHamburger: document.querySelector('.nav-hamburger'),
-      navHamburgerClose: document.querySelector('.nav-hamburger-close'),
+      navHamburgerClose: document.querySelectorAll('.nav-hamburger-close'),
       sidebar: document.querySelector('.sidebar'),
       subMenu: document.querySelectorAll('.sub-menu'),
     };
@@ -32,12 +32,12 @@ const sidebarAnimation = {
       });
     }
 
-    if (navHamburgerClose) {
-      navHamburgerClose.addEventListener('click', () => {
+    navHamburgerClose.forEach((el) => {
+      el.addEventListener('click', () => {
         this.elements.sidebar.classList.remove('show-sidebar');
         document.body.classList.remove('overflow-hidden');
       });
-    }
+    });
 
     subMenu.forEach((menu) => {
       menu.addEventListener('click', () => {
@@ -58,5 +58,7 @@ const sidebarAnimation = {
 };
 
 if (typeof window !== 'undefined') {
-  sidebarAnimation.init();
+  document.addEventListener('DOMContentLoaded', () => {
+    sidebarAnimation.init();
+  });
 }

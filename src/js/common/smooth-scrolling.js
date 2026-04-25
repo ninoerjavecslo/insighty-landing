@@ -102,10 +102,6 @@ const lenisSmoothScrollLinks = () => {
               behavior: 'smooth',
               block: 'start',
             });
-            // Add offset manually
-            setTimeout(() => {
-              window.scrollBy(0, -100);
-            }, 100);
           }
         }
       }

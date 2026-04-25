@@ -1,0 +1,549 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/organisms/Header.astro'
+import Footer from '../../components/organisms/Footer.astro'
+import SidebarTOC from '../../components/molecules/SidebarTOC.astro'
+
+const toc = [
+  { id: 'calculator', label: 'Calculator' },
+  { id: 'understanding-margins', label: 'Understanding profit margins' },
+  { id: 'three-types', label: 'The three types' },
+  { id: 'why-margins-matter', label: 'Why margins matter more than revenue' },
+  { id: 'margin-vs-markup', label: 'Margin vs markup explained' },
+  { id: 'industry-benchmarks', label: 'Healthy margins by industry' },
+  { id: 'how-to-improve', label: 'How to improve your margins' },
+  { id: 'faq', label: 'Frequently asked questions' },
+]
+
+const industryData = [
+  { industry: 'Software / SaaS', typical: '20–30%', target: '25%+' },
+  { industry: 'Consulting', typical: '15–25%', target: '20%+' },
+  { industry: 'Marketing agencies', typical: '10–20%', target: '15%+' },
+  { industry: 'Design services', typical: '15–25%', target: '20%+' },
+  { industry: 'Web development', typical: '15–30%', target: '20%+' },
+  { industry: 'Content / Writing', typical: '20–35%', target: '25%+' },
+  { industry: 'Photography / Video', typical: '10–25%', target: '15%+' },
+]
+
+const conversionTable = [
+  { margin: '10%', markup: '11.1%' },
+  { margin: '20%', markup: '25%' },
+  { margin: '30%', markup: '42.9%' },
+  { margin: '40%', markup: '66.7%' },
+  { margin: '50%', markup: '100%' },
+]
+
+const faqs = [
+  {
+    q: 'What is a good profit margin for agencies?',
+    a: 'A healthy net profit margin for agencies is typically 20–30%. Anything above 25% is excellent. If your margin is below 15%, your pricing or cost structure needs attention. Keep in mind that as an agency owner, you also need to pay yourself — factor that into your costs before calculating margin.',
+  },
+  {
+    q: 'What is the difference between gross and net profit margin?',
+    a: 'Gross profit margin is revenue minus direct costs of delivering the work (subcontractors, project-specific software, materials). Net profit margin subtracts all expenses including overhead — salaries, rent, software subscriptions, insurance, taxes. For solo operators with low overhead, these numbers may be similar. For agencies with employees and office space, net margin is significantly lower than gross.',
+  },
+  {
+    q: 'How do I calculate profit margin?',
+    a: 'Profit margin = (Revenue − Costs) ÷ Revenue × 100. For example, if you charge €5,000 for a project and your total costs are €3,000, your margin is (€5,000 − €3,000) ÷ €5,000 = 40%. This means you keep 40 cents of every euro earned.',
+  },
+  {
+    q: 'Should I include my own time as a cost?',
+    a: 'For accurate margin analysis, yes. Calculate your hourly cost by dividing your target annual income by billable hours. If you want to earn €100,000 and bill 1,200 hours per year, your hourly cost is approximately €83. A project taking 20 hours has a labour cost of €1,660 even if you do not invoice yourself separately.',
+  },
+  {
+    q: 'What is the difference between margin and markup?',
+    a: 'Margin is profit as a percentage of revenue. Markup is profit as a percentage of cost. A 50% margin means you keep half of revenue. A 50% markup means you add half of your cost on top. The same profit looks different: €50 profit on €100 revenue is 50% margin but only 100% markup on €50 cost. Use margin when analysing performance, markup when setting prices.',
+  },
+  {
+    q: 'How do I set prices to achieve a target margin?',
+    a: 'Use the markup formula: Price = Cost ÷ (1 − Target Margin). For a 30% margin, divide your cost by 0.70. If a project costs you €700 to deliver, price it at €700 ÷ 0.70 = €1,000. This gives you €300 profit and exactly 30% margin.',
+  },
+  {
+    q: 'Why are my margins lower than expected?',
+    a: 'Common causes: underestimating project time, scope expansion without additional billing, forgetting to include overhead in costs, discounting too aggressively, or not tracking time accurately. The most reliable fix is reviewing completed projects to compare estimated vs actual hours and identifying exactly where margin erodes.',
+  },
+  {
+    q: 'How do agencies typically price for profit?',
+    a: 'Agencies often use a 3x multiplier: if a team member costs €50/hour fully loaded (salary + benefits + overhead), bill clients €150/hour. This creates roughly 67% gross margin to cover overhead, non-billable time, and profit. Solo freelancers can use a 2–2.5x multiplier since overhead is lower.',
+  },
+]
+---
+
+<BaseLayout
+  title="Free Profit Margin Calculator — Insighty"
+  description="Calculate your gross margin, net margin, and markup percentage instantly. Know if your projects are actually profitable — free tool, no account required."
+>
+  <Header />
+  <main>
+
+    <!-- Hero -->
+    <section
+      class="pt-[140px] sm:pt-[150px] md:pt-[160px] pb-14 md:pb-20 relative overflow-hidden"
+      style="background: linear-gradient(135deg, #0a1628 0%, #112245 50%, #1a3a70 100%)"
+    >
+      <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 36px 36px;"></div>
+      <div class="main-container relative z-10">
+        <nav class="flex items-center gap-2 text-tagline-3 text-white/50 mb-10" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-white transition-colors duration-200">Insighty</a>
+          <span aria-hidden="true">/</span>
+          <a href="/tools" class="hover:text-white transition-colors duration-200">Tools</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-white/70">Profit Margin Calculator</span>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-20 items-center">
+          <div class="space-y-5">
+            <span class="inline-flex items-center gap-2 text-tagline-3 uppercase tracking-widest font-medium text-white/40">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Free Tool · Finance
+            </span>
+            <h1 class="text-white">Free Profit Margin<br /><span class="hero-text-gradient hero-text-color-1">Calculator</span></h1>
+            <p class="text-white/65 text-tagline-1 max-w-[480px]">
+              Revenue means nothing if you do not know what you keep. Enter your numbers to see gross margin, net margin, and markup percentage instantly.
+            </p>
+          </div>
+          <div class="hidden lg:flex flex-col gap-4 text-white/70 text-tagline-1">
+            {[
+              'Works in your browser — no account needed',
+              'Gross margin, net margin, and markup in one view',
+              'Instant results as you type — no button to click',
+              'Built for agencies, consultants, and freelancers',
+            ].map(item => (
+              <div class="flex items-start gap-3">
+                <span class="mt-1 shrink-0 w-5 h-5 rounded-full bg-primary-500/20 border border-primary-500/40 flex items-center justify-center">
+                  <svg class="w-3 h-3 text-primary-400" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="bg-background-1 dark:bg-background-8 py-14 md:py-20">
+      <div class="main-container">
+        <div class="grid grid-cols-1 lg:grid-cols-[220px_1fr] xl:grid-cols-[260px_1fr] gap-12 xl:gap-16 items-start">
+
+          <!-- Sidebar TOC -->
+          <div class="hidden lg:flex flex-col gap-8 sticky top-28">
+            <SidebarTOC items={toc} />
+          </div>
+
+          <!-- Main content -->
+          <div class="min-w-0 space-y-16">
+
+            <!-- CALCULATOR WIDGET -->
+            <div id="calculator" class="scroll-mt-28">
+              <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 overflow-hidden">
+                <div class="p-6 md:p-8 border-b border-stroke-2 dark:border-stroke-5">
+                  <h2 class="text-heading-5 font-semibold text-secondary dark:text-accent mb-1">Calculate Your Profit Margins</h2>
+                  <p class="text-tagline-2 text-secondary/55 dark:text-accent/55">Enter revenue and costs to see your margins instantly</p>
+                </div>
+
+                <div class="p-6 md:p-8 space-y-8">
+                  <!-- Inputs -->
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                    <div class="space-y-2">
+                      <label for="calc-revenue" class="block text-tagline-2 font-medium text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Total Revenue ($)</label>
+                      <input
+                        id="calc-revenue"
+                        type="number"
+                        min="0"
+                        placeholder="e.g. 100000"
+                        class="auth-form-input w-full text-heading-6 font-semibold text-secondary dark:text-accent placeholder:font-normal placeholder:text-secondary/25 dark:placeholder:text-accent/25"
+                      />
+                    </div>
+                    <div class="space-y-2">
+                      <label for="calc-cogs" class="block text-tagline-2 font-medium text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Direct Costs / COGS ($)</label>
+                      <input
+                        id="calc-cogs"
+                        type="number"
+                        min="0"
+                        placeholder="e.g. 40000"
+                        class="auth-form-input w-full text-heading-6 font-semibold text-secondary dark:text-accent placeholder:font-normal placeholder:text-secondary/25 dark:placeholder:text-accent/25"
+                      />
+                    </div>
+                    <div class="space-y-2">
+                      <label for="calc-opex" class="block text-tagline-2 font-medium text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Operating Expenses ($)</label>
+                      <input
+                        id="calc-opex"
+                        type="number"
+                        min="0"
+                        placeholder="e.g. 20000"
+                        class="auth-form-input w-full text-heading-6 font-semibold text-secondary dark:text-accent placeholder:font-normal placeholder:text-secondary/25 dark:placeholder:text-accent/25"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Outputs -->
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <!-- Gross Margin -->
+                    <div id="out-gross" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300">
+                      <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Gross Margin</p>
+                      <p id="out-gross-pct" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
+                      <p id="out-gross-abs" class="text-tagline-2 text-secondary/50 dark:text-accent/50">Enter numbers above</p>
+                    </div>
+                    <!-- Net Margin -->
+                    <div id="out-net" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300">
+                      <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Net Margin</p>
+                      <p id="out-net-pct" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
+                      <p id="out-net-abs" class="text-tagline-2 text-secondary/50 dark:text-accent/50">Enter numbers above</p>
+                    </div>
+                    <!-- Markup -->
+                    <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1">
+                      <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Markup</p>
+                      <p id="out-markup-pct" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
+                      <p id="out-markup-note" class="text-tagline-2 text-secondary/50 dark:text-accent/50">On direct costs</p>
+                    </div>
+                  </div>
+
+                  <!-- Health note -->
+                  <div id="health-note" class="hidden rounded-xl border px-5 py-4 text-tagline-2 leading-relaxed"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- EDUCATIONAL CONTENT -->
+            <div class="space-y-12 tool-content">
+
+              <div id="understanding-margins" class="scroll-mt-28 space-y-4">
+                <h2>Understanding profit margins</h2>
+                <p>Profit margin measures how much of your revenue you keep after expenses. It is one of the most important metrics for any business, telling you whether your pricing and cost structure are sustainable. A business growing revenue while margins shrink is a business heading toward a cash crisis — even if the top line looks healthy.</p>
+              </div>
+
+              <div id="three-types" class="scroll-mt-28 space-y-4">
+                <h2>The three types of profit margin</h2>
+                <div class="space-y-4">
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Gross profit margin</p>
+                    <p>Revenue minus direct costs (cost of goods sold). For agencies and freelancers, this is revenue minus the direct costs of delivering the project: subcontractors, materials, and software bought specifically for the engagement.</p>
+                  </div>
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Operating profit margin</p>
+                    <p>Gross profit minus operating expenses: rent, salaries, software subscriptions, marketing, insurance. This shows what you earn from your core business before interest and taxes.</p>
+                  </div>
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Net profit margin</p>
+                    <p>Operating profit minus taxes and all other costs. This is what you actually take home as the business owner. It is the number that matters most for long-term sustainability.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div id="why-margins-matter" class="scroll-mt-28 space-y-4">
+                <h2>Why margins matter more than revenue</h2>
+                <p>A freelancer earning $200,000 per year with 15% margins keeps $30,000. A freelancer earning $100,000 per year with 40% margins keeps $40,000 — while working less. Revenue is vanity. Profit is sanity.</p>
+                <p>According to industry surveys, the median net profit margin for professional services businesses is 15–20%. If yours is below 10%, your pricing or cost structure needs attention. If it is above 25%, you have pricing power worth protecting.</p>
+                <div class="rounded-xl border border-primary-500/20 bg-primary-500/5 p-5">
+                  <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 leading-relaxed">
+                    <span class="font-semibold text-primary-500">Insighty tracks this automatically.</span> Instead of running a calculator after each project, Insighty shows you gross margin, project cost vs. budget, and client profitability in real time — across every revenue stream in your agency.
+                  </p>
+                </div>
+              </div>
+
+              <div id="margin-vs-markup" class="scroll-mt-28 space-y-5">
+                <h2>Margin vs markup explained</h2>
+                <p>Margin and markup are related but different. Confusing them is one of the most common pricing mistakes agencies make.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Margin formula</p>
+                    <p class="font-mono text-tagline-2 bg-background-1 dark:bg-background-7 rounded-lg px-3 py-2">(Revenue − Cost) ÷ Revenue × 100</p>
+                  </div>
+                  <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-2">
+                    <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Markup formula</p>
+                    <p class="font-mono text-tagline-2 bg-background-1 dark:bg-background-7 rounded-lg px-3 py-2">(Revenue − Cost) ÷ Cost × 100</p>
+                  </div>
+                </div>
+                <p>Example: you sell a service for $100 that costs $60 to deliver. Margin = ($100 − $60) ÷ $100 = <strong>40%</strong>. Markup = ($100 − $60) ÷ $60 = <strong>66.7%</strong>. Same profit, very different percentages.</p>
+                <p>Use <strong>margin</strong> when analysing business performance and comparing to industry benchmarks. Use <strong>markup</strong> when setting prices based on your costs. If you want a 30% margin, you need to apply a 42.9% markup to your costs — not 30%.</p>
+
+                <!-- Conversion table -->
+                <div class="overflow-x-auto rounded-xl border border-stroke-2 dark:border-stroke-5">
+                  <table class="w-full text-tagline-2">
+                    <thead>
+                      <tr class="bg-background-2 dark:bg-background-6 border-b border-stroke-2 dark:border-stroke-5">
+                        <th class="text-left px-5 py-3 font-semibold text-secondary/70 dark:text-accent/70 uppercase tracking-widest text-tagline-3">Margin</th>
+                        <th class="text-left px-5 py-3 font-semibold text-secondary/70 dark:text-accent/70 uppercase tracking-widest text-tagline-3">Equivalent Markup</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {conversionTable.map((row, i) => (
+                        <tr class={`border-b border-stroke-2 dark:border-stroke-5 last:border-0 ${i % 2 === 0 ? 'bg-background-1 dark:bg-background-8' : 'bg-background-2 dark:bg-background-6'}`}>
+                          <td class="px-5 py-3 font-medium text-secondary dark:text-accent">{row.margin}</td>
+                          <td class="px-5 py-3 text-secondary/70 dark:text-accent/70">{row.markup}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div id="industry-benchmarks" class="scroll-mt-28 space-y-5">
+                <h2>Healthy profit margins by industry</h2>
+                <p>Profit margins vary significantly by industry. What is healthy for a SaaS business would be unsustainable for a physical product company. Here are net margin benchmarks for service businesses.</p>
+                <div class="overflow-x-auto rounded-xl border border-stroke-2 dark:border-stroke-5">
+                  <table class="w-full text-tagline-2">
+                    <thead>
+                      <tr class="bg-background-2 dark:bg-background-6 border-b border-stroke-2 dark:border-stroke-5">
+                        <th class="text-left px-5 py-3 font-semibold text-secondary/70 dark:text-accent/70 uppercase tracking-widest text-tagline-3">Industry</th>
+                        <th class="text-left px-5 py-3 font-semibold text-secondary/70 dark:text-accent/70 uppercase tracking-widest text-tagline-3">Typical Net Margin</th>
+                        <th class="text-left px-5 py-3 font-semibold text-secondary/70 dark:text-accent/70 uppercase tracking-widest text-tagline-3">Target (Healthy)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {industryData.map((row, i) => (
+                        <tr class={`border-b border-stroke-2 dark:border-stroke-5 last:border-0 ${i % 2 === 0 ? 'bg-background-1 dark:bg-background-8' : 'bg-background-2 dark:bg-background-6'}`}>
+                          <td class="px-5 py-3 font-medium text-secondary dark:text-accent">{row.industry}</td>
+                          <td class="px-5 py-3 text-secondary/70 dark:text-accent/70">{row.typical}</td>
+                          <td class="px-5 py-3">
+                            <span class="inline-block px-2.5 py-0.5 rounded-full bg-primary-500/10 text-primary-500 font-medium text-tagline-3">{row.target}</span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div id="how-to-improve" class="scroll-mt-28 space-y-5">
+                <h2>How to improve your profit margins</h2>
+                <p>There are only two ways to improve margins: increase revenue or decrease costs. Here are practical strategies for both.</p>
+                <div class="space-y-3">
+                  <h3>Increase revenue (per project)</h3>
+                  <ul>
+                    <li><strong>Raise your rates.</strong> A 10% price increase with no change in costs goes straight to the bottom line. If you are fully booked, your rates are too low.</li>
+                    <li><strong>Value-based pricing.</strong> Price based on outcomes, not time. A website worth €50,000 to an enterprise client should not be priced the same as one for a startup.</li>
+                    <li><strong>Upsell related services.</strong> Add complementary offerings like maintenance retainers, training, or ongoing support to increase revenue per client without adding project acquisition cost.</li>
+                    <li><strong>Improve scoping.</strong> Underestimating projects is the fastest way to kill margins. Track actual vs estimated hours on every project to sharpen future quotes.</li>
+                  </ul>
+                  <h3>Decrease costs</h3>
+                  <ul>
+                    <li><strong>Keep projects within scope.</strong> Clear contracts and a change-order process prevent unbilled work from eating into margin.</li>
+                    <li><strong>Automate repetitive tasks.</strong> Templates, scripts, and workflows reduce time spent on non-billable work.</li>
+                    <li><strong>Audit subscriptions.</strong> Most agencies pay for software they rarely use. Cancel or downgrade unused tools quarterly.</li>
+                    <li><strong>Track per-project margins.</strong> Your overall margin is an average. Identify which clients and project types are most profitable — then do more of those.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- FAQ -->
+              <div id="faq" class="scroll-mt-28 space-y-4">
+                <h2>Frequently asked questions</h2>
+                <div class="space-y-3" id="faq-list">
+                  {faqs.map((item, i) => (
+                    <div class="faq-item rounded-xl border border-stroke-2 dark:border-stroke-5 overflow-hidden">
+                      <button
+                        class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-4 text-left bg-background-2 dark:bg-background-6 hover:bg-background-3 dark:hover:bg-background-5 transition-colors duration-200"
+                        aria-expanded="false"
+                        data-index={i}
+                      >
+                        <span class="text-tagline-1 font-medium text-secondary dark:text-accent">{item.q}</span>
+                        <svg class="faq-chevron w-5 h-5 shrink-0 text-secondary/40 dark:text-accent/40 transition-transform duration-200" viewBox="0 0 20 20" fill="none">
+                          <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </button>
+                      <div class="faq-body hidden px-6 py-4 bg-background-1 dark:bg-background-7 border-t border-stroke-2 dark:border-stroke-5">
+                        <p class="text-tagline-2 text-secondary/65 dark:text-accent/65 leading-relaxed">{item.a}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+
+            <!-- CTA -->
+            <div class="rounded-2xl overflow-hidden" style="background: linear-gradient(135deg, #0a1628 0%, #112245 60%, #1a3a70 100%)">
+              <div class="p-8 md:p-10 space-y-4">
+                <p class="text-tagline-3 uppercase tracking-widest font-medium text-white/40">Want this tracked automatically?</p>
+                <h2 class="text-white text-heading-4">See margins per project — not just overall</h2>
+                <p class="text-white/60 text-tagline-1 max-w-[520px]">
+                  Insighty tracks gross margin, project cost vs. budget, and client profitability in real time across all your revenue streams. No spreadsheets. No manual calculations after every project.
+                </p>
+                <div class="flex flex-wrap gap-3 pt-2">
+                  <a href="/contact" class="btn btn-primary btn-md"><span>Request early access</span></a>
+                  <a href="/#platform" class="btn btn-md btn-secondary !border-white/20 !text-white hover:!bg-white/10"><span>See the platform</span></a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  // Calculator logic
+  const revenue = document.getElementById('calc-revenue') as HTMLInputElement
+  const cogs    = document.getElementById('calc-cogs')    as HTMLInputElement
+  const opex    = document.getElementById('calc-opex')    as HTMLInputElement
+
+  const grossPct   = document.getElementById('out-gross-pct')!
+  const grossAbs   = document.getElementById('out-gross-abs')!
+  const grossCard  = document.getElementById('out-gross')!
+  const netPct     = document.getElementById('out-net-pct')!
+  const netAbs     = document.getElementById('out-net-abs')!
+  const netCard    = document.getElementById('out-net')!
+  const markupPct  = document.getElementById('out-markup-pct')!
+  const markupNote = document.getElementById('out-markup-note')!
+  const healthNote = document.getElementById('health-note')!
+
+  function fmt(n: number) {
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n)
+  }
+
+  function pct(n: number) {
+    return n.toFixed(1) + '%'
+  }
+
+  function marginColor(n: number): { border: string; bg: string; text: string } {
+    if (n >= 20) return { border: 'border-emerald-500/30', bg: 'bg-emerald-500/5', text: 'text-emerald-600 dark:text-emerald-400' }
+    if (n >= 10) return { border: 'border-amber-500/30',   bg: 'bg-amber-500/5',   text: 'text-amber-600 dark:text-amber-400' }
+    return             { border: 'border-red-500/30',     bg: 'bg-red-500/5',     text: 'text-red-600 dark:text-red-400' }
+  }
+
+  function applyCardStyle(card: HTMLElement, pctEl: HTMLElement, value: number, hasValue: boolean) {
+    // Reset
+    card.className = card.className.replace(/border-\S+\/30\s?/g, '').replace(/bg-\S+\/5\s?/g, '').trim()
+    pctEl.className = pctEl.className.replace(/text-(emerald|amber|red)-\S+\s?/g, '').trim()
+    if (!hasValue) return
+    const c = marginColor(value)
+    card.classList.add(c.border, c.bg)
+    pctEl.classList.add(...c.text.split(' '))
+  }
+
+  function calculate() {
+    const r = parseFloat(revenue.value)
+    const c = parseFloat(cogs.value)
+    const o = parseFloat(opex.value)
+
+    const hasRevenue = !isNaN(r) && r > 0
+    const hasCogs    = !isNaN(c)
+    const hasOpex    = !isNaN(o)
+
+    if (!hasRevenue) {
+      grossPct.textContent  = '—'
+      grossAbs.textContent  = 'Enter numbers above'
+      netPct.textContent    = '—'
+      netAbs.textContent    = 'Enter numbers above'
+      markupPct.textContent = '—'
+      markupNote.textContent = 'On direct costs'
+      healthNote.classList.add('hidden')
+      applyCardStyle(grossCard, grossPct, 0, false)
+      applyCardStyle(netCard, netPct, 0, false)
+      return
+    }
+
+    // Gross margin (requires revenue + cogs)
+    if (hasRevenue && hasCogs) {
+      const grossProfit = r - c
+      const gm = (grossProfit / r) * 100
+      grossPct.textContent = pct(gm)
+      grossAbs.textContent = fmt(grossProfit) + ' gross profit'
+      applyCardStyle(grossCard, grossPct, gm, true)
+
+      // Markup
+      if (c > 0) {
+        const mu = (grossProfit / c) * 100
+        markupPct.textContent  = pct(mu)
+        markupNote.textContent = 'On direct costs'
+      } else {
+        markupPct.textContent  = '—'
+        markupNote.textContent = 'Enter direct costs'
+      }
+    }
+
+    // Net margin (requires revenue + cogs + opex)
+    if (hasRevenue && hasCogs && hasOpex) {
+      const netProfit = r - c - o
+      const nm = (netProfit / r) * 100
+      netPct.textContent = pct(nm)
+      netAbs.textContent = fmt(netProfit) + ' net profit'
+      applyCardStyle(netCard, netPct, nm, true)
+
+      // Health note
+      healthNote.classList.remove('hidden')
+      const c2 = marginColor(nm)
+      healthNote.className = `rounded-xl border ${c2.border} ${c2.bg} px-5 py-4 text-tagline-2 leading-relaxed`
+      if (nm >= 25) {
+        healthNote.textContent = `Your net margin of ${pct(nm)} is excellent. You're pricing confidently and controlling costs well. Focus on protecting this margin as you grow.`
+      } else if (nm >= 15) {
+        healthNote.textContent = `Your net margin of ${pct(nm)} is healthy — above the 15% benchmark for service businesses. There is room to push higher by raising rates or reducing overhead.`
+      } else if (nm >= 0) {
+        healthNote.textContent = `Your net margin of ${pct(nm)} is below the 15% target for agencies. Consider reviewing your pricing, reducing overhead, or cutting low-margin work.`
+      } else {
+        healthNote.textContent = `Your net margin of ${pct(nm)} is negative — you are spending more than you earn. This needs immediate attention: raise prices, cut costs, or both.`
+      }
+    } else if (!hasOpex) {
+      netPct.textContent = '—'
+      netAbs.textContent = 'Add operating expenses'
+      applyCardStyle(netCard, netPct, 0, false)
+    }
+  }
+
+  revenue.addEventListener('input', calculate)
+  cogs.addEventListener('input', calculate)
+  opex.addEventListener('input', calculate)
+
+  // FAQ accordion
+  document.querySelectorAll<HTMLButtonElement>('.faq-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const body    = btn.nextElementSibling as HTMLElement
+      const chevron = btn.querySelector('.faq-chevron') as HTMLElement
+      const isOpen  = btn.getAttribute('aria-expanded') === 'true'
+
+      btn.setAttribute('aria-expanded', String(!isOpen))
+      body.classList.toggle('hidden', isOpen)
+      chevron.style.transform = isOpen ? '' : 'rotate(180deg)'
+    })
+  })
+</script>
+
+<style>
+  .tool-content :global(h2) {
+    font-size: var(--text-heading-4);
+    line-height: var(--text-heading-4--line-height);
+    font-weight: 500;
+    color: var(--color-secondary);
+  }
+  :global(.dark) .tool-content :global(h2) { color: var(--color-accent); }
+
+  .tool-content :global(h3) {
+    font-size: var(--text-heading-5);
+    line-height: var(--text-heading-5--line-height);
+    font-weight: 500;
+    color: var(--color-secondary);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  :global(.dark) .tool-content :global(h3) { color: var(--color-accent); }
+
+  .tool-content :global(p) {
+    font-size: var(--text-tagline-1);
+    line-height: 1.75;
+    color: color-mix(in srgb, var(--color-secondary) 65%, transparent);
+  }
+  :global(.dark) .tool-content :global(p) { color: color-mix(in srgb, var(--color-accent) 65%, transparent); }
+
+  .tool-content :global(ul) {
+    font-size: var(--text-tagline-1);
+    line-height: 1.75;
+    color: color-mix(in srgb, var(--color-secondary) 65%, transparent);
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    space-y: 0.5rem;
+  }
+  :global(.dark) .tool-content :global(ul) { color: color-mix(in srgb, var(--color-accent) 65%, transparent); }
+  .tool-content :global(li) { margin-bottom: 0.5rem; }
+
+  .tool-content :global(strong) {
+    font-weight: 600;
+    color: var(--color-secondary);
+  }
+  :global(.dark) .tool-content :global(strong) { color: var(--color-accent); }
+</style>

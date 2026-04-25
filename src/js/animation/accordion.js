@@ -65,9 +65,7 @@ const accordionAnimation = {
 
       // Add click event listener
       if (elements.action) {
-        elements.action.addEventListener('click', (e) => {
-          e.preventDefault();
-
+        elements.action.addEventListener('click', () => {
           if (groupData.activeItem && groupData.activeItem !== item) {
             this.closeAccordion(
               groupData.activeItem,
@@ -96,6 +94,7 @@ const accordionAnimation = {
 
     item.dataset.state = 'true';
     action.dataset.state = 'true';
+    action.setAttribute('aria-expanded', 'true');
     content.dataset.state = 'true';
 
     // Set icon states for default open item
@@ -162,6 +161,7 @@ const accordionAnimation = {
 
     item.dataset.state = 'false';
     action.dataset.state = 'false';
+    action.setAttribute('aria-expanded', 'false');
     content.dataset.state = 'false';
 
     // Set icon states for closed item
@@ -222,6 +222,7 @@ const accordionAnimation = {
 
     item.dataset.state = 'true';
     action.dataset.state = 'true';
+    action.setAttribute('aria-expanded', 'true');
     content.dataset.state = 'true';
     content.classList.remove('hidden');
     content.style.height = 'auto';
@@ -264,6 +265,7 @@ const accordionAnimation = {
 
     item.dataset.state = 'false';
     action.dataset.state = 'false';
+    action.setAttribute('aria-expanded', 'false');
 
     content.style.height = 'auto';
     const contentHeight = content.scrollHeight;

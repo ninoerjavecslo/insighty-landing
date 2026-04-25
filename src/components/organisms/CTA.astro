@@ -45,32 +45,40 @@ CTA section — Founding Member Form
         <div class="px-8 py-10 md:px-12 md:py-14 xl:px-16 xl:py-20 flex flex-col justify-center">
           <form data-ns-animate data-delay="0.2" class="space-y-4" onsubmit="return false;">
             <div class="space-y-1.5">
-              <label class="text-tagline-2 font-medium text-secondary dark:text-accent">Full name</label>
+              <label for="cta-name" class="text-tagline-2 font-medium text-secondary dark:text-accent">Full name</label>
               <input
+                id="cta-name"
+                name="name"
                 type="text"
                 placeholder="Sam Carter"
                 class="w-full rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent placeholder:text-secondary/30 dark:placeholder:text-accent/30 focus:outline-none focus:border-secondary dark:focus:border-accent transition-colors"
               />
             </div>
             <div class="space-y-1.5">
-              <label class="text-tagline-2 font-medium text-secondary dark:text-accent">Work email</label>
+              <label for="cta-email" class="text-tagline-2 font-medium text-secondary dark:text-accent">Work email</label>
               <input
+                id="cta-email"
+                name="email"
                 type="email"
                 placeholder="sam@agency.com"
                 class="w-full rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent placeholder:text-secondary/30 dark:placeholder:text-accent/30 focus:outline-none focus:border-secondary dark:focus:border-accent transition-colors"
               />
             </div>
             <div class="space-y-1.5">
-              <label class="text-tagline-2 font-medium text-secondary dark:text-accent">Agency name</label>
+              <label for="cta-company" class="text-tagline-2 font-medium text-secondary dark:text-accent">Agency name</label>
               <input
+                id="cta-company"
+                name="company"
                 type="text"
                 placeholder="Your agency"
                 class="w-full rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent placeholder:text-secondary/30 dark:placeholder:text-accent/30 focus:outline-none focus:border-secondary dark:focus:border-accent transition-colors"
               />
             </div>
             <div class="space-y-1.5">
-              <label class="text-tagline-2 font-medium text-secondary dark:text-accent">Team size</label>
+              <label for="cta-role" class="text-tagline-2 font-medium text-secondary dark:text-accent">Team size</label>
               <select
+                id="cta-role"
+                name="role"
                 class="w-full rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent focus:outline-none focus:border-secondary dark:focus:border-accent transition-colors appearance-none"
               >
                 <option value="" disabled selected>Select team size</option>

@@ -7,6 +7,7 @@ import BlogCard from '../../components/molecules/BlogCard.astro'
 import BlogCTA from '../../components/molecules/BlogCTA.astro'
 import BlogCTASidebar from '../../components/molecules/BlogCTASidebar.astro'
 import BlogNewsletter from '../../components/molecules/BlogNewsletter.astro'
+import SidebarTOC from '../../components/molecules/SidebarTOC.astro'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
@@ -80,26 +81,10 @@ const gradient = gradients[category] ?? gradients['Agency Ops']
 
           <!-- TOC sidebar -->
           {tocHeadings.length > 0 && (
-            <aside class="hidden lg:flex flex-col gap-8 sticky top-28" aria-label="Table of contents">
-              <div>
-                <p class="text-tagline-2 uppercase tracking-widest font-bold text-secondary dark:text-accent mb-4">Contents</p>
-                <nav>
-                  <ul class="space-y-1">
-                    {tocHeadings.map(h => (
-                      <li class={h.depth === 3 ? 'pl-4' : ''}>
-                        <a
-                          href={`#${h.slug}`}
-                          class="block py-1 text-tagline-2 text-secondary/70 dark:text-accent/70 hover:text-secondary dark:hover:text-accent transition-colors duration-200 leading-snug"
-                        >
-                          {h.text}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-              </div>
+            <div class="hidden lg:flex flex-col gap-8 sticky top-28">
+              <SidebarTOC items={tocHeadings.map(h => ({ id: h.slug, label: h.text, depth: h.depth }))} />
               <BlogCTASidebar />
-            </aside>
+            </div>
           )}
 
           <!-- Content column -->

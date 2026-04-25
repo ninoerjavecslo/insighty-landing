@@ -1,0 +1,138 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/organisms/Header.astro'
+import Footer from '../components/organisms/Footer.astro'
+
+const posts = await getCollection('blog')
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+
+const comparePages = [
+  { href: '/compare', label: 'Compare — Insighty vs. the field' },
+  { href: '/compare/insighty-vs-jira', label: 'Insighty vs Jira' },
+]
+
+const sections = [
+  {
+    title: 'Main',
+    links: [
+      { href: '/', label: 'Home' },
+      { href: '/request-a-demo', label: 'Request a Demo' },
+    ],
+  },
+  {
+    title: 'Resources',
+    links: [
+      { href: '/blog', label: 'Blog — All articles' },
+      { href: '/tools', label: 'Free Tools' },
+    ],
+  },
+  {
+    title: 'Compare',
+    links: comparePages,
+  },
+  {
+    title: 'Legal',
+    links: [
+      { href: '/privacy-policy', label: 'Privacy Policy' },
+    ],
+  },
+]
+---
+
+<BaseLayout
+  title="Sitemap — Insighty"
+  description="A full list of all pages on Insighty.io — blog posts, tools, comparison pages, and more."
+>
+  <Header />
+  <main>
+
+    <!-- Hero -->
+    <section class="bg-background-1 dark:bg-background-8 pt-[140px] sm:pt-[150px] md:pt-[160px] pb-12 md:pb-16 border-b border-stroke-2 dark:border-stroke-6">
+      <div class="main-container space-y-3">
+        <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40 border border-secondary/15 dark:border-accent/15 px-4 py-1.5 rounded-full">Sitemap</span>
+        <h1 class="text-secondary dark:text-accent">All pages</h1>
+        <p class="text-tagline-1 text-secondary/55 dark:text-accent/55 max-w-[480px]">
+          Every page on Insighty.io, organised by section.
+        </p>
+      </div>
+    </section>
+
+    <!-- Sitemap content -->
+    <section class="bg-background-1 dark:bg-background-8 py-14 md:py-20">
+      <div class="main-container">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
+
+          {sections.map(section => (
+            <div class="space-y-4">
+              <h2 class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/40 dark:text-accent/40 pb-3 border-b border-stroke-2 dark:border-stroke-6">{section.title}</h2>
+              <ul class="space-y-2">
+                {section.links.map(link => (
+                  <li>
+                    <a
+                      href={link.href}
+                      class="group flex items-center gap-2 text-tagline-1 text-secondary/70 dark:text-accent/70 hover:text-primary-500 dark:hover:text-primary-400 transition-colors duration-200"
+                    >
+                      <svg class="w-3.5 h-3.5 shrink-0 text-secondary/25 dark:text-accent/25 group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-colors duration-200" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          <!-- Tools -->
+          <div class="space-y-4">
+            <h2 class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/40 dark:text-accent/40 pb-3 border-b border-stroke-2 dark:border-stroke-6">Tools</h2>
+            <ul class="space-y-2">
+              <li>
+                <a href="/tools" class="group flex items-center gap-2 text-tagline-1 text-secondary/70 dark:text-accent/70 hover:text-primary-500 dark:hover:text-primary-400 transition-colors duration-200">
+                  <svg class="w-3.5 h-3.5 shrink-0 text-secondary/25 dark:text-accent/25 group-hover:text-primary-500 transition-colors duration-200" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  All Tools
+                </a>
+              </li>
+              <li>
+                <a href="/tools/profit-margin-calculator" class="group flex items-center gap-2 text-tagline-1 text-secondary/70 dark:text-accent/70 hover:text-primary-500 dark:hover:text-primary-400 transition-colors duration-200">
+                  <svg class="w-3.5 h-3.5 shrink-0 text-secondary/25 dark:text-accent/25 group-hover:text-primary-500 transition-colors duration-200" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Free Profit Margin Calculator
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Blog posts -->
+          <div class="space-y-4 md:col-span-2 xl:col-span-3">
+            <h2 class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/40 dark:text-accent/40 pb-3 border-b border-stroke-2 dark:border-stroke-6">
+              Blog <span class="font-normal text-secondary/30 dark:text-accent/30">({sortedPosts.length} articles)</span>
+            </h2>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-2">
+              {sortedPosts.map(post => (
+                <li>
+                  <a
+                    href={`/blog/${post.id}`}
+                    class="group flex items-start gap-2 text-tagline-1 text-secondary/70 dark:text-accent/70 hover:text-primary-500 dark:hover:text-primary-400 transition-colors duration-200"
+                  >
+                    <svg class="w-3.5 h-3.5 shrink-0 mt-[3px] text-secondary/25 dark:text-accent/25 group-hover:text-primary-500 transition-colors duration-200" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>{post.data.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
