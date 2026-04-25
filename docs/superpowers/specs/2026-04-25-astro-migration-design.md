@@ -299,9 +299,9 @@ The current Vite config sets `base: './'`, producing relative asset paths (`./as
 At least one image has a problematic filename: `insighty_logo_v2_caps_c%20(1).png` (used in `header.htm` and `mobile-menu.htm`). Astro's static file serving does not apply URL-decoding to filenames on disk.
 
 **Migration step:**
-1. Rename the file on disk to remove spaces and special characters: `insighty_logo_v2_caps.png`
+1. Rename the file on disk to remove spaces and special characters: `insighty_logo.png`
 2. Find all references: `grep -r "insighty_logo" src/`
-3. Update every reference in the converted `.astro` files to `/images/shared/insighty_logo_v2_caps.png`
+3. Update every reference in the converted `.astro` files to `/images/shared/insighty_logo.png`
 
 Apply the same process to any other files in `public/images/` with spaces or special characters.
 
