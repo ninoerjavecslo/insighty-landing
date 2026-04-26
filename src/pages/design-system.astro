@@ -12,6 +12,12 @@ import Logo from '../components/atoms/Logo.astro'
 import ThemeToggle from '../components/atoms/ThemeToggle.astro'
 import Header from '../components/organisms/Header.astro'
 import Footer from '../components/organisms/Footer.astro'
+import ButtonVue from '../components/atoms/Button.vue'
+import BadgeVue from '../components/atoms/Badge.vue'
+import ToggleVue from '../components/atoms/Toggle.vue'
+import AccordionVue from '../components/molecules/Accordion.vue'
+import AlertVue from '../components/molecules/Alert.vue'
+import TabsVue from '../components/molecules/Tabs.vue'
 
 const teamSizeOptions = [
   { value: '1-5', label: '1–5 people' },
@@ -57,15 +63,15 @@ const strokeTokens = [
 ]
 
 const typographyScale = [
-  { name: 'heading-1', size: '4.25rem', lh: '110%', sample: 'Heading 1' },
-  { name: 'heading-2', size: '3.25rem', lh: '120%', sample: 'Heading 2' },
-  { name: 'heading-3', size: '2.5rem',  lh: '120%', sample: 'Heading 3' },
-  { name: 'heading-4', size: '2rem',    lh: '130%', sample: 'Heading 4' },
-  { name: 'heading-5', size: '1.5rem',  lh: '140%', sample: 'Heading 5' },
-  { name: 'heading-6', size: '1.25rem', lh: '140%', sample: 'Heading 6' },
-  { name: 'tagline-1', size: '1.0625rem', lh: '150%', sample: 'Tagline 1 — body copy, regular text' },
-  { name: 'tagline-2', size: '0.9375rem', lh: '150%', sample: 'Tagline 2 — small body copy' },
-  { name: 'tagline-3', size: '0.8125rem', lh: '150%', sample: 'Tagline 3 — labels, captions' },
+  { name: 'heading-1', size: '4.25rem', lh: '110%' },
+  { name: 'heading-2', size: '3.25rem', lh: '120%' },
+  { name: 'heading-3', size: '2.5rem',  lh: '120%' },
+  { name: 'heading-4', size: '2rem',    lh: '130%' },
+  { name: 'heading-5', size: '1.5rem',  lh: '140%' },
+  { name: 'heading-6', size: '1.25rem', lh: '140%' },
+  { name: 'tagline-1', size: '1.0625rem', lh: '150%' },
+  { name: 'tagline-2', size: '0.9375rem', lh: '150%' },
+  { name: 'tagline-3', size: '0.8125rem', lh: '150%' },
 ]
 
 const gradients = [
@@ -74,6 +80,16 @@ const gradients = [
   { name: 'gradient-4', value: 'linear-gradient(135deg, #1b3a6b 0%, #4a6ec7 100%)' },
   { name: 'gradient-9', value: 'linear-gradient(156deg, #c9d5f3 32.92%, #d4a574 91%)' },
 ]
+
+const accordionItems = [
+  { q: 'What is Insighty and who is it for?', a: 'Insighty is a client reporting and project intelligence platform built for agencies, freelancers, and professional service teams. It helps you track time, manage budgets, and create beautiful client reports without the manual work.' },
+  { q: 'How does the free trial work?', a: 'You get 14 days of full access with no credit card required. All features are unlocked during the trial so you can evaluate everything before deciding.' },
+  { q: 'Can I import data from my existing tools?', a: 'Yes — Insighty integrates with popular project management tools and offers a CSV import for historical data. Our onboarding team can help you migrate without losing anything.' },
+  { q: 'What happens when a client exceeds their budget?', a: 'You\'ll receive proactive alerts when a project reaches 80% of its budget. Clients can also be given read-only access to see real-time progress, reducing surprise conversations.' },
+]
+
+const buttonVariants = ['primary', 'secondary', 'accent', 'white'] as const
+const buttonSizes = ['sm', 'md', 'lg'] as const
 ---
 
 <BaseLayout
@@ -94,7 +110,7 @@ const gradients = [
       <div class="main-container space-y-3">
         <div class="flex items-center gap-3">
           <span class="badge badge-primary text-tagline-3">Internal</span>
-          <span class="badge badge-white text-tagline-3">v1</span>
+          <span class="badge badge-white text-tagline-3">v2</span>
         </div>
         <h1 class="text-secondary dark:text-accent" style="font-size: 2.25rem; line-height: 1.2;">Design System</h1>
         <p class="text-tagline-1 text-secondary/70 dark:text-accent/70 max-w-[520px]">
@@ -107,6 +123,10 @@ const gradients = [
             ['#tokens-shadows', 'Shadows'],
             ['#atoms-buttons', 'Buttons'],
             ['#atoms-badges', 'Badges'],
+            ['#atoms-toggle', 'Toggle'],
+            ['#molecules-accordion', 'Accordion'],
+            ['#molecules-alert', 'Alert'],
+            ['#molecules-tabs', 'Tabs'],
             ['#atoms-form', 'Form Atoms'],
             ['#molecules-form', 'Form Molecules'],
             ['#form-demo', 'Interactive Form'],
@@ -213,14 +233,21 @@ const gradients = [
           <p class="ds-desc">Font: Inter Tight. All sizes from <code class="ds-code">tokens.css</code>.</p>
         </div>
 
-        <div class="space-y-4 border border-stroke-2 dark:border-stroke-6 rounded-2xl overflow-hidden">
-          {typographyScale.map(({ name, size, lh, sample }, i) => (
-            <div class={`flex items-baseline gap-6 px-6 py-4 ${i < typographyScale.length - 1 ? 'border-b border-stroke-2 dark:border-stroke-6' : ''}`}>
-              <div class="w-28 shrink-0">
-                <p class="text-[10px] font-mono text-secondary/50 dark:text-accent/50">{name}</p>
-                <p class="text-[10px] font-mono text-secondary/40 dark:text-accent/40">{size} / {lh}</p>
+        <div class="border border-stroke-2 dark:border-stroke-6 rounded-2xl overflow-hidden divide-y divide-stroke-2 dark:divide-stroke-6">
+          {typographyScale.map(({ name, size, lh }) => (
+            <div class="flex items-center gap-6 px-6 py-5 min-h-[80px]">
+              <!-- Meta column -->
+              <div class="w-44 shrink-0 space-y-0.5">
+                <p class="text-[11px] font-mono font-semibold text-primary-400">{name}</p>
+                <p class="text-[10px] font-mono text-secondary/50 dark:text-accent/50">{size}</p>
+                <p class="text-[10px] font-mono text-secondary/40 dark:text-accent/40">line-height: {lh}</p>
               </div>
-              <span class={`text-secondary dark:text-accent font-normal text-${name}`}>{sample}</span>
+              <!-- Sample column -->
+              <span
+                class={`text-secondary dark:text-accent font-normal text-${name} leading-none`}
+              >
+                The quick brown fox jumps over the lazy dog
+              </span>
             </div>
           ))}
         </div>
@@ -248,47 +275,87 @@ const gradients = [
       <hr class="border-stroke-2 dark:border-stroke-6" />
 
       <!-- ================================
-      SECTION: Buttons
+      SECTION: Buttons (Vue)
       ================================= -->
       <section id="atoms-buttons" class="space-y-8 scroll-mt-24">
         <div class="ds-section-header">
-          <span class="ds-label">Atoms</span>
+          <span class="ds-label">Atoms — Vue</span>
           <h2 class="ds-title">Buttons</h2>
+          <p class="ds-desc">Component: <code class="ds-code">atoms/Button.vue</code> — uses existing <code class="ds-code">btn</code> CSS classes.</p>
         </div>
 
         <!-- Variants -->
         <div class="space-y-3">
-          <h3 class="ds-subtitle">Variants (btn-md)</h3>
-          <div class="flex flex-wrap gap-3 p-6 rounded-2xl border border-stroke-2 dark:border-stroke-6">
-            <button class="btn btn-primary btn-md"><span>Primary</span></button>
-            <button class="btn btn-secondary btn-md"><span>Secondary</span></button>
-            <button class="btn btn-accent btn-md"><span>Accent</span></button>
-            <button class="btn btn-white btn-md"><span>White</span></button>
-            <button class="btn btn-primary btn-md" disabled><span>Disabled</span></button>
+          <p class="ds-variant-subtitle">Variants (btn-md)</p>
+          <div class="ds-preview-area ds-row">
+            {buttonVariants.map(v => (
+              <ButtonVue client:load variant={v} size="md">
+                <span>{v.charAt(0).toUpperCase() + v.slice(1)}</span>
+              </ButtonVue>
+            ))}
           </div>
-          <!-- Dark bg for contrast -->
-          <div class="flex flex-wrap gap-3 p-6 rounded-2xl bg-background-7">
-            <button class="btn btn-primary btn-md"><span>Primary</span></button>
-            <button class="btn btn-accent btn-md"><span>Accent</span></button>
-            <button class="btn btn-white btn-md"><span>White</span></button>
+        </div>
+
+        <!-- Variants on dark bg -->
+        <div class="space-y-3">
+          <p class="ds-variant-subtitle">Variants on dark background</p>
+          <div class="ds-row p-6 rounded-2xl bg-background-7">
+            {buttonVariants.map(v => (
+              <ButtonVue client:load variant={v} size="md">
+                <span>{v.charAt(0).toUpperCase() + v.slice(1)}</span>
+              </ButtonVue>
+            ))}
           </div>
         </div>
 
         <!-- Sizes -->
         <div class="space-y-3">
-          <h3 class="ds-subtitle">Sizes</h3>
-          <div class="flex flex-wrap items-center gap-3 p-6 rounded-2xl border border-stroke-2 dark:border-stroke-6">
-            <button class="btn btn-primary btn-sm"><span>Small</span></button>
-            <button class="btn btn-primary btn-md"><span>Medium</span></button>
-            <button class="btn btn-primary btn-lg"><span>Large</span></button>
+          <p class="ds-variant-subtitle">Sizes — Primary</p>
+          <div class="ds-preview-area ds-row items-end">
+            {buttonSizes.map(s => (
+              <ButtonVue client:load variant="primary" size={s}>
+                <span>{s.toUpperCase()}</span>
+              </ButtonVue>
+            ))}
           </div>
+        </div>
+
+        <!-- All variants × all sizes -->
+        <div class="space-y-4">
+          <p class="ds-variant-subtitle">All Variants × All Sizes</p>
+          {buttonVariants.map(v => (
+            <div class="ds-preview-area space-y-2">
+              <p class="text-[10px] font-mono text-secondary/50 dark:text-accent/50 mb-3">{v}</p>
+              <div class="ds-row items-end">
+                {buttonSizes.map(s => (
+                  <ButtonVue client:load variant={v} size={s}>
+                    <span>{s.charAt(0).toUpperCase() + s.slice(1)}</span>
+                  </ButtonVue>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
 
         <!-- Full width -->
         <div class="space-y-3">
-          <h3 class="ds-subtitle">Full Width</h3>
-          <div class="p-6 rounded-2xl border border-stroke-2 dark:border-stroke-6 max-w-sm">
-            <button class="btn btn-primary btn-md w-full"><span>Full width button</span></button>
+          <p class="ds-variant-subtitle">Full Width</p>
+          <div class="ds-preview-area max-w-sm">
+            <ButtonVue client:load variant="primary" size="md" full>
+              <span>Full width button</span>
+            </ButtonVue>
+          </div>
+        </div>
+
+        <!-- Disabled -->
+        <div class="space-y-3">
+          <p class="ds-variant-subtitle">Disabled State</p>
+          <div class="ds-preview-area ds-row">
+            {buttonVariants.map(v => (
+              <ButtonVue client:load variant={v} size="md" disabled>
+                <span>Disabled</span>
+              </ButtonVue>
+            ))}
           </div>
         </div>
       </section>
@@ -296,20 +363,174 @@ const gradients = [
       <hr class="border-stroke-2 dark:border-stroke-6" />
 
       <!-- ================================
-      SECTION: Badges
+      SECTION: Badges (Vue)
       ================================= -->
       <section id="atoms-badges" class="space-y-6 scroll-mt-24">
         <div class="ds-section-header">
-          <span class="ds-label">Atoms</span>
+          <span class="ds-label">Atoms — Vue</span>
           <h2 class="ds-title">Badges</h2>
+          <p class="ds-desc">Component: <code class="ds-code">atoms/Badge.vue</code> — uses existing <code class="ds-code">badge</code> CSS classes.</p>
         </div>
-        <div class="flex flex-wrap gap-3 p-6 rounded-2xl border border-stroke-2 dark:border-stroke-6">
-          <span class="badge badge-primary">Primary</span>
-          <span class="badge badge-white">White</span>
-          <span class="badge badge-secondary">Secondary</span>
-          <span class="badge badge-blue">Blue</span>
-          <span class="badge badge-green">Green</span>
-          <span class="badge badge-yellow">Yellow</span>
+
+        <div class="space-y-4">
+          <div class="space-y-2">
+            <p class="ds-variant-subtitle">Light background</p>
+            <div class="ds-preview-area ds-row">
+              {(['primary', 'white', 'secondary', 'green', 'yellow', 'cyan', 'gray'] as const).map(v => (
+                <BadgeVue client:load variant={v}>{v.charAt(0).toUpperCase() + v.slice(1)}</BadgeVue>
+              ))}
+            </div>
+          </div>
+          <div class="space-y-2">
+            <p class="ds-variant-subtitle">Dark background</p>
+            <div class="ds-row p-6 rounded-2xl bg-background-7">
+              {(['primary', 'white', 'secondary', 'green', 'yellow', 'cyan'] as const).map(v => (
+                <BadgeVue client:load variant={v}>{v.charAt(0).toUpperCase() + v.slice(1)}</BadgeVue>
+              ))}
+            </div>
+          </div>
+          <div class="space-y-2">
+            <p class="ds-variant-subtitle">Native badge classes (static Astro)</p>
+            <div class="ds-preview-area ds-row">
+              <span class="badge badge-primary">Primary</span>
+              <span class="badge badge-white">White</span>
+              <span class="badge badge-secondary">Secondary</span>
+              <span class="badge badge-green">Green</span>
+              <span class="badge badge-yellow">Yellow</span>
+              <span class="badge badge-gray">Gray</span>
+              <span class="badge badge-ivory">Ivory</span>
+              <span class="badge badge-blur">Blur</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="border-stroke-2 dark:border-stroke-6" />
+
+      <!-- ================================
+      SECTION: Toggle (Vue)
+      ================================= -->
+      <section id="atoms-toggle" class="space-y-6 scroll-mt-24">
+        <div class="ds-section-header">
+          <span class="ds-label">Atoms — Vue</span>
+          <h2 class="ds-title">Toggle</h2>
+          <p class="ds-desc">Component: <code class="ds-code">atoms/Toggle.vue</code> — boolean switch with v-model.</p>
+        </div>
+
+        <div class="ds-preview-area space-y-4" id="toggle-demo">
+          <div class="flex items-center gap-4">
+            <ToggleVue client:load model-value={true} />
+            <span class="text-tagline-2 text-secondary dark:text-accent">Active (on)</span>
+          </div>
+          <div class="flex items-center gap-4">
+            <ToggleVue client:load model-value={false} />
+            <span class="text-tagline-2 text-secondary dark:text-accent">Inactive (off)</span>
+          </div>
+          <div class="flex items-center gap-4">
+            <ToggleVue client:load model-value={true} disabled />
+            <span class="text-tagline-2 text-secondary/50 dark:text-accent/50">Disabled (on)</span>
+          </div>
+          <div class="flex items-center gap-4">
+            <ToggleVue client:load model-value={false} disabled />
+            <span class="text-tagline-2 text-secondary/50 dark:text-accent/50">Disabled (off)</span>
+          </div>
+        </div>
+      </section>
+
+      <hr class="border-stroke-2 dark:border-stroke-6" />
+
+      <!-- ================================
+      SECTION: Accordion (Vue)
+      ================================= -->
+      <section id="molecules-accordion" class="space-y-8 scroll-mt-24">
+        <div class="ds-section-header">
+          <span class="ds-label">Molecules — Vue</span>
+          <h2 class="ds-title">Accordion</h2>
+          <p class="ds-desc">Component: <code class="ds-code">molecules/Accordion.vue</code> — reactive, smooth open/close via CSS grid rows.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- Single open (default) -->
+          <div class="space-y-3">
+            <p class="ds-variant-subtitle">Single open (default)</p>
+            <AccordionVue
+              client:load
+              items={accordionItems}
+            />
+          </div>
+
+          <!-- openFirst + allowMultiple -->
+          <div class="space-y-3">
+            <p class="ds-variant-subtitle">openFirst + allowMultiple</p>
+            <AccordionVue
+              client:load
+              items={accordionItems}
+              openFirst
+              allowMultiple
+            />
+          </div>
+        </div>
+      </section>
+
+      <hr class="border-stroke-2 dark:border-stroke-6" />
+
+      <!-- ================================
+      SECTION: Alert (Vue)
+      ================================= -->
+      <section id="molecules-alert" class="space-y-8 scroll-mt-24">
+        <div class="ds-section-header">
+          <span class="ds-label">Molecules — Vue</span>
+          <h2 class="ds-title">Alert</h2>
+          <p class="ds-desc">Component: <code class="ds-code">molecules/Alert.vue</code> — dismissible notifications using Insighty semantic colors.</p>
+        </div>
+
+        <div class="space-y-4">
+          <p class="ds-variant-subtitle">Types</p>
+          <div class="ds-preview-area space-y-3 max-w-xl">
+            <AlertVue client:load type="info" title="Information" message="Your data has been synced successfully with all connected integrations." />
+            <AlertVue client:load type="success" title="Success" message="Project report has been generated and sent to your client." />
+            <AlertVue client:load type="warning" title="Budget alert" message="Project Alpha has reached 80% of its allocated budget." />
+            <AlertVue client:load type="error" title="Error" message="Failed to connect to your time tracking integration. Please reconnect." />
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <p class="ds-variant-subtitle">Dismissible</p>
+          <div class="ds-preview-area space-y-3 max-w-xl">
+            <AlertVue client:load type="info" title="Dismissible info" message="Click the × to dismiss this alert." dismissible />
+            <AlertVue client:load type="success" title="Dismissible success" message="This will disappear when dismissed." dismissible />
+          </div>
+        </div>
+      </section>
+
+      <hr class="border-stroke-2 dark:border-stroke-6" />
+
+      <!-- ================================
+      SECTION: Tabs (Vue)
+      ================================= -->
+      <section id="molecules-tabs" class="space-y-8 scroll-mt-24">
+        <div class="ds-section-header">
+          <span class="ds-label">Molecules — Vue</span>
+          <h2 class="ds-title">Tabs</h2>
+          <p class="ds-desc">Component: <code class="ds-code">molecules/Tabs.vue</code> — accessible tab interface with active indicator.</p>
+        </div>
+
+        <div class="ds-card max-w-xl" id="tabs-demo-wrapper">
+          <!-- Tabs rendered via island; content panels are static since Tabs emits update -->
+          <TabsVue
+            client:load
+            id="tabs-demo"
+            :tabs="[
+              { id: 'overview', label: 'Overview' },
+              { id: 'activity', label: 'Activity' },
+              { id: 'settings', label: 'Settings' },
+            ]"
+            model-value="overview"
+          >
+            <p class="text-tagline-2 text-secondary/70 dark:text-accent/70">
+              Select a tab above to see it highlighted. Tab content is rendered in the default slot below the tab bar.
+            </p>
+          </TabsVue>
         </div>
       </section>
 
@@ -674,9 +895,12 @@ if (form && btn) {
                 'atoms/ThemeToggle.astro',
                 'atoms/Star.astro',
                 'atoms/HoverBg.astro',
-                'atoms/AccordionIcon.astro',
+                'atoms/Button.vue — NEW',
+                'atoms/Badge.vue — NEW',
+                'atoms/Icon.vue — NEW',
+                'atoms/Toggle.vue — NEW',
               ].map(f => (
-                <li class="text-[11px] font-mono text-secondary/70 dark:text-accent/70 hover:text-primary-400 transition-colors">
+                <li class={`text-[11px] font-mono transition-colors ${f.includes('NEW') ? 'text-ns-green' : 'text-secondary/70 dark:text-accent/70'}`}>
                   <code>src/components/{f}</code>
                 </li>
               ))}
@@ -691,17 +915,15 @@ if (form && btn) {
                 'molecules/FormTextareaField.astro',
                 'molecules/FormSelectField.astro',
                 'molecules/Accordion.astro',
-                'molecules/AccordionItem.astro',
+                'molecules/Accordion.vue — NEW',
+                'molecules/Alert.vue — NEW',
+                'molecules/Tabs.vue — NEW',
                 'molecules/BlogCard.astro',
-                'molecules/BlogCTA.astro',
-                'molecules/BlogCTASidebar.astro',
                 'molecules/BlogNewsletter.astro',
-                'molecules/FeatureCard.astro',
                 'molecules/NavItem.astro',
-                'molecules/SidebarTOC.astro',
                 'molecules/TestimonialCard.astro',
               ].map(f => (
-                <li class="text-[11px] font-mono text-secondary/70 dark:text-accent/70">
+                <li class={`text-[11px] font-mono transition-colors ${f.includes('NEW') ? 'text-ns-green' : 'text-secondary/70 dark:text-accent/70'}`}>
                   <code>src/components/{f}</code>
                 </li>
               ))}
@@ -739,6 +961,7 @@ if (form && btn) {
                 'common.css — utilities',
                 'button.css — btn classes',
                 'badge.css — badge classes',
+                'design-system.css — ds- classes',
               ].map(f => (
                 <li class="text-[11px] font-mono text-secondary/70 dark:text-accent/70">
                   <code>src/styles/{f}</code>

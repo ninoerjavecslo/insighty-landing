@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config'
 import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
+import vue from '@astrojs/vue'
 
 export default defineConfig({
   output: 'static',
@@ -9,6 +10,7 @@ export default defineConfig({
     inlineStylesheets: 'always',
   },
   integrations: [
+    vue(),
     sitemap({
       filter: (page) =>
         !page.includes('/use-cases/template') &&
