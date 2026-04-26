@@ -2,6 +2,43 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Product Context (READ BEFORE ANY CONTENT WORK)
+
+**Full spec:** `docs/insighty-functional-spec.md` — read it before writing copy, blog posts, compare pages, use-case pages, or any marketing content. Do not invent features or describe functionality that isn't in the spec.
+
+**What Insighty is:** A multi-tenant, AI-powered agency operations platform for digital agencies and professional services firms. It is the financial intelligence layer that connects clients, projects, maintenance contracts, hosting, domains, invoices, and pipeline deals into one dashboard. It does NOT replace Jira/Asana/ClickUp or accounting software.
+
+**Core modules (all described in full in the spec):**
+- **Clients** — client directory, relational anchor for everything else
+- **Projects** — fixed, variable, maintenance, internal; with PN system (RS-YYYY-NNN), budget burn, CRs
+- **Maintenance Contracts** — recurring retainers with Jira/Tempo integration, hours tracking
+- **Revenue Planner** — multi-month matrix of all revenue streams (projects, retainers, hosting, domains)
+- **This Month** — actionable invoice dashboard for the current month; prevents invoice leakage
+- **Sales Pipeline** — proposal → won/lost Kanban with probability-weighted forecast integration
+- **Forecast** — probability-weighted cash flow combining Revenue Planner + pipeline + CRs
+- **Infrastructure & Hosting** — hosting revenue sold to clients + infra costs the agency pays; net margin
+- **Domains** — domain expiry tracking, billable flag, auto-renewal, reminder integration
+- **Resource Planning** — day-level allocation grid, capacity/utilization, deliverables, "My Week" public link
+- **Reports** — Pipeline Impact, Delay Impact, Monthly Digest, Capacity Forecast
+- **Statistics** — high-level revenue, project, client, and team metrics
+- **Automations** — recurring monthly invoice batch emails sent on a configured day
+- **Reminder Rules** — configurable alerts for domain expiry, contract end, stale pipeline; can generate domain renewal invoices
+- **Offer Generator** — AI-powered proposal generation (currently disabled in production pending rebrand)
+- **Pixel AI Assistant** — embedded AI chat (Claude / GPT-4o) with agency context injection
+- **Agency Tools Stack** — internal SaaS tool directory with costs and renewal tracking
+- **Contracts & Contractors** — contract document registry + freelancer directory
+- **Email Tool** — outbound email composition with templates and variable substitution
+- **Timesheet** — monthly timesheet with AI-assisted pre-fill from resource allocations
+- **Dashboard** — entry-point snapshot: revenue, pipeline, capacity, alerts, quick actions
+- **Settings / Permissions** — per-page role-based access control, integrations config, billing
+- **Admin Console** — super-admin interface for managing all orgs and users across the platform
+
+**Target users:** Agency Owner/CEO, Project Manager, Operations Manager, Team Member.
+
+**Integrations:** Jira + Tempo (live), Xero/QuickBooks (planned), SMTP/SendGrid, domain registrar APIs (planned).
+
+**Tech:** Multi-tenant Supabase (RLS by org), React frontend, subdomain routing (`{slug}.insighty.io`).
+
 ## Commands
 
 ```bash
