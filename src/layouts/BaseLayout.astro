@@ -62,6 +62,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       />
     </noscript>
 
+    <!-- Structured data -->
+    <slot name="structured-data" />
+
     <!-- FOUC prevention -->
     <script is:inline>
       (function () {

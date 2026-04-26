@@ -35,6 +35,20 @@ const formattedDate = pubDate.toLocaleDateString('en-US', { month: 'long', day: 
 const shareText = encodeURIComponent(title)
 const shareUrl = encodeURIComponent(`https://insighty.io/blog/${post.id}`)
 
+const blogPostingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  datePublished: pubDate.toISOString(),
+  url: `https://insighty.io/blog/${post.id}/`,
+  publisher: {
+    '@type': 'Organization',
+    name: 'Insighty',
+    url: 'https://insighty.io',
+  },
+}
+
 const gradients: Record<string, string> = {
   'Agency Ops': 'linear-gradient(135deg, #112445 0%, #4a6ec7 100%)',
   'Revenue':    'linear-gradient(135deg, #d4a574 0%, #b87333 100%)',
@@ -50,6 +64,7 @@ const gradient = gradients[category] ?? gradients['Agency Ops']
   ogType="article"
   ogPublishedTime={pubDate.toISOString()}
 >
+  <script slot="structured-data" type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
   <Header />
   <main>
 

@@ -11,12 +11,96 @@ import FoundingMember from '../components/organisms/FoundingMember.astro'
 import FAQ from '../components/organisms/FAQ.astro'
 import CTA from '../components/organisms/CTA.astro'
 import Footer from '../components/organisms/Footer.astro'
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Insighty',
+  url: 'https://insighty.io',
+  description: 'Insighty brings every client, project, contract, and revenue stream into one intelligent dashboard.',
+}
+
+const appSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Insighty',
+  url: 'https://insighty.io',
+  description: 'Agency operations platform that connects project status directly to invoicing, forecasting, and margin — built for digital agencies with 2–50 people.',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+    description: '14-day free trial, no credit card required',
+  },
+}
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'When is Insighty launching?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "We're targeting a Q2 2026 early-access launch for waitlist members. Founding members will get first access, locked pricing, and direct input on the roadmap before we open to the public.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What size agency is Insighty built for?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Insighty is designed for digital agencies with 2–50 people — the range where spreadsheets break down but enterprise tools are overkill. If you're managing retainers, fixed projects, and hosting costs across multiple clients, Insighty is built for you.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is Insighty different from tools like Asana, Jira, or Monday?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Those tools track tasks. Insighty tracks money. We connect project status directly to invoicing, forecasting, and margin — so you know not just what's in progress, but what it's worth and when it pays. Think of it as the financial operating layer your project tools are missing.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is Pixel AI and what can it do?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Pixel AI is Insighty's built-in intelligence layer. It reads your actual data — projects, invoices, pipeline, costs — and surfaces insights automatically. Ask it why margin dipped last month, which client is most at risk of churn, or what the next 90 days look like if you close two pending deals. It answers in plain language, not charts you have to interpret yourself.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I migrate from spreadsheets?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Yes. Insighty supports CSV import for projects, clients, and historical invoices. We're also building a guided onboarding flow that walks you through mapping your existing data into the system. For founding members, we'll offer white-glove migration support.",
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is my data secure and private?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: "Absolutely. Your financial and client data is encrypted at rest and in transit. We never sell data or use it to train shared AI models. Each workspace is fully isolated, and we're GDPR-compliant. Your numbers stay yours.",
+      },
+    },
+  ],
+}
 ---
 <BaseLayout
   title="Insighty — Coming Soon | Agency Operations Platform"
   description="Insighty brings every client, project, contract, and revenue stream into one intelligent dashboard. Coming soon to help agencies scale profitably."
   preloadImage="/images/ns-img-506.webp"
 >
+  <Fragment slot="structured-data">
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(appSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
   <Header />
   <main>
     <Hero />

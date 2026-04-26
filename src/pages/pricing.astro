@@ -124,12 +124,23 @@ const faqs = [
     a: 'Yes. We offer a 30% discount for registered nonprofits and early-stage startups (< $1M ARR). Contact us with proof of eligibility and we\'ll apply it to your account.'
   },
 ]
+
+const pricingFaqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+}
 ---
 
 <BaseLayout
   title="Pricing — Insighty"
   description="Transparent, scalable pricing for digital agencies. All features on every plan. Start free for 14 days — no credit card required."
 >
+  <script slot="structured-data" type="application/ld+json" set:html={JSON.stringify(pricingFaqSchema)} />
   <Header />
   <main>
 
