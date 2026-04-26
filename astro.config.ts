@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config'
 import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
+import sanity from '@sanity/astro'
 
 export default defineConfig({
   output: 'static',
@@ -9,6 +10,12 @@ export default defineConfig({
     inlineStylesheets: 'always',
   },
   integrations: [
+    sanity({
+      projectId: process.env.PUBLIC_SANITY_PROJECT_ID || 'placeholder',
+      dataset: process.env.PUBLIC_SANITY_DATASET || 'production',
+      useCdn: true,
+      apiVersion: '2024-01-01',
+    }),
     sitemap({
       filter: (page) =>
         !page.includes('/use-cases/template') &&
