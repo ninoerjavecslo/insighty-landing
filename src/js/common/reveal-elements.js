@@ -1,5 +1,14 @@
 const initRevealElements = () => {
   const elements = document.querySelectorAll('[data-ns-animate]');
+
+  if (window.matchMedia('(max-width: 767px)').matches) {
+    elements.forEach(elem => {
+      elem.style.opacity = '1';
+      elem.style.transform = 'none';
+    });
+    return;
+  }
+
   const Springer = window.Springer?.default;
   elements.forEach((elem) => {
     const duration = elem.getAttribute('data-duration')

@@ -9,6 +9,13 @@ Common Styles all over the sites
   opacity: 0;
 }
 
+@media (max-width: 767px) {
+  [data-ns-animate] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* ==========Container========== */
 
 @utility main-container {
