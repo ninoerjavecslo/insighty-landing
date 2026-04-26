@@ -1,0 +1,22 @@
+# Dead code — HTML theme fragments, not used by Astro build
+src/components/pages/
+
+# Vendored minified JS — no reason to read these
+public/vendor/
+
+# Build output
+dist/
+.astro/
+
+# Dependencies
+node_modules/
+
+# Misc
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.ico
+public/images/
+header-test.png

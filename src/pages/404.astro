@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/organisms/Header.astro'
+import Footer from '../components/organisms/Footer.astro'
+
+const links = [
+  {
+    category: 'Get started',
+    title: 'Platform',
+    description: 'See everything Insighty can do for your agency — revenue, projects, and intelligence in one place.',
+    href: '/#platform',
+    cta: 'Explore platform',
+  },
+  {
+    category: 'View plans',
+    title: 'Pricing',
+    description: 'Simple, transparent pricing built for agencies. No hidden fees.',
+    href: '/pricing',
+    cta: 'See pricing',
+  },
+  {
+    category: 'Join early',
+    title: 'Founding Member',
+    description: 'Lock in early-access pricing before we launch. Only 20 spots remaining.',
+    href: '/founding-member',
+    cta: 'Become a founder',
+  },
+  {
+    category: 'Get in touch',
+    title: 'Contact',
+    description: 'Questions about the product, partnership enquiries, or press requests.',
+    href: '/contact',
+    cta: 'Reach out',
+  },
+  {
+    category: 'Read the latest',
+    title: 'Blog',
+    description: 'Agency ops, profitability thinking, and product updates from the Insighty team.',
+    href: '/blog',
+    cta: 'Visit the blog',
+  },
+  {
+    category: 'Compare tools',
+    title: 'All comparisons',
+    description: 'See how Insighty stacks up against Jira, Asana, Monday, Harvest, and more.',
+    href: '/compare',
+    cta: 'View comparisons',
+  },
+  {
+    category: 'See it in action',
+    title: 'Request a demo',
+    description: "Get a personalised walkthrough tailored to your agency's size and workflow.",
+    href: '/request-a-demo',
+    cta: 'Book a demo',
+  },
+  {
+    category: 'Free tools',
+    title: 'Calculators',
+    description: 'Profit margin, billable hours, agency rate — free tools to run your agency better.',
+    href: '/tools',
+    cta: 'Open tools',
+  },
+]
+---
+
+<BaseLayout
+  title="Page Not Found — Insighty"
+  description="The page you're looking for doesn't exist or has been moved."
+>
+  <Header />
+  <main>
+
+    <!-- Hero -->
+    <section class="bg-background-1 dark:bg-background-8 relative pt-[140px] sm:pt-[150px] md:pt-[160px] pb-16 md:pb-20 overflow-hidden border-b border-stroke-2 dark:border-stroke-6">
+
+      <!-- dot grid bg -->
+      <div class="absolute inset-0 opacity-30 dark:opacity-15 pointer-events-none" style="background-image: radial-gradient(circle, currentColor 1px, transparent 1px); background-size: 28px 28px; color: var(--color-stroke-2, #e2e8f0);"></div>
+
+      <div class="main-container relative z-10 text-center space-y-5">
+
+        <!-- Massive 404 -->
+        <div data-ns-animate data-delay="0.05" class="leading-none select-none" style="font-size: clamp(9rem, 30vw, 20rem); font-weight: 800; line-height: 0.85; letter-spacing: -0.04em; background: linear-gradient(135deg, var(--color-primary-500, #3B5BDB) 0%, var(--color-primary-400, #4C6EF5) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+          404
+        </div>
+
+        <div data-ns-animate data-delay="0.1">
+          <span class="inline-block border border-secondary/25 text-secondary dark:text-accent dark:border-accent/25 text-tagline-3 font-medium tracking-widest uppercase px-4 py-1.5">Page not found</span>
+        </div>
+
+        <p data-ns-animate data-delay="0.15" class="text-tagline-1 max-w-[400px] mx-auto">
+          The page you're looking for may have been moved, renamed, or removed.
+        </p>
+
+        <div data-ns-animate data-delay="0.2" class="flex flex-col sm:flex-row gap-3 justify-center pt-2">
+          <a href="/" class="btn btn-primary btn-md">
+            <span>Back to home</span>
+          </a>
+          <a href="/contact" class="btn btn-outline btn-md">
+            <span>Contact support</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- In the meantime -->
+    <section class="bg-background-1 dark:bg-background-8 py-16 md:py-24">
+      <div class="main-container space-y-10">
+
+        <div class="space-y-3">
+          <span data-ns-animate data-delay="0.05" class="inline-block border border-secondary/25 text-secondary dark:text-accent dark:border-accent/25 text-tagline-3 font-medium tracking-widest uppercase px-4 py-1.5">In the meantime</span>
+          <h2 data-ns-animate data-delay="0.1" class="text-secondary dark:text-accent">You may have been looking for one of these</h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {links.map((link, i) => (
+            <a
+              href={link.href}
+              data-ns-animate
+              data-delay={0.05 + i * 0.04}
+              class="group flex flex-col justify-between gap-5 rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-6 p-6 hover:border-primary-500/40 dark:hover:border-primary-400/40 transition-colors duration-200"
+            >
+              <div class="space-y-2">
+                <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/60 dark:text-accent/60">{link.category}</p>
+                <h3 class="text-xl font-bold text-secondary dark:text-accent leading-tight">{link.title}</h3>
+                <p class="text-tagline-2">{link.description}</p>
+              </div>
+              <div class="border-t border-stroke-2 dark:border-stroke-5 pt-4">
+                <span class="text-tagline-2 font-medium text-primary-500 group-hover:text-primary-400 transition-colors duration-200">{link.cta} →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>

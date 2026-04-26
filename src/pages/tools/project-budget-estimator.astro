@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/organisms/Header.astro'
 import Footer from '../../components/organisms/Footer.astro'
 import SidebarTOC from '../../components/molecules/SidebarTOC.astro'
+import Accordion from '../../components/molecules/Accordion.astro'
 
 const toc = [
   { id: 'calculator', label: 'Calculator' },
@@ -137,7 +138,7 @@ const faqs = [
               <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 overflow-hidden">
                 <div class="p-6 md:p-8 border-b border-stroke-2 dark:border-stroke-5">
                   <h2 class="text-heading-5 font-semibold text-secondary dark:text-accent mb-1">Estimate Your Project Budget</h2>
-                  <p class="text-tagline-2 text-secondary/55 dark:text-accent/55">Enter your project details to see a recommended quote price instantly</p>
+                  <p class="text-tagline-2 text-secondary/75 dark:text-accent/75">Enter your project details to see a recommended quote price instantly</p>
                 </div>
 
                 <div class="p-6 md:p-8 space-y-8">
@@ -196,35 +197,35 @@ const faqs = [
                       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         <!-- Base Cost -->
                         <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1">
-                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Base Cost</p>
+                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Base Cost</p>
                           <p id="out-base" class="text-heading-4 font-semibold text-secondary dark:text-accent">—</p>
-                          <p id="out-base-note" class="text-tagline-3 text-secondary/50 dark:text-accent/50">Hours × rate</p>
+                          <p id="out-base-note" class="text-tagline-3 text-secondary/70 dark:text-accent/70">Hours × rate</p>
                         </div>
                         <!-- Total Cost with Overhead -->
                         <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1">
-                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Total with Overhead</p>
+                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Total with Overhead</p>
                           <p id="out-total" class="text-heading-4 font-semibold text-secondary dark:text-accent">—</p>
-                          <p id="out-total-note" class="text-tagline-3 text-secondary/50 dark:text-accent/50">Including overhead</p>
+                          <p id="out-total-note" class="text-tagline-3 text-secondary/70 dark:text-accent/70">Including overhead</p>
                         </div>
                         <!-- Recommended Quote -->
                         <div id="out-quote-card" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300">
-                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Recommended Quote</p>
+                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Recommended Quote</p>
                           <p id="out-quote" class="text-heading-4 font-semibold text-secondary dark:text-accent">—</p>
-                          <p id="out-quote-note" class="text-tagline-3 text-secondary/50 dark:text-accent/50">Enter numbers above</p>
+                          <p id="out-quote-note" class="text-tagline-3 text-secondary/70 dark:text-accent/70">Enter numbers above</p>
                         </div>
                         <!-- Profit -->
                         <div id="out-profit-card" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300">
-                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Profit at This Price</p>
+                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Profit at This Price</p>
                           <p id="out-profit" class="text-heading-4 font-semibold text-secondary dark:text-accent">—</p>
-                          <p id="out-profit-note" class="text-tagline-3 text-secondary/50 dark:text-accent/50">After all costs</p>
+                          <p id="out-profit-note" class="text-tagline-3 text-secondary/70 dark:text-accent/70">After all costs</p>
                         </div>
                       </div>
 
                       <!-- Break-even row -->
                       <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 px-5 py-4 flex flex-wrap items-center gap-3">
-                        <p class="text-tagline-2 font-medium text-secondary/60 dark:text-accent/60 uppercase tracking-widest shrink-0">Break-even Price</p>
+                        <p class="text-tagline-2 font-medium text-secondary/80 dark:text-accent/80 uppercase tracking-widest shrink-0">Break-even Price</p>
                         <p id="out-breakeven" class="text-tagline-1 font-semibold text-secondary dark:text-accent">—</p>
-                        <p id="out-breakeven-note" class="text-tagline-2 text-secondary/50 dark:text-accent/50 ml-auto">Minimum to charge (no profit)</p>
+                        <p id="out-breakeven-note" class="text-tagline-2 text-secondary/70 dark:text-accent/70 ml-auto">Minimum to charge (no profit)</p>
                       </div>
 
                       <!-- Health note -->
@@ -240,7 +241,7 @@ const faqs = [
                       <div class="bg-background-2 dark:bg-background-6 border border-stroke-2 dark:border-stroke-5 rounded-2xl p-6 w-full max-w-sm mx-4 shadow-xl">
                         <div class="space-y-1 mb-5">
                           <h3 class="text-heading-6 font-semibold text-secondary dark:text-accent">See your budget estimate</h3>
-                          <p class="text-tagline-2 text-secondary/55 dark:text-accent/55">Enter your email and we'll show your results instantly. No spam, ever.</p>
+                          <p class="text-tagline-2 text-secondary/75 dark:text-accent/75">Enter your email and we'll show your results instantly. No spam, ever.</p>
                         </div>
                         <form id="gate-form" class="space-y-3" novalidate>
                           <div>
@@ -370,25 +371,7 @@ const faqs = [
               <!-- FAQ -->
               <div id="faq" class="scroll-mt-28 space-y-4">
                 <h2>Frequently asked questions</h2>
-                <div class="space-y-3" id="faq-list">
-                  {faqs.map((item, i) => (
-                    <div class="faq-item rounded-xl border border-stroke-2 dark:border-stroke-5 overflow-hidden">
-                      <button
-                        class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-4 text-left bg-background-2 dark:bg-background-6 hover:bg-background-3 dark:hover:bg-background-5 transition-colors duration-200"
-                        aria-expanded="false"
-                        data-index={i}
-                      >
-                        <span class="text-tagline-1 font-medium text-secondary dark:text-accent">{item.q}</span>
-                        <svg class="faq-chevron w-5 h-5 shrink-0 text-secondary/40 dark:text-accent/40 transition-transform duration-200" viewBox="0 0 20 20" fill="none">
-                          <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      </button>
-                      <div class="faq-body hidden px-6 py-4 bg-background-1 dark:bg-background-7 border-t border-stroke-2 dark:border-stroke-5">
-                        <p class="text-tagline-2 text-secondary/65 dark:text-accent/65 leading-relaxed">{item.a}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <Accordion items={faqs} />
               </div>
 
             </div>
@@ -629,19 +612,6 @@ const faqs = [
 
   // Run once on load in case overhead field has a default value
   calculate()
-
-  // FAQ accordion
-  document.querySelectorAll<HTMLButtonElement>('.faq-trigger').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const body    = btn.nextElementSibling as HTMLElement
-      const chevron = btn.querySelector('.faq-chevron') as HTMLElement
-      const isOpen  = btn.getAttribute('aria-expanded') === 'true'
-
-      btn.setAttribute('aria-expanded', String(!isOpen))
-      body.classList.toggle('hidden', isOpen)
-      chevron.style.transform = isOpen ? '' : 'rotate(180deg)'
-    })
-  })
 </script>
 
 <style>

@@ -360,12 +360,12 @@ const commonAnimation = {
             // Remove active state from all numbers
             stepNumbers.forEach((num) => {
               num.classList.remove('bg-ns-linen', 'text-accent');
-              num.classList.add('bg-ns-ivory', 'text-secondary/40');
+              num.classList.add('bg-ns-ivory', 'text-secondary/80');
             });
 
             // Add active state to corresponding number
             if (correspondingNumber) {
-              correspondingNumber.classList.remove('bg-ns-ivory', 'text-secondary/40');
+              correspondingNumber.classList.remove('bg-ns-ivory', 'text-secondary/80');
               correspondingNumber.classList.add('bg-ns-linen', 'text-accent');
             }
           }

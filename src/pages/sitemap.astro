@@ -76,9 +76,9 @@ const sections = [
     <!-- Hero -->
     <section class="bg-background-1 dark:bg-background-8 pt-[140px] sm:pt-[150px] md:pt-[160px] pb-12 md:pb-16 border-b border-stroke-2 dark:border-stroke-6">
       <div class="main-container space-y-3">
-        <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40 border border-secondary/15 dark:border-accent/15 px-4 py-1.5 rounded-full">Sitemap</span>
+        <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80 border border-secondary/15 dark:border-accent/15 px-4 py-1.5 rounded-full">Sitemap</span>
         <h1 class="text-secondary dark:text-accent">All pages</h1>
-        <p class="text-tagline-1 text-secondary/55 dark:text-accent/55 max-w-[480px]">
+        <p class="text-tagline-1 text-secondary/75 dark:text-accent/75 max-w-[480px]">
           Every page on Insighty.io, organised by section.
         </p>
       </div>
@@ -91,7 +91,7 @@ const sections = [
 
           {sections.map(section => (
             <div class="space-y-4">
-              <h2 class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/40 dark:text-accent/40 pb-3 border-b border-stroke-2 dark:border-stroke-6">{section.title}</h2>
+              <h2 class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/80 dark:text-accent/80 pb-3 border-b border-stroke-2 dark:border-stroke-6">{section.title}</h2>
               <ul class="space-y-2">
                 {section.links.map(link => (
                   <li>
@@ -112,8 +112,8 @@ const sections = [
 
           <!-- Blog posts -->
           <div class="space-y-4 md:col-span-2 xl:col-span-3">
-            <h2 class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/40 dark:text-accent/40 pb-3 border-b border-stroke-2 dark:border-stroke-6">
-              Blog <span class="font-normal text-secondary/30 dark:text-accent/30">({sortedPosts.length} articles)</span>
+            <h2 class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/80 dark:text-accent/80 pb-3 border-b border-stroke-2 dark:border-stroke-6">
+              Blog <span class="font-normal text-secondary/70 dark:text-accent/70">({sortedPosts.length} articles)</span>
             </h2>
             <ul class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-2">
               {sortedPosts.map(post => (

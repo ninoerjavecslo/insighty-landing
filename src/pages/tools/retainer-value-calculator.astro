@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/organisms/Header.astro'
 import Footer from '../../components/organisms/Footer.astro'
 import SidebarTOC from '../../components/molecules/SidebarTOC.astro'
+import Accordion from '../../components/molecules/Accordion.astro'
 
 const toc = [
   { id: 'calculator', label: 'Calculator' },
@@ -137,7 +138,7 @@ const faqs = [
               <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 overflow-hidden">
                 <div class="p-6 md:p-8 border-b border-stroke-2 dark:border-stroke-5">
                   <h2 class="text-heading-5 font-semibold text-secondary dark:text-accent mb-1">Calculate Your Retainer Price</h2>
-                  <p class="text-tagline-2 text-secondary/55 dark:text-accent/55">Enter your costs and margin target to see exactly what to charge</p>
+                  <p class="text-tagline-2 text-secondary/75 dark:text-accent/75">Enter your costs and margin target to see exactly what to charge</p>
                 </div>
 
                 <div class="p-6 md:p-8 space-y-8">
@@ -191,33 +192,33 @@ const faqs = [
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                       <!-- Monthly Retainer Price -->
                       <div id="out-monthly-card" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300 sm:col-span-2 lg:col-span-1">
-                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Monthly Retainer Price</p>
+                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Monthly Retainer Price</p>
                         <p id="out-monthly" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
-                        <p id="out-monthly-note" class="text-tagline-2 text-secondary/50 dark:text-accent/50">Enter numbers above</p>
+                        <p id="out-monthly-note" class="text-tagline-2 text-secondary/70 dark:text-accent/70">Enter numbers above</p>
                       </div>
                       <!-- Annual Value -->
                       <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1">
-                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Annual Retainer Value</p>
+                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Annual Retainer Value</p>
                         <p id="out-annual" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
-                        <p class="text-tagline-2 text-secondary/50 dark:text-accent/50">12-month contract</p>
+                        <p class="text-tagline-2 text-secondary/70 dark:text-accent/70">12-month contract</p>
                       </div>
                       <!-- Effective Hourly Rate -->
                       <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1">
-                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Effective Hourly Rate</p>
+                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Effective Hourly Rate</p>
                         <p id="out-hourly-rate" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
-                        <p class="text-tagline-2 text-secondary/50 dark:text-accent/50">Per committed hour</p>
+                        <p class="text-tagline-2 text-secondary/70 dark:text-accent/70">Per committed hour</p>
                       </div>
                       <!-- Monthly Profit -->
                       <div id="out-profit-card" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300">
-                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Monthly Profit</p>
+                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Monthly Profit</p>
                         <p id="out-profit" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
-                        <p class="text-tagline-2 text-secondary/50 dark:text-accent/50">After all costs</p>
+                        <p class="text-tagline-2 text-secondary/70 dark:text-accent/70">After all costs</p>
                       </div>
                       <!-- Break-even -->
                       <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1">
-                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Break-even Retainer</p>
+                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Break-even Retainer</p>
                         <p id="out-breakeven" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
-                        <p class="text-tagline-2 text-secondary/50 dark:text-accent/50">Minimum to charge</p>
+                        <p class="text-tagline-2 text-secondary/70 dark:text-accent/70">Minimum to charge</p>
                       </div>
                     </div>
 
@@ -228,7 +229,7 @@ const faqs = [
                     <div id="email-gate" class="hidden absolute inset-0 z-10 flex items-center justify-center" style="background: linear-gradient(to bottom, transparent 0%, rgba(var(--color-background-1-rgb, 255 255 255) / 0.15) 20%);">
                       <div class="bg-background-2 dark:bg-background-6 border border-stroke-2 dark:border-stroke-5 rounded-2xl p-6 w-full max-w-sm shadow-xl">
                         <h3 class="text-heading-5 font-semibold text-secondary dark:text-accent mb-1">See your retainer value</h3>
-                        <p class="text-tagline-2 text-secondary/55 dark:text-accent/55 mb-5">Enter your email and we'll show your results instantly. No spam, ever.</p>
+                        <p class="text-tagline-2 text-secondary/75 dark:text-accent/75 mb-5">Enter your email and we'll show your results instantly. No spam, ever.</p>
                         <form id="gate-form" class="space-y-3" novalidate>
                           <div>
                             <input
@@ -361,25 +362,7 @@ const faqs = [
               <!-- FAQ -->
               <div id="faq" class="scroll-mt-28 space-y-4">
                 <h2>Frequently asked questions</h2>
-                <div class="space-y-3" id="faq-list">
-                  {faqs.map((item, i) => (
-                    <div class="faq-item rounded-xl border border-stroke-2 dark:border-stroke-5 overflow-hidden">
-                      <button
-                        class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-4 text-left bg-background-2 dark:bg-background-6 hover:bg-background-3 dark:hover:bg-background-5 transition-colors duration-200"
-                        aria-expanded="false"
-                        data-index={i}
-                      >
-                        <span class="text-tagline-1 font-medium text-secondary dark:text-accent">{item.q}</span>
-                        <svg class="faq-chevron w-5 h-5 shrink-0 text-secondary/40 dark:text-accent/40 transition-transform duration-200" viewBox="0 0 20 20" fill="none">
-                          <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      </button>
-                      <div class="faq-body hidden px-6 py-4 bg-background-1 dark:bg-background-7 border-t border-stroke-2 dark:border-stroke-5">
-                        <p class="text-tagline-2 text-secondary/65 dark:text-accent/65 leading-relaxed">{item.a}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <Accordion items={faqs} />
               </div>
 
             </div>
@@ -611,19 +594,6 @@ const faqs = [
     hideGate()
     // No inputs yet, so nothing to calculate — just ensure gate stays hidden
   }
-
-  // ── FAQ accordion ─────────────────────────────────────────────────────────
-  document.querySelectorAll<HTMLButtonElement>('.faq-trigger').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const body    = btn.nextElementSibling as HTMLElement
-      const chevron = btn.querySelector('.faq-chevron') as HTMLElement
-      const isOpen  = btn.getAttribute('aria-expanded') === 'true'
-
-      btn.setAttribute('aria-expanded', String(!isOpen))
-      body.classList.toggle('hidden', isOpen)
-      chevron.style.transform = isOpen ? '' : 'rotate(180deg)'
-    })
-  })
 </script>
 
 <style>

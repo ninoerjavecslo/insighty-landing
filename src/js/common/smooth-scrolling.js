@@ -45,7 +45,7 @@ const resetTocItems = (sidebarList) => {
     if (icon) icon.classList.add('invisible');
     if (text) {
       text.classList.remove('font-medium', 'text-secondary', 'dark:text-accent');
-      text.classList.add('font-normal', 'text-secondary/60', 'dark:text-accent/60');
+      text.classList.add('font-normal', 'text-secondary/80', 'dark:text-accent/80');
     }
   });
 };
@@ -57,7 +57,7 @@ const activateTocItem = (item) => {
 
   if (icon) icon.classList.remove('invisible');
   if (text) {
-    text.classList.remove('font-normal', 'text-secondary/60', 'dark:text-accent/60');
+    text.classList.remove('font-normal', 'text-secondary/80', 'dark:text-accent/80');
     text.classList.add('font-medium', 'text-secondary', 'dark:text-accent');
   }
 };

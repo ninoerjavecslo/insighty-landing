@@ -154,13 +154,13 @@ const useCase = {
               <!-- avatar stack -->
               <div class="flex -space-x-2">
                 {[1,2,3,4].map(i => (
-                  <div class="size-8 rounded-full bg-background-3 dark:bg-background-7 border-2 border-white dark:border-background-8 flex items-center justify-center text-tagline-3 font-semibold text-secondary/40 dark:text-accent/40">
+                  <div class="size-8 rounded-full bg-background-3 dark:bg-background-7 border-2 border-white dark:border-background-8 flex items-center justify-center text-tagline-3 font-semibold text-secondary/80 dark:text-accent/80">
                     {/* TEMPLATE: replace with avatar images */}
                     {String.fromCharCode(64 + i)}
                   </div>
                 ))}
               </div>
-              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60">
+              <p class="text-tagline-2 text-secondary/80 dark:text-accent/80">
                 Joined by <strong class="text-secondary dark:text-accent font-medium">agency owners</strong> across Europe
               </p>
             </div>
@@ -183,7 +183,7 @@ const useCase = {
                       <path d="M9 21V9" stroke="currentColor" stroke-width="1.5"/>
                     </svg>
                   </div>
-                  <p class="text-tagline-2 text-secondary/40 dark:text-accent/40 font-medium">Hero mockup placeholder</p>
+                  <p class="text-tagline-2 text-secondary/80 dark:text-accent/80 font-medium">Hero mockup placeholder</p>
                   <p class="text-tagline-3 text-secondary/25 dark:text-accent/25">Recommended: 1200 × 900 px</p>
                 </div>
               </div>
@@ -204,7 +204,7 @@ const useCase = {
     <section class="py-10 md:py-14 border-y border-stroke-1 dark:border-stroke-5 bg-background-2 dark:bg-background-7">
       <div class="main-container">
         <div class="flex flex-col items-center gap-8">
-          <p class="text-tagline-3 font-semibold tracking-widest uppercase text-secondary/40 dark:text-accent/40">
+          <p class="text-tagline-3 font-semibold tracking-widest uppercase text-secondary/80 dark:text-accent/80">
             Trusted by agencies like yours
           </p>
           <!-- ┌──────────────────────────────────────────────────────────┐
@@ -238,17 +238,15 @@ const useCase = {
         </div>
 
         <!-- problem cards -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-stroke-1 dark:bg-stroke-5">
+        <div data-ns-animate data-delay="0.15" class="grid grid-cols-1 md:grid-cols-3 gap-px bg-stroke-1 dark:bg-stroke-5">
           {useCase.problems.map((problem, i) => (
             <div
-              data-ns-animate
-              data-delay={String(0.1 + i * 0.1)}
               class="bg-white dark:bg-background-8 p-8 xl:p-10 space-y-4 group"
             >
               <!-- icon area -->
               <div class="size-10 rounded-xl bg-background-3 dark:bg-background-7 flex items-center justify-center group-hover:bg-primary-50 dark:group-hover:bg-primary-500/15 transition-colors duration-300">
                 {problem.icon === "grid" && (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-secondary/50 dark:text-accent/50">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class= text-secondary/70 dark:text-accent/70">
                     <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/>
                     <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/>
                     <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/>
@@ -256,18 +254,18 @@ const useCase = {
                   </svg>
                 )}
                 {problem.icon === "alert" && (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-secondary/50 dark:text-accent/50">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class= text-secondary/70 dark:text-accent/70">
                     <path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 )}
                 {problem.icon === "chart" && (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-secondary/50 dark:text-accent/50">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class= text-secondary/70 dark:text-accent/70">
                     <path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 )}
               </div>
               <h3 class="text-heading-6 font-medium text-secondary dark:text-accent">{problem.title}</h3>
-              <p class="text-tagline-1 text-secondary/60 dark:text-accent/60 leading-relaxed">{problem.body}</p>
+              <p class="text-tagline-1 text-secondary/80 dark:text-accent/80 leading-relaxed">{problem.body}</p>
             </div>
           ))}
         </div>
@@ -327,7 +325,7 @@ const useCase = {
                     <path d="M3 3h18v4H3zM3 11h18v2H3zM3 17h12v4H3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
                   </svg>
                 </div>
-                <p class="text-tagline-2 text-secondary/40 dark:text-accent/40 font-medium">Feature 1 mockup</p>
+                <p class="text-tagline-2 text-secondary/80 dark:text-accent/80 font-medium">Feature 1 mockup</p>
                 <p class="text-tagline-3 text-secondary/25 dark:text-accent/25">{useCase.feature1.eyebrow} screenshot</p>
               </div>
             </div>
@@ -360,7 +358,7 @@ const useCase = {
                     <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </div>
-                <p class="text-tagline-2 text-secondary/40 dark:text-accent/40 font-medium">Feature 2 mockup</p>
+                <p class="text-tagline-2 text-secondary/80 dark:text-accent/80 font-medium">Feature 2 mockup</p>
                 <p class="text-tagline-3 text-secondary/25 dark:text-accent/25">{useCase.feature2.eyebrow} screenshot</p>
               </div>
             </div>
@@ -474,11 +472,9 @@ const useCase = {
     ═══════════════════════════════════════════════════ -->
     <section class="py-14 md:py-20 bg-primary-500">
       <div class="main-container">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
+        <div data-ns-animate data-delay="0.1" class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
           {useCase.stats.map((stat, i) => (
             <div
-              data-ns-animate
-              data-delay={String(0.05 + i * 0.08)}
               class="bg-primary-500 px-8 py-10 text-center space-y-1"
             >
               <p class="text-4xl md:text-5xl font-semibold text-white tracking-tight">{stat.value}</p>
@@ -517,12 +513,12 @@ const useCase = {
                    │  TEMPLATE: Replace with real avatar image                 │
                    │  Use /images/ns-avatar-N.png or customer photo            │
                    └──────────────────────────────────────────────────────────┘ -->
-              <div class="size-12 rounded-full bg-background-3 dark:bg-background-7 border-2 border-stroke-2 dark:border-stroke-6 flex items-center justify-center text-tagline-2 font-semibold text-secondary/40 dark:text-accent/40 shrink-0">
+              <div class="size-12 rounded-full bg-background-3 dark:bg-background-7 border-2 border-stroke-2 dark:border-stroke-6 flex items-center justify-center text-tagline-2 font-semibold text-secondary/80 dark:text-accent/80 shrink-0">
                 {useCase.testimonial.name.charAt(0)}
               </div>
               <div>
                 <p class="text-tagline-1 font-medium text-secondary dark:text-accent">{useCase.testimonial.name}</p>
-                <p class="text-tagline-2 text-secondary/50 dark:text-accent/50">{useCase.testimonial.role}</p>
+                <p class="text-tagline-2 text-secondary/70 dark:text-accent/70">{useCase.testimonial.role}</p>
               </div>
             </div>
           </div>
@@ -561,7 +557,7 @@ const useCase = {
             </a>
           </div>
 
-          <p data-ns-animate data-delay="0.4" class="text-tagline-3 text-secondary/35 dark:text-accent/35">
+          <p data-ns-animate data-delay="0.4" class="text-tagline-3 text-secondary/75 dark:text-accent/75">
             No credit card required &middot; Founding member pricing locked for life
           </p>
         </div>

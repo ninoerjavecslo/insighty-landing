@@ -77,14 +77,14 @@ document.addEventListener('DOMContentLoaded', () => {
         button.dataset.selected = '';
         button.setAttribute('aria-selected', 'true');
         button.setAttribute('tabindex', '0');
-        button.classList.remove('text-secondary/60');
+        button.classList.remove('text-secondary/80');
         button.classList.add('text-white');
       } else {
         delete button.dataset.selected;
         button.setAttribute('aria-selected', 'false');
         button.setAttribute('tabindex', '-1');
         button.classList.remove('text-white');
-        button.classList.add('text-secondary/60');
+        button.classList.add('text-secondary/80');
       }
     });
   };

@@ -33,7 +33,7 @@ const featuredDate = featured.data.pubDate.toLocaleDateString('en-US', { month: 
     <!-- Page header -->
     <section class="bg-background-1 dark:bg-background-8 pt-[140px] sm:pt-[150px] md:pt-[160px] pb-12 md:pb-16">
       <div class="main-container text-center space-y-4">
-        <span data-ns-animate data-delay="0.05" class="inline-block border border-secondary/25 dark:border-accent/20 text-secondary dark:text-accent/60 text-tagline-3 font-medium tracking-widest uppercase px-4 py-1.5">Blog</span>
+        <span data-ns-animate data-delay="0.05" class="inline-block border border-secondary/25 dark:border-accent/20 text-secondary dark:text-accent/80 text-tagline-3 font-medium tracking-widest uppercase px-4 py-1.5">Blog</span>
         <h1 data-ns-animate data-delay="0.1" class="mx-auto">The Insighty Blog</h1>
         <p data-ns-animate data-delay="0.2" class="mx-auto max-w-[520px]">
           Agency operations, client intelligence, and profitable growth — from the team building Insighty.
@@ -82,7 +82,7 @@ const featuredDate = featured.data.pubDate.toLocaleDateString('en-US', { month: 
             <div class="p-8 xl:p-12 flex flex-col justify-center gap-5">
               <h2 class="line-clamp-3 group-hover:text-primary-400 transition-colors duration-300">{featured.data.title}</h2>
               <p class="max-w-[480px] line-clamp-3">{featured.data.description}</p>
-              <div class="flex items-center gap-3 text-tagline-2 text-secondary/50 dark:text-accent/50">
+              <div class="flex items-center gap-3 text-tagline-2 text-secondary/70 dark:text-accent/70">
                 <time datetime={featured.data.pubDate.toISOString()}>{featuredDate}</time>
                 <span aria-hidden="true">·</span>
                 <span>{featured.data.readTime} min read</span>
@@ -117,7 +117,7 @@ const featuredDate = featured.data.pubDate.toLocaleDateString('en-US', { month: 
             <button
               data-tab-button
               data-state={i === 0 ? 'selected' : ''}
-              class="px-5 py-3 text-tagline-2 font-medium text-secondary/50 dark:text-accent/50 data-[state=selected]:text-secondary dark:data-[state=selected]:text-accent whitespace-nowrap transition-colors duration-200 cursor-pointer"
+              class="px-5 py-3 text-tagline-2 font-medium text-secondary/70 dark:text-accent/70 data-[state=selected]:text-secondary dark:data-[state=selected]:text-accent whitespace-nowrap transition-colors duration-200 cursor-pointer"
             >
               {cat}
             </button>
@@ -130,7 +130,7 @@ const featuredDate = featured.data.pubDate.toLocaleDateString('en-US', { month: 
             <button
               data-mobile-tab-button
               data-mobile-active={i === 0 ? 'true' : undefined}
-              class="shrink-0 px-4 py-1.5 text-tagline-3 font-medium uppercase tracking-wide border border-stroke-2 dark:border-stroke-6 text-secondary/60 dark:text-accent/60 data-[mobile-active=true]:bg-secondary data-[mobile-active=true]:text-accent data-[mobile-active=true]:border-secondary dark:data-[mobile-active=true]:bg-accent dark:data-[mobile-active=true]:text-secondary transition-all duration-200 cursor-pointer"
+              class="shrink-0 px-4 py-1.5 text-tagline-3 font-medium uppercase tracking-wide border border-stroke-2 dark:border-stroke-6 text-secondary/80 dark:text-accent/80 data-[mobile-active=true]:bg-secondary data-[mobile-active=true]:text-accent data-[mobile-active=true]:border-secondary dark:data-[mobile-active=true]:bg-accent dark:data-[mobile-active=true]:text-secondary transition-all duration-200 cursor-pointer"
             >
               {cat}
             </button>

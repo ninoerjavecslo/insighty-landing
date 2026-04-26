@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/organisms/Header.astro'
 import Footer from '../../components/organisms/Footer.astro'
 import SidebarTOC from '../../components/molecules/SidebarTOC.astro'
+import Accordion from '../../components/molecules/Accordion.astro'
 
 const toc = [
   { id: 'calculator', label: 'Calculator' },
@@ -147,7 +148,7 @@ const faqs = [
               <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 overflow-hidden">
                 <div class="p-6 md:p-8 border-b border-stroke-2 dark:border-stroke-5">
                   <h2 class="text-heading-5 font-semibold text-secondary dark:text-accent mb-1">Calculate Your Agency Rate</h2>
-                  <p class="text-tagline-2 text-secondary/55 dark:text-accent/55">Enter your costs and targets to see your minimum and ideal rates instantly</p>
+                  <p class="text-tagline-2 text-secondary/75 dark:text-accent/75">Enter your costs and targets to see your minimum and ideal rates instantly</p>
                 </div>
 
                 <div class="p-6 md:p-8 space-y-8">
@@ -202,27 +203,27 @@ const faqs = [
                       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                         <!-- Min Rate -->
                         <div id="out-min-card" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300">
-                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Min Rate</p>
+                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Min Rate</p>
                           <p id="out-min-rate" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
-                          <p id="out-min-note" class="text-tagline-2 text-secondary/50 dark:text-accent/50">Break-even</p>
+                          <p id="out-min-note" class="text-tagline-2 text-secondary/70 dark:text-accent/70">Break-even</p>
                         </div>
                         <!-- Target Rate -->
                         <div id="out-target-card" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300">
-                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Target Rate</p>
+                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Target Rate</p>
                           <p id="out-target-rate" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
-                          <p id="out-target-note" class="text-tagline-2 text-secondary/50 dark:text-accent/50">With margin</p>
+                          <p id="out-target-note" class="text-tagline-2 text-secondary/70 dark:text-accent/70">With margin</p>
                         </div>
                         <!-- Day Rate -->
                         <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1">
-                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Day Rate</p>
+                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Day Rate</p>
                           <p id="out-day-rate" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
-                          <p class="text-tagline-2 text-secondary/50 dark:text-accent/50">8h at target</p>
+                          <p class="text-tagline-2 text-secondary/70 dark:text-accent/70">8h at target</p>
                         </div>
                         <!-- Monthly Revenue -->
                         <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1">
-                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Monthly Revenue</p>
+                          <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Monthly Revenue</p>
                           <p id="out-monthly" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
-                          <p class="text-tagline-2 text-secondary/50 dark:text-accent/50">Needed</p>
+                          <p class="text-tagline-2 text-secondary/70 dark:text-accent/70">Needed</p>
                         </div>
                       </div>
 
@@ -373,25 +374,7 @@ const faqs = [
               <!-- FAQ -->
               <div id="faq" class="scroll-mt-28 space-y-4">
                 <h2>Frequently asked questions</h2>
-                <div class="space-y-3" id="faq-list">
-                  {faqs.map((item, i) => (
-                    <div class="faq-item rounded-xl border border-stroke-2 dark:border-stroke-5 overflow-hidden">
-                      <button
-                        class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-4 text-left bg-background-2 dark:bg-background-6 hover:bg-background-3 dark:hover:bg-background-5 transition-colors duration-200"
-                        aria-expanded="false"
-                        data-index={i}
-                      >
-                        <span class="text-tagline-1 font-medium text-secondary dark:text-accent">{item.q}</span>
-                        <svg class="faq-chevron w-5 h-5 shrink-0 text-secondary/40 dark:text-accent/40 transition-transform duration-200" viewBox="0 0 20 20" fill="none">
-                          <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      </button>
-                      <div class="faq-body hidden px-6 py-4 bg-background-1 dark:bg-background-7 border-t border-stroke-2 dark:border-stroke-5">
-                        <p class="text-tagline-2 text-secondary/65 dark:text-accent/65 leading-relaxed">{item.a}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <Accordion items={faqs} />
               </div>
 
             </div>
@@ -563,19 +546,6 @@ const faqs = [
 
   // Run once on load (hours field has a default value of 1200)
   calculate()
-
-  // ── FAQ accordion ────────────────────────────────────────────────────────────
-  document.querySelectorAll<HTMLButtonElement>('.faq-trigger').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const body    = btn.nextElementSibling as HTMLElement
-      const chevron = btn.querySelector('.faq-chevron') as HTMLElement
-      const isOpen  = btn.getAttribute('aria-expanded') === 'true'
-
-      btn.setAttribute('aria-expanded', String(!isOpen))
-      body.classList.toggle('hidden', isOpen)
-      chevron.style.transform = isOpen ? '' : 'rotate(180deg)'
-    })
-  })
 </script>
 
 <style>

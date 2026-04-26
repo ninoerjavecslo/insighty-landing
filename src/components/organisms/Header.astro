@@ -185,7 +185,7 @@ Header v1
               class="w-full flex items-center justify-between text-secondary dark:text-accent text-heading-6 font-normal py-3 border-b border-stroke-1/10 dark:border-stroke-5 transition-colors hover:text-primary-500"
             >
               <span>Use Cases</span>
-              <svg id="mobile-use-cases-chevron" class="w-4 h-4 transition-transform duration-200 text-secondary/40 dark:text-accent/40" viewBox="0 0 16 16" fill="none">
+              <svg id="mobile-use-cases-chevron" class="w-4 h-4 transition-transform duration-200 text-secondary/80 dark:text-accent/80" viewBox="0 0 16 16" fill="none">
                 <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
@@ -203,7 +203,7 @@ Header v1
               class="w-full flex items-center justify-between text-secondary dark:text-accent text-heading-6 font-normal py-3 border-b border-stroke-1/10 dark:border-stroke-5 transition-colors hover:text-primary-500"
             >
               <span>Resources</span>
-              <svg id="mobile-resources-chevron" class="w-4 h-4 transition-transform duration-200 text-secondary/40 dark:text-accent/40" viewBox="0 0 16 16" fill="none">
+              <svg id="mobile-resources-chevron" class="w-4 h-4 transition-transform duration-200 text-secondary/80 dark:text-accent/80" viewBox="0 0 16 16" fill="none">
                 <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
@@ -242,7 +242,7 @@ Header v1
 
     <!-- Left: use cases in 2-col grid -->
     <div>
-      <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/35 dark:text-accent/35 px-3 pb-2">Who it's for</p>
+      <p class="text-tagline-3 uppercase tracking-widest font-semibold text-black dark:text-white px-3 pb-2">Who it's for</p>
       <div class="grid grid-cols-2 gap-0.5">
 
         <a href="/use-cases/agency" class="flex items-center gap-3 rounded-xl px-3 py-2.5 hover:bg-background-2 dark:hover:bg-background-7 transition-colors duration-150 group">
@@ -253,7 +253,7 @@ Header v1
           </span>
           <div>
             <p class="text-tagline-2 font-semibold text-secondary dark:text-accent group-hover:text-primary-500 transition-colors duration-150">Agency</p>
-            <p class="text-tagline-3 text-secondary/45 dark:text-accent/45 leading-snug">Revenue, projects & retainers</p>
+            <p class="text-tagline-3 text-secondary/85 dark:text-accent/85 leading-snug">Revenue, projects & retainers</p>
           </div>
         </a>
 
@@ -265,7 +265,7 @@ Header v1
           </span>
           <div>
             <p class="text-tagline-2 font-semibold text-secondary dark:text-accent group-hover:text-primary-500 transition-colors duration-150">IT Services</p>
-            <p class="text-tagline-3 text-secondary/45 dark:text-accent/45 leading-snug">Hosting, domains & contracts</p>
+            <p class="text-tagline-3 text-secondary/85 dark:text-accent/85 leading-snug">Hosting, domains & contracts</p>
           </div>
         </a>
 
@@ -277,7 +277,7 @@ Header v1
           </span>
           <div>
             <p class="text-tagline-2 font-semibold text-secondary dark:text-accent group-hover:text-primary-500 transition-colors duration-150">Accounting & Finance</p>
-            <p class="text-tagline-3 text-secondary/45 dark:text-accent/45 leading-snug">Automate invoicing & track revenue</p>
+            <p class="text-tagline-3 text-secondary/85 dark:text-accent/85 leading-snug">Automate invoicing & track revenue</p>
           </div>
         </a>
 
@@ -289,7 +289,7 @@ Header v1
           </span>
           <div>
             <p class="text-tagline-2 font-semibold text-secondary dark:text-accent group-hover:text-primary-500 transition-colors duration-150">Business Operations</p>
-            <p class="text-tagline-3 text-secondary/45 dark:text-accent/45 leading-snug">Capacity & project profitability</p>
+            <p class="text-tagline-3 text-secondary/85 dark:text-accent/85 leading-snug">Capacity & project profitability</p>
           </div>
         </a>
 
@@ -301,7 +301,7 @@ Header v1
           </span>
           <div>
             <p class="text-tagline-2 font-semibold text-secondary dark:text-accent group-hover:text-primary-500 transition-colors duration-150">Freelancer</p>
-            <p class="text-tagline-3 text-secondary/45 dark:text-accent/45 leading-snug">Clients, projects & pipeline</p>
+            <p class="text-tagline-3 text-secondary/85 dark:text-accent/85 leading-snug">Clients, projects & pipeline</p>
           </div>
         </a>
 
@@ -310,9 +310,9 @@ Header v1
 
     <!-- Middle: blog post list -->
     <div class="border-l border-stroke-2 dark:border-stroke-6 pl-3">
-      <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/35 dark:text-accent/35 pb-2">From the blog</p>
+      <p class="text-tagline-3 uppercase tracking-widest font-semibold text-black dark:text-white pb-2">From the blog</p>
       <ul class="space-y-0.5">
-        {sorted.slice(0, 5).map((post) => (
+        {sorted.slice(0, 3).map((post) => (
           <li>
             <a
               href={`/blog/${post.id}`}
@@ -335,7 +335,7 @@ Header v1
 
     <!-- Right: founding member card -->
     <div class="flex flex-col">
-      <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/35 dark:text-accent/35 px-1 pb-2">Early access</p>
+      <p class="text-tagline-3 uppercase tracking-widest font-semibold text-black dark:text-white px-1 pb-2">Early access</p>
       <a
         href="/founding-member"
         class="flex-1 rounded-xl overflow-hidden border border-stroke-2 dark:border-stroke-5 hover:border-primary-500/40 transition-colors duration-150 group flex flex-col"
@@ -372,7 +372,7 @@ Header v1
 
     <!-- Left: nav links -->
     <div class="space-y-0.5">
-      <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/35 dark:text-accent/35 px-3 pb-2">Discover</p>
+      <p class="text-tagline-3 uppercase tracking-widest font-semibold text-black dark:text-white px-3 pb-2">Discover</p>
 
       <a href="/blog" class="flex items-center gap-3 rounded-xl px-3 py-2.5 hover:bg-background-2 dark:hover:bg-background-7 transition-colors duration-150 group">
         <span class="w-7 h-7 rounded-lg bg-primary-500/10 flex items-center justify-center shrink-0">
@@ -382,7 +382,7 @@ Header v1
         </span>
         <div>
           <p class="text-tagline-1 font-semibold text-secondary dark:text-accent group-hover:text-primary-500 transition-colors duration-150">Blog</p>
-          <p class="text-tagline-3 text-secondary/45 dark:text-accent/45">Agency insights, ops guides, and growth tactics</p>
+          <p class="text-tagline-3 text-secondary/85 dark:text-accent/85">Agency insights, ops guides, and growth tactics</p>
         </div>
       </a>
 
@@ -394,7 +394,7 @@ Header v1
         </span>
         <div>
           <p class="text-tagline-1 font-semibold text-secondary dark:text-accent group-hover:text-primary-500 transition-colors duration-150">Free Tools</p>
-          <p class="text-tagline-3 text-secondary/45 dark:text-accent/45">Calculators and resources, free to use</p>
+          <p class="text-tagline-3 text-secondary/85 dark:text-accent/85">Calculators and resources, free to use</p>
         </div>
       </a>
 
@@ -406,7 +406,7 @@ Header v1
         </span>
         <div>
           <p class="text-tagline-1 font-semibold text-secondary dark:text-accent group-hover:text-primary-500 transition-colors duration-150">Comparisons</p>
-          <p class="text-tagline-3 text-secondary/45 dark:text-accent/45">How Insighty stacks up against 27 tools</p>
+          <p class="text-tagline-3 text-secondary/85 dark:text-accent/85">How Insighty stacks up against 27 tools</p>
         </div>
       </a>
 
@@ -418,14 +418,14 @@ Header v1
         </span>
         <div>
           <p class="text-tagline-1 font-semibold text-secondary dark:text-accent group-hover:text-primary-500 transition-colors duration-150">Success Stories</p>
-          <p class="text-tagline-3 text-secondary/45 dark:text-accent/45">How agencies grow with Insighty</p>
+          <p class="text-tagline-3 text-secondary/85 dark:text-accent/85">How agencies grow with Insighty</p>
         </div>
       </a>
     </div>
 
     <!-- Right: two blog posts -->
     <div>
-      <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/35 dark:text-accent/35 px-1 pb-2">Latest posts</p>
+      <p class="text-tagline-3 uppercase tracking-widest font-semibold text-black dark:text-white px-1 pb-2">Latest posts</p>
       <div class="space-y-2">
         <a
           href={`/blog/${featuredPost.id}`}
@@ -442,7 +442,7 @@ Header v1
           </div>
           <div class="px-3 py-2 space-y-0.5 bg-background-2 dark:bg-background-7">
             <p class="text-tagline-2 font-semibold text-secondary dark:text-accent group-hover:text-primary-500 transition-colors duration-150 leading-snug line-clamp-2">{featuredPost.data.title}</p>
-            <p class="text-tagline-3 text-secondary/40 dark:text-accent/40">{featuredPost.data.readTime} min read</p>
+            <p class="text-tagline-3 text-secondary/80 dark:text-accent/80">{featuredPost.data.readTime} min read</p>
           </div>
         </a>
 

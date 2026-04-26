@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Header from '../components/organisms/Header.astro'
 import Footer from '../components/organisms/Footer.astro'
+import Accordion from '../components/molecules/Accordion.astro'
 
 const tableCategories = [
   {
@@ -185,21 +186,21 @@ const faqs = [
           <!-- Starter -->
           <div class="rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-1 dark:bg-background-7 p-7 flex flex-col gap-6">
             <div>
-              <span class="text-tagline-2 font-bold text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Starter</span>
+              <span class="text-tagline-2 font-bold text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Starter</span>
               <div class="flex items-end gap-1 mt-3 mb-0.5">
                 <span class="text-secondary dark:text-accent font-bold text-[2.5rem] leading-none tracking-tight">
                   $<span class="price-monthly">49</span><span class="price-annual" style="display:none;">39</span>
                 </span>
-                <span class="text-tagline-2 text-secondary/50 dark:text-accent/50 mb-1.5">/ mo</span>
+                <span class="text-tagline-2 text-secondary/70 dark:text-accent/70 mb-1.5">/ mo</span>
               </div>
-              <p class="text-tagline-3 text-secondary/40 dark:text-accent/40 billing-note-annual" style="display:none;">Billed $468 / year</p>
+              <p class="text-tagline-3 text-secondary/80 dark:text-accent/80 billing-note-annual" style="display:none;">Billed $468 / year</p>
               <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 mt-3 leading-relaxed">For solo operators and small teams getting their agency data in one place.</p>
             </div>
             <a href="/request-a-demo" class="btn btn-secondary dark:btn-accent btn-md w-full text-center !rounded-lg">
               <span>Get started free</span>
             </a>
             <div class="border-t border-stroke-2 dark:border-stroke-6 pt-5 space-y-3">
-              <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/50 dark:text-accent/50">What's included</p>
+              <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/70 dark:text-accent/70">What's included</p>
               <ul class="space-y-2.5">
                 <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -232,16 +233,16 @@ const faqs = [
                 <span class="text-secondary dark:text-accent font-bold text-[2.5rem] leading-none tracking-tight">
                   $<span class="price-monthly">129</span><span class="price-annual" style="display:none;">103</span>
                 </span>
-                <span class="text-tagline-2 text-secondary/50 dark:text-accent/50 mb-1.5">/ mo</span>
+                <span class="text-tagline-2 text-secondary/70 dark:text-accent/70 mb-1.5">/ mo</span>
               </div>
-              <p class="text-tagline-3 text-secondary/40 dark:text-accent/40 billing-note-annual" style="display:none;">Billed $1,236 / year</p>
+              <p class="text-tagline-3 text-secondary/80 dark:text-accent/80 billing-note-annual" style="display:none;">Billed $1,236 / year</p>
               <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 mt-3 leading-relaxed">For growing agencies managing multiple clients and needing deeper AI intelligence.</p>
             </div>
             <a href="/request-a-demo" class="btn btn-primary btn-md w-full text-center !rounded-lg">
               <span>Start free trial</span>
             </a>
             <div class="border-t border-stroke-2 dark:border-stroke-6 pt-5 space-y-3">
-              <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/50 dark:text-accent/50">What's included</p>
+              <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/70 dark:text-accent/70">What's included</p>
               <ul class="space-y-2.5">
                 <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -270,21 +271,21 @@ const faqs = [
           <!-- Scale -->
           <div class="rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-1 dark:bg-background-7 p-7 flex flex-col gap-6">
             <div>
-              <span class="text-tagline-2 font-bold text-secondary/50 dark:text-accent/50 uppercase tracking-widest">Scale</span>
+              <span class="text-tagline-2 font-bold text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Scale</span>
               <div class="flex items-end gap-1 mt-3 mb-0.5">
                 <span class="text-secondary dark:text-accent font-bold text-[2.5rem] leading-none tracking-tight">
                   $<span class="price-monthly">299</span><span class="price-annual" style="display:none;">239</span>
                 </span>
-                <span class="text-tagline-2 text-secondary/50 dark:text-accent/50 mb-1.5">/ mo</span>
+                <span class="text-tagline-2 text-secondary/70 dark:text-accent/70 mb-1.5">/ mo</span>
               </div>
-              <p class="text-tagline-3 text-secondary/40 dark:text-accent/40 billing-note-annual" style="display:none;">Billed $2,868 / year</p>
+              <p class="text-tagline-3 text-secondary/80 dark:text-accent/80 billing-note-annual" style="display:none;">Billed $2,868 / year</p>
               <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 mt-3 leading-relaxed">For established agencies that need full team access and high-volume AI automation.</p>
             </div>
             <a href="/request-a-demo" class="btn btn-secondary dark:btn-accent btn-md w-full text-center !rounded-lg">
               <span>Start free trial</span>
             </a>
             <div class="border-t border-stroke-2 dark:border-stroke-6 pt-5 space-y-3">
-              <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/50 dark:text-accent/50">What's included</p>
+              <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/70 dark:text-accent/70">What's included</p>
               <ul class="space-y-2.5">
                 <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -353,9 +354,9 @@ const faqs = [
     <section class="bg-background-2 dark:bg-background-7 border-y border-stroke-2 dark:border-stroke-6 py-16">
       <div class="main-container">
         <div class="text-center max-w-[560px] mx-auto mb-12 space-y-3">
-          <span class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">On every plan</span>
+          <span class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">On every plan</span>
           <h2 class="text-secondary dark:text-accent">One platform. All features.</h2>
-          <p class="text-tagline-1 text-secondary/55 dark:text-accent/55">
+          <p class="text-tagline-1 text-secondary/75 dark:text-accent/75">
             No features locked behind higher tiers. Revenue, projects, clients, contracts, hosting, and AI — all included from day one, on every plan.
           </p>
         </div>
@@ -403,7 +404,7 @@ const faqs = [
         <div class="text-center max-w-[600px] mx-auto mb-14 space-y-4">
           <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-primary-500 bg-primary-500/8 border border-primary-500/15 px-4 py-1.5 rounded-full">Savings Calculator</span>
           <h2 class="text-secondary dark:text-accent">See what your current stack actually costs</h2>
-          <p class="text-tagline-1 text-secondary/55 dark:text-accent/55">
+          <p class="text-tagline-1 text-secondary/75 dark:text-accent/75">
             Agencies running separate tools for PM, finance, client management, and reporting typically pay 3–4× more than Insighty. Run the numbers on your team.
           </p>
         </div>
@@ -428,7 +429,7 @@ const faqs = [
                 class="w-full accent-primary-500"
                 style="height:4px; border-radius:999px; cursor:pointer; appearance:auto;"
               />
-              <div class="flex justify-between text-tagline-3 text-secondary/35 dark:text-accent/35">
+              <div class="flex justify-between text-tagline-3 text-secondary/75 dark:text-accent/75">
                 <span>2</span><span>10</span><span>25</span><span>50+</span>
               </div>
             </div>
@@ -436,7 +437,7 @@ const faqs = [
             <!-- Competitor options -->
             <div class="space-y-3">
               <p class="text-tagline-2 font-semibold text-secondary dark:text-accent">Your current tool stack</p>
-              <p class="text-tagline-3 text-secondary/50 dark:text-accent/50">Select the combination closest to what you're using today</p>
+              <p class="text-tagline-3 text-secondary/70 dark:text-accent/70">Select the combination closest to what you're using today</p>
               <div class="space-y-2.5" id="competitor-options">
                 <label
                   class="competitor-option flex items-start gap-3 p-4 rounded-xl border-2 border-primary-500 bg-primary-500/5 cursor-pointer transition-all duration-150"
@@ -450,7 +451,7 @@ const faqs = [
                   </div>
                   <div>
                     <p class="text-tagline-2 font-semibold text-secondary dark:text-accent">Jira ecosystem</p>
-                    <p class="text-tagline-3 text-secondary/50 dark:text-accent/50 mt-0.5">Jira Premium + Confluence + Tempo Timesheets + finance/billing tool</p>
+                    <p class="text-tagline-3 text-secondary/70 dark:text-accent/70 mt-0.5">Jira Premium + Confluence + Tempo Timesheets + finance/billing tool</p>
                   </div>
                 </label>
 
@@ -465,7 +466,7 @@ const faqs = [
                   </div>
                   <div>
                     <p class="text-tagline-2 font-semibold text-secondary dark:text-accent">Asana + tools</p>
-                    <p class="text-tagline-3 text-secondary/50 dark:text-accent/50 mt-0.5">Asana Business + time tracking + invoicing &amp; billing tool</p>
+                    <p class="text-tagline-3 text-secondary/70 dark:text-accent/70 mt-0.5">Asana Business + time tracking + invoicing &amp; billing tool</p>
                   </div>
                 </label>
 
@@ -480,7 +481,7 @@ const faqs = [
                   </div>
                   <div>
                     <p class="text-tagline-2 font-semibold text-secondary dark:text-accent">Monday.com + tools</p>
-                    <p class="text-tagline-3 text-secondary/50 dark:text-accent/50 mt-0.5">Monday Work Management Pro + time tracking + finance tool</p>
+                    <p class="text-tagline-3 text-secondary/70 dark:text-accent/70 mt-0.5">Monday Work Management Pro + time tracking + finance tool</p>
                   </div>
                 </label>
 
@@ -495,12 +496,12 @@ const faqs = [
                   </div>
                   <div>
                     <p class="text-tagline-2 font-semibold text-secondary dark:text-accent">ClickUp + tools</p>
-                    <p class="text-tagline-3 text-secondary/50 dark:text-accent/50 mt-0.5">ClickUp Business + time tracking + invoicing + reporting tool</p>
+                    <p class="text-tagline-3 text-secondary/70 dark:text-accent/70 mt-0.5">ClickUp Business + time tracking + invoicing + reporting tool</p>
                   </div>
                 </label>
               </div>
 
-              <p class="text-tagline-3 text-secondary/35 dark:text-accent/35 pt-1">
+              <p class="text-tagline-3 text-secondary/75 dark:text-accent/75 pt-1">
                 * Estimates based on publicly listed prices. Actual costs may vary.
               </p>
             </div>
@@ -511,25 +512,25 @@ const faqs = [
 
             <!-- What you're paying now -->
             <div class="bg-background-2 dark:bg-background-7 rounded-2xl border border-stroke-2 dark:border-stroke-6 p-7">
-              <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/35 dark:text-accent/35 mb-5">What you're paying now</p>
+              <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/75 dark:text-accent/75 mb-5">What you're paying now</p>
               <div class="space-y-3">
                 <div class="flex items-center justify-between gap-4">
-                  <span class="text-tagline-2 text-secondary/60 dark:text-accent/60" id="competitor-name-display">Jira ecosystem</span>
+                  <span class="text-tagline-2 text-secondary/80 dark:text-accent/80" id="competitor-name-display">Jira ecosystem</span>
                   <span class="text-tagline-1 font-bold text-secondary dark:text-accent shrink-0" id="competitor-cost-display">$469 / mo</span>
                 </div>
-                <p class="text-tagline-3 text-secondary/40 dark:text-accent/40" id="competitor-breakdown-display">10 seats × $32/user + $149 platform fees</p>
+                <p class="text-tagline-3 text-secondary/80 dark:text-accent/80" id="competitor-breakdown-display">10 seats × $32/user + $149 platform fees</p>
               </div>
             </div>
 
             <!-- What you'd pay with Insighty -->
             <div class="bg-background-2 dark:bg-background-7 rounded-2xl border border-stroke-2 dark:border-stroke-6 p-7">
-              <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/35 dark:text-accent/35 mb-5">What you'd pay with Insighty</p>
+              <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/75 dark:text-accent/75 mb-5">What you'd pay with Insighty</p>
               <div class="space-y-3">
                 <div class="flex items-center justify-between gap-4">
-                  <span class="text-tagline-2 text-secondary/60 dark:text-accent/60" id="insighty-plan-display">Growth plan</span>
+                  <span class="text-tagline-2 text-secondary/80 dark:text-accent/80" id="insighty-plan-display">Growth plan</span>
                   <span class="text-tagline-1 font-bold text-primary-500 shrink-0" id="insighty-cost-display">$129 / mo</span>
                 </div>
-                <p class="text-tagline-3 text-secondary/40 dark:text-accent/40" id="insighty-includes-display">10 seats, 1,000 AI credits, all features included</p>
+                <p class="text-tagline-3 text-secondary/80 dark:text-accent/80" id="insighty-includes-display">10 seats, 1,000 AI credits, all features included</p>
               </div>
             </div>
 
@@ -563,9 +564,9 @@ const faqs = [
     <section class="bg-background-2 dark:bg-background-7 border-t border-stroke-2 dark:border-stroke-6 py-20">
       <div class="main-container">
         <div class="text-center max-w-[540px] mx-auto mb-14 space-y-3">
-          <span class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Full comparison</span>
+          <span class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Full comparison</span>
           <h2 class="text-secondary dark:text-accent">Compare all plans</h2>
-          <p class="text-tagline-1 text-secondary/55 dark:text-accent/55">Every plan includes every core feature. Scale up for more seats, more AI power, and enterprise controls.</p>
+          <p class="text-tagline-1 text-secondary/75 dark:text-accent/75">Every plan includes every core feature. Scale up for more seats, more AI power, and enterprise controls.</p>
         </div>
 
         <div class="rounded-2xl border border-stroke-2 dark:border-stroke-6 bg-background-1 dark:bg-background-8 overflow-hidden">
@@ -573,7 +574,7 @@ const faqs = [
             <table class="w-full border-collapse min-w-[640px]">
               <thead>
                 <tr class="border-b-2 border-stroke-2 dark:border-stroke-6">
-                  <th class="text-left p-5 text-tagline-3 uppercase tracking-wider font-semibold text-secondary/35 dark:text-accent/35" style="width:35%">Feature</th>
+                  <th class="text-left p-5 text-tagline-3 uppercase tracking-wider font-semibold text-secondary/75 dark:text-accent/75" style="width:35%">Feature</th>
                   <th class="p-5 text-center text-tagline-2 font-bold text-secondary dark:text-accent">Starter</th>
                   <th class="p-5 text-center text-tagline-2 font-bold text-primary-500" style="background: rgba(74,110,199,0.04);">Growth</th>
                   <th class="p-5 text-center text-tagline-2 font-bold text-secondary dark:text-accent">Scale</th>
@@ -584,13 +585,13 @@ const faqs = [
                 {tableCategories.map(cat => (
                   <>
                     <tr style="background: var(--color-background-2, #f5f5f7);">
-                      <td colspan="5" class="px-5 py-3 text-tagline-3 uppercase tracking-widest font-bold text-secondary/40 dark:text-accent/40 bg-background-2 dark:bg-background-7 border-t border-stroke-2 dark:border-stroke-6">{cat.name}</td>
+                      <td colspan="5" class="px-5 py-3 text-tagline-3 uppercase tracking-widest font-bold text-secondary/80 dark:text-accent/80 bg-background-2 dark:bg-background-7 border-t border-stroke-2 dark:border-stroke-6">{cat.name}</td>
                     </tr>
                     {cat.rows.map(row => (
                       <tr class="border-b border-stroke-1/30 dark:border-stroke-5/30 hover:bg-background-2/50 dark:hover:bg-background-7/30 transition-colors">
                         <td class="p-5">
                           <p class="text-tagline-2 font-medium text-secondary dark:text-accent">{row.feature}</p>
-                          {row.note && <p class="text-tagline-3 text-secondary/40 dark:text-accent/40 mt-0.5">{row.note}</p>}
+                          {row.note && <p class="text-tagline-3 text-secondary/80 dark:text-accent/80 mt-0.5">{row.note}</p>}
                         </td>
                         {(['starter', 'growth', 'scale', 'enterprise'] as const).map(plan => (
                           <td class={`p-5 text-center ${plan === 'growth' ? 'bg-primary-500/[0.025]' : ''}`}>
@@ -617,29 +618,13 @@ const faqs = [
     <section class="bg-background-1 dark:bg-background-8 py-20 border-t border-stroke-2 dark:border-stroke-6">
       <div class="main-container">
         <div class="text-center max-w-[540px] mx-auto mb-14 space-y-3">
-          <span class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">FAQ</span>
+          <span class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">FAQ</span>
           <h2 class="text-secondary dark:text-accent">Pricing questions</h2>
-          <p class="text-tagline-1 text-secondary/55 dark:text-accent/55">Everything you need to know before choosing a plan.</p>
+          <p class="text-tagline-1 text-secondary/75 dark:text-accent/75">Everything you need to know before choosing a plan.</p>
         </div>
 
-        <div class="max-w-[780px] mx-auto space-y-3">
-          {faqs.map((faq, i) => (
-            <div class="rounded-2xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 overflow-hidden">
-              <button
-                class="pricing-faq-btn w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
-                aria-expanded="false"
-                data-index={i}
-              >
-                <span class="text-tagline-1 font-semibold text-secondary dark:text-accent">{faq.q}</span>
-                <svg class="pricing-faq-chevron w-5 h-5 text-secondary/40 dark:text-accent/40 shrink-0 transition-transform duration-200" viewBox="0 0 20 20" fill="none">
-                  <path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-              <div class="pricing-faq-body px-6 pb-5" style="display:none;">
-                <p class="text-tagline-1 text-secondary/60 dark:text-accent/60 leading-relaxed">{faq.a}</p>
-              </div>
-            </div>
-          ))}
+        <div class="max-w-[780px] mx-auto">
+          <Accordion items={faqs} />
         </div>
       </div>
     </section>
@@ -798,22 +783,4 @@ const faqs = [
   // Initial calc
   updateCalc();
 
-  // ── Pricing FAQ accordion ──
-  document.querySelectorAll('.pricing-faq-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const body = btn.nextElementSibling as HTMLElement;
-      const chevron = btn.querySelector('.pricing-faq-chevron') as HTMLElement;
-      const isOpen = btn.getAttribute('aria-expanded') === 'true';
-
-      if (isOpen) {
-        body.style.display = 'none';
-        btn.setAttribute('aria-expanded', 'false');
-        chevron.style.transform = '';
-      } else {
-        body.style.display = 'block';
-        btn.setAttribute('aria-expanded', 'true');
-        chevron.style.transform = 'rotate(180deg)';
-      }
-    });
-  });
 </script>

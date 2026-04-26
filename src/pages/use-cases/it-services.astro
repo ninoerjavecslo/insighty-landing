@@ -116,10 +116,10 @@ const useCase = {
             <div data-ns-animate data-delay="0.4" class="flex items-center gap-3 pt-2">
               <div class="flex -space-x-2">
                 {["M","R","T","J"].map(l => (
-                  <div class="size-8 rounded-full bg-background-3 dark:bg-background-7 border-2 border-white dark:border-background-8 flex items-center justify-center text-tagline-3 font-semibold text-secondary/40 dark:text-accent/40">{l}</div>
+                  <div class="size-8 rounded-full bg-background-3 dark:bg-background-7 border-2 border-white dark:border-background-8 flex items-center justify-center text-tagline-3 font-semibold text-secondary/80 dark:text-accent/80">{l}</div>
                 ))}
               </div>
-              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60">Joined by <strong class="text-secondary dark:text-accent font-medium">IT service providers</strong> across Europe</p>
+              <p class="text-tagline-2 text-secondary/80 dark:text-accent/80">Joined by <strong class="text-secondary dark:text-accent font-medium">IT service providers</strong> across Europe</p>
             </div>
           </div>
           <div data-ns-animate data-delay="0.4" data-direction="up" data-offset="60">
@@ -130,7 +130,7 @@ const useCase = {
                   <div class="size-12 rounded-xl bg-background-4 dark:bg-background-6 flex items-center justify-center mx-auto">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-secondary/30 dark:text-accent/30"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" stroke="currentColor" stroke-width="1.5"/></svg>
                   </div>
-                  <p class="text-tagline-2 text-secondary/40 dark:text-accent/40 font-medium">Domains dashboard mockup</p>
+                  <p class="text-tagline-2 text-secondary/80 dark:text-accent/80 font-medium">Domains dashboard mockup</p>
                   <p class="text-tagline-3 text-secondary/25 dark:text-accent/25">1200 × 900 px</p>
                 </div>
               </div>
@@ -146,7 +146,7 @@ const useCase = {
     <section class="py-10 md:py-14 border-y border-stroke-1 dark:border-stroke-5 bg-background-2 dark:bg-background-7">
       <div class="main-container">
         <div class="flex flex-col items-center gap-8">
-          <p class="text-tagline-3 font-semibold tracking-widest uppercase text-secondary/40 dark:text-accent/40">Trusted by IT service providers</p>
+          <p class="text-tagline-3 font-semibold tracking-widest uppercase text-secondary/80 dark:text-accent/80">Trusted by IT service providers</p>
           <!-- MOCKUP PLACEHOLDER: IT services company logos -->
           <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
             {[1,2,3,4,5].map(i => (
@@ -166,16 +166,16 @@ const useCase = {
           <span data-ns-animate data-delay="0.05" class="inline-block text-tagline-3 font-semibold tracking-widest uppercase text-ns-green mb-4">{useCase.problemEyebrow}</span>
           <h2 data-ns-animate data-delay="0.1">{useCase.problemHeadline}</h2>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-stroke-1 dark:bg-stroke-5">
+        <div data-ns-animate data-delay="0.15" class="grid grid-cols-1 md:grid-cols-3 gap-px bg-stroke-1 dark:bg-stroke-5">
           {useCase.problems.map((p, i) => (
-            <div data-ns-animate data-delay={String(0.1 + i * 0.1)} class="bg-white dark:bg-background-8 p-8 xl:p-10 space-y-4 group">
+            <div class="bg-white dark:bg-background-8 p-8 xl:p-10 space-y-4 group">
               <div class="size-10 rounded-xl bg-background-3 dark:bg-background-7 flex items-center justify-center group-hover:bg-ns-green-light dark:group-hover:bg-ns-green/15 transition-colors duration-300">
-                {p.icon === "grid" && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-secondary/50 dark:text-accent/50"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>}
-                {p.icon === "alert" && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-secondary/50 dark:text-accent/50"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>}
-                {p.icon === "chart" && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-secondary/50 dark:text-accent/50"><path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>}
+                {p.icon === "grid" && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class= text-secondary/70 dark:text-accent/70"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>}
+                {p.icon === "alert" && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class= text-secondary/70 dark:text-accent/70"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>}
+                {p.icon === "chart" && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class= text-secondary/70 dark:text-accent/70"><path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>}
               </div>
               <h3 class="text-heading-6 font-medium text-secondary dark:text-accent">{p.title}</h3>
-              <p class="text-tagline-1 text-secondary/60 dark:text-accent/60 leading-relaxed">{p.body}</p>
+              <p class="text-tagline-1 text-secondary/80 dark:text-accent/80 leading-relaxed">{p.body}</p>
             </div>
           ))}
         </div>
@@ -205,7 +205,7 @@ const useCase = {
             <div class="bg-background-3 dark:bg-background-7 border border-stroke-2 dark:border-stroke-6 rounded-2xl overflow-hidden aspect-[4/3] flex items-center justify-center shadow-3">
               <div class="text-center space-y-3 p-8">
                 <div class="size-12 rounded-xl bg-background-4 dark:bg-background-6 flex items-center justify-center mx-auto"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-secondary/30 dark:text-accent/30"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" stroke="currentColor" stroke-width="1.5"/></svg></div>
-                <p class="text-tagline-2 text-secondary/40 dark:text-accent/40 font-medium">Domains table screenshot</p>
+                <p class="text-tagline-2 text-secondary/80 dark:text-accent/80 font-medium">Domains table screenshot</p>
                 <p class="text-tagline-3 text-secondary/25 dark:text-accent/25">1200 × 900 px</p>
               </div>
             </div>
@@ -223,7 +223,7 @@ const useCase = {
             <div class="bg-background-3 dark:bg-background-7 border border-stroke-2 dark:border-stroke-6 rounded-2xl overflow-hidden aspect-[4/3] flex items-center justify-center shadow-3">
               <div class="text-center space-y-3 p-8">
                 <div class="size-12 rounded-xl bg-background-4 dark:bg-background-6 flex items-center justify-center mx-auto"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-secondary/30 dark:text-accent/30"><rect x="2" y="3" width="20" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="11" width="20" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="19" width="20" height="2" rx="1" stroke="currentColor" stroke-width="1.5"/></svg></div>
-                <p class="text-tagline-2 text-secondary/40 dark:text-accent/40 font-medium">Infrastructure & Hosting</p>
+                <p class="text-tagline-2 text-secondary/80 dark:text-accent/80 font-medium">Infrastructure & Hosting</p>
                 <p class="text-tagline-3 text-secondary/25 dark:text-accent/25">1200 × 900 px</p>
               </div>
             </div>
@@ -284,7 +284,7 @@ const useCase = {
     <!-- STATS -->
     <section class="py-14 md:py-20 bg-ns-green">
       <div class="main-container">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
+        <div data-ns-animate data-delay="0.1" class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
           {useCase.stats.map((s, i) => (
             <div data-ns-animate data-delay={String(0.05 + i * 0.08)} class="bg-ns-green px-8 py-10 text-center space-y-1">
               <p class="text-4xl md:text-5xl font-semibold text-white tracking-tight">{s.value}</p>
@@ -303,10 +303,10 @@ const useCase = {
             <svg width="40" height="30" viewBox="0 0 40 30" fill="none" class="text-ns-green-light dark:text-ns-green/30"><path d="M0 30V18C0 7.333 5.333 1.667 16 0l2 3C12.667 4.333 10 7.667 10 13v1h8V30H0zm22 0V18C22 7.333 27.333 1.667 38 0l2 3C34.667 4.333 32 7.667 32 13v1h8V30H22z" fill="currentColor"/></svg>
             <blockquote><p class="text-heading-5 md:text-heading-4 font-normal text-secondary dark:text-accent leading-relaxed">{useCase.testimonial.quote}</p></blockquote>
             <div class="flex items-center gap-4 pt-2 border-t border-stroke-1 dark:border-stroke-5">
-              <div class="size-12 rounded-full bg-background-3 dark:bg-background-7 border-2 border-stroke-2 dark:border-stroke-6 flex items-center justify-center text-tagline-2 font-semibold text-secondary/40 dark:text-accent/40 shrink-0">{useCase.testimonial.name.charAt(0)}</div>
+              <div class="size-12 rounded-full bg-background-3 dark:bg-background-7 border-2 border-stroke-2 dark:border-stroke-6 flex items-center justify-center text-tagline-2 font-semibold text-secondary/80 dark:text-accent/80 shrink-0">{useCase.testimonial.name.charAt(0)}</div>
               <div>
                 <p class="text-tagline-1 font-medium text-secondary dark:text-accent">{useCase.testimonial.name}</p>
-                <p class="text-tagline-2 text-secondary/50 dark:text-accent/50">{useCase.testimonial.role}</p>
+                <p class="text-tagline-2 text-secondary/70 dark:text-accent/70">{useCase.testimonial.role}</p>
               </div>
             </div>
           </div>
@@ -329,7 +329,7 @@ const useCase = {
             <a href="/founding-member" class="btn btn-primary btn-xl"><span>Become a Founding Member</span></a>
             <a href="/#platform" class="btn btn-white dark:btn-white-dark btn-xl"><span>Explore the Platform</span></a>
           </div>
-          <p data-ns-animate data-delay="0.4" class="text-tagline-3 text-secondary/35 dark:text-accent/35">No credit card required &middot; Founding member pricing locked for life</p>
+          <p data-ns-animate data-delay="0.4" class="text-tagline-3 text-secondary/75 dark:text-accent/75">No credit card required &middot; Founding member pricing locked for life</p>
         </div>
       </div>
     </section>

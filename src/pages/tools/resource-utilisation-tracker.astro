@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/organisms/Header.astro'
 import Footer from '../../components/organisms/Footer.astro'
 import SidebarTOC from '../../components/molecules/SidebarTOC.astro'
+import Accordion from '../../components/molecules/Accordion.astro'
 
 const toc = [
   { id: 'calculator', label: 'Calculator' },
@@ -145,7 +146,7 @@ const faqs = [
               <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 overflow-hidden">
                 <div class="p-6 md:p-8 border-b border-stroke-2 dark:border-stroke-5">
                   <h2 class="text-heading-5 font-semibold text-secondary dark:text-accent mb-1">Calculate Your Team's Utilisation</h2>
-                  <p class="text-tagline-2 text-secondary/55 dark:text-accent/55">Enter your hours and rate to see utilisation, revenue, and the gap instantly</p>
+                  <p class="text-tagline-2 text-secondary/75 dark:text-accent/75">Enter your hours and rate to see utilisation, revenue, and the gap instantly</p>
                 </div>
 
                 <div class="p-6 md:p-8 space-y-8">
@@ -160,7 +161,7 @@ const faqs = [
                         placeholder="e.g. 160"
                         class="auth-form-input w-full text-heading-6 font-semibold text-secondary dark:text-accent placeholder:font-normal placeholder:text-secondary/25 dark:placeholder:text-accent/25"
                       />
-                      <p class="text-tagline-3 text-secondary/40 dark:text-accent/40">Per month, per person or team</p>
+                      <p class="text-tagline-3 text-secondary/80 dark:text-accent/80">Per month, per person or team</p>
                     </div>
                     <div class="space-y-2">
                       <label for="calc-billable" class="block text-tagline-2 font-medium text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Billable Hours Logged</label>
@@ -171,7 +172,7 @@ const faqs = [
                         placeholder="e.g. 112"
                         class="auth-form-input w-full text-heading-6 font-semibold text-secondary dark:text-accent placeholder:font-normal placeholder:text-secondary/25 dark:placeholder:text-accent/25"
                       />
-                      <p class="text-tagline-3 text-secondary/40 dark:text-accent/40">Client-chargeable hours only</p>
+                      <p class="text-tagline-3 text-secondary/80 dark:text-accent/80">Client-chargeable hours only</p>
                     </div>
                     <div class="space-y-2">
                       <label for="calc-rate" class="block text-tagline-2 font-medium text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Average Hourly Rate ($)</label>
@@ -182,7 +183,7 @@ const faqs = [
                         placeholder="e.g. 100"
                         class="auth-form-input w-full text-heading-6 font-semibold text-secondary dark:text-accent placeholder:font-normal placeholder:text-secondary/25 dark:placeholder:text-accent/25"
                       />
-                      <p class="text-tagline-3 text-secondary/40 dark:text-accent/40">Blended rate across all work</p>
+                      <p class="text-tagline-3 text-secondary/80 dark:text-accent/80">Blended rate across all work</p>
                     </div>
                   </div>
 
@@ -193,33 +194,33 @@ const faqs = [
                     <div id="outputs-area" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                       <!-- Utilisation Rate -->
                       <div id="out-utilisation" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300">
-                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Utilisation Rate</p>
+                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Utilisation Rate</p>
                         <p id="out-utilisation-pct" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
-                        <p id="out-utilisation-note" class="text-tagline-2 text-secondary/50 dark:text-accent/50">Enter hours above</p>
+                        <p id="out-utilisation-note" class="text-tagline-2 text-secondary/70 dark:text-accent/70">Enter hours above</p>
                       </div>
                       <!-- Revenue Generated -->
                       <div id="out-revenue" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300">
-                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Revenue Generated</p>
+                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Revenue Generated</p>
                         <p id="out-revenue-val" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
-                        <p id="out-revenue-note" class="text-tagline-2 text-secondary/50 dark:text-accent/50">Billable hrs × rate</p>
+                        <p id="out-revenue-note" class="text-tagline-2 text-secondary/70 dark:text-accent/70">Billable hrs × rate</p>
                       </div>
                       <!-- Revenue Potential -->
                       <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1">
-                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Revenue Potential</p>
+                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Revenue Potential</p>
                         <p id="out-potential-val" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
-                        <p class="text-tagline-2 text-secondary/50 dark:text-accent/50">At 100% utilisation</p>
+                        <p class="text-tagline-2 text-secondary/70 dark:text-accent/70">At 100% utilisation</p>
                       </div>
                       <!-- Revenue Gap -->
                       <div id="out-gap" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300">
-                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Revenue Gap</p>
+                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Revenue Gap</p>
                         <p id="out-gap-val" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
-                        <p class="text-tagline-2 text-secondary/50 dark:text-accent/50">Left on the table</p>
+                        <p class="text-tagline-2 text-secondary/70 dark:text-accent/70">Left on the table</p>
                       </div>
                       <!-- Effective Hourly Rate -->
                       <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 sm:col-span-2 lg:col-span-2">
-                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Effective Hourly Rate</p>
+                        <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Effective Hourly Rate</p>
                         <p id="out-effective-val" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
-                        <p class="text-tagline-2 text-secondary/50 dark:text-accent/50">Revenue ÷ total available hours</p>
+                        <p class="text-tagline-2 text-secondary/70 dark:text-accent/70">Revenue ÷ total available hours</p>
                       </div>
                     </div>
 
@@ -228,7 +229,7 @@ const faqs = [
                       <div class="bg-background-2 dark:bg-background-6 border border-stroke-2 dark:border-stroke-5 rounded-2xl p-6 w-full max-w-sm mx-4 space-y-4 shadow-lg">
                         <div class="space-y-1">
                           <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">See your utilisation results</p>
-                          <p class="text-tagline-2 text-secondary/55 dark:text-accent/55">Enter your email and we'll show your results instantly. No spam, ever.</p>
+                          <p class="text-tagline-2 text-secondary/75 dark:text-accent/75">Enter your email and we'll show your results instantly. No spam, ever.</p>
                         </div>
                         <form id="gate-form" class="space-y-3" novalidate>
                           <div class="space-y-1.5">
@@ -308,7 +309,7 @@ const faqs = [
                           <td class="px-5 py-3">
                             <span class="inline-block px-2.5 py-0.5 rounded-full bg-primary-500/10 text-primary-500 font-medium text-tagline-3">{row.target}</span>
                           </td>
-                          <td class="px-5 py-3 text-secondary/60 dark:text-accent/60">{row.notes}</td>
+                          <td class="px-5 py-3 text-secondary/80 dark:text-accent/80">{row.notes}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -324,7 +325,7 @@ const faqs = [
                 <div class="space-y-4">
                   <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 p-5 space-y-3">
                     <p class="font-semibold text-secondary dark:text-accent text-tagline-1">Example: 5-person agency at $100/hr average rate</p>
-                    <div class="space-y-2 text-tagline-2 text-secondary/65 dark:text-accent/65">
+                    <div class="space-y-2 text-tagline-2 text-secondary/85 dark:text-accent/85">
                       <p>Available hours per month: 5 × 176 = <strong class="text-secondary dark:text-accent">880 hours</strong></p>
                       <p>At 70% utilisation: 616 billable hours = <strong class="text-secondary dark:text-accent">$61,600 revenue</strong></p>
                       <p>At 60% utilisation: 528 billable hours = <strong class="text-secondary dark:text-accent">$52,800 revenue</strong></p>
@@ -384,25 +385,7 @@ const faqs = [
               <!-- FAQ -->
               <div id="faq" class="scroll-mt-28 space-y-4">
                 <h2>Frequently asked questions</h2>
-                <div class="space-y-3" id="faq-list">
-                  {faqs.map((item, i) => (
-                    <div class="faq-item rounded-xl border border-stroke-2 dark:border-stroke-5 overflow-hidden">
-                      <button
-                        class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-4 text-left bg-background-2 dark:bg-background-6 hover:bg-background-3 dark:hover:bg-background-5 transition-colors duration-200"
-                        aria-expanded="false"
-                        data-index={i}
-                      >
-                        <span class="text-tagline-1 font-medium text-secondary dark:text-accent">{item.q}</span>
-                        <svg class="faq-chevron w-5 h-5 shrink-0 text-secondary/40 dark:text-accent/40 transition-transform duration-200" viewBox="0 0 20 20" fill="none">
-                          <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      </button>
-                      <div class="faq-body hidden px-6 py-4 bg-background-1 dark:bg-background-7 border-t border-stroke-2 dark:border-stroke-5">
-                        <p class="text-tagline-2 text-secondary/65 dark:text-accent/65 leading-relaxed">{item.a}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <Accordion items={faqs} />
               </div>
 
             </div>
@@ -624,19 +607,6 @@ const faqs = [
   availableInput.addEventListener('input', calculate)
   billableInput.addEventListener('input',  calculate)
   rateInput.addEventListener('input',      calculate)
-
-  // FAQ accordion
-  document.querySelectorAll<HTMLButtonElement>('.faq-trigger').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const body    = btn.nextElementSibling as HTMLElement
-      const chevron = btn.querySelector('.faq-chevron') as HTMLElement
-      const isOpen  = btn.getAttribute('aria-expanded') === 'true'
-
-      btn.setAttribute('aria-expanded', String(!isOpen))
-      body.classList.toggle('hidden', isOpen)
-      chevron.style.transform = isOpen ? '' : 'rotate(180deg)'
-    })
-  })
 </script>
 
 <style>

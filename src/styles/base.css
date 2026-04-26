@@ -30,6 +30,6 @@ Font base styles
     @apply text-heading-6;
   }
   p {
-    @apply text-tagline-2 sm:text-tagline-1 text-secondary/60 dark:text-accent/60 font-normal;
+    @apply text-tagline-2 sm:text-tagline-1 text-secondary dark:text-accent font-normal;
   }
 }

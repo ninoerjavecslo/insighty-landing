@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/organisms/Header.astro'
 import Footer from '../../components/organisms/Footer.astro'
 import SidebarTOC from '../../components/molecules/SidebarTOC.astro'
+import Accordion from '../../components/molecules/Accordion.astro'
 
 const toc = [
   { id: 'calculator', label: 'Calculator' },
@@ -150,7 +151,7 @@ const faqs = [
               <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 overflow-hidden">
                 <div class="p-6 md:p-8 border-b border-stroke-2 dark:border-stroke-5">
                   <h2 class="text-heading-5 font-semibold text-secondary dark:text-accent mb-1">Calculate Your Profit Margins</h2>
-                  <p class="text-tagline-2 text-secondary/55 dark:text-accent/55">Enter revenue and costs to see your margins instantly</p>
+                  <p class="text-tagline-2 text-secondary/75 dark:text-accent/75">Enter revenue and costs to see your margins instantly</p>
                 </div>
 
                 <div class="p-6 md:p-8 space-y-8">
@@ -192,21 +193,21 @@ const faqs = [
                   <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <!-- Gross Margin -->
                     <div id="out-gross" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300">
-                      <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Gross Margin</p>
+                      <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Gross Margin</p>
                       <p id="out-gross-pct" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
-                      <p id="out-gross-abs" class="text-tagline-2 text-secondary/50 dark:text-accent/50">Enter numbers above</p>
+                      <p id="out-gross-abs" class="text-tagline-2 text-secondary/70 dark:text-accent/70">Enter numbers above</p>
                     </div>
                     <!-- Net Margin -->
                     <div id="out-net" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300">
-                      <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Net Margin</p>
+                      <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Net Margin</p>
                       <p id="out-net-pct" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
-                      <p id="out-net-abs" class="text-tagline-2 text-secondary/50 dark:text-accent/50">Enter numbers above</p>
+                      <p id="out-net-abs" class="text-tagline-2 text-secondary/70 dark:text-accent/70">Enter numbers above</p>
                     </div>
                     <!-- Markup -->
                     <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1">
-                      <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Markup</p>
+                      <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Markup</p>
                       <p id="out-markup-pct" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
-                      <p id="out-markup-note" class="text-tagline-2 text-secondary/50 dark:text-accent/50">On direct costs</p>
+                      <p id="out-markup-note" class="text-tagline-2 text-secondary/70 dark:text-accent/70">On direct costs</p>
                     </div>
                   </div>
 
@@ -341,25 +342,7 @@ const faqs = [
               <!-- FAQ -->
               <div id="faq" class="scroll-mt-28 space-y-4">
                 <h2>Frequently asked questions</h2>
-                <div class="space-y-3" id="faq-list">
-                  {faqs.map((item, i) => (
-                    <div class="faq-item rounded-xl border border-stroke-2 dark:border-stroke-5 overflow-hidden">
-                      <button
-                        class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-4 text-left bg-background-2 dark:bg-background-6 hover:bg-background-3 dark:hover:bg-background-5 transition-colors duration-200"
-                        aria-expanded="false"
-                        data-index={i}
-                      >
-                        <span class="text-tagline-1 font-medium text-secondary dark:text-accent">{item.q}</span>
-                        <svg class="faq-chevron w-5 h-5 shrink-0 text-secondary/40 dark:text-accent/40 transition-transform duration-200" viewBox="0 0 20 20" fill="none">
-                          <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      </button>
-                      <div class="faq-body hidden px-6 py-4 bg-background-1 dark:bg-background-7 border-t border-stroke-2 dark:border-stroke-5">
-                        <p class="text-tagline-2 text-secondary/65 dark:text-accent/65 leading-relaxed">{item.a}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <Accordion items={faqs} />
               </div>
 
             </div>
@@ -508,19 +491,6 @@ const faqs = [
   revenue.addEventListener('input', calculate)
   cogs.addEventListener('input', calculate)
   opex.addEventListener('input', calculate)
-
-  // ─── FAQ accordion ───────────────────────────────────────────────────────────
-  document.querySelectorAll<HTMLButtonElement>('.faq-trigger').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const body    = btn.nextElementSibling as HTMLElement
-      const chevron = btn.querySelector('.faq-chevron') as HTMLElement
-      const isOpen  = btn.getAttribute('aria-expanded') === 'true'
-
-      btn.setAttribute('aria-expanded', String(!isOpen))
-      body.classList.toggle('hidden', isOpen)
-      chevron.style.transform = isOpen ? '' : 'rotate(180deg)'
-    })
-  })
 </script>
 
 <style>

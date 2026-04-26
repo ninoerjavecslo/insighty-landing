@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/organisms/Header.astro'
 import Footer from '../../components/organisms/Footer.astro'
 import SidebarTOC from '../../components/molecules/SidebarTOC.astro'
+import Accordion from '../../components/molecules/Accordion.astro'
 
 const toc = [
   { id: 'calculator', label: 'Calculator' },
@@ -139,7 +140,7 @@ const faqs = [
               <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-6 overflow-hidden">
                 <div class="p-6 md:p-8 border-b border-stroke-2 dark:border-stroke-5">
                   <h2 class="text-heading-5 font-semibold text-secondary dark:text-accent mb-1">Calculate Your Billable Hours</h2>
-                  <p class="text-tagline-2 text-secondary/55 dark:text-accent/55">Enter your target, rate, and non-billable overhead to see what you need to hit</p>
+                  <p class="text-tagline-2 text-secondary/75 dark:text-accent/75">Enter your target, rate, and non-billable overhead to see what you need to hit</p>
                 </div>
 
                 <div class="p-6 md:p-8 space-y-8">
@@ -182,21 +183,21 @@ const faqs = [
                   <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <!-- Billable Hours Needed -->
                     <div id="out-hours-card" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300">
-                      <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Billable Hours Needed</p>
+                      <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Billable Hours Needed</p>
                       <p id="out-hours" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
-                      <p id="out-hours-note" class="text-tagline-2 text-secondary/50 dark:text-accent/50">Enter numbers above</p>
+                      <p id="out-hours-note" class="text-tagline-2 text-secondary/70 dark:text-accent/70">Enter numbers above</p>
                     </div>
                     <!-- Billable Days -->
                     <div class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1">
-                      <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Billable Days</p>
+                      <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Billable Days</p>
                       <p id="out-days" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
-                      <p id="out-days-note" class="text-tagline-2 text-secondary/50 dark:text-accent/50">Assumes 8h days</p>
+                      <p id="out-days-note" class="text-tagline-2 text-secondary/70 dark:text-accent/70">Assumes 8h days</p>
                     </div>
                     <!-- Utilisation Rate -->
                     <div id="out-util-card" class="rounded-xl border border-stroke-2 dark:border-stroke-5 bg-background-1 dark:bg-background-7 p-5 space-y-1 transition-colors duration-300">
-                      <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/40 dark:text-accent/40">Utilisation Rate Required</p>
+                      <p class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Utilisation Rate Required</p>
                       <p id="out-util" class="text-heading-3 font-semibold text-secondary dark:text-accent">—</p>
-                      <p id="out-util-note" class="text-tagline-2 text-secondary/50 dark:text-accent/50">Of total working time</p>
+                      <p id="out-util-note" class="text-tagline-2 text-secondary/70 dark:text-accent/70">Of total working time</p>
                     </div>
                   </div>
 
@@ -311,25 +312,7 @@ const faqs = [
               <!-- FAQ -->
               <div id="faq" class="scroll-mt-28 space-y-4">
                 <h2>Frequently asked questions</h2>
-                <div class="space-y-3" id="faq-list">
-                  {faqs.map((item, i) => (
-                    <div class="faq-item rounded-xl border border-stroke-2 dark:border-stroke-5 overflow-hidden">
-                      <button
-                        class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-4 text-left bg-background-2 dark:bg-background-6 hover:bg-background-3 dark:hover:bg-background-5 transition-colors duration-200"
-                        aria-expanded="false"
-                        data-index={i}
-                      >
-                        <span class="text-tagline-1 font-medium text-secondary dark:text-accent">{item.q}</span>
-                        <svg class="faq-chevron w-5 h-5 shrink-0 text-secondary/40 dark:text-accent/40 transition-transform duration-200" viewBox="0 0 20 20" fill="none">
-                          <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      </button>
-                      <div class="faq-body hidden px-6 py-4 bg-background-1 dark:bg-background-7 border-t border-stroke-2 dark:border-stroke-5">
-                        <p class="text-tagline-2 text-secondary/65 dark:text-accent/65 leading-relaxed">{item.a}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <Accordion items={faqs} />
               </div>
 
             </div>
@@ -456,19 +439,6 @@ const faqs = [
   targetInput.addEventListener('input', calculate)
   rateInput.addEventListener('input', calculate)
   nonBillableInput.addEventListener('input', calculate)
-
-  // ── FAQ accordion ─────────────────────────────────────────────────────────
-  document.querySelectorAll<HTMLButtonElement>('.faq-trigger').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const body    = btn.nextElementSibling as HTMLElement
-      const chevron = btn.querySelector('.faq-chevron') as HTMLElement
-      const isOpen  = btn.getAttribute('aria-expanded') === 'true'
-
-      btn.setAttribute('aria-expanded', String(!isOpen))
-      body.classList.toggle('hidden', isOpen)
-      chevron.style.transform = isOpen ? '' : 'rotate(180deg)'
-    })
-  })
 </script>
 
 <style>
