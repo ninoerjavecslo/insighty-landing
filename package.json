@@ -23,7 +23,6 @@
     "@tailwindcss/vite": "^4.1.4",
     "astro": "^6.1.9",
     "prettier-plugin-tailwindcss": "^0.7.2",
-    "styled-components": "^6.4.1",
     "tailwindcss": "^4.1.4",
     "typescript": "^5.9.3",
     "vue": "^3.5.33"
