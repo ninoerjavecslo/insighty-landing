@@ -10,7 +10,16 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/use-cases/template'),
+      filter: (page) =>
+        !page.includes('/use-cases/template') &&
+        !page.includes('/sitemap/') &&
+        !page.includes('/404/'),
+      namespaces: {
+        news: false,
+        xhtml: false,
+        image: false,
+        video: false,
+      },
       serialize(item) {
         const url = item.url
 
