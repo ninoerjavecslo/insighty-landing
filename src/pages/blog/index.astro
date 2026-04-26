@@ -1,19 +1,14 @@
 ---
-// NOTE: Existing markdown posts in src/content/blog/ are now inactive (dead code kept for reference).
-// Blog data is now sourced from Sanity CMS. See src/lib/sanity.ts for GROQ queries.
-
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/organisms/Header.astro'
 import Footer from '../../components/organisms/Footer.astro'
 import BlogCard from '../../components/molecules/BlogCard.astro'
-import { safeFetch, postsQuery } from '../../lib/sanity'
-import type { SanityPost } from '../../lib/sanity'
-import { urlFor } from '../../lib/sanity'
+import { getCollection } from 'astro:content'
 
-const allPosts: SanityPost[] = await safeFetch<SanityPost[]>(postsQuery, {}, [])
-const sorted = allPosts.sort((a, b) => new Date(b.pubDate).valueOf() - new Date(a.pubDate).valueOf())
-const featured = sorted.find(p => p.featured) ?? sorted[0]
-const rest = featured ? sorted.filter(p => p._id !== featured._id) : sorted
+const allPosts = await getCollection('blog')
+const sorted = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+const featured = sorted.find(p => p.data.featured) ?? sorted[0]
+const rest = sorted.filter(p => p.id !== featured.id)
 
 const categories = ['All', 'Agency Ops', 'Revenue', 'Projects', 'Product'] as const
 
@@ -24,14 +19,8 @@ const gradients: Record<string, string> = {
   'Product':    'linear-gradient(135deg, #1b3a6b 0%, #6e8fd9 100%)',
 }
 
-const featuredGradient = featured ? (gradients[featured.category] ?? gradients['Agency Ops']) : gradients['Agency Ops']
-const featuredDate = featured
-  ? new Date(featured.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-  : ''
-
-const featuredThumbnailUrl = featured?.thumbnail
-  ? urlFor(featured.thumbnail).width(1200).height(675).auto('format').url()
-  : null
+const featuredGradient = gradients[featured.data.category] ?? gradients['Agency Ops']
+const featuredDate = featured.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
 ---
 
 <BaseLayout
@@ -52,62 +41,60 @@ const featuredThumbnailUrl = featured?.thumbnail
       </div>
     </section>
 
-    {featured && (
-      <!-- Featured post -->
-      <section class="bg-background-1 dark:bg-background-8 pb-10 md:pb-14">
-        <div class="main-container">
-          <a
-            href={`/blog/${featured.slug.current}`}
-            data-ns-animate
-            data-delay="0.1"
-            class="group block rounded-2xl overflow-hidden bg-background-2 dark:bg-background-6 border border-stroke-2 dark:border-stroke-5 hover:shadow-3 hover:scale-[1.005] transition-all duration-500"
-          >
-            <div class="grid grid-cols-1 lg:grid-cols-2">
-              <!-- Thumbnail / placeholder -->
-              <div
-                class="min-h-[240px] lg:min-h-[380px] relative flex items-end p-8 overflow-hidden"
-                style={featuredThumbnailUrl ? undefined : `background: ${featuredGradient}`}
-              >
-                {featuredThumbnailUrl ? (
-                  <>
-                    <img
-                      src={featuredThumbnailUrl}
-                      alt=""
-                      class="absolute inset-0 w-full h-full object-cover"
-                      loading="eager"
-                      decoding="async"
-                    />
-                    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%)"></div>
-                  </>
-                ) : (
-                  <span class="absolute inset-0 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
-                    <span class="text-white/8 font-bold text-[14rem] leading-none">{featured.category[0]}</span>
-                  </span>
-                )}
-                <div class="relative z-10 flex items-center gap-3">
-                  <span class="badge badge-white !text-secondary font-medium">{featured.category}</span>
-                  <span class="text-tagline-3 text-white/60 font-medium uppercase tracking-widest">Featured</span>
-                </div>
-              </div>
-
-              <!-- Content -->
-              <div class="p-8 xl:p-12 flex flex-col justify-center gap-5">
-                <h2 class="line-clamp-3 group-hover:text-primary-400 transition-colors duration-300">{featured.title}</h2>
-                <p class="max-w-[480px] line-clamp-3">{featured.description}</p>
-                <div class="flex items-center gap-3 text-tagline-2 text-secondary/70 dark:text-accent/70">
-                  <time datetime={new Date(featured.pubDate).toISOString()}>{featuredDate}</time>
-                  <span aria-hidden="true">·</span>
-                  <span>{featured.readTime} min read</span>
-                </div>
-                <div>
-                  <span class="btn btn-md btn-primary"><span>Read article</span></span>
-                </div>
+    <!-- Featured post -->
+    <section class="bg-background-1 dark:bg-background-8 pb-10 md:pb-14">
+      <div class="main-container">
+        <a
+          href={`/blog/${featured.id}`}
+          data-ns-animate
+          data-delay="0.1"
+          class="group block rounded-2xl overflow-hidden bg-background-2 dark:bg-background-6 border border-stroke-2 dark:border-stroke-5 hover:shadow-3 hover:scale-[1.005] transition-all duration-500"
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-2">
+            <!-- Thumbnail / placeholder -->
+            <div
+              class="min-h-[240px] lg:min-h-[380px] relative flex items-end p-8 overflow-hidden"
+              style={featured.data.thumbnail ? undefined : `background: ${featuredGradient}`}
+            >
+              {featured.data.thumbnail ? (
+                <>
+                  <img
+                    src={featured.data.thumbnail}
+                    alt=""
+                    class="absolute inset-0 w-full h-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                  />
+                  <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%)"></div>
+                </>
+              ) : (
+                <span class="absolute inset-0 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+                  <span class="text-white/8 font-bold text-[14rem] leading-none">{featured.data.category[0]}</span>
+                </span>
+              )}
+              <div class="relative z-10 flex items-center gap-3">
+                <span class="badge badge-white !text-secondary font-medium">{featured.data.category}</span>
+                <span class="text-tagline-3 text-white/60 font-medium uppercase tracking-widest">Featured</span>
               </div>
             </div>
-          </a>
-        </div>
-      </section>
-    )}
+
+            <!-- Content -->
+            <div class="p-8 xl:p-12 flex flex-col justify-center gap-5">
+              <h2 class="line-clamp-3 group-hover:text-primary-400 transition-colors duration-300">{featured.data.title}</h2>
+              <p class="max-w-[480px] line-clamp-3">{featured.data.description}</p>
+              <div class="flex items-center gap-3 text-tagline-2 text-secondary/70 dark:text-accent/70">
+                <time datetime={featured.data.pubDate.toISOString()}>{featuredDate}</time>
+                <span aria-hidden="true">·</span>
+                <span>{featured.data.readTime} min read</span>
+              </div>
+              <div>
+                <span class="btn btn-md btn-primary"><span>Read article</span></span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
 
     <!-- Filter + Grid -->
     <section class="bg-background-2 dark:bg-background-7 py-16 md:py-[100px]">
@@ -155,7 +142,7 @@ const featuredThumbnailUrl = featured?.thumbnail
           {rest.map((post, i) => (
             <div
               data-filter-item
-              data-filter-category={post.category.toLowerCase()}
+              data-filter-category={post.data.category.toLowerCase()}
               data-ns-animate
               data-delay={String(0.05 * (i + 1))}
             >

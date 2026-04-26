@@ -1,8 +1,5 @@
 ---
-// NOTE: Existing markdown posts in src/content/blog/ are now inactive (dead code kept for reference).
-// Blog data is now sourced exclusively from Sanity CMS. getStaticPaths uses Sanity only —
-// do NOT merge with getCollection to avoid conflicts.
-
+import { getCollection, render } from 'astro:content'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/organisms/Header.astro'
 import Footer from '../../components/organisms/Footer.astro'
@@ -11,53 +8,40 @@ import BlogCTA from '../../components/molecules/BlogCTA.astro'
 import BlogCTASidebar from '../../components/molecules/BlogCTASidebar.astro'
 import BlogNewsletter from '../../components/molecules/BlogNewsletter.astro'
 import SidebarTOC from '../../components/molecules/SidebarTOC.astro'
-import { client, safeFetch, allSlugsQuery, postBySlugQuery, relatedPostsQuery } from '../../lib/sanity'
-import type { SanityPost } from '../../lib/sanity'
-import { portableTextToHtml, extractTocHeadings } from '../../lib/portable-text'
-import { urlFor } from '../../lib/sanity'
 
 export async function getStaticPaths() {
-  const slugs: Array<{ slug: string }> = await safeFetch<Array<{ slug: string }>>(allSlugsQuery, {}, [])
-  return slugs
-    .filter(s => Boolean(s.slug))
-    .map(s => ({ params: { id: s.slug } }))
+  const posts = await getCollection('blog')
+  return posts.map(post => ({ params: { id: post.id }, props: { post } }))
 }
 
-const { id } = Astro.params
-const post: SanityPost | null = await safeFetch<SanityPost | null>(postBySlugQuery, { slug: id }, null)
+const { post } = Astro.props
+const { title, description, pubDate, category, readTime } = post.data
+const { Content, headings } = await render(post)
+const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3)
 
-if (!post) {
-  return Astro.redirect('/blog', 302)
-}
+const allPosts = await getCollection('blog')
+const related = allPosts
+  .filter(p => p.id !== post.id)
+  .sort((a, b) => {
+    const sameA = a.data.category === category ? 1 : 0
+    const sameB = b.data.category === category ? 1 : 0
+    if (sameB !== sameA) return sameB - sameA
+    return b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  })
+  .slice(0, 3)
 
-const { title, description, pubDate, category, readTime } = post
-
-// Render body
-const bodyHtml = portableTextToHtml(post.body)
-
-// Extract TOC headings from Portable Text blocks
-const tocHeadings = extractTocHeadings(post.body)
-
-// Fetch related posts (same category first, then by date, excluding current)
-const related: SanityPost[] = await safeFetch<SanityPost[]>(
-  relatedPostsQuery,
-  { slug: post.slug.current, category },
-  []
-)
-
-const pubDateObj = new Date(pubDate)
-const formattedDate = pubDateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+const formattedDate = pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
 
 const shareText = encodeURIComponent(title)
-const shareUrl = encodeURIComponent(`https://insighty.io/blog/${post.slug.current}`)
+const shareUrl = encodeURIComponent(`https://insighty.io/blog/${post.id}`)
 
 const blogPostingSchema = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
   headline: title,
   description,
-  datePublished: pubDateObj.toISOString(),
-  url: `https://insighty.io/blog/${post.slug.current}/`,
+  datePublished: pubDate.toISOString(),
+  url: `https://insighty.io/blog/${post.id}/`,
   publisher: {
     '@type': 'Organization',
     name: 'Insighty',
@@ -78,7 +62,7 @@ const gradient = gradients[category] ?? gradients['Agency Ops']
   title={`${title} — Insighty Blog`}
   description={description}
   ogType="article"
-  ogPublishedTime={pubDateObj.toISOString()}
+  ogPublishedTime={pubDate.toISOString()}
 >
   <script slot="structured-data" type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
   <Header />
@@ -98,7 +82,7 @@ const gradient = gradients[category] ?? gradients['Agency Ops']
         <h1 class="max-w-[760px] text-white">{title}</h1>
         <p class="mt-4 max-w-[600px] text-white/70">{description}</p>
         <div class="mt-6 flex items-center gap-3 text-tagline-3 text-white/75 font-medium uppercase tracking-widest">
-          <time datetime={pubDateObj.toISOString()}>{formattedDate}</time>
+          <time datetime={pubDate.toISOString()}>{formattedDate}</time>
           <span aria-hidden="true">·</span>
           <span>{readTime} min read</span>
         </div>
@@ -113,14 +97,16 @@ const gradient = gradients[category] ?? gradients['Agency Ops']
           <!-- TOC sidebar -->
           {tocHeadings.length > 0 && (
             <div class="hidden lg:flex flex-col gap-8 sticky top-28">
-              <SidebarTOC items={tocHeadings.map(h => ({ id: h.id, label: h.label, depth: h.depth }))} />
+              <SidebarTOC items={tocHeadings.map(h => ({ id: h.slug, label: h.text, depth: h.depth }))} />
               <BlogCTASidebar />
             </div>
           )}
 
           <!-- Content column -->
           <div class="min-w-0 flex flex-col gap-0">
-            <article class="blog-content" set:html={bodyHtml} />
+            <article class="blog-content">
+              <Content />
+            </article>
 
             <BlogCTA />
 
