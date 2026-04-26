@@ -1,0 +1,10 @@
+---
+interface Props {
+  for: string
+  required?: boolean
+}
+const { for: forAttr, required = false } = Astro.props
+---
+<label for={forAttr} class="form-label">
+  <slot />{required && <span class="text-ns-yellow ml-0.5" aria-hidden="true">*</span>}
+</label>

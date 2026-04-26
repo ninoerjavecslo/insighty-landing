@@ -1,0 +1,25 @@
+---
+import FormLabel from '../atoms/FormLabel.astro'
+import FormTextarea from '../atoms/FormTextarea.astro'
+import FormError from '../atoms/FormError.astro'
+
+interface Props {
+  id: string
+  name: string
+  label: string
+  placeholder?: string
+  required?: boolean
+  rows?: number
+  hint?: string
+  class?: string
+}
+const { id, name, label, placeholder, required = false, rows = 4, hint, class: className } = Astro.props
+---
+<div class={`form-field${className ? ' ' + className : ''}`} data-field-wrapper data-field-id={id}>
+  <div class="flex items-baseline justify-between gap-2">
+    <FormLabel for={id} required={required}>{label}</FormLabel>
+    {hint && <span class="text-[11px] text-secondary/50 dark:text-accent/50 shrink-0">{hint}</span>}
+  </div>
+  <FormTextarea {id} {name} {placeholder} {required} {rows} />
+  <FormError {id} />
+</div>

@@ -363,7 +363,9 @@ const roadmapComing = [
           </div>
 
           <!-- Form -->
-          <form class="space-y-4" id="founding-form" novalidate>
+          <form class="space-y-4" id="founding-form" novalidate data-netlify="true" name="founding-member" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="founding-member" />
+            <input type="text" name="bot-field" class="sr-only" tabindex="-1" autocomplete="off" />
 
             <div class="grid grid-cols-2 gap-3">
               <div class="space-y-1.5">
@@ -523,6 +525,7 @@ const roadmapComing = [
               <p class="text-tagline-3 text-secondary/75 dark:text-accent/75 text-center leading-relaxed">
                 {spotsRemaining} spots remaining. We'll reply within one business day.
               </p>
+              <p id="founding-form-error" class="hidden text-[11px] text-red-500 text-center">Something went wrong. Please try again or email us at sales@insighty.io.</p>
             </div>
 
           </form>
@@ -581,39 +584,73 @@ const roadmapComing = [
 </style>
 
 <script>
-  const form = document.getElementById('founding-form') as HTMLFormElement | null;
-  const formHeader = document.getElementById('founding-form-header');
-  const successState = document.getElementById('founding-success');
-  const submitBtn = document.getElementById('founding-submit-btn');
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  const form = document.getElementById('founding-form') as HTMLFormElement | null
+  const formHeader = document.getElementById('founding-form-header')
+  const successState = document.getElementById('founding-success')
+  const submitBtn = document.getElementById('founding-submit-btn') as HTMLButtonElement | null
+  const formError = document.getElementById('founding-form-error')
+
+  function getError(el: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement): string {
+    if (el.required && !el.value.trim()) return 'This field is required'
+    if (el.type === 'email' && el.value && !EMAIL_RE.test(el.value)) return 'Please enter a valid email address'
+    return ''
+  }
+
+  // Blur validation
+  form?.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
+    'input[required], select[required]'
+  ).forEach(el => {
+    el.addEventListener('blur', () => {
+      el.classList.toggle('error', !!getError(el))
+    })
+    el.addEventListener('input', () => {
+      if (el.classList.contains('error') && !getError(el)) el.classList.remove('error')
+    })
+  })
 
   if (form && successState && submitBtn) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
 
-      const inputs = form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
+      let valid = true
+      form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
         'input[required], select[required]'
-      );
-      let valid = true;
+      ).forEach(el => {
+        const err = getError(el)
+        el.classList.toggle('error', !!err)
+        if (err) valid = false
+      })
+      if (!valid) return
 
-      inputs.forEach(input => {
-        input.classList.remove('error');
-        if (!input.value.trim()) {
-          input.classList.add('error');
-          valid = false;
+      const span = submitBtn.querySelector('span')
+      if (span) span.textContent = 'Sending...'
+      submitBtn.disabled = true
+      formError?.classList.add('hidden')
+
+      try {
+        const body = new URLSearchParams()
+        new FormData(form).forEach((v, k) => body.append(k, v as string))
+        const ok = (await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: body.toString(),
+        })).ok
+
+        if (ok) {
+          form.style.display = 'none'
+          if (formHeader) formHeader.style.display = 'none'
+          successState.style.display = 'block'
+        } else {
+          formError?.classList.remove('hidden')
+          if (span) span.textContent = 'Claim my founding spot'
+          submitBtn.disabled = false
         }
-      });
-
-      if (!valid) return;
-
-      const btnSpan = submitBtn.querySelector('span');
-      if (btnSpan) btnSpan.textContent = 'Submitting...';
-      submitBtn.setAttribute('disabled', 'true');
-
-      setTimeout(() => {
-        form.style.display = 'none';
-        if (formHeader) formHeader.style.display = 'none';
-        successState.style.display = 'block';
-      }, 800);
-    });
+      } catch {
+        formError?.classList.remove('hidden')
+        if (span) span.textContent = 'Claim my founding spot'
+        submitBtn.disabled = false
+      }
+    })
   }
 </script>

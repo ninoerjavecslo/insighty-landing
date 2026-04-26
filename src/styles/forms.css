@@ -1,0 +1,47 @@
+/* Form design system */
+
+/* Base for input, select, textarea */
+@utility form-input {
+  @apply w-full rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent placeholder:text-secondary/30 dark:placeholder:text-accent/30 focus:outline-none focus:border-primary-500 dark:focus:border-primary-300 transition-colors duration-200;
+}
+
+@utility form-label {
+  @apply block text-tagline-2 font-medium text-secondary dark:text-accent;
+}
+
+@utility form-field {
+  @apply space-y-1.5;
+}
+
+@utility form-error-msg {
+  @apply text-[11px] text-red-500 hidden leading-snug;
+}
+
+/* Focus shadow */
+.form-input:focus {
+  box-shadow: 0 0 0 3px rgba(27, 58, 107, 0.08);
+}
+
+:where(.dark, .dark *) .form-input:focus {
+  box-shadow: 0 0 0 3px rgba(74, 110, 199, 0.12);
+}
+
+/* Error state — triggered by data-error on the field wrapper */
+[data-field-wrapper][data-error] .form-input {
+  border-color: #ef4444 !important;
+}
+
+[data-field-wrapper][data-error] .form-error-msg {
+  display: block;
+}
+
+/* Textarea */
+textarea.form-input {
+  resize: none;
+}
+
+/* Select */
+select.form-input {
+  appearance: none;
+  cursor: pointer;
+}

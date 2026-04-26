@@ -293,35 +293,24 @@ import Footer from '../components/organisms/Footer.astro'
             </p>
           </div>
 
+          <p id="demo-form-error" class="hidden text-[11px] text-red-500 text-center">Something went wrong. Please try again or email us at sales@insighty.io.</p>
+
         </form>
 
-        <!-- Cal.com booking (shown after form submit) -->
-        <div id="booking-section" class="hidden">
-          <div class="space-y-2 mb-6">
-            <h3 class="text-secondary dark:text-accent" style="font-size: 1.375rem; line-height: 130%; font-weight: 500;">
-              Pick a time for your demo
-            </h3>
-            <p class="text-tagline-2 text-secondary/70 dark:text-accent/70">
-              Your details are saved — choose a slot that works for you.
-            </p>
-          </div>
-          <div id="cal-booking" style="min-height: 600px; width: 100%;"></div>
-        </div>
-
-        <!-- Success state (fallback, hidden by default) -->
+        <!-- Success state (shown after form submit) -->
         <div
           id="demo-success"
           class="hidden text-center space-y-4 py-8"
         >
           <div class="size-14 rounded-2xl bg-ns-green/10 border border-ns-green/20 flex items-center justify-center mx-auto">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path d="M20 6L9 17L4 12" stroke="#2d9b9b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <div class="space-y-2">
-            <p class="text-heading-6 font-medium text-secondary dark:text-accent">We'll be in touch soon</p>
+            <p class="text-heading-6 font-medium text-secondary dark:text-accent">Thank you — we'll be in touch!</p>
             <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 max-w-[320px] mx-auto">
-              Thanks for reaching out. Expect a reply within one business day to lock in your demo slot.
+              We've received your demo request and will reach out at your email within one business day to schedule a time.
             </p>
           </div>
           <a href="/" class="btn btn-white btn-md inline-flex mt-2">
@@ -373,111 +362,83 @@ import Footer from '../components/organisms/Footer.astro'
 </style>
 
 <script>
-  // Cal.com embed loader
-  (function (C: any, A: string, L: string) {
-    const p = (a: any, ar: any) => { a.q.push(ar); };
-    const d = (C as Window).document;
-    (C as any).Cal = (C as any).Cal || function () {
-      const cal = (C as any).Cal;
-      const ar = arguments;
-      if (!cal.loaded) {
-        cal.ns = {};
-        cal.q = cal.q || [];
-        const s = d.createElement('script') as HTMLScriptElement;
-        s.src = A;
-        d.head.appendChild(s);
-        cal.loaded = true;
+  const form = document.getElementById('demo-request-form') as HTMLFormElement | null
+  const submitBtn = document.getElementById('demo-submit-btn') as HTMLButtonElement | null
+  const successEl = document.getElementById('demo-success')
+  const formHeader = form?.previousElementSibling as HTMLElement | null
+  const errorMsg = document.getElementById('demo-form-error')
+
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+  function validateDemoForm(): boolean {
+    let valid = true
+    form!.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
+      'input[required], select[required]'
+    ).forEach(input => {
+      input.classList.remove('error')
+      let err = false
+      if (!input.value.trim()) {
+        err = true
+      } else if (input.type === 'email' && !EMAIL_RE.test(input.value)) {
+        err = true
       }
-      if (ar[0] === L) {
-        const api: any = function () { p(api, arguments); };
-        const namespace = ar[1];
-        api.q = [];
-        if (typeof namespace === 'string') {
-          (cal.ns as any)[namespace] = api;
-          p(api, ar);
+      if (err) { input.classList.add('error'); valid = false }
+    })
+    return valid
+  }
+
+  // Blur validation
+  form?.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
+    'input[required], select[required]'
+  ).forEach(input => {
+    input.addEventListener('blur', () => {
+      input.classList.remove('error')
+      if (!input.value.trim() || (input.type === 'email' && !EMAIL_RE.test(input.value))) {
+        if (input.value !== '' || input.required) input.classList.add('error')
+      }
+    })
+    input.addEventListener('input', () => {
+      if (input.classList.contains('error') && input.value.trim()) {
+        if (input.type !== 'email' || EMAIL_RE.test(input.value)) {
+          input.classList.remove('error')
         }
-        p(cal, ar);
-        return;
       }
-      p(cal, ar);
-    };
-  })(window, 'https://app.cal.eu/embed/embed.js', 'init');
-
-  const Cal = (window as any).Cal;
-  Cal('init', 'demo', { origin: 'https://cal.eu' });
-
-  // Form wiring
-  const form = document.getElementById('demo-request-form') as HTMLFormElement | null;
-  const bookingSection = document.getElementById('booking-section');
-  const submitBtn = document.getElementById('demo-submit-btn') as HTMLButtonElement | null;
+    })
+  })
 
   if (form && submitBtn) {
     form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+      e.preventDefault()
+      if (!validateDemoForm()) return
 
-      // Validation
-      const inputs = form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
-        'input[required], select[required]'
-      );
-      let valid = true;
-      inputs.forEach((input) => {
-        input.classList.remove('error');
-        if (!input.value.trim()) {
-          input.classList.add('error');
-          valid = false;
-        }
-      });
-      if (!valid) return;
+      const span = submitBtn.querySelector('span')
+      if (span) span.textContent = 'Sending...'
+      submitBtn.disabled = true
+      if (errorMsg) errorMsg.classList.add('hidden')
 
-      const btnSpan = submitBtn.querySelector('span');
-      if (btnSpan) btnSpan.textContent = 'Sending...';
-      submitBtn.disabled = true;
-
-      const data = new FormData(form);
-      const firstName = (data.get('first_name') as string) || '';
-      const lastName = (data.get('last_name') as string) || '';
-      const email = (data.get('email') as string) || '';
-      const agencyName = (data.get('agency_name') as string) || '';
-      const teamSize = (data.get('team_size') as string) || '';
-      const role = (data.get('role') as string) || '';
-      const message = (data.get('message') as string) || '';
-
-      // Capture lead in Netlify Forms
       try {
-        const body = new URLSearchParams();
-        data.forEach((value, key) => body.append(key, value as string));
-        await fetch('/', {
+        const body = new URLSearchParams()
+        new FormData(form).forEach((v, k) => body.append(k, v as string))
+        const ok = (await fetch('/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: body.toString(),
-        });
+        })).ok
+
+        if (ok) {
+          form.classList.add('hidden')
+          if (formHeader) formHeader.classList.add('hidden')
+          if (successEl) successEl.classList.remove('hidden')
+        } else {
+          if (errorMsg) errorMsg.classList.remove('hidden')
+          if (span) span.textContent = 'Request my demo'
+          submitBtn.disabled = false
+        }
       } catch {
-        // Non-blocking — still show booking even if Netlify fails
+        if (errorMsg) errorMsg.classList.remove('hidden')
+        if (span) span.textContent = 'Request my demo'
+        submitBtn.disabled = false
       }
-
-      // Hide form + header, show Cal.com booking
-      form.classList.add('hidden');
-      const formHeader = form.previousElementSibling as HTMLElement | null;
-      if (formHeader) formHeader.classList.add('hidden');
-
-      if (bookingSection) {
-        bookingSection.classList.remove('hidden');
-        Cal.ns.demo('inline', {
-          elementOrSelector: '#cal-booking',
-          calLink: 'insighty',
-          config: {
-            name: `${firstName} ${lastName}`.trim(),
-            email,
-            notes: [
-              agencyName && `Agency: ${agencyName}`,
-              teamSize && `Team size: ${teamSize}`,
-              role && `Role: ${role}`,
-              message && `Message: ${message}`,
-            ].filter(Boolean).join('\n'),
-          },
-        });
-        Cal.ns.demo('ui', { hideEventTypeDetails: false, layout: 'month_view' });
-      }
-    });
+    })
   }
 </script>

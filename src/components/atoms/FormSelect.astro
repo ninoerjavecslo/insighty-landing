@@ -1,0 +1,28 @@
+---
+interface Props {
+  id: string
+  name: string
+  required?: boolean
+  options: Array<{ value: string; label: string }>
+  placeholder?: string
+}
+const { id, name, required = false, options, placeholder } = Astro.props
+---
+<div class="relative">
+  <select
+    id={id}
+    name={name}
+    required={required || undefined}
+    aria-required={required ? 'true' : undefined}
+    aria-describedby={`${id}-error`}
+    class="form-input"
+  >
+    {placeholder && <option value="" disabled selected>{placeholder}</option>}
+    {options.map(opt => <option value={opt.value}>{opt.label}</option>)}
+  </select>
+  <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-secondary/30 dark:text-accent/30" aria-hidden="true">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </span>
+</div>

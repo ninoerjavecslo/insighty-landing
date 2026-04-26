@@ -1,0 +1,21 @@
+---
+import FormLabel from '../atoms/FormLabel.astro'
+import FormSelect from '../atoms/FormSelect.astro'
+import FormError from '../atoms/FormError.astro'
+
+interface Props {
+  id: string
+  name: string
+  label: string
+  required?: boolean
+  options: Array<{ value: string; label: string }>
+  placeholder?: string
+  class?: string
+}
+const { id, name, label, required = false, options, placeholder, class: className } = Astro.props
+---
+<div class={`form-field${className ? ' ' + className : ''}`} data-field-wrapper data-field-id={id}>
+  <FormLabel for={id} required={required}>{label}</FormLabel>
+  <FormSelect {id} {name} {required} {options} {placeholder} />
+  <FormError {id} />
+</div>

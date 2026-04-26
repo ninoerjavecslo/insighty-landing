@@ -43,7 +43,9 @@ CTA section — Founding Member Form
 
         <!-- Right: form -->
         <div class="px-8 py-10 md:px-12 md:py-14 xl:px-16 xl:py-20 flex flex-col justify-center">
-          <form data-ns-animate data-delay="0.2" class="space-y-4" onsubmit="return false;">
+          <form data-ns-animate data-delay="0.2" class="space-y-4" id="cta-founding-form" name="cta-founding" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+            <input type="hidden" name="form-name" value="cta-founding" />
+            <input type="text" name="bot-field" class="sr-only" tabindex="-1" autocomplete="off" />
             <div class="space-y-1.5">
               <label for="cta-name" class="text-tagline-2 font-medium text-secondary dark:text-accent">Full name</label>
               <input
@@ -51,6 +53,7 @@ CTA section — Founding Member Form
                 name="name"
                 type="text"
                 placeholder="Sam Carter"
+                required
                 class="w-full rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent placeholder:text-secondary/30 dark:placeholder:text-accent/30 focus:outline-none focus:border-secondary dark:focus:border-accent transition-colors"
               />
             </div>
@@ -61,6 +64,7 @@ CTA section — Founding Member Form
                 name="email"
                 type="email"
                 placeholder="sam@agency.com"
+                required
                 class="w-full rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent placeholder:text-secondary/30 dark:placeholder:text-accent/30 focus:outline-none focus:border-secondary dark:focus:border-accent transition-colors"
               />
             </div>
@@ -90,6 +94,7 @@ CTA section — Founding Member Form
             </div>
             <button
               type="submit"
+              id="cta-submit-btn"
               class="btn btn-secondary hover:btn-primary dark:btn-accent btn-md w-full mt-2"
             >
               <span>Claim my founding member spot</span>
@@ -97,10 +102,83 @@ CTA section — Founding Member Form
             <p class="text-tagline-3 text-secondary/80 dark:text-accent/80 text-center">
               No credit card required. We'll reach out before launch.
             </p>
+            <p id="cta-form-error" class="hidden text-[11px] text-red-500 text-center">Something went wrong. Please try again.</p>
           </form>
+
+          <!-- Success state -->
+          <div id="cta-success" class="hidden flex-col items-center text-center gap-4 py-8">
+            <div class="size-12 rounded-2xl bg-primary-500/10 border border-primary-500/20 flex items-center justify-center mx-auto">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-500" stroke="var(--color-primary-500)"/>
+              </svg>
+            </div>
+            <div class="space-y-1.5">
+              <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">You're on the list!</p>
+              <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 max-w-[280px] mx-auto">We'll reach out within one business day to confirm your founding spot.</p>
+            </div>
+            <a href="/founding-member" class="text-tagline-2 text-primary-500 hover:text-primary-400 transition-colors font-medium">Learn more about founding membership →</a>
+          </div>
         </div>
 
       </div>
     </div>
   </div>
 </section>
+
+<script>
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const ctaForm = document.getElementById('cta-founding-form') as HTMLFormElement | null
+const ctaBtn = document.getElementById('cta-submit-btn') as HTMLButtonElement | null
+const ctaSuccess = document.getElementById('cta-success')
+const ctaError = document.getElementById('cta-form-error')
+
+if (ctaForm && ctaBtn) {
+  ctaForm.addEventListener('submit', async (e) => {
+    e.preventDefault()
+
+    const nameEl = ctaForm.querySelector<HTMLInputElement>('#cta-name')
+    const emailEl = ctaForm.querySelector<HTMLInputElement>('#cta-email')
+
+    let valid = true
+    ;[nameEl, emailEl].forEach(el => {
+      if (!el) return
+      const err = el.required && !el.value.trim()
+        || (el.type === 'email' && el.value && !EMAIL_RE.test(el.value))
+      el.style.borderColor = err ? '#ef4444' : ''
+      if (err) valid = false
+    })
+    if (!valid) return
+
+    const span = ctaBtn.querySelector('span')
+    if (span) span.textContent = 'Sending...'
+    ctaBtn.disabled = true
+    ctaError?.classList.add('hidden')
+
+    try {
+      const body = new URLSearchParams()
+      new FormData(ctaForm).forEach((v, k) => body.append(k, v as string))
+      const ok = (await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString(),
+      })).ok
+
+      if (ok) {
+        ctaForm.classList.add('hidden')
+        if (ctaSuccess) {
+          ctaSuccess.classList.remove('hidden')
+          ctaSuccess.classList.add('flex')
+        }
+      } else {
+        ctaError?.classList.remove('hidden')
+        if (span) span.textContent = 'Claim my founding member spot'
+        ctaBtn.disabled = false
+      }
+    } catch {
+      ctaError?.classList.remove('hidden')
+      if (span) span.textContent = 'Claim my founding member spot'
+      ctaBtn.disabled = false
+    }
+  })
+}
+</script>

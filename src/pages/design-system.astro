@@ -1,0 +1,797 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import FormField from '../components/molecules/FormField.astro'
+import FormTextareaField from '../components/molecules/FormTextareaField.astro'
+import FormSelectField from '../components/molecules/FormSelectField.astro'
+import FormInput from '../components/atoms/FormInput.astro'
+import FormTextarea from '../components/atoms/FormTextarea.astro'
+import FormSelect from '../components/atoms/FormSelect.astro'
+import FormLabel from '../components/atoms/FormLabel.astro'
+import FormError from '../components/atoms/FormError.astro'
+import Logo from '../components/atoms/Logo.astro'
+import ThemeToggle from '../components/atoms/ThemeToggle.astro'
+import Header from '../components/organisms/Header.astro'
+import Footer from '../components/organisms/Footer.astro'
+
+const teamSizeOptions = [
+  { value: '1-5', label: '1–5 people' },
+  { value: '6-15', label: '6–15 people' },
+  { value: '16-30', label: '16–30 people' },
+  { value: '31+', label: '31+ people' },
+]
+
+const colorTokens = [
+  { name: 'primary-50',  hex: '#eef2fb' },
+  { name: 'primary-100', hex: '#c9d5f3' },
+  { name: 'primary-200', hex: '#a3b8ea' },
+  { name: 'primary-300', hex: '#6e8fd9' },
+  { name: 'primary-400', hex: '#4a6ec7' },
+  { name: 'primary-500', hex: '#1b3a6b' },
+  { name: 'primary-600', hex: '#162f58' },
+  { name: 'primary-700', hex: '#112445' },
+  { name: 'primary-800', hex: '#0c1932' },
+]
+
+const semanticColors = [
+  { name: 'ns-yellow',      hex: '#d4a574', label: 'Warm / Accent' },
+  { name: 'ns-green',       hex: '#2d9b9b', label: 'Success / Teal' },
+  { name: 'ns-red',         hex: '#ffb9a2', label: 'Error / Alert' },
+  { name: 'secondary',      hex: '#181818cf', label: 'Body text (light)' },
+  { name: 'accent',         hex: '#fcfcfc', label: 'Body text (dark)' },
+]
+
+const bgTokens = [
+  { name: 'background-1', hex: '#fcfcfd', label: 'Page bg (light)' },
+  { name: 'background-2', hex: '#f9fafb', label: 'Card bg (light)' },
+  { name: 'background-3', hex: '#f4f5f8', label: 'Subtle bg' },
+  { name: 'background-5', hex: '#13171e', label: 'Dark surface' },
+  { name: 'background-6', hex: '#0f1217', label: 'Dark card' },
+  { name: 'background-7', hex: '#181d26', label: 'Dark bg' },
+  { name: 'background-8', hex: '#070b10', label: 'Page bg (dark)' },
+]
+
+const strokeTokens = [
+  { name: 'stroke-2', hex: '#707888', label: 'Border (light)' },
+  { name: 'stroke-5', hex: '#1b232f', label: 'Border (dark)' },
+  { name: 'stroke-6', hex: '#202731', label: 'Border (dark alt)' },
+]
+
+const typographyScale = [
+  { name: 'heading-1', size: '4.25rem', lh: '110%', sample: 'Heading 1' },
+  { name: 'heading-2', size: '3.25rem', lh: '120%', sample: 'Heading 2' },
+  { name: 'heading-3', size: '2.5rem',  lh: '120%', sample: 'Heading 3' },
+  { name: 'heading-4', size: '2rem',    lh: '130%', sample: 'Heading 4' },
+  { name: 'heading-5', size: '1.5rem',  lh: '140%', sample: 'Heading 5' },
+  { name: 'heading-6', size: '1.25rem', lh: '140%', sample: 'Heading 6' },
+  { name: 'tagline-1', size: '1.0625rem', lh: '150%', sample: 'Tagline 1 — body copy, regular text' },
+  { name: 'tagline-2', size: '0.9375rem', lh: '150%', sample: 'Tagline 2 — small body copy' },
+  { name: 'tagline-3', size: '0.8125rem', lh: '150%', sample: 'Tagline 3 — labels, captions' },
+]
+
+const gradients = [
+  { name: 'gradient-1', value: 'linear-gradient(135deg, #4a6ec7 0%, #d4a574 100%)' },
+  { name: 'gradient-3', value: 'linear-gradient(135deg, #2d9b9b 0%, #4a6ec7 100%)' },
+  { name: 'gradient-4', value: 'linear-gradient(135deg, #1b3a6b 0%, #4a6ec7 100%)' },
+  { name: 'gradient-9', value: 'linear-gradient(156deg, #c9d5f3 32.92%, #d4a574 91%)' },
+]
+---
+
+<BaseLayout
+  title="Design System — Insighty Internal"
+  description="Internal design system reference for Insighty: tokens, atoms, molecules, and organisms."
+>
+  <!-- noindex this page -->
+  <meta slot="structured-data" name="robots" content="noindex, nofollow" />
+
+  <Header />
+
+  <main class="pt-[80px] bg-background-1 dark:bg-background-8 min-h-screen">
+
+    <!-- ================================
+    Page header
+    ================================= -->
+    <div class="border-b border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 py-10 md:py-14">
+      <div class="main-container space-y-3">
+        <div class="flex items-center gap-3">
+          <span class="badge badge-primary text-tagline-3">Internal</span>
+          <span class="badge badge-white text-tagline-3">v1</span>
+        </div>
+        <h1 class="text-secondary dark:text-accent" style="font-size: 2.25rem; line-height: 1.2;">Design System</h1>
+        <p class="text-tagline-1 text-secondary/70 dark:text-accent/70 max-w-[520px]">
+          Tokens, atoms, molecules, and organisms — the building blocks of insighty.io. Internal reference only.
+        </p>
+        <nav class="pt-2 flex flex-wrap gap-3" aria-label="Design system sections">
+          {[
+            ['#tokens-colors', 'Colors'],
+            ['#tokens-type', 'Typography'],
+            ['#tokens-shadows', 'Shadows'],
+            ['#atoms-buttons', 'Buttons'],
+            ['#atoms-badges', 'Badges'],
+            ['#atoms-form', 'Form Atoms'],
+            ['#molecules-form', 'Form Molecules'],
+            ['#form-demo', 'Interactive Form'],
+          ].map(([href, label]) => (
+            <a href={href} class="text-tagline-3 font-medium px-3 py-1.5 rounded-lg border border-stroke-2 dark:border-stroke-6 text-secondary/70 dark:text-accent/70 hover:text-primary-400 hover:border-primary-400 transition-colors duration-200">{label}</a>
+          ))}
+        </nav>
+      </div>
+    </div>
+
+    <div class="main-container py-16 space-y-20">
+
+      <!-- ================================
+      SECTION: Colors
+      ================================= -->
+      <section id="tokens-colors" class="space-y-10 scroll-mt-24">
+        <div class="ds-section-header">
+          <span class="ds-label">Tokens</span>
+          <h2 class="ds-title">Colors</h2>
+        </div>
+
+        <!-- Primary -->
+        <div class="space-y-3">
+          <h3 class="ds-subtitle">Primary — Brand Blue</h3>
+          <div class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-9 gap-2">
+            {colorTokens.map(({ name, hex }) => (
+              <div class="space-y-1.5">
+                <div class="h-12 rounded-lg border border-stroke-2/40 dark:border-stroke-6/40" style={`background: ${hex};`}></div>
+                <p class="text-[10px] font-medium text-secondary/70 dark:text-accent/70">{name}</p>
+                <p class="text-[10px] font-mono text-secondary/50 dark:text-accent/50">{hex}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Semantic -->
+        <div class="space-y-3">
+          <h3 class="ds-subtitle">Semantic</h3>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+            {semanticColors.map(({ name, hex, label }) => (
+              <div class="space-y-1.5">
+                <div class="h-12 rounded-lg border border-stroke-2/40 dark:border-stroke-6/40" style={`background: ${hex};`}></div>
+                <p class="text-[10px] font-medium text-secondary/70 dark:text-accent/70">{name}</p>
+                <p class="text-[10px] text-secondary/50 dark:text-accent/50">{label}</p>
+                <p class="text-[10px] font-mono text-secondary/40 dark:text-accent/40">{hex}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Backgrounds -->
+        <div class="space-y-3">
+          <h3 class="ds-subtitle">Backgrounds</h3>
+          <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-3">
+            {bgTokens.map(({ name, hex, label }) => (
+              <div class="space-y-1.5">
+                <div class="h-12 rounded-lg border border-stroke-2 dark:border-stroke-6" style={`background: ${hex};`}></div>
+                <p class="text-[10px] font-medium text-secondary/70 dark:text-accent/70">{name}</p>
+                <p class="text-[10px] text-secondary/50 dark:text-accent/50">{label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Strokes -->
+        <div class="space-y-3">
+          <h3 class="ds-subtitle">Stroke / Border</h3>
+          <div class="flex flex-wrap gap-4">
+            {strokeTokens.map(({ name, hex, label }) => (
+              <div class="flex items-center gap-3">
+                <div class="w-16 h-0.5" style={`background: ${hex};`}></div>
+                <div>
+                  <p class="text-[10px] font-medium text-secondary/70 dark:text-accent/70">{name}</p>
+                  <p class="text-[10px] text-secondary/50 dark:text-accent/50">{label}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Gradients -->
+        <div class="space-y-3">
+          <h3 class="ds-subtitle">Gradients</h3>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {gradients.map(({ name, value }) => (
+              <div class="space-y-1.5">
+                <div class="h-16 rounded-xl" style={`background: ${value};`}></div>
+                <p class="text-[10px] font-medium text-secondary/70 dark:text-accent/70">{name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <hr class="border-stroke-2 dark:border-stroke-6" />
+
+      <!-- ================================
+      SECTION: Typography
+      ================================= -->
+      <section id="tokens-type" class="space-y-6 scroll-mt-24">
+        <div class="ds-section-header">
+          <span class="ds-label">Tokens</span>
+          <h2 class="ds-title">Typography</h2>
+          <p class="ds-desc">Font: Inter Tight. All sizes from <code class="ds-code">tokens.css</code>.</p>
+        </div>
+
+        <div class="space-y-4 border border-stroke-2 dark:border-stroke-6 rounded-2xl overflow-hidden">
+          {typographyScale.map(({ name, size, lh, sample }, i) => (
+            <div class={`flex items-baseline gap-6 px-6 py-4 ${i < typographyScale.length - 1 ? 'border-b border-stroke-2 dark:border-stroke-6' : ''}`}>
+              <div class="w-28 shrink-0">
+                <p class="text-[10px] font-mono text-secondary/50 dark:text-accent/50">{name}</p>
+                <p class="text-[10px] font-mono text-secondary/40 dark:text-accent/40">{size} / {lh}</p>
+              </div>
+              <span class={`text-secondary dark:text-accent font-normal text-${name}`}>{sample}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <hr class="border-stroke-2 dark:border-stroke-6" />
+
+      <!-- ================================
+      SECTION: Shadows
+      ================================= -->
+      <section id="tokens-shadows" class="space-y-6 scroll-mt-24">
+        <div class="ds-section-header">
+          <span class="ds-label">Tokens</span>
+          <h2 class="ds-title">Shadows</h2>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {[1, 2, 3, 6, 7, 8, 9, 13].map(n => (
+            <div class={`bg-white dark:bg-background-6 rounded-xl p-6 text-center shadow-${n}`}>
+              <p class="text-tagline-3 font-mono text-secondary/60 dark:text-accent/60">shadow-{n}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <hr class="border-stroke-2 dark:border-stroke-6" />
+
+      <!-- ================================
+      SECTION: Buttons
+      ================================= -->
+      <section id="atoms-buttons" class="space-y-8 scroll-mt-24">
+        <div class="ds-section-header">
+          <span class="ds-label">Atoms</span>
+          <h2 class="ds-title">Buttons</h2>
+        </div>
+
+        <!-- Variants -->
+        <div class="space-y-3">
+          <h3 class="ds-subtitle">Variants (btn-md)</h3>
+          <div class="flex flex-wrap gap-3 p-6 rounded-2xl border border-stroke-2 dark:border-stroke-6">
+            <button class="btn btn-primary btn-md"><span>Primary</span></button>
+            <button class="btn btn-secondary btn-md"><span>Secondary</span></button>
+            <button class="btn btn-accent btn-md"><span>Accent</span></button>
+            <button class="btn btn-white btn-md"><span>White</span></button>
+            <button class="btn btn-primary btn-md" disabled><span>Disabled</span></button>
+          </div>
+          <!-- Dark bg for contrast -->
+          <div class="flex flex-wrap gap-3 p-6 rounded-2xl bg-background-7">
+            <button class="btn btn-primary btn-md"><span>Primary</span></button>
+            <button class="btn btn-accent btn-md"><span>Accent</span></button>
+            <button class="btn btn-white btn-md"><span>White</span></button>
+          </div>
+        </div>
+
+        <!-- Sizes -->
+        <div class="space-y-3">
+          <h3 class="ds-subtitle">Sizes</h3>
+          <div class="flex flex-wrap items-center gap-3 p-6 rounded-2xl border border-stroke-2 dark:border-stroke-6">
+            <button class="btn btn-primary btn-sm"><span>Small</span></button>
+            <button class="btn btn-primary btn-md"><span>Medium</span></button>
+            <button class="btn btn-primary btn-lg"><span>Large</span></button>
+          </div>
+        </div>
+
+        <!-- Full width -->
+        <div class="space-y-3">
+          <h3 class="ds-subtitle">Full Width</h3>
+          <div class="p-6 rounded-2xl border border-stroke-2 dark:border-stroke-6 max-w-sm">
+            <button class="btn btn-primary btn-md w-full"><span>Full width button</span></button>
+          </div>
+        </div>
+      </section>
+
+      <hr class="border-stroke-2 dark:border-stroke-6" />
+
+      <!-- ================================
+      SECTION: Badges
+      ================================= -->
+      <section id="atoms-badges" class="space-y-6 scroll-mt-24">
+        <div class="ds-section-header">
+          <span class="ds-label">Atoms</span>
+          <h2 class="ds-title">Badges</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 p-6 rounded-2xl border border-stroke-2 dark:border-stroke-6">
+          <span class="badge badge-primary">Primary</span>
+          <span class="badge badge-white">White</span>
+          <span class="badge badge-secondary">Secondary</span>
+          <span class="badge badge-blue">Blue</span>
+          <span class="badge badge-green">Green</span>
+          <span class="badge badge-yellow">Yellow</span>
+        </div>
+      </section>
+
+      <hr class="border-stroke-2 dark:border-stroke-6" />
+
+      <!-- ================================
+      SECTION: Form Atoms
+      ================================= -->
+      <section id="atoms-form" class="space-y-8 scroll-mt-24">
+        <div class="ds-section-header">
+          <span class="ds-label">Atoms</span>
+          <h2 class="ds-title">Form Atoms</h2>
+          <p class="ds-desc">Base components. Not used directly — compose via molecules.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- FormLabel -->
+          <div class="ds-card space-y-3">
+            <h3 class="ds-subtitle">FormLabel</h3>
+            <FormLabel for="demo-label">Label text (optional)</FormLabel>
+            <FormLabel for="demo-label-req" required>Label text (required)</FormLabel>
+            <p class="ds-code-note">Props: <code class="ds-code">for, required?</code></p>
+          </div>
+
+          <!-- FormInput -->
+          <div class="ds-card space-y-3">
+            <h3 class="ds-subtitle">FormInput</h3>
+            <FormInput id="demo-input" name="demo" placeholder="Placeholder text" />
+            <FormInput id="demo-input-email" name="demo_email" type="email" placeholder="email@example.com" />
+            <p class="ds-code-note">Props: <code class="ds-code">id, name, type?, placeholder?, required?, autocomplete?</code></p>
+          </div>
+
+          <!-- FormTextarea -->
+          <div class="ds-card space-y-3">
+            <h3 class="ds-subtitle">FormTextarea</h3>
+            <FormTextarea id="demo-ta" name="demo_ta" placeholder="Enter your message..." rows={3} />
+            <p class="ds-code-note">Props: <code class="ds-code">id, name, placeholder?, required?, rows?</code></p>
+          </div>
+
+          <!-- FormSelect -->
+          <div class="ds-card space-y-3">
+            <h3 class="ds-subtitle">FormSelect</h3>
+            <FormSelect
+              id="demo-select"
+              name="demo_select"
+              options={teamSizeOptions}
+              placeholder="Select team size"
+            />
+            <p class="ds-code-note">Props: <code class="ds-code">id, name, required?, options[], placeholder?</code></p>
+          </div>
+
+          <!-- FormError -->
+          <div class="ds-card space-y-3">
+            <h3 class="ds-subtitle">FormError</h3>
+            <div data-field-wrapper data-error>
+              <FormInput id="demo-err-input" name="demo_err" placeholder="This has an error state" />
+              <FormError id="demo-err-input" />
+            </div>
+            <p class="text-[11px] text-secondary/50 dark:text-accent/50">Error shown via <code class="ds-code">[data-field-wrapper][data-error]</code> on parent</p>
+          </div>
+
+          <!-- Logo -->
+          <div class="ds-card space-y-4">
+            <h3 class="ds-subtitle">Logo + ThemeToggle</h3>
+            <div class="flex items-center gap-4">
+              <Logo />
+            </div>
+            <div class="flex items-center gap-4">
+              <ThemeToggle />
+              <span class="text-tagline-3 text-secondary/50 dark:text-accent/50">ThemeToggle (functional)</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <hr class="border-stroke-2 dark:border-stroke-6" />
+
+      <!-- ================================
+      SECTION: Form Molecules
+      ================================= -->
+      <section id="molecules-form" class="space-y-8 scroll-mt-24">
+        <div class="ds-section-header">
+          <span class="ds-label">Molecules</span>
+          <h2 class="ds-title">Form Molecules</h2>
+          <p class="ds-desc">Composed field components. Each wraps label + input + error message. Use these in pages.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- FormField -->
+          <div class="ds-card space-y-4">
+            <h3 class="ds-subtitle">FormField</h3>
+            <FormField
+              id="mol-name"
+              name="mol_name"
+              label="Full name"
+              placeholder="Sam Carter"
+              required
+              autocomplete="name"
+            />
+            <FormField
+              id="mol-email"
+              name="mol_email"
+              label="Work email"
+              type="email"
+              placeholder="sam@agency.com"
+              required
+              autocomplete="email"
+            />
+            <FormField
+              id="mol-optional"
+              name="mol_optional"
+              label="Website"
+              type="url"
+              placeholder="https://your.agency"
+            />
+            <pre class="ds-pre">{'<FormField\n  id="email"\n  name="email"\n  label="Work email"\n  type="email"\n  placeholder="sam@agency.com"\n  required\n  autocomplete="email"\n/>'}</pre>
+          </div>
+
+          <!-- FormSelectField -->
+          <div class="ds-card space-y-4">
+            <h3 class="ds-subtitle">FormSelectField</h3>
+            <FormSelectField
+              id="mol-team"
+              name="mol_team"
+              label="Team size"
+              required
+              options={teamSizeOptions}
+              placeholder="Select"
+            />
+            <FormSelectField
+              id="mol-role"
+              name="mol_role"
+              label="Your role"
+              required
+              options={[
+                { value: 'owner', label: 'Agency Owner / CEO' },
+                { value: 'pm', label: 'Project Manager' },
+                { value: 'ops', label: 'Operations Manager' },
+                { value: 'finance', label: 'Finance / Accounting' },
+                { value: 'other', label: 'Other' },
+              ]}
+              placeholder="Select"
+            />
+            <pre class="ds-pre">{'<FormSelectField\n  id="team-size"\n  name="team_size"\n  label="Team size"\n  required\n  options={teamSizeOptions}\n  placeholder="Select"\n/>'}</pre>
+          </div>
+
+          <!-- FormTextareaField -->
+          <div class="ds-card space-y-4">
+            <h3 class="ds-subtitle">FormTextareaField</h3>
+            <FormTextareaField
+              id="mol-msg"
+              name="mol_msg"
+              label="Message"
+              placeholder="Tell us about your agency..."
+              required
+              rows={4}
+            />
+            <FormTextareaField
+              id="mol-notes"
+              name="mol_notes"
+              label="Additional notes"
+              hint="optional"
+              placeholder="Anything else we should know?"
+              rows={3}
+            />
+            <pre class="ds-pre">{'<FormTextareaField\n  id="message"\n  name="message"\n  label="Message"\n  placeholder="..."\n  required\n  rows={4}\n/>'}</pre>
+          </div>
+
+          <!-- Error state showcase -->
+          <div class="ds-card space-y-4">
+            <h3 class="ds-subtitle">Error States</h3>
+            <p class="text-tagline-3 text-secondary/60 dark:text-accent/60">Add <code class="ds-code">data-error</code> to <code class="ds-code">data-field-wrapper</code> div to trigger:</p>
+            <div data-field-wrapper data-error data-field-id="err-name">
+              <FormLabel for="err-name" required>First name</FormLabel>
+              <FormInput id="err-name" name="err_name" placeholder="Sam" required />
+              <FormError id="err-name" />
+            </div>
+            <div data-field-wrapper data-error data-field-id="err-email">
+              <FormLabel for="err-email" required>Work email</FormLabel>
+              <FormInput id="err-email" name="err_email" type="email" placeholder="sam@agency.com" required />
+              <FormError id="err-email" />
+            </div>
+            <script is:inline>
+              // Set error messages for the demo
+              document.getElementById('err-name-error').textContent = 'This field is required'
+              document.getElementById('err-email-error').textContent = 'Please enter a valid email address'
+            </script>
+          </div>
+
+        </div>
+      </section>
+
+      <hr class="border-stroke-2 dark:border-stroke-6" />
+
+      <!-- ================================
+      SECTION: Interactive Form Demo
+      ================================= -->
+      <section id="form-demo" class="space-y-8 scroll-mt-24">
+        <div class="ds-section-header">
+          <span class="ds-label">Pattern</span>
+          <h2 class="ds-title">Interactive Form Demo</h2>
+          <p class="ds-desc">Fully wired form with blur validation, submit handling, success and error states. Uses <code class="ds-code">validateForm</code>, <code class="ds-code">setupBlurValidation</code>, <code class="ds-code">submitToNetlify</code> from <code class="ds-code">src/js/utils/form-submit.js</code>.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+          <!-- Live demo -->
+          <div class="ds-card">
+            <h3 class="ds-subtitle mb-6">Live Demo (submit wired to Netlify)</h3>
+
+            <form
+              id="ds-demo-form"
+              name="design-system-test"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              novalidate
+              class="space-y-4"
+            >
+              <input type="hidden" name="form-name" value="design-system-test" />
+              <input type="text" name="bot-field" class="sr-only" tabindex="-1" autocomplete="off" />
+
+              <div class="grid grid-cols-2 gap-3">
+                <FormField id="ds-first" name="first_name" label="First name" placeholder="Sam" required autocomplete="given-name" />
+                <FormField id="ds-last" name="last_name" label="Last name" placeholder="Carter" required autocomplete="family-name" />
+              </div>
+
+              <FormField id="ds-email" name="email" label="Work email" type="email" placeholder="sam@agency.com" required autocomplete="email" />
+
+              <FormSelectField
+                id="ds-team"
+                name="team_size"
+                label="Team size"
+                required
+                options={teamSizeOptions}
+                placeholder="Select"
+              />
+
+              <FormTextareaField
+                id="ds-msg"
+                name="message"
+                label="Message"
+                hint="optional"
+                placeholder="What do you need?"
+                rows={3}
+              />
+
+              <div class="space-y-2 pt-1">
+                <button type="submit" id="ds-submit" class="btn btn-primary btn-md w-full">
+                  <span>Submit form</span>
+                </button>
+                <p id="ds-form-error" class="hidden text-[11px] text-red-500 text-center">
+                  Something went wrong. Check your connection and try again.
+                </p>
+              </div>
+            </form>
+
+            <!-- Success state -->
+            <div id="ds-success" class="hidden text-center space-y-4 py-6">
+              <div class="size-12 rounded-2xl bg-ns-green/10 border border-ns-green/20 flex items-center justify-center mx-auto">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17L4 12" stroke="#2d9b9b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">Form submitted!</p>
+              <p class="text-tagline-2 text-secondary/70 dark:text-accent/70">Captured in Netlify Forms dashboard.</p>
+              <button
+                onclick="document.getElementById('ds-success').classList.add('hidden'); document.getElementById('ds-demo-form').classList.remove('hidden'); document.getElementById('ds-demo-form').reset();"
+                class="text-tagline-3 text-primary-400 hover:text-primary-300 transition-colors"
+              >
+                Reset demo
+              </button>
+            </div>
+          </div>
+
+          <!-- Code reference -->
+          <div class="ds-card space-y-4">
+            <h3 class="ds-subtitle">Page Script Pattern</h3>
+            <pre class="ds-pre text-[11px] leading-relaxed overflow-x-auto">{`import { validateForm, setupBlurValidation, submitToNetlify }
+  from '../js/utils/form-submit.js'
+
+const form = document.getElementById('my-form')
+const btn = document.getElementById('submit-btn')
+
+if (form && btn) {
+  setupBlurValidation(form)
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    if (!validateForm(form)) return
+
+    const span = btn.querySelector('span')
+    if (span) span.textContent = 'Sending...'
+    btn.disabled = true
+
+    try {
+      const ok = await submitToNetlify(form)
+      if (ok) {
+        // show success
+      } else {
+        // show error, re-enable btn
+      }
+    } catch {
+      // network failure
+    }
+  })
+}`}</pre>
+
+            <h3 class="ds-subtitle mt-4">Form HTML Requirements</h3>
+            <pre class="ds-pre text-[11px] overflow-x-auto">{`<form
+  id="my-form"
+  name="form-name"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  novalidate
+>
+  <input type="hidden" name="form-name" value="form-name" />
+  <input type="text" name="bot-field"
+    class="sr-only" tabindex="-1" autocomplete="off" />
+
+  <!-- fields -->
+  <FormField id="email" name="email"
+    label="Work email" type="email" required />
+
+  <button type="submit" id="submit-btn">
+    <span>Submit</span>
+  </button>
+  <p id="form-error" class="hidden">...</p>
+</form>
+
+<!-- success state (outside form) -->
+<div id="success-state" class="hidden">...</div>`}</pre>
+          </div>
+
+        </div>
+      </section>
+
+      <hr class="border-stroke-2 dark:border-stroke-6" />
+
+      <!-- ================================
+      SECTION: File Structure Reference
+      ================================= -->
+      <section class="space-y-6 scroll-mt-24">
+        <div class="ds-section-header">
+          <span class="ds-label">Reference</span>
+          <h2 class="ds-title">File Structure</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+          <div class="ds-card">
+            <h3 class="ds-subtitle mb-3">Atoms</h3>
+            <ul class="space-y-1">
+              {[
+                'atoms/FormLabel.astro',
+                'atoms/FormInput.astro',
+                'atoms/FormTextarea.astro',
+                'atoms/FormSelect.astro',
+                'atoms/FormError.astro',
+                'atoms/Logo.astro',
+                'atoms/ThemeToggle.astro',
+                'atoms/Star.astro',
+                'atoms/HoverBg.astro',
+                'atoms/AccordionIcon.astro',
+              ].map(f => (
+                <li class="text-[11px] font-mono text-secondary/70 dark:text-accent/70 hover:text-primary-400 transition-colors">
+                  <code>src/components/{f}</code>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="ds-card">
+            <h3 class="ds-subtitle mb-3">Molecules</h3>
+            <ul class="space-y-1">
+              {[
+                'molecules/FormField.astro',
+                'molecules/FormTextareaField.astro',
+                'molecules/FormSelectField.astro',
+                'molecules/Accordion.astro',
+                'molecules/AccordionItem.astro',
+                'molecules/BlogCard.astro',
+                'molecules/BlogCTA.astro',
+                'molecules/BlogCTASidebar.astro',
+                'molecules/BlogNewsletter.astro',
+                'molecules/FeatureCard.astro',
+                'molecules/NavItem.astro',
+                'molecules/SidebarTOC.astro',
+                'molecules/TestimonialCard.astro',
+              ].map(f => (
+                <li class="text-[11px] font-mono text-secondary/70 dark:text-accent/70">
+                  <code>src/components/{f}</code>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="ds-card">
+            <h3 class="ds-subtitle mb-3">Organisms</h3>
+            <ul class="space-y-1">
+              {[
+                'organisms/Header.astro',
+                'organisms/Footer.astro',
+                'organisms/Hero.astro',
+                'organisms/CTA.astro',
+                'organisms/FAQ.astro',
+                'organisms/Feature.astro',
+                'organisms/FeatureV2.astro',
+                'organisms/FeatureV3.astro',
+                'organisms/FoundingMember.astro',
+                'organisms/Modules.astro',
+                'organisms/Pricing.astro',
+                'organisms/Services.astro',
+              ].map(f => (
+                <li class="text-[11px] font-mono text-secondary/70 dark:text-accent/70">
+                  <code>src/components/{f}</code>
+                </li>
+              ))}
+            </ul>
+            <h3 class="ds-subtitle mt-4 mb-3">Styles</h3>
+            <ul class="space-y-1">
+              {[
+                'tokens.css — all CSS vars',
+                'forms.css — form utilities',
+                'global.css — imports chain',
+                'common.css — utilities',
+                'button.css — btn classes',
+                'badge.css — badge classes',
+              ].map(f => (
+                <li class="text-[11px] font-mono text-secondary/70 dark:text-accent/70">
+                  <code>src/styles/{f}</code>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+
+<script>
+  import { validateForm, setupBlurValidation, submitToNetlify } from '../js/utils/form-submit.js'
+
+  const form = document.getElementById('ds-demo-form') as HTMLFormElement | null
+  const btn = document.getElementById('ds-submit') as HTMLButtonElement | null
+  const successEl = document.getElementById('ds-success')
+  const errorEl = document.getElementById('ds-form-error')
+
+  if (form && btn) {
+    setupBlurValidation(form)
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      if (!validateForm(form)) return
+
+      const span = btn.querySelector('span')
+      if (span) span.textContent = 'Sending...'
+      btn.disabled = true
+      errorEl?.classList.add('hidden')
+
+      try {
+        const ok = await submitToNetlify(form)
+        if (ok) {
+          form.classList.add('hidden')
+          successEl?.classList.remove('hidden')
+        } else {
+          errorEl?.classList.remove('hidden')
+          if (span) span.textContent = 'Submit form'
+          btn.disabled = false
+        }
+      } catch {
+        errorEl?.classList.remove('hidden')
+        if (span) span.textContent = 'Submit form'
+        btn.disabled = false
+      }
+    })
+  }
+</script>

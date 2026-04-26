@@ -80,7 +80,9 @@ import Footer from '../components/organisms/Footer.astro'
               <p class="text-tagline-2 text-secondary/75 dark:text-accent/75">We will get back to you within one business day.</p>
             </div>
 
-            <form id="contact-form" class="space-y-5" novalidate>
+            <form id="contact-form" class="space-y-5" novalidate data-netlify="true" name="contact" netlify-honeypot="bot-field">
+              <input type="hidden" name="form-name" value="contact" />
+              <input type="text" name="bot-field" class="sr-only" tabindex="-1" autocomplete="off" />
               <div class="grid grid-cols-2 gap-4">
                 <div class="space-y-1.5">
                   <label for="cf-first" class="text-tagline-2 font-medium text-secondary/70 dark:text-accent/70">First name</label>
@@ -148,6 +150,7 @@ import Footer from '../components/organisms/Footer.astro'
                 ></textarea>
               </div>
 
+              <p id="cf-general-error" class="hidden text-[11px] text-red-500 text-center">Something went wrong. Please try again or email hello@insighty.io.</p>
               <button type="submit" id="cf-submit" class="btn btn-primary btn-md w-full">
                 <span id="cf-btn-text">Send message</span>
               </button>
@@ -160,8 +163,9 @@ import Footer from '../components/organisms/Footer.astro'
                   <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
-              <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">Message sent</p>
-              <p class="text-tagline-2 text-secondary/75 dark:text-accent/75">We will be back in touch within one business day.</p>
+              <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">Thank you!</p>
+              <p class="text-tagline-2 text-secondary/75 dark:text-accent/75">We've received your message and will get back to you within one business day.</p>
+              <a href="/" class="inline-block text-tagline-2 text-primary-500 hover:text-primary-400 transition-colors mt-2">← Back to home</a>
             </div>
           </div>
         </div>
@@ -178,27 +182,68 @@ import Footer from '../components/organisms/Footer.astro'
   }
 </style>
 
-<script is:inline>
-  (function () {
-    var form = document.getElementById('contact-form');
-    var success = document.getElementById('cf-success');
-    var btnText = document.getElementById('cf-btn-text');
-    if (!form) return;
+<script>
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  const form = document.getElementById('contact-form') as HTMLFormElement | null
+  const success = document.getElementById('cf-success')
+  const btn = document.getElementById('cf-submit') as HTMLButtonElement | null
+  const btnText = document.getElementById('cf-btn-text')
+  const generalError = document.getElementById('cf-general-error')
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var valid = true;
-      form.querySelectorAll('[required]').forEach(function (el) {
-        el.classList.remove('error');
-        if (!el.value.trim()) { el.classList.add('error'); valid = false; }
-      });
-      if (!valid) return;
+  function getError(el: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement): string {
+    if (el.required && !el.value.trim()) return 'Required'
+    if (el.type === 'email' && el.value && !EMAIL_RE.test(el.value)) return 'Invalid email'
+    return ''
+  }
 
-      btnText.textContent = 'Sending...';
-      setTimeout(function () {
-        form.style.display = 'none';
-        success.classList.remove('hidden');
-      }, 800);
-    });
-  })();
+  // Blur validation
+  form?.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('[required]')
+    .forEach(el => {
+      el.addEventListener('blur', () => {
+        el.classList.toggle('error', !!getError(el))
+      })
+      el.addEventListener('input', () => {
+        if (el.classList.contains('error') && !getError(el)) el.classList.remove('error')
+      })
+    })
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    let valid = true
+    form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('[required]')
+      .forEach(el => {
+        const err = getError(el)
+        el.classList.toggle('error', !!err)
+        if (err) valid = false
+      })
+    if (!valid) return
+
+    if (btnText) btnText.textContent = 'Sending...'
+    if (btn) btn.disabled = true
+    generalError?.classList.add('hidden')
+
+    try {
+      const body = new URLSearchParams()
+      new FormData(form).forEach((v, k) => body.append(k, v as string))
+      const ok = (await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString(),
+      })).ok
+
+      if (ok) {
+        form.closest('.rounded-2xl')?.querySelector('form')?.classList.add('hidden')
+        form.classList.add('hidden')
+        success?.classList.remove('hidden')
+      } else {
+        generalError?.classList.remove('hidden')
+        if (btnText) btnText.textContent = 'Send message'
+        if (btn) btn.disabled = false
+      }
+    } catch {
+      generalError?.classList.remove('hidden')
+      if (btnText) btnText.textContent = 'Send message'
+      if (btn) btn.disabled = false
+    }
+  })
 </script>

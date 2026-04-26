@@ -2,6 +2,8 @@
 @import './icon-font';
 @import './typography';
 @import './common';
+@import './forms';
+@import './design-system';
 @import 'tailwindcss';
 @import './base';
 @import './button';

@@ -12,7 +12,6 @@ export default defineConfig({
     sitemap({
       filter: (page) =>
         !page.includes('/use-cases/template') &&
-        !page.includes('/sitemap/') &&
         !page.includes('/404/'),
       namespaces: {
         news: false,

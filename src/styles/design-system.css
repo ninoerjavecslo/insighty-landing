@@ -1,0 +1,39 @@
+/* =========================
+Design System Page Styles (/design-system — internal only)
+=========================== */
+
+.ds-section-header > * + * {
+  margin-top: 0.25rem;
+}
+
+.ds-label {
+  @apply inline-block text-[10px] font-semibold uppercase tracking-widest text-primary-400 bg-primary-500/8 px-2.5 py-1 rounded-full;
+}
+
+.ds-title {
+  @apply text-heading-5 font-medium text-secondary dark:text-accent;
+}
+
+.ds-subtitle {
+  @apply text-tagline-1 font-semibold text-secondary dark:text-accent;
+}
+
+.ds-desc {
+  @apply text-tagline-2 text-secondary/60 dark:text-accent/60;
+}
+
+.ds-card {
+  @apply p-6 rounded-2xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7;
+}
+
+.ds-code {
+  @apply font-mono text-[11px] bg-background-3 dark:bg-background-5 px-1.5 py-0.5 rounded text-primary-400;
+}
+
+.ds-code-note {
+  @apply text-[11px] text-secondary/50 dark:text-accent/50;
+}
+
+.ds-pre {
+  @apply font-mono text-[11px] bg-background-5 dark:bg-background-8 text-accent/80 p-4 rounded-xl overflow-x-auto leading-relaxed whitespace-pre;
+}

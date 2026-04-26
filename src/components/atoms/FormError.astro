@@ -1,0 +1,5 @@
+---
+interface Props { id: string }
+const { id } = Astro.props
+---
+<p id={`${id}-error`} class="form-error-msg" role="alert" aria-live="polite"></p>
