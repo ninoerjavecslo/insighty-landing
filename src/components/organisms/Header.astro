@@ -433,7 +433,7 @@ Header v1
         >
           <div class="h-[120px] flex items-end p-2.5 relative overflow-hidden" style={featuredPost.data.thumbnail ? undefined : "background: linear-gradient(135deg, #112445 0%, #4a6ec7 100%)"}>
             {featuredPost.data.thumbnail && (
-              <img src={featuredPost.data.thumbnail} alt="" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+              <img src={featuredPost.data.thumbnail} alt="" class="absolute inset-0 w-full h-full object-cover" loading="eager" width="320" height="120" />
             )}
             {featuredPost.data.thumbnail && (
               <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 60%)"></div>

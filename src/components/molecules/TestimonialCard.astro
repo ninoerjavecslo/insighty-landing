@@ -13,7 +13,7 @@ const { quote, author, role, avatar } = Astro.props
   <TestimonialStar />
   <p class="text-tagline-1 font-normal text-secondary dark:text-accent">"{quote}"</p>
   <div class="flex items-center gap-3">
-    {avatar && <img src={avatar} alt={author} class="size-10 rounded-full object-cover" />}
+    {avatar && <img src={avatar} alt={author} class="size-10 rounded-full object-cover" width="40" height="40" />}
     <div>
       <p class="text-tagline-2 font-medium text-secondary dark:text-accent">{author}</p>
       <p class="text-tagline-3 text-secondary/80 dark:text-accent/80">{role}</p>
