@@ -6,3 +6,6 @@ dist/
 .env.local
 .gstack/
 .claude/settings.local.json
+.claude/worktrees/
+.playwright-mcp/
+psi-*.jpeg
