@@ -7,7 +7,22 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-type Variant = 'primary' | 'secondary' | 'white' | 'green' | 'yellow' | 'cyan' | 'gray'
+type Variant =
+  | 'primary'
+  | 'primary-light'
+  | 'secondary'
+  | 'secondary-light'
+  | 'white'
+  | 'green'
+  | 'yellow'
+  | 'cyan'
+  | 'gray'
+  | 'gray-light'
+  | 'gray-dark'
+  | 'metal'
+  | 'blur'
+  | 'blur-light'
+  | 'ivory'
 
 const props = withDefaults(
   defineProps<{

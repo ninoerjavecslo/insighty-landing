@@ -4,6 +4,7 @@ import Header from '../../components/organisms/Header.astro'
 import Footer from '../../components/organisms/Footer.astro'
 import SidebarTOC from '../../components/molecules/SidebarTOC.astro'
 import Accordion from '../../components/molecules/Accordion.astro'
+import Button from '../../components/atoms/Button.astro'
 
 const toc = [
   { id: 'calculator', label: 'Calculator' },
@@ -388,7 +389,7 @@ const faqs = [
                   Insighty tracks utilisation, billable hours, and effective rate per client in real time. See exactly which projects are profitable and which ones are quietly draining your margin — without building another spreadsheet.
                 </p>
                 <div class="flex flex-wrap items-center gap-4 pt-2">
-                  <a href="/founding-member" class="btn btn-md btn-outline-white"><span>Request early access</span></a>
+                  <Button kind="outline-white" href="/founding-member"><span>Request early access</span></Button>
                   <a href="/#platform" class="inline-flex items-center gap-2 text-white/75 hover:text-white text-tagline-2 font-medium uppercase tracking-wide transition-colors duration-200 group">
                     <span>See the platform</span>
                     <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none">

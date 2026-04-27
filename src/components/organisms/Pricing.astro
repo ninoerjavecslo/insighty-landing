@@ -1,4 +1,5 @@
 ---
+import Button from '../atoms/Button.astro'
 ---
 <!-- =========================
 Pricing section
@@ -14,12 +15,9 @@ Pricing section
         </p>
       </div>
       <div data-ns-animate data-delay="0.3">
-        <a
-          href="/pricing"
-          class="btn hover:btn-primary dark:btn-transparent btn-secondary btn-md w-[90%] md:w-auto mx-auto"
-        >
+        <Button kind="outline-white" href="/pricing" class="w-[90%] md:w-auto mx-auto">
           <span>Join the Waitlist</span>
-        </a>
+        </Button>
       </div>
     </div>
     <div
@@ -81,12 +79,9 @@ Pricing section
                 <h3 class="text-heading-5 font-normal">Free</h3>
                 <p>Early access for founding members</p>
               </div>
-              <a
-                href="/contact"
-                class="btn dark:btn-white-dark hover:btn-primary btn-white btn-md w-full before:content-none first-letter:uppercase"
-              >
+              <Button kind="outline-white" href="/contact" full class="before:content-none first-letter:uppercase">
                 Get started
-              </a>
+              </Button>
             </div>
             <div class="rounded-b-[20px] bg-white dark:bg-background-6">
               <ul>
@@ -158,11 +153,7 @@ Pricing section
                 <h3 class="text-heading-5 font-normal text-accent">$24.99<span class="text-heading-6">/mo</span></h3>
                 <p class="text-accent/80">For growing agencies</p>
               </div>
-              <a
-                href="/contact"
-                class="btn btn-primary hover:btn-white dark:hover:btn-accent btn-md w-full before:content-none first-letter:uppercase border-0"
-                >Get started</a
-              >
+              <Button kind="primary" href="/contact" full class="before:content-none first-letter:uppercase border-0">Get started</Button>
             </div>
             <div class="rounded-b-[20px] bg-white dark:bg-background-6">
               <ul>
@@ -249,12 +240,9 @@ Pricing section
                 <h3 class="text-heading-5 font-normal">$99<span class="text-heading-6">/mo</span></h3>
                 <p>For established agencies</p>
               </div>
-              <a
-                href="/contact"
-                class="btn btn-white hover:btn-primary dark:btn-white-dark btn-md w-full before:content-none first-letter:uppercase"
-              >
+              <Button kind="outline-white" href="/contact" full class="before:content-none first-letter:uppercase">
                 Get started
-              </a>
+              </Button>
             </div>
             <div class="rounded-b-[20px] bg-white dark:bg-background-6">
               <ul>

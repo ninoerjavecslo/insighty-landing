@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/organisms/Header.astro'
 import Footer from '../../components/organisms/Footer.astro'
+import Button from '../../components/atoms/Button.astro'
 
 const useCase = {
   title: "Insighty for Freelancers — Manage Clients, Projects & Revenue in One Place",
@@ -110,8 +111,8 @@ const useCase = {
               <p data-ns-animate data-delay="0.2" class="max-w-[500px] text-secondary/70 dark:text-accent/70">{useCase.heroSubtext}</p>
             </div>
             <div data-ns-animate data-delay="0.3" class="flex flex-wrap gap-3">
-              <a href="/founding-member" class="btn btn-primary btn-md"><span>Get Early Access</span></a>
-              <a href="/#platform" class="btn btn-white dark:btn-white-dark btn-md"><span>See the Platform</span></a>
+              <Button kind="primary" href="/founding-member"><span>Get Early Access</span></Button>
+              <Button kind="outline-white" href="/#platform"><span>See the Platform</span></Button>
             </div>
             <div data-ns-animate data-delay="0.4" class="flex items-center gap-3 pt-2">
               <div class="flex -space-x-2">
@@ -197,7 +198,7 @@ const useCase = {
                 </li>
               ))}
             </ul>
-            <div data-ns-animate data-delay="0.35"><a href="/founding-member" class="btn btn-primary btn-md"><span>Get Early Access</span></a></div>
+            <div data-ns-animate data-delay="0.35"><Button kind="primary" href="/founding-member"><span>Get Early Access</span></Button></div>
           </div>
           <div data-ns-animate data-delay="0.2" data-direction="up" data-offset="60">
             <!-- MOCKUP PLACEHOLDER: Client detail with projects list, 1200×900px -->
@@ -239,7 +240,7 @@ const useCase = {
                 </li>
               ))}
             </ul>
-            <div data-ns-animate data-delay="0.35"><a href="/founding-member" class="btn btn-primary btn-md"><span>Get Early Access</span></a></div>
+            <div data-ns-animate data-delay="0.35"><Button kind="primary" href="/founding-member"><span>Get Early Access</span></Button></div>
           </div>
         </div>
       </div>
@@ -264,7 +265,7 @@ const useCase = {
                 </li>
               ))}
             </ul>
-            <div data-ns-animate data-delay="0.35"><a href="/founding-member" class="btn btn-white btn-md"><span>Get Early Access</span></a></div>
+            <div data-ns-animate data-delay="0.35"><Button kind="outline-white" href="/founding-member"><span>Get Early Access</span></Button></div>
           </div>
           <div data-ns-animate data-delay="0.2" data-direction="up" data-offset="60">
             <!-- MOCKUP PLACEHOLDER: Pipeline kanban or table, 1200×900px -->
@@ -325,8 +326,8 @@ const useCase = {
             <p data-ns-animate data-delay="0.2" class="text-secondary/70 dark:text-accent/70 max-w-[480px] mx-auto">{useCase.ctaSubtext}</p>
           </div>
           <div data-ns-animate data-delay="0.3" class="flex flex-wrap justify-center gap-3">
-            <a href="/founding-member" class="btn btn-primary btn-xl"><span>Become a Founding Member</span></a>
-            <a href="/#platform" class="btn btn-white dark:btn-white-dark btn-xl"><span>Explore the Platform</span></a>
+            <Button kind="primary" href="/founding-member" size="xl"><span>Become a Founding Member</span></Button>
+            <Button kind="outline-white" href="/#platform" size="xl"><span>Explore the Platform</span></Button>
           </div>
           <p data-ns-animate data-delay="0.4" class="text-tagline-3 text-secondary/75 dark:text-accent/75">No credit card required &middot; Founding member pricing locked for life</p>
         </div>

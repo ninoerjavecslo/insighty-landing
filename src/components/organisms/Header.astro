@@ -1,6 +1,7 @@
 ---
 import ThemeToggle from "../atoms/ThemeToggle.astro";
 import Logo from "../atoms/Logo.astro";
+import Button from "../atoms/Button.astro";
 import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('blog');
@@ -98,12 +99,9 @@ Header v1
     </nav>
 
     <div class="hidden items-center justify-center xl:flex">
-      <a
-        href="/request-a-demo"
-        class="btn btn-md btn-secondary dark:btn-accent hover:btn-primary !rounded-none"
-      >
+      <Button kind="primary" href="/request-a-demo" class="!rounded-none">
         <span>Request a Demo</span>
-      </a>
+      </Button>
     </div>
     <div class="block xl:hidden">
       <button
@@ -219,9 +217,9 @@ Header v1
 
       <!-- CTA -->
       <div class="mt-8">
-        <a href="/request-a-demo" class="btn btn-secondary btn-md w-full">
+        <Button kind="outline-white" href="/request-a-demo" full>
           <span>Request a Demo</span>
-        </a>
+        </Button>
       </div>
 
     </div>

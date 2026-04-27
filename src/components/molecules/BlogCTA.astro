@@ -1,5 +1,6 @@
 ---
 import { blogCTA } from '../../data/blogCTAContent'
+import Button from '../atoms/Button.astro'
 ---
 
 <aside
@@ -21,9 +22,9 @@ import { blogCTA } from '../../data/blogCTAContent'
       <h3 class="text-white leading-tight max-w-[420px] not-prose">{blogCTA.headline}</h3>
       <p class="text-tagline-2 text-white/70 max-w-[400px]">{blogCTA.subtext}</p>
       <div class="flex flex-wrap gap-3 pt-2">
-        <a href={blogCTA.primaryCTA.href} class="btn btn-md btn-white">
+        <Button kind="outline" href={blogCTA.primaryCTA.href}>
           <span>{blogCTA.primaryCTA.label}</span>
-        </a>
+        </Button>
         <a
           href={blogCTA.secondaryCTA.href}
           class="inline-flex items-center px-5 py-2.5 rounded-full text-tagline-2 font-medium text-white border border-white/25 hover:border-white/50 transition-colors duration-200"

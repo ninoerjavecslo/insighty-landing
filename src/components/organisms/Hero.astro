@@ -1,4 +1,5 @@
 ---
+import Button from '../atoms/Button.astro'
 ---
 <!-- =========================
 Hero section
@@ -34,13 +35,13 @@ Hero section
         </p>
       </div>
       <div data-ns-animate data-delay="0.3" class="relative z-20">
-        <a
+        <Button
+          kind="primary"
           href="/founding-member"
-          class="btn btn-primary btn-md mx-auto w-[90%] md:w-auto"
-          aria-label="Join the Insighty waitlist"
+          class="mx-auto w-[90%] md:w-auto"
         >
           <span>Become a Founding Member</span>
-        </a>
+        </Button>
       </div>
     </div>
     <div class="relative z-10">

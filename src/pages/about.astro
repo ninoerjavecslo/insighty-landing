@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Logo from '../components/atoms/Logo.astro'
 import Footer from '../components/organisms/Footer.astro'
+import Button from '../components/atoms/Button.astro'
 ---
 
 <BaseLayout
@@ -20,7 +21,7 @@ import Footer from '../components/organisms/Footer.astro'
       </a>
       <div class="flex items-center gap-4">
         <a href="/" class="text-white/50 hover:text-white text-tagline-2 uppercase tracking-wider font-medium transition-colors hidden sm:block">← Back</a>
-        <a href="/request-a-demo" class="btn btn-md btn-primary"><span>Request a demo</span></a>
+        <Button kind="primary" href="/request-a-demo"><span>Request a demo</span></Button>
       </div>
     </header>
 
@@ -215,8 +216,8 @@ import Footer from '../components/organisms/Footer.astro'
             Insighty is pre-launch. We are onboarding a small group of founding members who will shape the product, lock in pre-launch pricing, and run on Insighty before the world does.
           </p>
           <div class="flex flex-wrap gap-3 pt-2">
-            <a href="/founding-member" class="btn btn-md btn-primary"><span>Become a founding member</span></a>
-            <a href="/request-a-demo" class="btn btn-md btn-secondary dark:btn-accent"><span>Request a demo</span></a>
+            <Button kind="primary" href="/founding-member"><span>Become a founding member</span></Button>
+            <Button kind="outline-white" href="/request-a-demo"><span>Request a demo</span></Button>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@
     :is="tag"
     :class="classes"
     :href="tag === 'a' ? href : undefined"
-    :disabled="tag === 'button' ? disabled : undefined"
+    :disabled="tag === 'button' && disabled ? true : undefined"
     :aria-disabled="disabled || undefined"
   >
     <slot name="icon-left" />
@@ -15,12 +15,16 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-type Variant = 'primary' | 'secondary' | 'accent' | 'white'
-type Size = 'sm' | 'md' | 'lg'
+// Maps semantic kind names to the actual CSS utility classes defined in button.css.
+// primary   → btn-primary      (filled dark navy — used for CTAs like "Request a Demo")
+// secondary → btn-outline-white (transparent + white border — used for secondary CTAs)
+// tertiary  → btn-transparent  (ghost, no background — used for "See the Platform →")
+type Kind = 'primary' | 'secondary' | 'tertiary'
+type Size = 'sm' | 'md' | 'lg' | 'xl'
 
 const props = withDefaults(
   defineProps<{
-    variant?: Variant
+    kind?: Kind
     size?: Size
     disabled?: boolean
     tag?: 'button' | 'a'
@@ -28,17 +32,23 @@ const props = withDefaults(
     full?: boolean
   }>(),
   {
-    variant: 'primary',
+    kind: 'primary',
     size: 'md',
     disabled: false,
     tag: 'button',
     full: false,
-  }
+  },
 )
+
+const kindMap: Record<Kind, string> = {
+  primary:   'btn-primary',
+  secondary: 'btn-outline-white',
+  tertiary:  'btn-transparent',
+}
 
 const classes = computed(() => [
   'btn',
-  `btn-${props.variant}`,
+  kindMap[props.kind],
   `btn-${props.size}`,
   props.full ? 'w-full' : '',
   props.disabled ? 'opacity-50 pointer-events-none' : '',

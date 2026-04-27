@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Header from '../components/organisms/Header.astro'
 import Footer from '../components/organisms/Footer.astro'
+import Button from '../components/atoms/Button.astro'
 ---
 
 <BaseLayout
@@ -283,7 +284,7 @@ import Footer from '../components/organisms/Footer.astro'
           <div class="pt-1 space-y-3">
             <button
               type="submit"
-              class="btn btn-secondary hover:btn-primary dark:btn-accent btn-md w-full py-3 text-tagline-1"
+              class="btn btn-primary btn-md w-full py-3 text-tagline-1"
               id="demo-submit-btn"
             >
               <span>Request my demo</span>
@@ -313,9 +314,9 @@ import Footer from '../components/organisms/Footer.astro'
               We've received your demo request and will reach out at your email within one business day to schedule a time.
             </p>
           </div>
-          <a href="/" class="btn btn-white btn-md inline-flex mt-2">
+          <Button kind="outline-white" href="/" class="inline-flex mt-2">
             <span>Back to home</span>
-          </a>
+          </Button>
         </div>
 
       </div>

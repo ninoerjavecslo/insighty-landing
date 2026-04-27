@@ -1,0 +1,73 @@
+---
+interface Props {
+  kind?: 'primary' | 'outline' | 'outline-white' | 'ghost' | 'arrow'
+  size?: 'sm' | 'md' | 'lg' | 'xl'
+  href?: string
+  full?: boolean
+  disabled?: boolean
+  type?: 'button' | 'submit' | 'reset'
+  target?: '_blank' | '_self'
+  rel?: string
+  class?: string
+}
+
+const {
+  kind = 'primary' as 'primary' | 'outline' | 'outline-white' | 'ghost' | 'arrow',
+  size = 'md',
+  href,
+  full = false,
+  disabled = false,
+  type = 'button',
+  target,
+  rel,
+  class: className = '',
+} = Astro.props
+
+// arrow kind skips the `btn` base class — it's a text-link, not a box button
+const isArrow = kind === 'arrow'
+
+const kindMap = {
+  primary:         'btn-primary',       // filled navy — any background
+  outline:         'btn-outline',       // dark border — light/white backgrounds
+  'outline-white': 'btn-outline-white', // white border — dark/navy backgrounds
+  ghost:           'btn-transparent',   // no border — dark backgrounds
+  arrow:           'btn-arrow',         // text + arrow — dark backgrounds
+}
+
+const classes = isArrow
+  ? [
+      'btn-arrow',
+      'group',
+      disabled ? 'opacity-50 pointer-events-none' : '',
+      full ? 'w-full' : '',
+      className,
+    ].filter(Boolean).join(' ')
+  : [
+      'btn',
+      kindMap[kind],
+      `btn-${size}`,
+      full ? 'w-full' : '',
+      disabled ? 'opacity-50 pointer-events-none' : '',
+      className,
+    ].filter(Boolean).join(' ')
+---
+
+{href ? (
+  <a class={classes} href={href} target={target} rel={rel ?? (target === '_blank' ? 'noopener noreferrer' : undefined)}>
+    <slot />
+    {isArrow && (
+      <svg class="w-4 h-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    )}
+  </a>
+) : (
+  <button class={classes} type={type} disabled={disabled || undefined}>
+    <slot />
+    {isArrow && (
+      <svg class="w-4 h-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    )}
+  </button>
+)}

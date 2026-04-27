@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import Header from '../../components/organisms/Header.astro'
 import Footer from '../../components/organisms/Footer.astro'
+import Button from '../../components/atoms/Button.astro'
 
 const tools = [
   {
@@ -131,7 +132,7 @@ const comingSoon: never[] = []
         <p class="text-white/60 text-tagline-1">
           Insighty tracks margins, revenue, and project profitability in real time — across all your clients, projects, and income streams. No spreadsheets.
         </p>
-        <a href="/contact" class="btn btn-outline-white btn-md inline-flex"><span>Request early access</span></a>
+        <Button kind="outline-white" href="/contact" class="inline-flex"><span>Request early access</span></Button>
       </div>
     </section>
 

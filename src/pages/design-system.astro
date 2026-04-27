@@ -12,6 +12,8 @@ import Logo from '../components/atoms/Logo.astro'
 import ThemeToggle from '../components/atoms/ThemeToggle.astro'
 import Header from '../components/organisms/Header.astro'
 import Footer from '../components/organisms/Footer.astro'
+import Button from '../components/atoms/Button.astro'
+import ButtonGroup from '../components/atoms/ButtonGroup.astro'
 import ButtonVue from '../components/atoms/Button.vue'
 import BadgeVue from '../components/atoms/Badge.vue'
 import ToggleVue from '../components/atoms/Toggle.vue'
@@ -88,7 +90,7 @@ const accordionItems = [
   { q: 'What happens when a client exceeds their budget?', a: 'You\'ll receive proactive alerts when a project reaches 80% of its budget. Clients can also be given read-only access to see real-time progress, reducing surprise conversations.' },
 ]
 
-const buttonVariants = ['primary', 'secondary', 'accent', 'white'] as const
+const buttonKinds = ['primary', 'outline', 'outline-white', 'ghost'] as const
 const buttonSizes = ['sm', 'md', 'lg'] as const
 ---
 
@@ -277,86 +279,132 @@ const buttonSizes = ['sm', 'md', 'lg'] as const
       <!-- ================================
       SECTION: Buttons (Vue)
       ================================= -->
-      <section id="atoms-buttons" class="space-y-8 scroll-mt-24">
+      <section id="atoms-buttons" class="space-y-10 scroll-mt-24">
         <div class="ds-section-header">
           <span class="ds-label">Atoms — Vue</span>
           <h2 class="ds-title">Buttons</h2>
-          <p class="ds-desc">Component: <code class="ds-code">atoms/Button.vue</code> — uses existing <code class="ds-code">btn</code> CSS classes.</p>
+          <p class="ds-desc">Component: <code class="ds-code">atoms/Button.vue</code> — three kinds, three sizes, disabled state.</p>
         </div>
 
-        <!-- Variants -->
+        <!-- Light background -->
         <div class="space-y-3">
-          <p class="ds-variant-subtitle">Variants (btn-md)</p>
-          <div class="ds-preview-area ds-row">
-            {buttonVariants.map(v => (
-              <ButtonVue client:load variant={v} size="md">
-                <span>{v.charAt(0).toUpperCase() + v.slice(1)}</span>
-              </ButtonVue>
+          <p class="ds-variant-subtitle">Light background</p>
+          <div class="bg-background-1 border border-stroke-2 p-8 rounded-2xl flex flex-wrap items-center gap-10">
+            {(['primary', 'outline'] as const).map(k => (
+              <div class="flex flex-col items-center gap-4">
+                <div class="flex items-center gap-4">
+                  <div class="flex flex-col items-center gap-2">
+                    <Button kind={k} size="md"><span>Button Label</span></Button>
+                    <span class="text-[10px] font-mono text-secondary/40">Default</span>
+                  </div>
+                  <div class="flex flex-col items-center gap-2">
+                    <Button kind={k} size="md" disabled><span>Button Label</span></Button>
+                    <span class="text-[10px] font-mono text-secondary/40">Disabled</span>
+                  </div>
+                </div>
+                <span class="ds-code">{k}</span>
+              </div>
             ))}
           </div>
         </div>
 
-        <!-- Variants on dark bg -->
+        <!-- Dark background -->
         <div class="space-y-3">
-          <p class="ds-variant-subtitle">Variants on dark background</p>
-          <div class="ds-row p-6 rounded-2xl bg-background-7">
-            {buttonVariants.map(v => (
-              <ButtonVue client:load variant={v} size="md">
-                <span>{v.charAt(0).toUpperCase() + v.slice(1)}</span>
-              </ButtonVue>
+          <p class="ds-variant-subtitle">Dark background</p>
+          <div class="p-8 rounded-2xl bg-background-7 flex flex-wrap items-center gap-10">
+            {(['primary', 'outline-white', 'ghost'] as const).map(k => (
+              <div class="flex flex-col items-center gap-4">
+                <div class="flex items-center gap-4">
+                  <div class="flex flex-col items-center gap-2">
+                    <Button kind={k} size="md"><span>Button Label</span></Button>
+                    <span class="text-[10px] font-mono text-accent/40">Default</span>
+                  </div>
+                  <div class="flex flex-col items-center gap-2">
+                    <Button kind={k} size="md" disabled><span>Button Label</span></Button>
+                    <span class="text-[10px] font-mono text-accent/40">Disabled</span>
+                  </div>
+                </div>
+                <span class="text-[10px] font-mono text-accent/40">{k}</span>
+              </div>
             ))}
+            <div class="flex flex-col items-center gap-4">
+              <div class="flex flex-col items-center gap-2">
+                <Button kind="arrow" href="#">See the platform</Button>
+                <span class="text-[10px] font-mono text-accent/40">Default</span>
+              </div>
+              <span class="text-[10px] font-mono text-accent/40">arrow</span>
+            </div>
           </div>
         </div>
 
         <!-- Sizes -->
         <div class="space-y-3">
-          <p class="ds-variant-subtitle">Sizes — Primary</p>
-          <div class="ds-preview-area ds-row items-end">
+          <p class="ds-variant-subtitle">Sizes — primary</p>
+          <div class="ds-preview-area flex flex-wrap items-end gap-4">
             {buttonSizes.map(s => (
-              <ButtonVue client:load variant="primary" size={s}>
-                <span>{s.toUpperCase()}</span>
-              </ButtonVue>
-            ))}
-          </div>
-        </div>
-
-        <!-- All variants × all sizes -->
-        <div class="space-y-4">
-          <p class="ds-variant-subtitle">All Variants × All Sizes</p>
-          {buttonVariants.map(v => (
-            <div class="ds-preview-area space-y-2">
-              <p class="text-[10px] font-mono text-secondary/50 dark:text-accent/50 mb-3">{v}</p>
-              <div class="ds-row items-end">
-                {buttonSizes.map(s => (
-                  <ButtonVue client:load variant={v} size={s}>
-                    <span>{s.charAt(0).toUpperCase() + s.slice(1)}</span>
-                  </ButtonVue>
-                ))}
+              <div class="flex flex-col items-center gap-3">
+                <Button kind="primary" size={s}><span>Label</span></Button>
+                <span class="text-[10px] font-mono text-secondary/40 dark:text-accent/40">btn-{s}</span>
               </div>
-            </div>
-          ))}
-        </div>
-
-        <!-- Full width -->
-        <div class="space-y-3">
-          <p class="ds-variant-subtitle">Full Width</p>
-          <div class="ds-preview-area max-w-sm">
-            <ButtonVue client:load variant="primary" size="md" full>
-              <span>Full width button</span>
-            </ButtonVue>
-          </div>
-        </div>
-
-        <!-- Disabled -->
-        <div class="space-y-3">
-          <p class="ds-variant-subtitle">Disabled State</p>
-          <div class="ds-preview-area ds-row">
-            {buttonVariants.map(v => (
-              <ButtonVue client:load variant={v} size="md" disabled>
-                <span>Disabled</span>
-              </ButtonVue>
             ))}
           </div>
+        </div>
+
+        <!-- ButtonGroup -->
+        <div class="space-y-3">
+          <p class="ds-variant-subtitle">ButtonGroup — atoms/ButtonGroup.astro</p>
+          <div class="space-y-4">
+            <div class="ds-preview-area space-y-4">
+              <p class="text-[10px] font-mono text-secondary/40 dark:text-accent/40">Light bg — primary + outline</p>
+              <ButtonGroup>
+                <Button kind="primary" size="md"><span>Request a Demo</span></Button>
+                <Button kind="outline" size="md"><span>See the Platform →</span></Button>
+              </ButtonGroup>
+            </div>
+            <div class="p-6 rounded-2xl bg-background-7 space-y-4">
+              <p class="text-[10px] font-mono text-accent/40">Dark bg — primary + outline-white + ghost</p>
+              <ButtonGroup>
+                <Button kind="primary" size="md"><span>Request Early Access</span></Button>
+                <Button kind="ghost" size="md"><span>See the Platform →</span></Button>
+              </ButtonGroup>
+            </div>
+            <div class="ds-preview-area">
+              <p class="text-[10px] font-mono text-secondary/40 dark:text-accent/40 mb-3">direction="col" + full</p>
+              <ButtonGroup direction="col" class="max-w-xs">
+                <Button kind="primary" size="md" full><span>Request a Demo</span></Button>
+                <Button kind="outline" size="md" full><span>See pricing</span></Button>
+              </ButtonGroup>
+            </div>
+          </div>
+        </div>
+
+        <!-- Usage reference -->
+        <div class="space-y-3">
+          <p class="ds-variant-subtitle">Usage</p>
+          <pre class="ds-pre">{`import Button from '../components/atoms/Button.astro'
+import ButtonGroup from '../components/atoms/ButtonGroup.astro'
+
+// kind options:
+// "primary"       filled navy        — any background
+// "outline"       dark border        — light / white backgrounds
+// "outline-white" white border       — dark / navy backgrounds
+// "ghost"         no border or bg    — dark backgrounds
+// "arrow"         text link + arrow  — dark backgrounds
+
+// Link button (renders <a>)
+<Button kind="primary" href="/request-a-demo">Request a Demo</Button>
+
+// Submit button (renders <button>)
+<Button kind="primary" size="lg" type="submit" full>Send message</Button>
+
+// Arrow text-link (renders inline, no box)
+<Button kind="arrow" href="/#platform">See the platform</Button>
+
+// Button group
+<ButtonGroup align="center">
+  <Button kind="primary" href="/request-a-demo">Get started</Button>
+  <Button kind="arrow" href="#platform">See the platform</Button>
+</ButtonGroup>`}</pre>
         </div>
       </section>
 
@@ -369,37 +417,43 @@ const buttonSizes = ['sm', 'md', 'lg'] as const
         <div class="ds-section-header">
           <span class="ds-label">Atoms — Vue</span>
           <h2 class="ds-title">Badges</h2>
-          <p class="ds-desc">Component: <code class="ds-code">atoms/Badge.vue</code> — uses existing <code class="ds-code">badge</code> CSS classes.</p>
+          <p class="ds-desc">Component: <code class="ds-code">atoms/Badge.vue</code> — maps <code class="ds-code">variant</code> prop to <code class="ds-code">badge-*</code> CSS class.</p>
         </div>
 
         <div class="space-y-4">
+          <!-- All variants on light bg (native Astro — avoids hydration flash) -->
           <div class="space-y-2">
-            <p class="ds-variant-subtitle">Light background</p>
-            <div class="ds-preview-area ds-row">
-              {(['primary', 'white', 'secondary', 'green', 'yellow', 'cyan', 'gray'] as const).map(v => (
-                <BadgeVue client:load variant={v}>{v.charAt(0).toUpperCase() + v.slice(1)}</BadgeVue>
+            <p class="ds-variant-subtitle">All variants — light background</p>
+            <div class="bg-background-1 border border-stroke-2 p-6 rounded-2xl flex flex-wrap gap-3">
+              {(['green', 'yellow', 'cyan', 'gray', 'gray-light', 'gray-dark', 'primary', 'primary-light', 'secondary', 'white', 'metal', 'blur', 'blur-light', 'ivory'] as const).map(v => (
+                <div class="flex flex-col items-center gap-1.5">
+                  <span class={`badge badge-${v}`}>{v}</span>
+                  <span class="text-[9px] font-mono text-secondary/40">badge-{v}</span>
+                </div>
               ))}
             </div>
           </div>
+
+          <!-- All variants on dark bg -->
           <div class="space-y-2">
-            <p class="ds-variant-subtitle">Dark background</p>
-            <div class="ds-row p-6 rounded-2xl bg-background-7">
-              {(['primary', 'white', 'secondary', 'green', 'yellow', 'cyan'] as const).map(v => (
-                <BadgeVue client:load variant={v}>{v.charAt(0).toUpperCase() + v.slice(1)}</BadgeVue>
+            <p class="ds-variant-subtitle">All variants — dark background</p>
+            <div class="p-6 rounded-2xl bg-background-7 flex flex-wrap gap-3">
+              {(['green', 'yellow', 'cyan', 'gray', 'gray-light', 'primary', 'secondary', 'white', 'metal', 'blur', 'blur-light', 'secondary-light'] as const).map(v => (
+                <div class="flex flex-col items-center gap-1.5">
+                  <span class={`badge badge-${v}`}>{v}</span>
+                  <span class="text-[9px] font-mono text-accent/30">badge-{v}</span>
+                </div>
               ))}
             </div>
           </div>
+
+          <!-- Vue component example -->
           <div class="space-y-2">
-            <p class="ds-variant-subtitle">Native badge classes (static Astro)</p>
+            <p class="ds-variant-subtitle">Vue component — Badge.vue</p>
             <div class="ds-preview-area ds-row">
-              <span class="badge badge-primary">Primary</span>
-              <span class="badge badge-white">White</span>
-              <span class="badge badge-secondary">Secondary</span>
-              <span class="badge badge-green">Green</span>
-              <span class="badge badge-yellow">Yellow</span>
-              <span class="badge badge-gray">Gray</span>
-              <span class="badge badge-ivory">Ivory</span>
-              <span class="badge badge-blur">Blur</span>
+              {(['green', 'yellow', 'cyan', 'gray', 'primary', 'secondary', 'white', 'ivory'] as const).map(v => (
+                <BadgeVue client:load variant={v}>{v}</BadgeVue>
+              ))}
             </div>
           </div>
         </div>
@@ -895,10 +949,12 @@ if (form && btn) {
                 'atoms/ThemeToggle.astro',
                 'atoms/Star.astro',
                 'atoms/HoverBg.astro',
-                'atoms/Button.vue — NEW',
-                'atoms/Badge.vue — NEW',
-                'atoms/Icon.vue — NEW',
-                'atoms/Toggle.vue — NEW',
+                'atoms/Button.astro — use this',
+                'atoms/ButtonGroup.astro — use this',
+                'atoms/Button.vue — interactive only',
+                'atoms/Badge.vue',
+                'atoms/Icon.vue',
+                'atoms/Toggle.vue',
               ].map(f => (
                 <li class={`text-[11px] font-mono transition-colors ${f.includes('NEW') ? 'text-ns-green' : 'text-secondary/70 dark:text-accent/70'}`}>
                   <code>src/components/{f}</code>

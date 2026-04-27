@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Header from '../components/organisms/Header.astro'
 import Footer from '../components/organisms/Footer.astro'
+import Button from '../components/atoms/Button.astro'
 
 const spotsRemaining = 20
 const spotsClaimed = 4
@@ -105,12 +106,10 @@ const roadmapComing = [
           </div>
 
           <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
-            <a href="#claim-spot" class="btn btn-secondary dark:btn-accent btn-md">
+            <Button kind="outline-white" href="#claim-spot">
               <span>Claim my founding spot</span>
-            </a>
-            <a href="#why-now" class="btn btn-md" style="background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.15); border-radius: 9999px;">
-              <span>Why join now?</span>
-            </a>
+            </Button>
+            <Button kind="arrow" href="#why-now">Why join now?</Button>
           </div>
 
         </div>
@@ -258,9 +257,9 @@ const roadmapComing = [
               <p class="text-white font-bold mt-1" style="font-size: 2.5rem; line-height: 1; letter-spacing: -0.02em;">$90<span class="text-tagline-1 font-normal text-white/45"> / mo</span></p>
               <p class="text-tagline-3 text-white/35 mt-1">Billed annually · Save $468/yr</p>
             </div>
-            <a href="#claim-spot" class="inline-block btn btn-secondary dark:btn-accent btn-md">
+            <Button kind="outline-white" href="#claim-spot" class="inline-block">
               <span>Claim this rate</span>
-            </a>
+            </Button>
           </div>
         </div>
 
@@ -518,7 +517,7 @@ const roadmapComing = [
               <button
                 type="submit"
                 id="founding-submit-btn"
-                class="btn btn-secondary dark:btn-accent hover:btn-primary btn-md w-full"
+                class="btn btn-primary btn-md w-full"
               >
                 <span>Claim my founding spot</span>
               </button>
@@ -542,9 +541,9 @@ const roadmapComing = [
               </p>
             </div>
             <div class="pt-2 flex flex-wrap justify-center gap-3">
-              <a href="/blog" class="btn btn-secondary dark:btn-accent btn-md">
+              <Button kind="outline-white" href="/blog">
                 <span>Read the blog</span>
-              </a>
+              </Button>
               <a href="/" class="btn btn-md border border-stroke-2 dark:border-stroke-6 text-secondary/70 dark:text-accent/70">
                 <span>Back to home</span>
               </a>

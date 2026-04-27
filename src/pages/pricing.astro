@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 import Header from '../components/organisms/Header.astro'
 import Footer from '../components/organisms/Footer.astro'
 import Accordion from '../components/molecules/Accordion.astro'
+import Button from '../components/atoms/Button.astro'
 
 const tableCategories = [
   {
@@ -207,9 +208,9 @@ const pricingFaqSchema = {
               <p class="text-tagline-3 text-secondary/80 dark:text-accent/80 billing-note-annual" style="display:none;">Billed $468 / year</p>
               <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 mt-3 leading-relaxed">For solo operators and small teams getting their agency data in one place.</p>
             </div>
-            <a href="/request-a-demo" class="btn btn-secondary dark:btn-accent btn-md w-full text-center !rounded-lg">
+            <Button kind="primary" href="/request-a-demo" full>
               <span>Get started free</span>
-            </a>
+            </Button>
             <div class="border-t border-stroke-2 dark:border-stroke-6 pt-5 space-y-3">
               <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/70 dark:text-accent/70">What's included</p>
               <ul class="space-y-2.5">
@@ -249,9 +250,9 @@ const pricingFaqSchema = {
               <p class="text-tagline-3 text-secondary/80 dark:text-accent/80 billing-note-annual" style="display:none;">Billed $1,236 / year</p>
               <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 mt-3 leading-relaxed">For growing agencies managing multiple clients and needing deeper AI intelligence.</p>
             </div>
-            <a href="/request-a-demo" class="btn btn-primary btn-md w-full text-center !rounded-lg">
+            <Button kind="primary" href="/request-a-demo" full>
               <span>Start free trial</span>
-            </a>
+            </Button>
             <div class="border-t border-stroke-2 dark:border-stroke-6 pt-5 space-y-3">
               <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/70 dark:text-accent/70">What's included</p>
               <ul class="space-y-2.5">
@@ -292,9 +293,9 @@ const pricingFaqSchema = {
               <p class="text-tagline-3 text-secondary/80 dark:text-accent/80 billing-note-annual" style="display:none;">Billed $2,868 / year</p>
               <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 mt-3 leading-relaxed">For established agencies that need full team access and high-volume AI automation.</p>
             </div>
-            <a href="/request-a-demo" class="btn btn-secondary dark:btn-accent btn-md w-full text-center !rounded-lg">
+            <Button kind="primary" href="/request-a-demo" full>
               <span>Start free trial</span>
-            </a>
+            </Button>
             <div class="border-t border-stroke-2 dark:border-stroke-6 pt-5 space-y-3">
               <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/70 dark:text-accent/70">What's included</p>
               <ul class="space-y-2.5">
@@ -331,9 +332,9 @@ const pricingFaqSchema = {
               </div>
               <p class="text-tagline-2 text-white/80 mt-3 leading-relaxed">For agency groups and enterprise teams needing unlimited scale, SSO, and custom contracts.</p>
             </div>
-            <a href="/request-a-demo" class="btn btn-md w-full text-center !rounded-lg" style="background: rgba(255,255,255,0.12); color: white; border: 1px solid rgba(255,255,255,0.22);">
+            <Button kind="outline-white" href="/request-a-demo" full>
               <span>Talk to sales</span>
-            </a>
+            </Button>
             <div class="pt-5 border-t border-white/10 space-y-3">
               <p class="text-tagline-3 uppercase tracking-widest font-semibold text-white/50">What's included</p>
               <ul class="space-y-2.5">
@@ -547,23 +548,23 @@ const pricingFaqSchema = {
 
             <!-- Savings -->
             <div class="rounded-2xl p-7 flex flex-col gap-6" style="background: linear-gradient(135deg, #0a1628 0%, #112445 100%);">
-              <p class="text-tagline-3 uppercase tracking-widest font-semibold text-white/35">Your estimated savings</p>
+              <p class="text-tagline-3 uppercase tracking-widest font-semibold text-white">Your estimated savings</p>
               <div class="grid grid-cols-2 gap-6">
                 <div>
-                  <p class="text-white/45 text-tagline-3 mb-2">Per month</p>
+                  <p class="text-white text-tagline-3 mb-2">Per month</p>
                   <p class="text-white font-bold tracking-tight" style="font-size: 2.5rem; line-height: 1;" id="monthly-savings-display">$340</p>
                 </div>
                 <div>
-                  <p class="text-white/45 text-tagline-3 mb-2">Per year</p>
+                  <p class="text-white text-tagline-3 mb-2">Per year</p>
                   <p class="font-bold tracking-tight" style="font-size: 2.5rem; line-height: 1; color: #6ee7b7;" id="annual-savings-display">$4,080</p>
                 </div>
               </div>
-              <p class="text-tagline-3 text-white/45 leading-relaxed border-t border-white/10 pt-5">
+              <p class="text-tagline-3 text-white leading-relaxed border-t border-white/10 pt-5">
                 Plus: eliminate 4 separate logins, 4 billing cycles, and hours of manual reconciliation between tools every week.
               </p>
-              <a href="/request-a-demo" class="btn btn-md w-full text-center" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.18); border-radius: 9999px;">
+              <Button kind="outline-white" href="/request-a-demo" full>
                 <span>See Insighty in action</span>
-              </a>
+              </Button>
             </div>
 
           </div>
@@ -650,12 +651,10 @@ const pricingFaqSchema = {
             Start a 14-day free trial. No credit card. No setup fees. Cancel anytime. Or talk to our team for a live walkthrough tailored to your agency size.
           </p>
           <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
-            <a href="/request-a-demo" class="btn btn-primary btn-md">
+            <Button kind="primary" href="/request-a-demo">
               <span>Start free trial</span>
-            </a>
-            <a href="/request-a-demo" class="btn btn-md" style="background: rgba(255,255,255,0.08); color: white; border: 1px solid rgba(255,255,255,0.2); border-radius: 9999px;">
-              <span>Request a demo</span>
-            </a>
+            </Button>
+            <Button kind="arrow" href="/request-a-demo">Request a demo</Button>
           </div>
         </div>
       </div>

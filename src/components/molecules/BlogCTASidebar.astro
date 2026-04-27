@@ -1,5 +1,6 @@
 ---
 import { blogCTA } from '../../data/blogCTAContent'
+import Button from '../atoms/Button.astro'
 ---
 
 <div
@@ -27,18 +28,12 @@ import { blogCTA } from '../../data/blogCTAContent'
     </ul>
 
     <div class="space-y-2 pt-1">
-      <a
-        href={blogCTA.primaryCTA.href}
-        class="btn btn-md btn-primary w-full justify-center"
-      >
+      <Button kind="primary" href={blogCTA.primaryCTA.href} full class="justify-center">
         <span>{blogCTA.primaryCTA.label}</span>
-      </a>
-      <a
-        href={blogCTA.secondaryCTA.href}
-        class="btn btn-md btn-secondary w-full justify-center"
-      >
+      </Button>
+      <Button kind="outline" href={blogCTA.secondaryCTA.href} full class="justify-center">
         <span>{blogCTA.secondaryCTA.label}</span>
-      </a>
+      </Button>
     </div>
 
   </div>
