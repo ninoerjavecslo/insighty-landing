@@ -97,7 +97,9 @@ const gradient = gradients[category] ?? gradients['Agency Ops']
           <!-- TOC sidebar -->
           {tocHeadings.length > 0 && (
             <div class="hidden lg:flex flex-col gap-8 sticky top-28">
-              <SidebarTOC items={tocHeadings.map(h => ({ id: h.slug, label: h.text, depth: h.depth }))} />
+              <div class="max-h-[55vh] overflow-y-auto pr-1">
+                <SidebarTOC items={tocHeadings.map(h => ({ id: h.slug, label: h.text, depth: h.depth }))} />
+              </div>
               <BlogCTASidebar />
             </div>
           )}

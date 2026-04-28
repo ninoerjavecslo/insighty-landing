@@ -16,21 +16,13 @@ import Button from '../atoms/Button.astro'
 
   <div class="relative z-10 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-center p-8 md:p-10">
     <div class="space-y-4">
-      <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white/60 border border-white/20 px-3 py-1 rounded-full">
-        Insighty
-      </span>
       <h3 class="text-white leading-tight max-w-[420px] not-prose">{blogCTA.headline}</h3>
       <p class="text-tagline-2 text-white/70 max-w-[400px]">{blogCTA.subtext}</p>
-      <div class="flex flex-wrap gap-3 pt-2">
-        <Button kind="outline" href={blogCTA.primaryCTA.href}>
+      <div class="flex flex-wrap items-center gap-3 pt-2">
+        <Button kind="outline-white" href={blogCTA.primaryCTA.href}>
           <span>{blogCTA.primaryCTA.label}</span>
         </Button>
-        <a
-          href={blogCTA.secondaryCTA.href}
-          class="inline-flex items-center px-5 py-2.5 rounded-full text-tagline-2 font-medium text-white border border-white/25 hover:border-white/50 transition-colors duration-200"
-        >
-          {blogCTA.secondaryCTA.label}
-        </a>
+        <Button kind="arrow" href={blogCTA.secondaryCTA.href}>{blogCTA.secondaryCTA.label}</Button>
       </div>
     </div>
 

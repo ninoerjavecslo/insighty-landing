@@ -11,7 +11,7 @@ import Button from '../atoms/Button.astro'
   <div class="bg-background-1 dark:bg-background-6 rounded-[14px] p-5 space-y-4">
 
     <p class="text-tagline-1 font-semibold text-secondary dark:text-accent leading-snug">
-      {blogCTA.headline}
+      The agency operations platform that pays for itself.
     </p>
 
     <ul class="space-y-3">
@@ -27,12 +27,9 @@ import Button from '../atoms/Button.astro'
       ))}
     </ul>
 
-    <div class="space-y-2 pt-1">
-      <Button kind="primary" href={blogCTA.primaryCTA.href} full class="justify-center">
+    <div class="pt-1">
+      <Button kind="primary" href={blogCTA.primaryCTA.href} full>
         <span>{blogCTA.primaryCTA.label}</span>
-      </Button>
-      <Button kind="outline" href={blogCTA.secondaryCTA.href} full class="justify-center">
-        <span>{blogCTA.secondaryCTA.label}</span>
       </Button>
     </div>
 
