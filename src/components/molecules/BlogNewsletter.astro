@@ -1,45 +1,61 @@
 ---
+import Button from '../atoms/Button.astro'
 ---
 
 <div class="rounded-2xl overflow-hidden bg-background-1 dark:bg-background-6 border border-stroke-2 dark:border-stroke-5 grid grid-cols-1 md:grid-cols-[1fr_auto]">
 
   <!-- Left: copy + form -->
   <div class="p-8 md:p-10 xl:p-12 flex flex-col justify-center gap-6">
-    <div class="space-y-3">
-      <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Newsletter</span>
-      <h3 class="text-secondary dark:text-accent leading-tight max-w-[380px]">
-        Get agency insights delivered to your inbox.
-      </h3>
-      <p class="text-tagline-2 text-secondary/80 dark:text-accent/80 max-w-[340px]">
-        Practical tips on agency ops, revenue, and growth — no fluff, straight to the point.
+
+    <!-- Default state -->
+    <div id="nl-default" class="space-y-6">
+      <div class="space-y-3">
+        <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Newsletter</span>
+        <h3 class="text-secondary dark:text-accent leading-tight max-w-[380px]">
+          Get agency insights delivered to your inbox.
+        </h3>
+        <p class="text-tagline-2 text-secondary/80 dark:text-accent/80 max-w-[340px]">
+          Practical tips on agency ops, revenue, and growth — no fluff, straight to the point.
+        </p>
+      </div>
+
+      <form id="blog-newsletter-form" class="space-y-2 max-w-[480px]" novalidate>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <label for="newsletter-email" class="sr-only">Email address</label>
+          <input
+            id="newsletter-email"
+            name="email"
+            type="email"
+            placeholder="Enter your email address"
+            required
+            autocomplete="email"
+            class="auth-form-input flex-1"
+          />
+          <Button kind="primary" size="md" type="submit" class="shrink-0" id="nl-btn">
+            <span id="nl-btn-label">Subscribe</span>
+          </Button>
+        </div>
+        <p id="nl-error" class="hidden text-tagline-3 text-red-500 dark:text-red-400"></p>
+      </form>
+
+      <p class="text-tagline-3 text-secondary/60 dark:text-accent/60">No spam. Unsubscribe anytime.</p>
+    </div>
+
+    <!-- Success state -->
+    <div id="nl-success" class="hidden space-y-4">
+      <div class="flex items-center gap-3">
+        <div class="shrink-0 w-10 h-10 rounded-full bg-green-500/10 flex items-center justify-center">
+          <svg class="w-5 h-5 text-green-500" viewBox="0 0 20 20" fill="none">
+            <path d="M4 10l4.5 4.5 7.5-8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">You're in!</p>
+      </div>
+      <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 max-w-[340px]">
+        Thanks for subscribing. Expect practical agency insights — no fluff, no spam.
       </p>
     </div>
 
-    <form
-      id="blog-newsletter-form"
-      class="flex flex-col sm:flex-row gap-3 max-w-[480px]"
-      novalidate
-    >
-      <label for="newsletter-email" class="sr-only">Email address</label>
-      <input
-        id="newsletter-email"
-        name="email"
-        type="email"
-        placeholder="Enter your email address"
-        required
-        autocomplete="email"
-        class="auth-form-input flex-1"
-      />
-      <button
-        type="submit"
-        class="btn btn-primary btn-md shrink-0"
-      >
-        <span>Subscribe</span>
-      </button>
-    </form>
-
-    <p id="newsletter-msg" class="hidden text-tagline-3 text-secondary/80 dark:text-accent/80 -mt-2"></p>
-    <p class="text-tagline-3 text-secondary/80 dark:text-accent/80">No spam. Unsubscribe anytime.</p>
   </div>
 
   <!-- Right: decorative -->
@@ -65,17 +81,47 @@
 </div>
 
 <script>
-  const form = document.getElementById('blog-newsletter-form') as HTMLFormElement | null
-  const msg = document.getElementById('newsletter-msg')
+  const form     = document.getElementById('blog-newsletter-form') as HTMLFormElement | null
+  const input    = document.getElementById('newsletter-email') as HTMLInputElement | null
+  const btn      = document.getElementById('nl-btn') as HTMLButtonElement | null
+  const btnLabel = document.getElementById('nl-btn-label') as HTMLElement | null
+  const errorEl  = document.getElementById('nl-error') as HTMLElement | null
+  const defaultEl  = document.getElementById('nl-default') as HTMLElement | null
+  const successEl  = document.getElementById('nl-success') as HTMLElement | null
+
+  function setError(msg: string) {
+    if (!errorEl) return
+    errorEl.textContent = msg
+    errorEl.classList.remove('hidden')
+    input?.classList.add('!border-red-400')
+  }
+
+  function clearError() {
+    if (!errorEl) return
+    errorEl.classList.add('hidden')
+    errorEl.textContent = ''
+    input?.classList.remove('!border-red-400')
+  }
+
+  input?.addEventListener('input', clearError)
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault()
-    const email = (form.elements.namedItem('email') as HTMLInputElement).value.trim()
-    if (!email) return
+    clearError()
 
-    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement
-    btn.disabled = true
-    btn.textContent = 'Subscribing…'
+    const email = input?.value.trim() ?? ''
+
+    if (!email) {
+      setError('Please enter your email address.')
+      return
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError('Please enter a valid email address.')
+      return
+    }
+
+    if (btn) btn.disabled = true
+    if (btnLabel) btnLabel.textContent = 'Subscribing…'
 
     try {
       const res = await fetch('/.netlify/functions/newsletter', {
@@ -86,19 +132,12 @@
 
       if (!res.ok) throw new Error()
 
-      form.reset()
-      if (msg) {
-        msg.textContent = "You're subscribed! We'll be in touch soon."
-        msg.classList.remove('hidden')
-      }
-      btn.textContent = 'Subscribed'
+      defaultEl?.classList.add('hidden')
+      successEl?.classList.remove('hidden')
     } catch {
-      btn.disabled = false
-      btn.textContent = 'Subscribe'
-      if (msg) {
-        msg.textContent = 'Something went wrong. Please try again.'
-        msg.classList.remove('hidden')
-      }
+      if (btn) btn.disabled = false
+      if (btnLabel) btnLabel.textContent = 'Subscribe'
+      setError('Something went wrong. Please try again.')
     }
   })
 </script>

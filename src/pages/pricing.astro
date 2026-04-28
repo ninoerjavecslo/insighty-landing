@@ -181,42 +181,41 @@ const pricingFaqSchema = {
       <div class="main-container">
 
         <!-- Billing toggle — pill style -->
-        <div class="flex items-center justify-center mb-12">
+        <div class="flex flex-col items-center gap-3 mb-12">
+          <p id="save-label" class="text-tagline-3 font-medium text-secondary/60 dark:text-accent/60">Save up to 20% with yearly</p>
           <div class="relative flex items-center p-1 rounded-full" style="background: #111827;">
             <div id="toggle-slider" class="absolute rounded-full bg-white shadow-sm transition-all duration-200 ease-in-out" style="top:4px; left:4px; height:calc(100% - 8px); width:0;"></div>
-            <button id="btn-monthly" class="relative z-10 px-5 py-2.5 text-tagline-2 font-semibold rounded-full transition-colors duration-150 text-secondary" style="color:#111827;">Monthly</button>
-            <button id="btn-annual" class="relative z-10 px-5 py-2.5 text-tagline-2 font-semibold rounded-full transition-colors duration-150 flex items-center gap-2" style="color:rgba(255,255,255,0.55);">
-              Yearly
-              <span class="text-tagline-3 font-bold text-green-400 bg-green-900/40 px-2 py-0.5 rounded-full">Save 20%</span>
-            </button>
+            <button id="btn-monthly" class="relative z-10 px-5 py-2.5 text-tagline-2 font-semibold rounded-full transition-colors duration-150" style="color:#111827;">Monthly</button>
+            <button id="btn-annual" class="relative z-10 px-5 py-2.5 text-tagline-2 font-semibold rounded-full transition-colors duration-150" style="color:white;">Yearly</button>
           </div>
         </div>
 
         <!-- Plan cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
 
-          <!-- Starter -->
+          <!-- Solo -->
           <div class="rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-1 dark:bg-background-7 p-7 flex flex-col gap-6">
             <div>
-              <span class="text-tagline-2 font-bold text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Starter</span>
+              <span class="text-tagline-2 font-bold text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Solo</span>
               <div class="flex items-end gap-1 mt-3 mb-0.5">
                 <span class="text-secondary dark:text-accent font-bold text-[2.5rem] leading-none tracking-tight">
-                  $<span class="price-monthly">49</span><span class="price-annual" style="display:none;">39</span>
+                  €<span class="price-monthly">49.90</span><span class="price-annual" style="display:none;">39.90</span>
                 </span>
                 <span class="text-tagline-2 text-secondary/70 dark:text-accent/70 mb-1.5">/ mo</span>
               </div>
-              <p class="text-tagline-3 text-secondary/80 dark:text-accent/80 billing-note-annual" style="display:none;">Billed $468 / year</p>
-              <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 mt-3 leading-relaxed">For solo operators and small teams getting their agency data in one place.</p>
+              <p class="text-tagline-3 text-secondary/60 dark:text-accent/60 billing-note-annual" style="display:none;">Billed €478.80 / year</p>
+              <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 mt-1">1 user</p>
+              <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 mt-3 leading-relaxed">Built for freelancers who need a clear picture of their business without the overhead.</p>
             </div>
             <Button kind="primary" href="/request-a-demo" full>
-              <span>Get started free</span>
+              <span>Start 14-day free trial</span>
             </Button>
             <div class="border-t border-stroke-2 dark:border-stroke-6 pt-5 space-y-3">
               <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/70 dark:text-accent/70">What's included</p>
               <ul class="space-y-2.5">
                 <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span><strong class="text-secondary dark:text-accent font-semibold">3 seats</strong> included</span>
+                  <span><strong class="text-secondary dark:text-accent font-semibold">1 seat</strong></span>
                 </li>
                 <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -234,31 +233,34 @@ const pricingFaqSchema = {
             </div>
           </div>
 
-          <!-- Growth (Popular) -->
+          <!-- Pro (Popular) -->
           <div class="rounded-xl border-2 border-primary-500 bg-background-1 dark:bg-background-7 p-7 flex flex-col gap-6 relative" style="box-shadow: 0 0 0 4px rgba(74,110,199,0.08);">
             <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap">
               <span class="bg-primary-500 text-white text-tagline-3 font-bold uppercase tracking-widest px-4 py-1.5">Most Popular</span>
             </div>
             <div>
-              <span class="text-tagline-2 font-bold text-primary-500 uppercase tracking-widest">Growth</span>
+              <span class="text-tagline-2 font-bold text-primary-500 uppercase tracking-widest">Pro</span>
               <div class="flex items-end gap-1 mt-3 mb-0.5">
                 <span class="text-secondary dark:text-accent font-bold text-[2.5rem] leading-none tracking-tight">
-                  $<span class="price-monthly">129</span><span class="price-annual" style="display:none;">103</span>
+                  €<span class="price-monthly">34.99</span><span class="price-annual" style="display:none;">27.99</span>
                 </span>
-                <span class="text-tagline-2 text-secondary/70 dark:text-accent/70 mb-1.5">/ mo</span>
+                <span class="text-tagline-2 text-secondary/70 dark:text-accent/70 mb-1.5">/ user / mo</span>
               </div>
-              <p class="text-tagline-3 text-secondary/80 dark:text-accent/80 billing-note-annual" style="display:none;">Billed $1,236 / year</p>
-              <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 mt-3 leading-relaxed">For growing agencies managing multiple clients and needing deeper AI intelligence.</p>
+              <p class="text-tagline-3 text-secondary/60 dark:text-accent/60 billing-note-annual" style="display:none;">Billed €1,007.64 / year for 3 users</p>
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 mt-1">
+                <span class="price-monthly">€104.97</span><span class="price-annual" style="display:none;">€83.97</span> / mo total · 3-user package
+              </p>
+              <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 mt-3 leading-relaxed">For small agencies ready to get serious about revenue visibility and client operations.</p>
             </div>
             <Button kind="primary" href="/request-a-demo" full>
-              <span>Start free trial</span>
+              <span>Start 14-day free trial</span>
             </Button>
             <div class="border-t border-stroke-2 dark:border-stroke-6 pt-5 space-y-3">
               <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/70 dark:text-accent/70">What's included</p>
               <ul class="space-y-2.5">
                 <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span><strong class="text-secondary dark:text-accent font-semibold">10 seats</strong> included</span>
+                  <span><strong class="text-secondary dark:text-accent font-semibold">3 seats</strong></span>
                 </li>
                 <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -280,28 +282,31 @@ const pricingFaqSchema = {
             </div>
           </div>
 
-          <!-- Scale -->
+          <!-- Agency -->
           <div class="rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-1 dark:bg-background-7 p-7 flex flex-col gap-6">
             <div>
-              <span class="text-tagline-2 font-bold text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Scale</span>
+              <span class="text-tagline-2 font-bold text-secondary/70 dark:text-accent/70 uppercase tracking-widest">Agency</span>
               <div class="flex items-end gap-1 mt-3 mb-0.5">
                 <span class="text-secondary dark:text-accent font-bold text-[2.5rem] leading-none tracking-tight">
-                  $<span class="price-monthly">299</span><span class="price-annual" style="display:none;">239</span>
+                  €<span class="price-monthly">29</span><span class="price-annual" style="display:none;">23.20</span>
                 </span>
-                <span class="text-tagline-2 text-secondary/70 dark:text-accent/70 mb-1.5">/ mo</span>
+                <span class="text-tagline-2 text-secondary/70 dark:text-accent/70 mb-1.5">/ user / mo</span>
               </div>
-              <p class="text-tagline-3 text-secondary/80 dark:text-accent/80 billing-note-annual" style="display:none;">Billed $2,868 / year</p>
-              <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 mt-3 leading-relaxed">For established agencies that need full team access and high-volume AI automation.</p>
+              <p class="text-tagline-3 text-secondary/60 dark:text-accent/60 billing-note-annual" style="display:none;">Billed €2,784 / year for 10 users</p>
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 mt-1">
+                <span class="price-monthly">€290</span><span class="price-annual" style="display:none;">€232</span> / mo total · up to 10 users
+              </p>
+              <p class="text-tagline-2 text-secondary/70 dark:text-accent/70 mt-3 leading-relaxed">For growing agencies managing multiple teams, clients, and revenue streams at scale.</p>
             </div>
             <Button kind="primary" href="/request-a-demo" full>
-              <span>Start free trial</span>
+              <span>Start 14-day free trial</span>
             </Button>
             <div class="border-t border-stroke-2 dark:border-stroke-6 pt-5 space-y-3">
               <p class="text-tagline-3 uppercase tracking-widest font-semibold text-secondary/70 dark:text-accent/70">What's included</p>
               <ul class="space-y-2.5">
                 <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span><strong class="text-secondary dark:text-accent font-semibold">25 seats</strong> included</span>
+                  <span><strong class="text-secondary dark:text-accent font-semibold">Up to 10 seats</strong></span>
                 </li>
                 <li class="flex items-start gap-2.5 text-tagline-2 text-secondary/75 dark:text-accent/75">
                   <svg class="w-4 h-4 mt-0.5 text-green-500 shrink-0" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -375,35 +380,34 @@ const pricingFaqSchema = {
         <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4">
           {[
             {
-              icon: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v16M5 6h7.5a2.5 2.5 0 0 1 0 5H7a2.5 2.5 0 0 0 0 5H15"/></svg>`,
-              label: 'Revenue & Finance',
+              icon: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v16M5 6h7.5a2.5 2.5 0 0 1 0 5H7a2.5 2.5 0 0 0 0 5H15"/></svg>`,
+              label: 'Revenue &<br>Finance',
             },
             {
-              icon: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="16" height="13" rx="2"/><path d="M2 8h16M6 12h2M10 12h4"/></svg>`,
-              label: 'Project Management',
+              icon: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="16" height="13" rx="2"/><path d="M2 8h16M6 12h2M10 12h4"/></svg>`,
+              label: 'Project<br>Management',
             },
             {
-              icon: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="7" r="3.5"/><path d="M3.5 17.5c0-3.59 2.91-6.5 6.5-6.5s6.5 2.91 6.5 6.5"/></svg>`,
-              label: 'Client Intelligence',
+              icon: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="7" r="3.5"/><path d="M3.5 17.5c0-3.59 2.91-6.5 6.5-6.5s6.5 2.91 6.5 6.5"/></svg>`,
+              label: 'Client<br>Intelligence',
             },
             {
-              icon: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="16" height="14" rx="2"/><path d="M7 3v14M13 8h2M13 12h2"/></svg>`,
-              label: 'Hosting Registry',
+              icon: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="16" height="14" rx="2"/><path d="M7 3v14M13 8h2M13 12h2"/></svg>`,
+              label: 'Hosting<br>Registry',
             },
             {
-              icon: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><path d="M10 6.5v3.5l2.5 2.5"/></svg>`,
-              label: 'Time Tracking',
+              icon: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><path d="M10 6.5v3.5l2.5 2.5"/></svg>`,
+              label: 'Time<br>Tracking',
             },
             {
-              icon: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3l1.8 5.5H17l-4.6 3.3 1.7 5.2L10 14l-4.1 3 1.7-5.2L3 8.5h5.2z"/></svg>`,
-              label: 'Pixel AI',
+              icon: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3l1.8 5.5H17l-4.6 3.3 1.7 5.2L10 14l-4.1 3 1.7-5.2L3 8.5h5.2z"/></svg>`,
+              label: 'Pixel<br>AI',
             },
           ].map(item => (
-            <div class="flex flex-col items-center gap-3 p-5 rounded-2xl bg-background-1 dark:bg-background-6 border border-stroke-2 dark:border-stroke-5 text-center">
-              <span class="w-10 h-10 rounded-xl bg-primary-500/10 flex items-center justify-center text-primary-500">
-                <span class="w-5 h-5 block" set:html={item.icon} />
-              </span>
-              <span class="text-tagline-2 font-semibold text-secondary dark:text-accent">{item.label}</span>
+            <div class="relative flex flex-col items-center gap-4 p-6 rounded-2xl bg-background-1 dark:bg-background-6 border border-stroke-2 dark:border-stroke-5 text-center overflow-hidden">
+              <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary-400/50 to-transparent" aria-hidden="true"></div>
+              <span class="w-7 h-7 block text-primary-500" set:html={item.icon} />
+              <span class="text-tagline-1 font-semibold text-secondary dark:text-accent leading-snug" set:html={item.label} />
             </div>
           ))}
         </div>
@@ -585,12 +589,12 @@ const pricingFaqSchema = {
           <div class="overflow-x-auto">
             <table class="w-full border-collapse min-w-[640px]">
               <thead>
-                <tr class="border-b-2 border-stroke-2 dark:border-stroke-6">
-                  <th class="text-left p-5 text-tagline-3 uppercase tracking-wider font-semibold text-secondary/75 dark:text-accent/75" style="width:35%">Feature</th>
-                  <th class="p-5 text-center text-tagline-2 font-bold text-secondary dark:text-accent">Starter</th>
-                  <th class="p-5 text-center text-tagline-2 font-bold text-primary-500" style="background: rgba(74,110,199,0.04);">Growth</th>
-                  <th class="p-5 text-center text-tagline-2 font-bold text-secondary dark:text-accent">Scale</th>
-                  <th class="p-5 text-center text-tagline-2 font-bold text-secondary dark:text-accent">Enterprise</th>
+                <tr class="bg-background-2 dark:bg-background-6 border-b-2 border-stroke-2 dark:border-stroke-6">
+                  <th class="text-left px-5 py-4 text-tagline-3 uppercase tracking-widest font-bold text-secondary/60 dark:text-accent/60" style="width:35%">Feature</th>
+                  <th class="px-5 py-4 text-center text-tagline-3 uppercase tracking-widest font-bold text-secondary dark:text-accent">Solo</th>
+                  <th class="px-5 py-4 text-center text-tagline-3 uppercase tracking-widest font-bold text-primary-500" style="background: rgba(74,110,199,0.07);">Pro</th>
+                  <th class="px-5 py-4 text-center text-tagline-3 uppercase tracking-widest font-bold text-secondary dark:text-accent">Agency</th>
+                  <th class="px-5 py-4 text-center text-tagline-3 uppercase tracking-widest font-bold text-secondary dark:text-accent">Enterprise</th>
                 </tr>
               </thead>
               <tbody>
@@ -651,8 +655,8 @@ const pricingFaqSchema = {
             Start a 14-day free trial. No credit card. No setup fees. Cancel anytime. Or talk to our team for a live walkthrough tailored to your agency size.
           </p>
           <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
-            <Button kind="primary" href="/request-a-demo">
-              <span>Start free trial</span>
+            <Button kind="outline-white" href="/request-a-demo">
+              <span>Start 14-day free trial</span>
             </Button>
             <Button kind="arrow" href="/request-a-demo">Request a demo</Button>
           </div>
@@ -669,6 +673,7 @@ const pricingFaqSchema = {
   const btnMonthly = document.getElementById('btn-monthly') as HTMLButtonElement | null;
   const btnAnnual  = document.getElementById('btn-annual')  as HTMLButtonElement | null;
   const slider     = document.getElementById('toggle-slider') as HTMLElement | null;
+  const saveLabel  = document.getElementById('save-label') as HTMLElement | null;
   let isAnnual = false;
 
   function positionSlider(btn: HTMLButtonElement) {
@@ -684,7 +689,8 @@ const pricingFaqSchema = {
     if (!activeBtn || !inactiveBtn) return;
     positionSlider(activeBtn);
     activeBtn.style.color   = '#111827';
-    inactiveBtn.style.color = 'rgba(255,255,255,0.55)';
+    inactiveBtn.style.color = 'white';
+    if (saveLabel) saveLabel.style.opacity = annual ? '0' : '1';
     document.querySelectorAll('.price-monthly').forEach(el => {
       (el as HTMLElement).style.display = annual ? 'none' : 'inline';
     });
@@ -713,15 +719,14 @@ const pricingFaqSchema = {
   };
 
   function getInsightyPlan(n: number) {
-    if (n <= 3)  return { name: 'Starter', price: 49,  desc: `${n} seat${n > 1 ? 's' : ''}, 250 AI credits, all features` };
-    if (n <= 10) return { name: 'Growth',  price: 129, desc: `${n} seats, 1,000 AI credits, all features` };
-    if (n <= 25) return { name: 'Scale',   price: 299, desc: `${n} seats, 5,000 AI credits, all features` };
-    const extra = n - 25;
-    return { name: 'Scale + extra seats', price: 299 + extra * 10, desc: `${n} seats, 5,000 AI credits, all features` };
+    if (n <= 1)  return { name: 'Solo',    price: 49.90,  desc: '1 seat, 250 AI credits, all features' };
+    if (n <= 3)  return { name: 'Pro',     price: 104.97, desc: '3 seats, 1,000 AI credits, all features' };
+    if (n <= 10) return { name: 'Agency',  price: n * 29, desc: `${n} seats, 5,000 AI credits, all features` };
+    return { name: 'Enterprise', price: 0, desc: 'Custom pricing — contact us' };
   }
 
   function formatMoney(n: number) {
-    return '$' + n.toLocaleString('en-US');
+    return '€' + n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
   }
 
   function updateCalc() {

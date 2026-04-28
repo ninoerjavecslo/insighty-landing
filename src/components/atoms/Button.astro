@@ -9,6 +9,7 @@ interface Props {
   target?: '_blank' | '_self'
   rel?: string
   class?: string
+  id?: string
 }
 
 const {
@@ -21,6 +22,7 @@ const {
   target,
   rel,
   class: className = '',
+  id,
 } = Astro.props
 
 // arrow kind skips the `btn` base class — it's a text-link, not a box button
@@ -53,7 +55,7 @@ const classes = isArrow
 ---
 
 {href ? (
-  <a class={classes} href={href} target={target} rel={rel ?? (target === '_blank' ? 'noopener noreferrer' : undefined)}>
+  <a id={id} class={classes} href={href} target={target} rel={rel ?? (target === '_blank' ? 'noopener noreferrer' : undefined)}>
     <slot />
     {isArrow && (
       <svg class="w-4 h-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -62,7 +64,7 @@ const classes = isArrow
     )}
   </a>
 ) : (
-  <button class={classes} type={type} disabled={disabled || undefined}>
+  <button id={id} class={classes} type={type} disabled={disabled || undefined}>
     <slot />
     {isArrow && (
       <svg class="w-4 h-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none" aria-hidden="true">
