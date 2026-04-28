@@ -8,6 +8,6 @@ export const blogCTA = {
     'AI forecasting to predict revenue before it lands',
     'Purpose-built for agency PMs and owners',
   ],
-  primaryCTA: { label: 'Request early access', href: '/contact' },
+  primaryCTA: { label: 'Request early access', href: '/request-a-demo' },
   secondaryCTA: { label: 'See the platform', href: '/#platform' },
 } as const
