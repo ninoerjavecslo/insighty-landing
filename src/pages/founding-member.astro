@@ -77,29 +77,29 @@ const roadmapComing = [
         <div class="max-w-[760px] mx-auto text-center space-y-7">
 
           <!-- Badge -->
-          <span class="inline-flex items-center gap-2.5 text-tagline-3 uppercase tracking-widest font-medium text-white/40 border border-white/10 px-4 py-1.5 rounded-full">
+          <span class="inline-flex items-center gap-2.5 text-tagline-3 uppercase tracking-widest font-medium text-white border border-white/20 px-4 py-1.5">
             <span class="w-2 h-2 rounded-full bg-primary-400 animate-pulse"></span>
             {spotsRemaining} founding spots remaining
           </span>
 
           <h1 class="text-white leading-tight">
             Join the agencies<br />
-            <span class="hero-text-gradient hero-text-color-1">building with us.</span>
+            <span class="text-white">building with us.</span>
           </h1>
 
-          <p class="text-white/60 text-tagline-1 max-w-[560px] mx-auto leading-relaxed">
+          <p class="text-white/80 text-tagline-1 max-w-[560px] mx-auto leading-relaxed">
             Insighty is launching soon — and it's already operational for early agencies. We're opening {spotsRemaining} founding spots for the operators who want to grow with us, not wait for us.
           </p>
 
           <!-- Spot progress bar -->
           <div class="max-w-[400px] mx-auto space-y-2.5">
-            <div class="flex justify-between text-tagline-3 text-white/35">
+            <div class="flex justify-between text-tagline-3 text-white/50">
               <span>{spotsClaimed} spots claimed</span>
               <span>{spotsRemaining} remaining of 24</span>
             </div>
-            <div class="h-1.5 w-full rounded-full bg-white/10">
+            <div class="h-2 w-full rounded-full bg-white/10 overflow-hidden">
               <div
-                class="h-full rounded-full bg-primary-400"
+                class="progress-fill h-full rounded-full"
                 style={`width: ${(spotsClaimed / 24) * 100}%;`}
               ></div>
             </div>
@@ -119,92 +119,106 @@ const roadmapComing = [
     <!-- ========================= Why join now ========================= -->
     <section id="why-now" class="bg-background-1 dark:bg-background-8 py-20 md:py-28 border-b border-stroke-2 dark:border-stroke-6">
       <div class="main-container">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 xl:gap-20 items-center">
 
-          <!-- Left: narrative -->
-          <div class="space-y-8">
-            <div class="space-y-4">
-              <span class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">The honest pitch</span>
+          <!-- Left: story + USPs -->
+          <div class="space-y-10">
+            <div class="space-y-5">
+              <span class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/70 dark:text-accent/70">The honest pitch</span>
               <h2 class="text-secondary dark:text-accent">We're building in public. You should be part of it.</h2>
+              <div class="space-y-4 text-tagline-1 text-secondary/75 dark:text-accent/75 leading-relaxed">
+                <p>
+                  Insighty's core platform is already running — revenue operations, project management, client health, hosting registry, and Pixel AI are all live. Agencies are using it today to replace 4–6 separate tools.
+                </p>
+                <p>
+                  But we're not done. The roadmap ahead — mobile app, AI proposal builder, white-label client portals — is ambitious. We're building it fast, with direct input from the agencies using it.
+                </p>
+                <p>
+                  A founding member isn't buying a finished product. They're joining the team that's finishing it. In exchange for that trust, you get pricing and access that nobody who joins after launch ever will.
+                </p>
+              </div>
             </div>
-            <div class="space-y-5 text-tagline-1 text-secondary/85 dark:text-accent/85 leading-relaxed">
-              <p>
-                Insighty's core platform is already running — revenue operations, project management, client health, hosting registry, and Pixel AI are all live. Agencies are using it today to replace 4–6 separate tools.
-              </p>
-              <p>
-                But we're not done. The roadmap ahead — mobile app, AI proposal builder, white-label client portals, advanced capacity planning — is ambitious. We're building it fast, and we're building it with input from the agencies using it.
-              </p>
-              <p>
-                A founding member isn't buying a finished product. They're joining the team that's finishing it. In exchange for that trust, you get pricing, access, and influence that nobody who joins after launch ever will.
-              </p>
-            </div>
-            <div class="border-t border-stroke-2 dark:border-stroke-6 pt-8 space-y-5">
+
+            <!-- Three USP rows -->
+            <ul class="space-y-6 border-t border-stroke-2 dark:border-stroke-6 pt-8">
               {[
-                { label: 'Locked forever', desc: "Your founding rate never increases — even when Insighty raises prices after launch." },
-                { label: 'You shape the roadmap', desc: "Direct access to the product team. Your agency's workflows influence what we build next." },
-                { label: 'Full platform access, now', desc: "Not a waitlist. You're in from day one — using the platform while it grows around you." },
+                {
+                  icon: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2l1.8 5.5H17l-4.6 3.3 1.7 5.2L10 13l-4.1 3 1.7-5.2L3 7.5h5.2z"/></svg>`,
+                  label: 'Rate locked forever',
+                  desc: 'Your founding price never increases — even when Insighty raises prices after launch.',
+                },
+                {
+                  icon: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13a2 2 0 0 1-2 2H6l-3 3V4a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2z"/></svg>`,
+                  label: 'You shape the roadmap',
+                  desc: 'Direct access to the product team. Your workflows influence what we build next.',
+                },
+                {
+                  icon: `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l2.5 2.5"/></svg>`,
+                  label: 'Full access from day one',
+                  desc: "Not a waitlist. You're in from day one — using the platform while it grows around you.",
+                },
               ].map(item => (
-                <div class="flex items-start gap-4">
-                  <div class="w-5 h-5 rounded-full bg-primary-500/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <svg class="w-3 h-3 text-primary-500" viewBox="0 0 12 12" fill="none"><path d="M2 6l2.5 2.5 5.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </div>
+                <li class="flex items-start gap-4">
+                  <span class="w-8 h-8 rounded-lg bg-primary-500/10 text-primary-500 flex items-center justify-center shrink-0 mt-0.5">
+                    <span class="w-4 h-4 block" set:html={item.icon} />
+                  </span>
                   <div>
-                    <p class="text-tagline-2 font-semibold text-secondary dark:text-accent">{item.label}</p>
-                    <p class="text-tagline-2 text-secondary/75 dark:text-accent/75 mt-0.5 leading-relaxed">{item.desc}</p>
+                    <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">{item.label}</p>
+                    <p class="text-tagline-2 text-secondary/65 dark:text-accent/65 mt-0.5 leading-relaxed">{item.desc}</p>
                   </div>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
-          <!-- Right: what's built vs what's coming -->
-          <div class="space-y-5">
+          <!-- Right: founding pricing card -->
+          <div class="rounded-2xl border border-stroke-2 dark:border-stroke-5 bg-background-2 dark:bg-background-7 overflow-hidden">
 
-            <!-- Built & live -->
-            <div class="rounded-2xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 overflow-hidden">
-              <div class="px-6 py-4 border-b border-stroke-2 dark:border-stroke-6 flex items-center gap-3">
-                <span class="w-2 h-2 rounded-full bg-green-500"></span>
-                <span class="text-tagline-3 uppercase tracking-widest font-bold text-secondary/80 dark:text-accent/80">Built & live today</span>
+            <!-- Card header -->
+            <div class="px-8 py-5 border-b border-stroke-2 dark:border-stroke-6 flex items-center gap-3">
+              <span class="w-2 h-2 rounded-full bg-primary-400 animate-pulse shrink-0"></span>
+              <span class="text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80">Founding member pricing</span>
+            </div>
+
+            <div class="p-8 space-y-8">
+              <!-- Price display -->
+              <div class="space-y-2">
+                <p class="text-tagline-2 text-secondary/60 dark:text-accent/60">First year — founding rate</p>
+                <div class="flex items-end gap-3">
+                  <span class="font-bold text-secondary dark:text-accent" style="font-size: 3rem; line-height: 1; letter-spacing: -0.03em;">50% off</span>
+                </div>
+                <p class="text-tagline-2 text-secondary/70 dark:text-accent/70">any plan for your first 12 months</p>
               </div>
-              <ul class="p-6 space-y-3">
-                {roadmapBuilt.map(item => (
+
+              <!-- What you get -->
+              <ul class="space-y-3.5">
+                {[
+                  'Solo from €24.95 / mo (was €49.90)',
+                  'Pro from €17.49 / user / mo (was €34.99)',
+                  'Agency from €14.50 / user / mo (was €29)',
+                  'Rate locked — never increases after year one',
+                  'All features included from day one',
+                  'White-glove onboarding included',
+                ].map(line => (
                   <li class="flex items-start gap-3">
-                    <svg class="w-4 h-4 text-green-500 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" fill="currentColor" opacity="0.15"/><path d="M4.5 8l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <span class="text-tagline-2 text-secondary/70 dark:text-accent/70 leading-relaxed">{item}</span>
+                    <svg class="w-4 h-4 text-primary-500 shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="text-tagline-2 text-secondary/80 dark:text-accent/80 leading-relaxed">{line}</span>
                   </li>
                 ))}
               </ul>
-            </div>
 
-            <!-- Roadmap coming -->
-            <div class="rounded-2xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 overflow-hidden">
-              <div class="px-6 py-4 border-b border-stroke-2 dark:border-stroke-6 flex items-center gap-3">
-                <span class="w-2 h-2 rounded-full bg-primary-400 animate-pulse"></span>
-                <span class="text-tagline-3 uppercase tracking-widest font-bold text-secondary/80 dark:text-accent/80">Coming next</span>
-              </div>
-              <div class="p-6 space-y-6">
-                {roadmapComing.map((phase, i) => (
-                  <div class="flex gap-4">
-                    <div class="flex flex-col items-center">
-                      <div class="w-7 h-7 rounded-full border-2 border-primary-500/30 bg-primary-500/8 flex items-center justify-center shrink-0">
-                        <div class="w-2 h-2 rounded-full bg-primary-500"></div>
-                      </div>
-                      {i < roadmapComing.length - 1 && <div class="w-px flex-1 mt-2 bg-primary-500/15"></div>}
-                    </div>
-                    <div class="pb-6 space-y-1.5">
-                      <span class="text-tagline-3 font-bold uppercase tracking-wider text-primary-500">{phase.label}</span>
-                      <ul class="space-y-1.5">
-                        {phase.items.map(item => (
-                          <li class="text-tagline-2 text-secondary/85 dark:text-accent/85">{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                ))}
+              <!-- CTA -->
+              <div class="space-y-3 pt-2">
+                <Button kind="primary" href="#claim-spot" full>
+                  <span>Claim founding access</span>
+                </Button>
+                <p class="text-tagline-3 text-secondary/50 dark:text-accent/50 text-center">
+                  {spotsRemaining} spots remaining · No credit card to apply
+                </p>
               </div>
             </div>
-
           </div>
+
         </div>
       </div>
     </section>
@@ -218,9 +232,9 @@ const roadmapComing = [
 
       <div class="main-container relative z-10">
         <div class="text-center max-w-[560px] mx-auto mb-14 space-y-4">
-          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white/40 border border-white/10 px-4 py-1.5 rounded-full">Founding member benefits</span>
+          <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-white border border-white/20 px-4 py-1.5">Founding member benefits</span>
           <h2 class="text-white">Why founding members get what nobody else will</h2>
-          <p class="text-white/55 text-tagline-1 leading-relaxed">
+          <p class="text-white/75 text-tagline-1 leading-relaxed">
             These benefits don't transfer. They don't expire. They exist specifically for the agencies who joined before Insighty was a household name.
           </p>
         </div>
@@ -236,127 +250,26 @@ const roadmapComing = [
               </span>
               <div class="space-y-2.5">
                 <p class="text-heading-6 font-semibold text-white">{b.title}</p>
-                <p class="text-tagline-2 text-white/55 leading-relaxed">{b.body}</p>
+                <p class="text-tagline-2 text-white/75 leading-relaxed">{b.body}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <!-- Pricing callout -->
-        <div class="mt-14 rounded-2xl p-8 md:p-10 grid grid-cols-1 md:grid-cols-3 gap-8 items-center" style="background: rgba(74,110,199,0.1); border: 1px solid rgba(74,110,199,0.25);">
-          <div class="md:col-span-2 space-y-3">
-            <span class="inline-block text-tagline-3 uppercase tracking-widest font-semibold text-primary-400 border border-primary-500/25 px-3 py-1 rounded-full">Founding member pricing</span>
-            <h3 class="text-white" style="font-size: 1.5rem; font-weight: 600; line-height: 1.3;">30% off Growth plan. Locked forever.</h3>
-            <p class="text-white/55 text-tagline-1 leading-relaxed">
-              Growth plan at $90/mo instead of $129/mo — locked for life. When Insighty raises prices, your rate stays. When we add features, you get them. Forever.
-            </p>
-          </div>
-          <div class="text-center md:text-right space-y-4">
-            <div>
-              <span class="text-white/30 text-tagline-2 line-through">$129 / mo</span>
-              <p class="text-white font-bold mt-1" style="font-size: 2.5rem; line-height: 1; letter-spacing: -0.02em;">$90<span class="text-tagline-1 font-normal text-white/45"> / mo</span></p>
-              <p class="text-tagline-3 text-white/35 mt-1">Billed annually · Save $468/yr</p>
-            </div>
-            <Button kind="outline-white" href="#claim-spot" class="inline-block">
-              <span>Claim this rate</span>
-            </Button>
-          </div>
-        </div>
 
       </div>
     </section>
 
-    <!-- ========================= Form split ========================= -->
-    <section id="claim-spot" class="min-h-screen flex flex-col lg:grid lg:grid-cols-2">
+    <!-- ========================= Form ========================= -->
+    <section id="claim-spot" class="bg-background-2 dark:bg-background-7 py-20 md:py-28 border-t border-stroke-2 dark:border-stroke-6">
+      <div class="main-container">
+        <div class="max-w-[560px] mx-auto space-y-10">
 
-      <!-- Left: pitch -->
-      <div
-        class="founding-left relative overflow-hidden flex flex-col justify-between px-8 pt-16 pb-12 md:px-12 md:pt-20 md:pb-16 xl:px-16 xl:pt-24 xl:pb-20 lg:min-h-screen"
-        style="background: linear-gradient(160deg, #0c1932 0%, #112445 40%, #1b3a6b 100%);"
-      >
-        <div class="pointer-events-none absolute -top-32 -left-32 w-[600px] h-[600px] rounded-full opacity-25 select-none" style="background: radial-gradient(circle, #4a6ec7 0%, transparent 70%);"></div>
-
-        <div class="relative z-10 flex flex-col gap-10 lg:gap-12 h-full">
-
-          <!-- Headline -->
-          <div class="space-y-5 max-w-[480px]">
-            <span class="inline-flex items-center gap-2 text-tagline-3 uppercase tracking-widest font-medium text-white/40 border border-white/10 px-3 py-1.5 rounded-full">
-              <span class="w-1.5 h-1.5 rounded-full bg-primary-400 animate-pulse"></span>
-              {spotsRemaining} spots left
-            </span>
-            <h2 class="text-white leading-tight" style="font-size: clamp(1.75rem, 3vw, 2.75rem);">
-              Claim your founding spot before they're gone
-            </h2>
-            <p class="text-white/60 text-tagline-1 leading-relaxed">
-              Fill in your details. We'll confirm your founding spot and reach out within one business day to get you onboarded.
-            </p>
-          </div>
-
-          <!-- What happens next -->
-          <div class="space-y-5">
-            <p class="text-tagline-3 uppercase tracking-widest font-semibold text-white/30">What happens after you submit</p>
-            <ul class="space-y-5">
-              {[
-                { step: '01', title: 'We confirm your spot', desc: "You'll hear from us within one business day. We personally review every founding member application." },
-                { step: '02', title: 'Onboarding call', desc: "We schedule a 30-minute call to understand your agency and configure Insighty around your workflow." },
-                { step: '03', title: "You're live", desc: "Your workspace is ready. Your founding member rate is locked. You're in." },
-              ].map(item => (
-                <li class="flex items-start gap-4">
-                  <span class="text-tagline-3 font-bold shrink-0 mt-0.5 text-primary-400/60">{item.step}</span>
-                  <div>
-                    <p class="text-tagline-2 font-semibold text-white">{item.title}</p>
-                    <p class="text-tagline-2 text-white/50 mt-0.5 leading-relaxed">{item.desc}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <!-- Social proof -->
-          <div class="mt-auto border-t border-white/10 pt-8">
-            <p class="text-tagline-3 text-white/30 uppercase tracking-widest font-medium mb-4">Founding members so far</p>
-            <div class="flex items-center gap-4 flex-wrap">
-              <div class="flex -space-x-2">
-                {['SA', 'MK', 'JL', 'TR'].map(initials => (
-                  <div class="size-9 rounded-full border border-white/15 flex items-center justify-center text-[11px] font-bold text-white" style="background: rgba(74,110,199,0.35);">{initials}</div>
-                ))}
-              </div>
-              <div>
-                <p class="text-tagline-2 text-white/70">{spotsClaimed} agencies already in</p>
-                <p class="text-tagline-3 text-white/35">Spots filling quickly</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Right: form -->
-      <div class="founding-right relative overflow-hidden bg-background-1 dark:bg-background-6 flex flex-col justify-center px-8 pt-16 pb-12 md:px-12 md:pt-20 md:pb-16 xl:px-16 xl:pt-24 xl:pb-20 lg:min-h-screen">
-
-        <!-- dot grid -->
-        <div class="pointer-events-none absolute inset-0 opacity-[0.045] dark:opacity-[0.035]" style="background-image: radial-gradient(circle, #1b3a6b 1px, transparent 1px); background-size: 28px 28px;"></div>
-        <!-- concentric arcs, top-right -->
-        <div class="pointer-events-none absolute -top-40 -right-40 w-[480px] h-[480px] rounded-full" style="border: 1px solid rgba(74,110,199,0.10);"></div>
-        <div class="pointer-events-none absolute -top-24 -right-24 w-[320px] h-[320px] rounded-full" style="border: 1px solid rgba(74,110,199,0.08);"></div>
-        <div class="pointer-events-none absolute -top-8 -right-8 w-[180px] h-[180px] rounded-full" style="border: 1px solid rgba(74,110,199,0.07);"></div>
-        <!-- concentric arcs, bottom-left -->
-        <div class="pointer-events-none absolute -bottom-32 -left-32 w-[360px] h-[360px] rounded-full" style="border: 1px solid rgba(74,110,199,0.07);"></div>
-        <div class="pointer-events-none absolute -bottom-16 -left-16 w-[220px] h-[220px] rounded-full" style="border: 1px solid rgba(74,110,199,0.06);"></div>
-        <!-- top-right radial glow -->
-        <div class="pointer-events-none absolute -top-16 -right-16 w-[360px] h-[280px] blur-[90px] opacity-[0.07] dark:opacity-[0.14]" style="background: radial-gradient(ellipse at 100% 0%, #4a6ec7, transparent 70%);"></div>
-        <!-- bottom-left warm accent -->
-        <div class="pointer-events-none absolute bottom-0 left-0 w-[280px] h-[200px] blur-[70px] opacity-[0.05] dark:opacity-[0.10]" style="background: radial-gradient(ellipse at 0% 100%, #2d9b9b, transparent 70%);"></div>
-
-        <div class="w-full max-w-[480px] mx-auto space-y-8 relative z-10">
-
-          <!-- Form header -->
-          <div id="founding-form-header" class="space-y-2">
-            <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80 border border-stroke-2 dark:border-stroke-5 px-3 py-1.5 rounded-full">Founding Member Application</span>
-            <h3 class="text-secondary dark:text-accent" style="font-size: 1.375rem; font-weight: 600; line-height: 1.3;">
-              Tell us about your agency
-            </h3>
-            <p class="text-tagline-2 text-secondary/70 dark:text-accent/70">
+          <!-- Header -->
+          <div id="founding-form-header" class="text-center space-y-4">
+            <span class="inline-block text-tagline-3 uppercase tracking-widest font-medium text-secondary/80 dark:text-accent/80 border border-stroke-2 dark:border-stroke-5 px-4 py-1.5">Founding member application</span>
+            <h2 class="text-secondary dark:text-accent">Apply for founding access</h2>
+            <p class="text-tagline-1 text-secondary/70 dark:text-accent/70 leading-relaxed max-w-[420px] mx-auto">
               We review every application personally and will confirm your spot within one business day.
             </p>
           </div>
@@ -559,6 +472,16 @@ const roadmapComing = [
 </BaseLayout>
 
 <style>
+  .progress-fill {
+    background: linear-gradient(90deg, #3b5fc0 0%, #6e9ef5 50%, #a5c4ff 100%);
+    background-size: 200% 100%;
+    animation: progress-shimmer 2.5s ease-in-out infinite;
+  }
+  @keyframes progress-shimmer {
+    0%   { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+  }
+
   .founding-left,
   .founding-right {
     opacity: 0;
