@@ -1,0 +1,514 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/organisms/Header.astro'
+import Footer from '../components/organisms/Footer.astro'
+import Accordion from '../components/molecules/Accordion.astro'
+
+const faqItems = [
+  {
+    q: 'When does Insighty launch?',
+    a: "We're opening early access to the waitlist first. No exact date yet — but everyone on this list gets in before anyone else, at a locked early-access price.",
+  },
+  {
+    q: "How is this different from Jira, Asana, or Monday?",
+    a: "Those tools track tasks. Insighty tracks your business. Project status, retainer billing, hosting contracts, maintenance hours, invoices — all connected. You don't run your agency in subtasks. Insighty doesn't either.",
+  },
+  {
+    q: 'What is Pixel AI?',
+    a: "Pixel is Insighty's operational AI. Not a chatbot. It has full access to your data — projects, invoices, retainers, pipeline — and takes action on it. Ask it what needs invoicing this month. It tells you. And then it does it.",
+  },
+  {
+    q: 'Is this for my size of agency?',
+    a: "If you're managing multiple clients, retainers, and some form of hosting or maintenance — and you're doing it across 3+ tools — Insighty is built for you. Sweet spot is 10–30 people, but smaller agencies feel the pain just as much.",
+  },
+]
+---
+
+<BaseLayout
+  title="Insighty — Join the Waitlist | Agency Operations Platform"
+  description="The most powerful AI built for agency management. One platform for every client, project, retainer, invoice, and hosting contract. Join the waitlist."
+>
+  <Header />
+  <main>
+
+    <!-- ========================= Hero ========================= -->
+    <section class="relative pt-[140px] pb-20 sm:pt-[160px] sm:pb-[100px] md:pt-[180px] overflow-hidden">
+
+      <!-- Background gradient -->
+      <div class="hidden sm:block pointer-events-none absolute -top-[20%] left-1/2 -z-10 -translate-x-1/2 select-none">
+        <figure class="size-[500px] md:size-[700px] xl:size-[900px] flex items-center justify-center">
+          <picture>
+            <source srcset="/images/ns-img-506.webp" type="image/webp" />
+            <img src="/images/ns-img-506.png" alt="" class="h-full w-full object-cover" width="898" height="898" fetchpriority="high" decoding="sync" />
+          </picture>
+        </figure>
+      </div>
+
+      <div class="main-container">
+        <div class="text-center space-y-8 md:space-y-12">
+
+          <!-- Badge -->
+          <div data-ns-animate data-delay="0.05" class="flex justify-center">
+            <div class="p-[1.5px] bg-gradient-to-r from-primary-400 via-primary-300 to-primary-500">
+              <div class="bg-white dark:bg-background-8 px-4 sm:px-5 py-2 backdrop-blur-sm">
+                <span class="text-[10px] sm:text-tagline-3 font-semibold text-secondary dark:text-accent uppercase tracking-wider sm:tracking-widest">Building in public &middot; Join the waitlist</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Headline -->
+          <div class="space-y-4 md:space-y-6">
+            <h1
+              data-ns-animate
+              data-delay="0.1"
+              class="mx-auto max-w-[480px] sm:max-w-[640px] md:max-w-[860px] lg:max-w-[1000px]"
+            >
+              Your agency is leaking money.<br class="hidden sm:block" /> You just can't see where.
+            </h1>
+            <p
+              data-ns-animate
+              data-delay="0.2"
+              class="mx-auto w-full max-w-[480px] md:max-w-[600px] text-secondary/70 dark:text-accent/70"
+            >
+              Insighty is the AI-first operations platform for digital agencies. Every client, project, retainer, invoice, hosting plan, and maintenance contract — one view. With the most powerful AI built specifically for how agencies work.
+            </p>
+          </div>
+
+          <!-- Waitlist form — hero inline -->
+          <div data-ns-animate data-delay="0.3" class="flex justify-center">
+            <form
+              id="hero-waitlist-form"
+              name="hero-waitlist"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              novalidate
+              class="w-full max-w-[480px] space-y-3"
+            >
+              <input type="hidden" name="form-name" value="hero-waitlist" />
+              <input type="text" name="bot-field" class="sr-only" tabindex="-1" autocomplete="off" />
+              <div class="flex flex-col sm:flex-row gap-2.5">
+                <input
+                  id="hero-email"
+                  name="email"
+                  type="email"
+                  placeholder="your@agency.com"
+                  required
+                  class="flex-1 rounded-xl border border-stroke-2 dark:border-stroke-6 bg-background-2 dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent placeholder:text-secondary/30 dark:placeholder:text-accent/30 focus:outline-none focus:border-secondary dark:focus:border-accent transition-colors"
+                />
+                <button
+                  type="submit"
+                  id="hero-submit-btn"
+                  class="btn btn-primary btn-md whitespace-nowrap shrink-0"
+                >
+                  <span>Get early access</span>
+                </button>
+              </div>
+              <p id="hero-form-error" class="hidden text-[11px] text-red-500 text-center">Something went wrong. Please try again.</p>
+              <p class="text-tagline-3 text-secondary/50 dark:text-accent/50">No spam. No credit card. Just first in line when we open.</p>
+            </form>
+
+            <!-- Hero success state -->
+            <div id="hero-success" class="hidden flex-col items-center text-center gap-3 py-4">
+              <div class="size-10 rounded-2xl bg-primary-500/10 border border-primary-500/20 flex items-center justify-center mx-auto">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17L4 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="var(--color-primary-500)"/>
+                </svg>
+              </div>
+              <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">You're on the list.</p>
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 max-w-[300px]">We'll reach out before launch. Tell a friend who's still managing three agencies from a spreadsheet.</p>
+            </div>
+          </div>
+
+          <!-- Social proof counter -->
+          <p data-ns-animate data-delay="0.4" class="text-tagline-3 text-secondary/40 dark:text-accent/40">
+            Join agency owners already on the waitlist.
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= The tools are the problem ========================= -->
+    <section class="py-16 md:py-24 bg-background-2 dark:bg-background-5">
+      <div class="main-container">
+        <div class="max-w-[760px] mx-auto space-y-6 text-center">
+          <span data-ns-animate data-delay="0.1" class="inline-block border border-secondary/25 text-secondary dark:text-accent text-tagline-3 font-medium tracking-widest uppercase px-4 py-1.5">The real problem</span>
+          <h2 data-ns-animate data-delay="0.2" class="mx-auto max-w-[600px]">
+            Every project management tool made your agency more complicated.
+          </h2>
+          <p data-ns-animate data-delay="0.3" class="mx-auto max-w-[580px] text-secondary/70 dark:text-accent/70">
+            They want you to break work into 47 subtasks, estimate each one in story points, and update statuses nobody reads. That's not how agency work works.
+          </p>
+          <p data-ns-animate data-delay="0.35" class="mx-auto max-w-[580px] text-secondary/70 dark:text-accent/70">
+            You work in clients. Retainers. Budgets. Change requests. Maintenance contracts. Hosting plans nobody remembers to invoice. The tools weren't built for this. Insighty was.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= Pain points ========================= -->
+    <section class="py-16 md:py-24 bg-white dark:bg-background-8">
+      <div class="main-container">
+        <div class="max-w-[720px] mx-auto">
+          <span data-ns-animate data-delay="0.05" class="inline-block border border-secondary/25 text-secondary dark:text-accent text-tagline-3 font-medium tracking-widest uppercase px-4 py-1.5 mb-8">Sound familiar?</span>
+          <div class="space-y-5">
+            {[
+              "You invoice when you remember, not when you should.",
+              "Your maintenance retainers live in a spreadsheet nobody updates.",
+              "Hosting clients get billed when someone notices the renewal.",
+              "You open four tools every Monday morning to answer "how are we doing?" and still can't.",
+              "Project management tools give you more tasks to manage, not less chaos to survive.",
+            ].map((pain, i) => (
+              <div
+                data-ns-animate
+                data-delay={`${0.1 + i * 0.08}`}
+                class="flex items-start gap-4 border-b border-stroke-1 dark:border-stroke-6 pb-5 last:border-0 last:pb-0"
+              >
+                <span class="mt-0.5 shrink-0 text-secondary/30 dark:text-accent/30 text-tagline-1">—</span>
+                <p class="text-tagline-1 md:text-body-2 text-secondary dark:text-accent">{pain}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= What's coming ========================= -->
+    <section class="py-16 md:py-24 bg-background-2 dark:bg-background-5">
+      <div class="main-container">
+        <div class="text-center space-y-4 mb-12 xl:mb-16">
+          <span data-ns-animate data-delay="0.1" class="inline-block border border-secondary/25 text-secondary dark:text-accent text-tagline-3 font-medium tracking-widest uppercase px-4 py-1.5">What Insighty does</span>
+          <h2 data-ns-animate data-delay="0.2" class="mx-auto max-w-[560px]">One screen. Every number that matters.</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
+          {[
+            {
+              icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`,
+              title: "One revenue view",
+              body: "Every project milestone, retainer, hosting plan, and domain renewal in one place. Nothing falls through the gap. Nothing goes uninvoiced.",
+            },
+            {
+              icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`,
+              title: "Your Monday morning, fixed",
+              body: "Open Insighty. See exactly what needs action today. No tabs. No exports. No asking the PM what's going on with the Müller project.",
+            },
+            {
+              icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l3 3"/><path d="M18 2v4h4"/></svg>`,
+              title: "Projects that connect to money",
+              body: "Phase complete? Invoice triggers. Retainer month closed? Billing queued. Change request approved? Revenue planned. Every delivery moment becomes a billing moment.",
+            },
+          ].map((card, i) => (
+            <div
+              data-ns-animate
+              data-delay={`${0.15 + i * 0.1}`}
+              class="dark:bg-background-6 bg-white rounded-[20px] p-7 md:p-8 space-y-4 border border-stroke-1 dark:border-stroke-6"
+            >
+              <div class="size-10 rounded-xl bg-primary-500/10 border border-primary-500/20 flex items-center justify-center text-primary-500 dark:text-primary-400">
+                <Fragment set:html={card.icon} />
+              </div>
+              <h3 class="text-heading-6 text-secondary dark:text-accent font-semibold">{card.title}</h3>
+              <p class="text-tagline-1 text-secondary/70 dark:text-accent/70 leading-relaxed">{card.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= Pixel AI ========================= -->
+    <section id="pixel-ai" class="py-16 md:py-24 bg-white dark:bg-background-8">
+      <div class="main-container">
+        <div class="max-w-[900px] mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+            <!-- Copy -->
+            <div class="space-y-6">
+              <span data-ns-animate data-delay="0.1" class="inline-block border border-secondary/25 text-secondary dark:text-accent text-tagline-3 font-medium tracking-widest uppercase px-4 py-1.5">Pixel AI</span>
+              <h2 data-ns-animate data-delay="0.2" class="max-w-[420px]">
+                The most powerful AI built for agency management.
+              </h2>
+              <p data-ns-animate data-delay="0.3" class="text-secondary/70 dark:text-accent/70">
+                Pixel isn't a chatbot. It isn't a copilot that summarizes things you already know. It has full access to your operation — and it acts on it.
+              </p>
+              <ul data-ns-animate data-delay="0.35" class="space-y-3">
+                {[
+                  "Ask it what to invoice this month — it tells you and marks it done.",
+                  "Ask who's overallocated next week — it flags it before it becomes a problem.",
+                  "Every morning, before you open your laptop, a briefing on your phone.",
+                ].map(item => (
+                  <li class="flex items-start gap-3">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="shrink-0 mt-0.5">
+                      <rect width="18" height="18" rx="9" class="fill-secondary dark:fill-accent"/>
+                      <path d="M8.31661 12.7561L13.7491 7.42144C14.0836 7.0959 14.0836 6.5697 13.7491 6.24416C13.4145 5.91861 12.8736 5.91861 12.539 6.24416L7.7116 10.9901L5.46096 8.78807C5.12636 8.46253 4.58554 8.46253 4.25095 8.78807C3.91635 9.11362 3.91635 9.63982 4.25095 9.96536L7.1066 12.7561C7.27347 12.9184 7.49253 13 7.7116 13C7.93067 13 8.14974 12.9184 8.31661 12.7561Z" class="fill-white dark:fill-secondary"/>
+                    </svg>
+                    <span class="text-tagline-1 text-secondary dark:text-accent">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Pixel chat card mockup -->
+            <div data-ns-animate data-delay="0.25" class="dark:bg-background-6 bg-background-2 rounded-[20px] border border-stroke-1 dark:border-stroke-6 p-6 space-y-4">
+              <div class="flex items-center gap-2 pb-3 border-b border-stroke-1 dark:border-stroke-6">
+                <div class="size-7 rounded-lg bg-primary-500/20 flex items-center justify-center">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+                  </svg>
+                </div>
+                <span class="text-tagline-2 font-semibold text-secondary dark:text-accent">Pixel</span>
+                <span class="ml-auto text-tagline-3 text-secondary/40 dark:text-accent/40">8:02 AM</span>
+              </div>
+              {[
+                { from: "pixel", text: "Good morning. You have €6,100 in invoices to send today. The Bauer project is at 84% budget with 3 weeks left. One domain expires in 9 days." },
+                { from: "user", text: "Invoice all hosting clients from last month." },
+                { from: "pixel", text: "Found 7 uninvoiced hosting clients — total €4,240. Confirm and I'll mark them all as issued." },
+                { from: "user", text: "Confirmed." },
+                { from: "pixel", text: "Done. €4,240 marked as issued. Added to This Month queue." },
+              ].map(msg => (
+                <div class={`flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}>
+                  <div class={`max-w-[85%] rounded-2xl px-4 py-2.5 text-tagline-2 leading-relaxed ${
+                    msg.from === 'user'
+                      ? 'bg-secondary dark:bg-accent text-white dark:text-secondary rounded-br-sm'
+                      : 'bg-white dark:bg-background-7 text-secondary dark:text-accent border border-stroke-1 dark:border-stroke-6 rounded-bl-sm'
+                  }`}>
+                    {msg.text}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= Founder note ========================= -->
+    <section class="py-16 md:py-24 bg-background-2 dark:bg-background-5">
+      <div class="main-container">
+        <div class="max-w-[680px] mx-auto">
+          <div data-ns-animate data-delay="0.1" class="dark:bg-background-6 bg-white rounded-[24px] border border-stroke-1 dark:border-stroke-6 p-8 md:p-12 space-y-6">
+            <div class="flex items-center gap-4">
+              <div class="size-12 rounded-full bg-primary-500/15 border border-primary-500/20 flex items-center justify-center shrink-0">
+                <span class="text-tagline-1 font-bold text-primary-500">N</span>
+              </div>
+              <div>
+                <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">Nino</p>
+                <p class="text-tagline-3 text-secondary/50 dark:text-accent/50">Digital Products Director → Builder</p>
+              </div>
+            </div>
+            <div class="space-y-4 border-l-2 border-primary-500/30 pl-5">
+              <p class="text-tagline-1 md:text-body-2 text-secondary/80 dark:text-accent/80 leading-relaxed">
+                I spent over a decade working inside digital agencies. Estimating projects. Closing sales. Setting up projects. Managing delivery. Managing clients. Firefighting.
+              </p>
+              <p class="text-tagline-1 md:text-body-2 text-secondary/80 dark:text-accent/80 leading-relaxed">
+                I tried every tool. Jira. Asana. ClickUp. Scoro. Harvest. Five spreadsheets and a prayer. None of them saw the whole picture. None of them knew a maintenance client hadn't been invoiced in three months.
+              </p>
+              <p class="text-tagline-1 md:text-body-2 text-secondary/80 dark:text-accent/80 leading-relaxed">
+                So I built Insighty. Not as a side project. As the tool I needed every single day. I'm building it in public — the wins, the mistakes, all of it. If this sounds like your Monday morning, get on the list.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= Waitlist CTA (full form) ========================= -->
+    <section class="py-16 md:py-24 bg-white dark:bg-background-8">
+      <div class="main-container">
+        <div class="dark:bg-background-6 bg-background-2 rounded-[24px] lg:rounded-[32px] border border-stroke-1 dark:border-stroke-6 overflow-hidden max-w-[900px] mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-2">
+
+            <!-- Left -->
+            <div class="px-8 py-10 md:px-12 md:py-14 xl:px-14 xl:py-16 flex flex-col justify-center space-y-6 lg:border-r border-stroke-1 dark:border-stroke-6">
+              <span data-ns-animate data-delay="0.1" class="inline-block border border-secondary/25 text-secondary dark:text-accent text-tagline-3 font-medium tracking-widest uppercase px-4 py-1.5 self-start">Waitlist</span>
+              <div class="space-y-3">
+                <h2 data-ns-animate data-delay="0.2" class="max-w-[360px]">Be the first to use it.</h2>
+                <p data-ns-animate data-delay="0.3" class="max-w-[360px] text-secondary/70 dark:text-accent/70">
+                  Early access goes to the waitlist first. No pricing yet. No pressure. Just first in line when we open the doors.
+                </p>
+              </div>
+              <ul data-ns-animate data-delay="0.35" class="space-y-3">
+                {[
+                  "Early access before public launch",
+                  "Founding member pricing — locked in",
+                  "Direct input on the roadmap",
+                  "Built by someone who ran agencies, not a VC",
+                ].map(item => (
+                  <li class="flex items-center gap-3">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="shrink-0">
+                      <rect width="18" height="18" rx="9" class="fill-secondary dark:fill-accent"/>
+                      <path d="M8.31661 12.7561L13.7491 7.42144C14.0836 7.0959 14.0836 6.5697 13.7491 6.24416C13.4145 5.91861 12.8736 5.91861 12.539 6.24416L7.7116 10.9901L5.46096 8.78807C5.12636 8.46253 4.58554 8.46253 4.25095 8.78807C3.91635 9.11362 3.91635 9.63982 4.25095 9.96536L7.1066 12.7561C7.27347 12.9184 7.49253 13 7.7116 13C7.93067 13 8.14974 12.9184 8.31661 12.7561Z" class="fill-white dark:fill-secondary"/>
+                    </svg>
+                    <span class="text-tagline-1 font-normal text-secondary dark:text-accent">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Right: form -->
+            <div class="px-8 py-10 md:px-12 md:py-14 xl:px-14 xl:py-16 flex flex-col justify-center">
+              <form
+                data-ns-animate
+                data-delay="0.2"
+                class="space-y-4"
+                id="cta-waitlist-form"
+                name="cta-waitlist"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+                novalidate
+              >
+                <input type="hidden" name="form-name" value="cta-waitlist" />
+                <input type="text" name="bot-field" class="sr-only" tabindex="-1" autocomplete="off" />
+                <div class="space-y-1.5">
+                  <label for="wl-name" class="text-tagline-2 font-medium text-secondary dark:text-accent">Full name</label>
+                  <input
+                    id="wl-name"
+                    name="name"
+                    type="text"
+                    placeholder="Sam Carter"
+                    required
+                    class="w-full rounded-xl border border-stroke-2 dark:border-stroke-6 bg-white dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent placeholder:text-secondary/30 dark:placeholder:text-accent/30 focus:outline-none focus:border-secondary dark:focus:border-accent transition-colors"
+                  />
+                </div>
+                <div class="space-y-1.5">
+                  <label for="wl-email" class="text-tagline-2 font-medium text-secondary dark:text-accent">Work email</label>
+                  <input
+                    id="wl-email"
+                    name="email"
+                    type="email"
+                    placeholder="sam@agency.com"
+                    required
+                    class="w-full rounded-xl border border-stroke-2 dark:border-stroke-6 bg-white dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent placeholder:text-secondary/30 dark:placeholder:text-accent/30 focus:outline-none focus:border-secondary dark:focus:border-accent transition-colors"
+                  />
+                </div>
+                <div class="space-y-1.5">
+                  <label for="wl-agency" class="text-tagline-2 font-medium text-secondary dark:text-accent">Agency name</label>
+                  <input
+                    id="wl-agency"
+                    name="agency"
+                    type="text"
+                    placeholder="Your agency"
+                    class="w-full rounded-xl border border-stroke-2 dark:border-stroke-6 bg-white dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent placeholder:text-secondary/30 dark:placeholder:text-accent/30 focus:outline-none focus:border-secondary dark:focus:border-accent transition-colors"
+                  />
+                </div>
+                <div class="space-y-1.5">
+                  <label for="wl-size" class="text-tagline-2 font-medium text-secondary dark:text-accent">Team size</label>
+                  <select
+                    id="wl-size"
+                    name="team_size"
+                    class="w-full rounded-xl border border-stroke-2 dark:border-stroke-6 bg-white dark:bg-background-7 px-4 py-3 text-tagline-1 text-secondary dark:text-accent focus:outline-none focus:border-secondary dark:focus:border-accent transition-colors appearance-none"
+                  >
+                    <option value="" disabled selected>Select team size</option>
+                    <option>1–5 people</option>
+                    <option>6–15 people</option>
+                    <option>16–30 people</option>
+                    <option>30+ people</option>
+                  </select>
+                </div>
+                <button type="submit" id="wl-submit-btn" class="btn btn-primary btn-md w-full mt-2">
+                  <span>Join the waitlist</span>
+                </button>
+                <p class="text-tagline-3 text-secondary/60 dark:text-accent/60 text-center">No credit card. No spam. We'll reach out before launch.</p>
+                <p id="wl-form-error" class="hidden text-[11px] text-red-500 text-center">Something went wrong. Please try again.</p>
+              </form>
+
+              <!-- Success -->
+              <div id="wl-success" class="hidden flex-col items-center text-center gap-4 py-8">
+                <div class="size-12 rounded-2xl bg-primary-500/10 border border-primary-500/20 flex items-center justify-center mx-auto">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M20 6L9 17L4 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="var(--color-primary-500)"/>
+                  </svg>
+                </div>
+                <p class="text-tagline-1 font-semibold text-secondary dark:text-accent">You're on the list.</p>
+                <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 max-w-[280px]">We'll reach out before launch. Thanks for believing in this early.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= FAQ ========================= -->
+    <section class="py-14 md:py-20 bg-background-2 dark:bg-background-5">
+      <div class="main-container">
+        <div class="space-y-4 text-center mb-10 xl:mb-14">
+          <span data-ns-animate data-delay="0.1" class="inline-block border border-secondary/25 text-secondary dark:text-accent text-tagline-3 font-medium tracking-widest uppercase px-4 py-1.5">FAQ</span>
+          <h2 data-ns-animate data-delay="0.2" class="mx-auto max-w-[500px]">Questions we keep getting</h2>
+        </div>
+        <div class="mx-auto w-full max-w-[860px]">
+          <Accordion items={faqItems} openFirst={true} />
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+function setupForm(
+  formId: string,
+  submitBtnId: string,
+  successId: string,
+  errorId: string,
+  submitLabel: string,
+) {
+  const form = document.getElementById(formId) as HTMLFormElement | null
+  const btn = document.getElementById(submitBtnId) as HTMLButtonElement | null
+  const success = document.getElementById(successId)
+  const error = document.getElementById(errorId)
+  if (!form || !btn) return
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    const emailEl = form.querySelector<HTMLInputElement>('[type="email"]')
+    const nameEl = form.querySelector<HTMLInputElement>('[name="name"]')
+
+    let valid = true
+    ;[emailEl, nameEl].forEach(el => {
+      if (!el) return
+      const err = (el.required && !el.value.trim()) || (el.type === 'email' && el.value && !EMAIL_RE.test(el.value))
+      el.style.borderColor = err ? '#ef4444' : ''
+      if (err) valid = false
+    })
+    if (!valid) return
+
+    const span = btn.querySelector('span')
+    if (span) span.textContent = 'Sending...'
+    btn.disabled = true
+    error?.classList.add('hidden')
+
+    try {
+      const body = new URLSearchParams()
+      new FormData(form).forEach((v, k) => body.append(k, v as string))
+      const ok = (await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString(),
+      })).ok
+
+      if (ok) {
+        form.classList.add('hidden')
+        if (success) {
+          success.classList.remove('hidden')
+          success.classList.add('flex')
+        }
+      } else {
+        error?.classList.remove('hidden')
+        if (span) span.textContent = submitLabel
+        btn.disabled = false
+      }
+    } catch {
+      error?.classList.remove('hidden')
+      if (span) span.textContent = submitLabel
+      btn.disabled = false
+    }
+  })
+}
+
+setupForm('hero-waitlist-form', 'hero-submit-btn', 'hero-success', 'hero-form-error', 'Get early access')
+setupForm('cta-waitlist-form', 'wl-submit-btn', 'wl-success', 'wl-form-error', 'Join the waitlist')
+</script>
