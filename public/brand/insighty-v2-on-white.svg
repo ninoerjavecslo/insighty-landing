@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 272 68" role="img" aria-label="Insighty">
+  <title>Insighty</title>
+  <defs>
+    <style>@import url('https://api.fontshare.com/v2/css?f[]=satoshi@500&amp;display=swap');</style>
+    <!-- wordmark gradient: dark navy → royal blue (156 deg approx) -->
+    <linearGradient id="tg" x1="84" y1="16" x2="272" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#1b3a6b"/>
+      <stop offset="100%" stop-color="#4a6ec7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- starburst icon: 100×100 viewBox rendered at 64×64 at (2,2) -->
+  <svg x="2" y="2" width="64" height="64" viewBox="0 0 100 100">
+    <defs>
+      <linearGradient id="ir1" x1="50" y1="50" x2="64" y2="3"   gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+      <linearGradient id="ir2" x1="50" y1="50" x2="12" y2="18"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+      <linearGradient id="ir3" x1="50" y1="50" x2="4"  y2="46"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+      <linearGradient id="ir4" x1="50" y1="50" x2="7"  y2="66"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+      <linearGradient id="ir5" x1="50" y1="50" x2="22" y2="92"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+      <linearGradient id="ir6" x1="50" y1="50" x2="46" y2="97"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+      <linearGradient id="ir7" x1="50" y1="50" x2="84" y2="14"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+      <linearGradient id="ir8" x1="50" y1="50" x2="93" y2="50"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+      <radialGradient id="irc" cx="50%" cy="50%" r="50%">
+        <stop offset="0%"   stop-color="#ffffff"/>
+        <stop offset="55%"  stop-color="#4a6ec7"/>
+        <stop offset="100%" stop-color="#1b3a6b"/>
+      </radialGradient>
+    </defs>
+    <g stroke-linecap="butt">
+      <line x1="50" y1="50" x2="64" y2="3"  stroke="url(#ir1)" stroke-width="2.5"/>
+      <line x1="50" y1="50" x2="12" y2="18" stroke="url(#ir2)" stroke-width="2.8"/>
+      <line x1="50" y1="50" x2="4"  y2="46" stroke="url(#ir3)" stroke-width="2.8"/>
+      <line x1="50" y1="50" x2="7"  y2="66" stroke="url(#ir4)" stroke-width="2.4"/>
+      <line x1="50" y1="50" x2="22" y2="92" stroke="url(#ir5)" stroke-width="2.5"/>
+      <line x1="50" y1="50" x2="46" y2="97" stroke="url(#ir6)" stroke-width="2.4"/>
+      <line x1="50" y1="50" x2="84" y2="14" stroke="url(#ir7)" stroke-width="2.0"/>
+      <line x1="50" y1="50" x2="93" y2="50" stroke="url(#ir8)" stroke-width="1.6"/>
+    </g>
+    <circle cx="50" cy="50" r="8.5" fill="#a3b8ea"/>
+    <circle cx="50" cy="50" r="5.5" fill="url(#irc)"/>
+  </svg>
+
+  <!-- wordmark: Satoshi Medium, gradient fill -->
+  <text x="84" y="48"
+    font-family="Satoshi,'Inter Tight','Helvetica Neue',Arial,sans-serif"
+    font-size="38" font-weight="500" letter-spacing="0.04em"
+    fill="url(#tg)">insighty</text>
+</svg>

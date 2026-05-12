@@ -1,0 +1,1663 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const colors = {
+  primary: [
+    { name: 'primary-50',  hex: '#eef2fb', label: 'Mist' },
+    { name: 'primary-100', hex: '#c9d5f3', label: 'Periwinkle' },
+    { name: 'primary-200', hex: '#a3b8ea', label: 'Powder Blue' },
+    { name: 'primary-300', hex: '#6e8fd9', label: 'Cornflower' },
+    { name: 'primary-400', hex: '#4a6ec7', label: 'Royal' },
+    { name: 'primary-500', hex: '#1b3a6b', label: 'Navy' },
+    { name: 'primary-600', hex: '#162f58', label: 'Deep Navy' },
+    { name: 'primary-700', hex: '#112445', label: 'Midnight' },
+    { name: 'primary-800', hex: '#0c1932', label: 'Abyss' },
+  ],
+  brand: [
+    { name: 'ns-yellow',       hex: '#d4a574', label: 'Gold' },
+    { name: 'ns-green',        hex: '#2d9b9b', label: 'Teal' },
+    { name: 'ns-red',          hex: '#ffb9a2', label: 'Coral' },
+    { name: 'ns-yellow-light', hex: '#f5e5d0', label: 'Warm Cream' },
+    { name: 'ns-green-light',  hex: '#c8eded', label: 'Mint' },
+    { name: 'ns-ivory',        hex: '#f4efe7', label: 'Ivory' },
+    { name: 'ns-linen',        hex: '#7a6b5d', label: 'Linen' },
+  ],
+  dark: [
+    { name: 'background-8', hex: '#070b10', label: 'Void' },
+    { name: 'background-6', hex: '#0f1217', label: 'Obsidian' },
+    { name: 'background-5', hex: '#13171e', label: 'Charcoal' },
+    { name: 'background-7', hex: '#181d26', label: 'Slate' },
+    { name: 'background-9', hex: '#1f252f', label: 'Steel' },
+    { name: 'stroke-5',     hex: '#1b232f', label: 'Border Dark' },
+    { name: 'stroke-7',     hex: '#2a333e', label: 'Border Light' },
+  ],
+  light: [
+    { name: 'accent',        hex: '#fcfcfc', label: 'White' },
+    { name: 'background-1',  hex: '#fcfcfd', label: 'Snow' },
+    { name: 'background-2',  hex: '#f9fafb', label: 'Off-White' },
+    { name: 'background-3',  hex: '#f4f5f8', label: 'Smoke' },
+    { name: 'stroke-10',     hex: '#dfd1c5', label: 'Warm Edge' },
+    { name: 'background-10', hex: '#888888', label: 'Mid Gray' },
+    { name: 'background-11', hex: '#555558', label: 'Dark Gray' },
+  ],
+}
+
+const gradients = [
+  { id: 1,  css: 'linear-gradient(135deg, #4a6ec7 0%, #d4a574 100%)',                                         label: 'Royal → Gold',      use: 'Hero headlines, primary CTAs' },
+  { id: 2,  css: 'linear-gradient(135deg, #d4a574 0%, #c08040 100%)',                                         label: 'Gold → Amber',      use: 'Warm accents, pricing badges' },
+  { id: 3,  css: 'linear-gradient(135deg, #2d9b9b 0%, #4a6ec7 100%)',                                         label: 'Teal → Royal',      use: 'Feature highlights, stats' },
+  { id: 4,  css: 'linear-gradient(135deg, #1b3a6b 0%, #4a6ec7 100%)',                                         label: 'Navy → Royal',      use: 'Subtle blue backgrounds' },
+  { id: 6,  css: 'linear-gradient(180deg, #83e7ee 0%, #c6f56f 100%)',                                         label: 'Cyan → Lime',       use: 'Vibrant accents, icons' },
+  { id: 7,  css: 'linear-gradient(180deg, #ffffff 0%, #83e7ee 100%)',                                         label: 'White → Cyan',      use: 'Text gradients, dividers' },
+  { id: 8,  css: 'linear-gradient(156deg, #ffffff 32.92%, #4a6ec7 91%)',                                      label: 'White → Blue',      use: 'Typography gradient' },
+  { id: 9,  css: 'linear-gradient(156deg, #c9d5f3 32.92%, #d4a574 91%)',                                      label: 'Periwinkle → Gold', use: 'Soft gradient text' },
+  { id: 10, css: 'linear-gradient(135deg, #83e7ee 0%, #c6f56f 100%)',                                         label: 'Cyan → Lime',       use: 'Energetic callouts' },
+  { id: 12, css: 'radial-gradient(73.01% 80.77% at 19.23% 47.79%, #83e7ee 0%, rgba(134,79,254,0) 100%)',      label: 'Cyan Radial Glow',  use: 'Background glows, cards' },
+  { id: 13, css: 'linear-gradient(156deg, #fff 32.92%, #ecc5a2 91%)',                                         label: 'White → Peach',     use: 'Warm typography' },
+]
+
+const typoScale = [
+  { label: 'H1', size: '68px', weight: '700', lh: '110%', use: 'Hero title' },
+  { label: 'H2', size: '52px', weight: '700', lh: '120%', use: 'Section heading' },
+  { label: 'H3', size: '40px', weight: '700', lh: '120%', use: 'Sub-heading' },
+  { label: 'H4', size: '32px', weight: '600', lh: '130%', use: 'Card title' },
+  { label: 'H5', size: '24px', weight: '600', lh: '140%', use: 'Label / caption heading' },
+  { label: 'H6', size: '20px', weight: '600', lh: '140%', use: 'Small heading' },
+  { label: 'Body L', size: '17px', weight: '400', lh: '150%', use: 'Lead paragraph' },
+  { label: 'Body M', size: '15px', weight: '400', lh: '150%', use: 'Body copy' },
+  { label: 'Body S', size: '13px', weight: '400', lh: '150%', use: 'Caption / metadata' },
+]
+
+const textGradients = [
+  { label: 'Royal → Gold',      css: 'linear-gradient(135deg, #4a6ec7 0%, #d4a574 100%)' },
+  { label: 'Teal → Royal',      css: 'linear-gradient(135deg, #2d9b9b 0%, #4a6ec7 100%)' },
+  { label: 'White → Blue',      css: 'linear-gradient(156deg, #ffffff 32.92%, #4a6ec7 91%)' },
+  { label: 'Periwinkle → Gold', css: 'linear-gradient(156deg, #c9d5f3 32.92%, #d4a574 91%)' },
+  { label: 'Cyan → Lime',       css: 'linear-gradient(135deg, #83e7ee 0%, #c6f56f 100%)' },
+  { label: 'White → Peach',     css: 'linear-gradient(156deg, #fff 32.92%, #ecc5a2 91%)' },
+]
+---
+
+<BaseLayout title="Insighty Brand Kit" description="Social media brand guidelines for the Insighty team">
+  <style>
+    @import url('https://api.fontshare.com/v2/css?f[]=satoshi@500&display=swap');
+    * { box-sizing: border-box; }
+
+    /* ── LOGO SECTION ── */
+    .logo-variants {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    }
+    @media (max-width: 900px) { .logo-variants { grid-template-columns: 1fr 1fr; } }
+
+    .logo-cell {
+      padding: 48px 40px;
+      display: flex; flex-direction: column;
+      gap: 24px; border: 1px solid #1b232f;
+      margin: -1px 0 0 -1px;
+    }
+    .logo-cell-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #555558;
+    }
+    .logo-lockup {
+      display: flex; align-items: center; gap: 16px;
+    }
+    .logo-wordmark {
+      font-family: 'Satoshi', 'Inter Tight', sans-serif;
+      font-weight: 500; letter-spacing: 0.04em;
+      line-height: 1;
+    }
+
+    .brand-page {
+      font-family: 'Inter Tight', sans-serif;
+      background: #070b10;
+      color: #fcfcfc;
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    /* ── GRID BG ── */
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(74,110,199,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(74,110,199,0.08) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* ── SECTION ── */
+    .section { padding: 80px 48px; max-width: 1400px; margin: 0 auto; }
+    .section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #4a6ec7;
+      margin-bottom: 12px; display: block;
+    }
+    .section-title {
+      font-size: 36px; font-weight: 700; color: #fcfcfc;
+      margin: 0 0 8px;
+    }
+    .section-desc {
+      font-size: 15px; color: #555558; margin: 0 0 48px;
+    }
+    .divider { border: none; border-top: 1px solid #1b232f; margin: 0; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 120px 48px 80px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px; border-radius: 100px;
+      border: 1px solid #1b232f; background: #0f1217;
+      font-size: 12px; font-weight: 500; color: #888888;
+      margin-bottom: 32px;
+    }
+    .hero-badge span { width: 6px; height: 6px; border-radius: 50%; background: #4a6ec7; }
+    .hero-title {
+      font-size: clamp(48px, 6vw, 80px);
+      font-weight: 800;
+      line-height: 1.05;
+      margin: 0 0 24px;
+      background: linear-gradient(156deg, #ffffff 32.92%, #4a6ec7 91%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 18px; color: #888888; max-width: 560px;
+      line-height: 1.6; margin: 0 0 48px;
+    }
+    .hero-meta {
+      display: flex; gap: 40px; flex-wrap: wrap;
+    }
+    .hero-meta-item { }
+    .hero-meta-item strong { display: block; font-size: 28px; font-weight: 700; color: #fcfcfc; }
+    .hero-meta-item span { font-size: 13px; color: #555558; }
+
+    /* ── COLORS ── */
+    .color-group { margin-bottom: 40px; }
+    .color-group-title {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #555558;
+      margin-bottom: 16px;
+    }
+    .color-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px;
+    }
+    .color-swatch {
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid #1b232f;
+    }
+    .color-swatch-block { height: 72px; }
+    .color-swatch-info {
+      padding: 10px 12px; background: #0f1217;
+    }
+    .color-swatch-name { font-size: 11px; font-weight: 600; color: #888888; margin-bottom: 2px; }
+    .color-swatch-hex { font-size: 13px; font-weight: 700; color: #fcfcfc; font-variant-numeric: tabular-nums; }
+    .color-swatch-label { font-size: 11px; color: #555558; }
+
+    /* ── GRADIENTS ── */
+    .gradient-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px;
+    }
+    .gradient-card {
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid #1b232f;
+    }
+    .gradient-block { height: 120px; }
+    .gradient-info { padding: 14px 16px; background: #0f1217; }
+    .gradient-label { font-size: 14px; font-weight: 600; color: #fcfcfc; margin-bottom: 4px; }
+    .gradient-use { font-size: 12px; color: #555558; margin-bottom: 8px; }
+    .gradient-id { font-size: 11px; font-weight: 600; color: #4a6ec7; letter-spacing: 0.1em; text-transform: uppercase; }
+
+    /* ── TYPOGRAPHY ── */
+    .type-table { width: 100%; border-collapse: collapse; }
+    .type-table th {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #555558; padding: 0 16px 16px 0; text-align: left; border-bottom: 1px solid #1b232f;
+    }
+    .type-table td { padding: 16px 16px 16px 0; border-bottom: 1px solid #0f1217; vertical-align: middle; }
+    .type-label { font-size: 12px; font-weight: 600; color: #4a6ec7; }
+    .type-meta { font-size: 11px; color: #555558; font-variant-numeric: tabular-nums; }
+    .type-preview { font-family: 'Inter Tight', sans-serif; color: #fcfcfc; line-height: 1.1; }
+    .type-use { font-size: 12px; color: #555558; }
+
+    /* ── TEXT GRADIENTS ── */
+    .text-grad-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px;
+    }
+    .text-grad-card {
+      padding: 28px 24px; border-radius: 16px;
+      background: #0f1217; border: 1px solid #1b232f;
+    }
+    .text-grad-sample {
+      font-size: 32px; font-weight: 800; line-height: 1.1;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+    .text-grad-label { font-size: 12px; color: #555558; }
+    .text-grad-code {
+      font-size: 11px; color: #4a6ec7; font-family: monospace;
+      margin-top: 6px; word-break: break-all;
+    }
+
+    /* ── BUTTON ── */
+    .btn-demo {
+      position: relative; overflow: hidden;
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px;
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 15px; font-weight: 600; color: #fff;
+      background: linear-gradient(135deg, #1b3a6b 0%, #4a6ec7 100%);
+      border: none; cursor: pointer;
+    }
+    .btn-demo::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #4a6ec7 0%, #1b3a6b 100%);
+      opacity: 0;
+      transition: opacity 500ms ease;
+    }
+    .btn-demo:hover::after { opacity: 1; }
+    .btn-demo span { position: relative; z-index: 1; }
+    .btn-row { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+    .btn-state-label { font-size: 12px; color: #555558; }
+
+    /* ── CAROUSEL EXAMPLES ── */
+    .carousel-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px;
+    }
+    .carousel-strip {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    }
+    @media (max-width: 900px) { .carousel-strip { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .carousel-strip { grid-template-columns: 1fr; } }
+
+    /* Slide styles */
+    .slide {
+      aspect-ratio: 4/5;
+      border-radius: 0;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 32px;
+      font-family: 'Inter Tight', sans-serif;
+    }
+    .slide-grid-overlay {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+    }
+    .slide-glow {
+      position: absolute; top: -80px; right: -80px;
+      width: 300px; height: 300px; border-radius: 50%;
+      filter: blur(80px); pointer-events: none;
+    }
+    .slide-top { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; }
+    .slide-logo { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.9); display: flex; align-items: center; gap: 8px; }
+    .slide-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: #4a6ec7; }
+    .slide-year { font-size: 13px; color: rgba(255,255,255,0.4); }
+
+    .slide-body { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 24px 0; }
+    .slide-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
+    .slide-headline { font-size: 42px; font-weight: 800; line-height: 1.05; color: #fff; margin: 0 0 16px; }
+    .slide-sub { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.5; margin: 0; }
+
+    .slide-bottom { position: relative; z-index: 1; }
+    .slide-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 0;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 8px;
+    }
+    .slide-tagline { font-size: 12px; color: rgba(255,255,255,0.35); text-align: center; padding-top: 12px; }
+
+    /* Slide variants */
+    .slide-navy { background: #1b3a6b; }
+    .slide-dark { background: #070b10; }
+    .slide-midnight { background: #0c1932; }
+    .slide-gold { background: linear-gradient(135deg, #1b3a6b 0%, #2d4a8a 100%); }
+    .slide-teal { background: linear-gradient(135deg, #0a1f1f 0%, #0d2f2f 100%); }
+    .slide-gradient-bg { background: linear-gradient(135deg, #4a6ec7 0%, #d4a574 100%); }
+
+    /* Stat slide */
+    .stat-big { font-size: 72px; font-weight: 800; line-height: 1; margin-bottom: 8px; }
+    .stat-label { font-size: 16px; color: rgba(255,255,255,0.6); }
+
+    /* Feature pill */
+    .feature-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 12px; border-radius: 100px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 12px; color: rgba(255,255,255,0.7);
+      margin: 4px 4px 4px 0;
+    }
+    .feature-pill-dot { width: 5px; height: 5px; border-radius: 50%; }
+
+    /* slide border */
+    .slide-border { border: 1px solid rgba(255,255,255,0.1); }
+    .slide-inner-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 0;
+      padding: 20px;
+      margin: 16px 0;
+    }
+    .slide-inner-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .slide-inner-row:last-child { margin-bottom: 0; }
+    .slide-inner-label { font-size: 12px; color: rgba(255,255,255,0.45); }
+    .slide-inner-value { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.9); }
+
+    /* ── VIDEO BG TEMPLATES ── */
+    .video-bg-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;
+    }
+    .video-bg-card {
+      aspect-ratio: 16/9; border-radius: 0; position: relative;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; border: 1px solid #1b232f;
+    }
+    .video-bg-label {
+      position: relative; z-index: 1;
+      text-align: center;
+    }
+    .video-bg-title { font-size: 20px; font-weight: 700; color: #fcfcfc; }
+    .video-bg-sub { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+
+    /* ── LOGO SECTION ── */
+    .logo-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    .logo-card {
+      aspect-ratio: 16/9; border-radius: 0;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid #1b232f;
+    }
+    .logo-text {
+      font-size: 22px; font-weight: 800; letter-spacing: -0.02em;
+    }
+
+    /* ── SPACING ── */
+    .mt-0 { margin-top: 0; }
+    .pb-0 { padding-bottom: 0; }
+
+    /* ── FOOTER ── */
+    .brand-footer {
+      padding: 40px 48px;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #1b232f;
+    }
+    .brand-footer-left { font-size: 13px; color: #555558; }
+    .brand-footer-right { font-size: 13px; color: #555558; }
+
+    @media (max-width: 768px) {
+      .section { padding: 48px 24px; }
+      .hero { padding: 80px 24px 48px; }
+      .logo-grid { grid-template-columns: repeat(2, 1fr); }
+      .brand-footer { padding: 32px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+
+  <div class="brand-page grid-bg">
+
+    <!-- ═══ HERO ═══ -->
+    <div class="hero">
+      <div class="hero-badge">
+        <span></span>
+        Internal Use · Social Media Team
+      </div>
+      <h1 class="hero-title">Insighty<br/>Brand Kit</h1>
+      <p class="hero-sub">Typography, colors, gradients, and carousel templates — everything your team needs to create on-brand content.</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <strong>Inter Tight</strong>
+          <span>Primary typeface</span>
+        </div>
+        <div class="hero-meta-item">
+          <strong>#070b10</strong>
+          <span>Base background</span>
+        </div>
+        <div class="hero-meta-item">
+          <strong>13</strong>
+          <span>Gradient tokens</span>
+        </div>
+        <div class="hero-meta-item">
+          <strong>4:5</strong>
+          <span>Carousel ratio</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══ LOGO MARK ═══ -->
+    <div class="section" style="padding-bottom:0;">
+      <span class="section-label">00 — Logo Mark</span>
+      <h2 class="section-title">Logo System</h2>
+      <p class="section-desc">Icon · Satoshi Medium · letter-spacing: 0.04em · all lowercase</p>
+    </div>
+
+    <div style="max-width:1400px; margin:0 auto; padding:0 48px 80px;">
+      <div class="logo-variants">
+
+        <!-- 1. Gradient lockup on white -->
+        <div class="logo-cell" style="background:#ffffff;">
+          <div class="logo-cell-label" style="color:#aaa;">White bg · gradient</div>
+          <div class="logo-lockup">
+            <svg width="52" height="52" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="lw1" x1="5" y1="5" x2="95" y2="95" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#4a6ec7"/>
+                  <stop offset="100%" stop-color="#d4a574"/>
+                </linearGradient>
+              </defs>
+              <g stroke="url(#lw1)" stroke-linecap="butt">
+                <line x1="50" y1="50" x2="63" y2="5"  stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="87" y2="19" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="94" y2="44" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="9"  y2="34" stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="5"  y2="51" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="26" y2="92" stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="47" y2="97" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="84" y2="90" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="96" y2="36" stroke-width="1.6"/>
+              </g>
+              <circle cx="50" cy="50" r="4" fill="url(#lw1)"/>
+            </svg>
+            <span class="logo-wordmark" style="font-size:34px; background:linear-gradient(135deg,#4a6ec7,#d4a574); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">insighty</span>
+          </div>
+          <div style="font-size:11px; color:#bbb; font-family:monospace; line-height:1.8;">
+            gradient-1: #4a6ec7 → #d4a574<br/>
+            Satoshi Medium · 0.04em
+          </div>
+        </div>
+
+        <!-- 2. Navy solid lockup on white -->
+        <div class="logo-cell" style="background:#ffffff;">
+          <div class="logo-cell-label" style="color:#aaa;">White bg · navy solid</div>
+          <div class="logo-lockup">
+            <svg width="52" height="52" viewBox="0 0 100 100" fill="none">
+              <g stroke="#1b3a6b" stroke-linecap="butt">
+                <line x1="50" y1="50" x2="63" y2="5"  stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="87" y2="19" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="94" y2="44" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="9"  y2="34" stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="5"  y2="51" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="26" y2="92" stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="47" y2="97" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="84" y2="90" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="96" y2="36" stroke-width="1.6"/>
+              </g>
+              <circle cx="50" cy="50" r="4" fill="#1b3a6b"/>
+            </svg>
+            <span class="logo-wordmark" style="font-size:34px; color:#1b3a6b;">insighty</span>
+          </div>
+          <div style="font-size:11px; color:#bbb; font-family:monospace;">
+            color: #1b3a6b (navy)
+          </div>
+        </div>
+
+        <!-- 3. Teal→blue gradient on white -->
+        <div class="logo-cell" style="background:#f4f5f8;">
+          <div class="logo-cell-label" style="color:#aaa;">Light bg · teal gradient</div>
+          <div class="logo-lockup">
+            <svg width="52" height="52" viewBox="0 0 100 100" fill="none">
+              <defs>
+                <linearGradient id="lw3" x1="5" y1="5" x2="95" y2="95" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#2d9b9b"/>
+                  <stop offset="100%" stop-color="#4a6ec7"/>
+                </linearGradient>
+              </defs>
+              <g stroke="url(#lw3)" stroke-linecap="butt">
+                <line x1="50" y1="50" x2="63" y2="5"  stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="87" y2="19" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="94" y2="44" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="9"  y2="34" stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="5"  y2="51" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="26" y2="92" stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="47" y2="97" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="84" y2="90" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="96" y2="36" stroke-width="1.6"/>
+              </g>
+              <circle cx="50" cy="50" r="4" fill="url(#lw3)"/>
+            </svg>
+            <span class="logo-wordmark" style="font-size:34px; background:linear-gradient(135deg,#2d9b9b,#4a6ec7); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">insighty</span>
+          </div>
+          <div style="font-size:11px; color:#bbb; font-family:monospace;">
+            gradient-3: #2d9b9b → #4a6ec7
+          </div>
+        </div>
+
+        <!-- 4. White lockup on dark -->
+        <div class="logo-cell" style="background:#070b10; border-color:#1b232f;">
+          <div class="logo-cell-label">Dark bg · white</div>
+          <div class="logo-lockup">
+            <svg width="52" height="52" viewBox="0 0 100 100" fill="none">
+              <g stroke="#fcfcfc" stroke-linecap="butt">
+                <line x1="50" y1="50" x2="63" y2="5"  stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="87" y2="19" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="94" y2="44" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="9"  y2="34" stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="5"  y2="51" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="26" y2="92" stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="47" y2="97" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="84" y2="90" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="96" y2="36" stroke-width="1.6"/>
+              </g>
+              <circle cx="50" cy="50" r="4" fill="#fcfcfc"/>
+            </svg>
+            <span class="logo-wordmark" style="font-size:34px; color:#fcfcfc;">insighty</span>
+          </div>
+          <div style="font-size:11px; color:#555558; font-family:monospace;">
+            color: #fcfcfc (white)
+          </div>
+        </div>
+
+        <!-- 5. Gradient lockup on dark -->
+        <div class="logo-cell" style="background:#0c1932; border-color:#1b232f;">
+          <div class="logo-cell-label">Dark bg · gradient</div>
+          <div class="logo-lockup">
+            <svg width="52" height="52" viewBox="0 0 100 100" fill="none">
+              <defs>
+                <linearGradient id="ld2" x1="5" y1="5" x2="95" y2="95" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#4a6ec7"/>
+                  <stop offset="100%" stop-color="#d4a574"/>
+                </linearGradient>
+              </defs>
+              <g stroke="url(#ld2)" stroke-linecap="butt">
+                <line x1="50" y1="50" x2="63" y2="5"  stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="87" y2="19" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="94" y2="44" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="9"  y2="34" stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="5"  y2="51" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="26" y2="92" stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="47" y2="97" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="84" y2="90" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="96" y2="36" stroke-width="1.6"/>
+              </g>
+              <circle cx="50" cy="50" r="4" fill="url(#ld2)"/>
+            </svg>
+            <span class="logo-wordmark" style="font-size:34px; background:linear-gradient(135deg,#4a6ec7,#d4a574); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">insighty</span>
+          </div>
+          <div style="font-size:11px; color:#555558; font-family:monospace;">
+            gradient-1: #4a6ec7 → #d4a574
+          </div>
+        </div>
+
+        <!-- 6. Icon large + type spec -->
+        <div class="logo-cell" style="background:#070b10; border-color:#1b232f;">
+          <div class="logo-cell-label">Type spec</div>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <span style="font-size:11px; color:#555558; font-family:monospace; letter-spacing:0.06em; text-transform:uppercase;">Font</span>
+              <span class="logo-wordmark" style="font-size:28px; color:#fcfcfc;">Satoshi Medium</span>
+            </div>
+            <div style="height:1px; background:#1b232f;"></div>
+            <div style="font-size:12px; color:#555558; font-family:monospace; line-height:2;">
+              font-weight: 500<br/>
+              letter-spacing: 0.04em<br/>
+              text-transform: none<br/>
+              all lowercase always
+            </div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px;">
+              <span class="logo-wordmark" style="font-size:20px; color:#fcfcfc;">insighty</span>
+              <span class="logo-wordmark" style="font-size:14px; color:#fcfcfc; align-self:center;">insighty</span>
+              <span class="logo-wordmark" style="font-size:10px; color:#fcfcfc; align-self:center;">insighty</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Icon only row -->
+      <div style="margin-top:1px; display:grid; grid-template-columns:repeat(5,1fr); gap:0;">
+        {[
+          { bg:'#ffffff', grad:'linear-gradient(135deg,#4a6ec7,#d4a574)',   stroke:'url(#ic1)', label:'White · gradient-1' },
+          { bg:'#f4f5f8', grad:'linear-gradient(135deg,#2d9b9b,#4a6ec7)',   stroke:'url(#ic2)', label:'Smoke · gradient-3' },
+          { bg:'#070b10', grad:null, stroke:'#fcfcfc',                       label:'Void · white' },
+          { bg:'#1b3a6b', grad:null, stroke:'#fcfcfc',                       label:'Navy · white' },
+          { bg:'linear-gradient(135deg,#4a6ec7,#d4a574)', grad:null, stroke:'#fff', label:'Gradient bg · white' },
+        ].map((v, i) => (
+          <div style={`padding:32px; display:flex; flex-direction:column; align-items:center; gap:12px; background:${v.bg}; border:1px solid #1b232f; margin:-1px 0 0 -1px;`}>
+            <svg width="40" height="40" viewBox="0 0 100 100" fill="none">
+              <defs>
+                <linearGradient id={`ic${i+1}`} x1="5" y1="5" x2="95" y2="95" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color={i===0?'#4a6ec7':'#2d9b9b'}/>
+                  <stop offset="100%" stop-color={i===0?'#d4a574':'#4a6ec7'}/>
+                </linearGradient>
+              </defs>
+              <g stroke={v.stroke === `url(#ic${i+1})` ? `url(#ic${i+1})` : v.stroke} stroke-linecap="butt">
+                <line x1="50" y1="50" x2="63" y2="5"  stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="87" y2="19" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="94" y2="44" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="9"  y2="34" stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="5"  y2="51" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="26" y2="92" stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="47" y2="97" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="84" y2="90" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="96" y2="36" stroke-width="1.6"/>
+              </g>
+              <circle cx="50" cy="50" r="4" fill={v.stroke === `url(#ic${i+1})` ? `url(#ic${i+1})` : v.stroke}/>
+            </svg>
+            <span style={`font-size:10px; font-family:monospace; letter-spacing:0.06em; color:${['#ffffff','#f4f5f8'].includes(v.bg)?'#aaa':'#555558'};`}>{v.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══ LOGO V2 ═══ -->
+    <div class="section" style="padding-bottom:0;">
+      <span class="section-label">00B — Logo V2</span>
+      <h2 class="section-title">Logo V2 · Refined</h2>
+      <p class="section-desc">Asymmetric icon — open right side flows into the wordmark. Custom "i" dots in blue. Modified letterforms.</p>
+    </div>
+
+    <div style="max-width:1400px; margin:0 auto; padding:0 48px 80px;">
+
+      <!-- V2 concept notes -->
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0; margin-bottom:1px;">
+        <div style="padding:16px 20px; background:#0f1217; border:1px solid #1b232f; margin:-1px 0 0 -1px;">
+          <div style="font-size:11px;color:#4a6ec7;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Icon change</div>
+          <div style="font-size:13px;color:#888;">Asymmetric — rays cluster upper-left, open right so the wordmark continues naturally from the icon</div>
+        </div>
+        <div style="padding:16px 20px; background:#0f1217; border:1px solid #1b232f; margin:-1px 0 0 -1px;">
+          <div style="font-size:11px;color:#4a6ec7;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Center circle</div>
+          <div style="font-size:13px;color:#888;">Larger, prominent filled circle — the visual "anchor" that connects icon to the i-dots in the wordmark</div>
+        </div>
+        <div style="padding:16px 20px; background:#0f1217; border:1px solid #1b232f; margin:-1px 0 0 -1px;">
+          <div style="font-size:11px;color:#4a6ec7;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Text modification</div>
+          <div style="font-size:13px;color:#888;">Dotless "ı" (U+0131) stems + custom blue circles for both "i" tittles — connects typography to the icon mark</div>
+        </div>
+      </div>
+
+      <!-- V2 lockups grid -->
+      <div class="logo-variants" style="margin-top:1px;">
+
+        <!-- V2 on white -->
+        <div class="logo-cell" style="background:#fff; padding:56px 48px;">
+          <div class="logo-cell-label" style="color:#aaa;">White bg · V2</div>
+          <div class="logo-lockup" style="gap:20px; align-items:center;">
+            <svg width="64" height="64" viewBox="0 0 100 100" fill="none">
+              <defs>
+                <linearGradient id="wa1" x1="50" y1="50" x2="64" y2="3"   gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+                <linearGradient id="wa2" x1="50" y1="50" x2="12" y2="18"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+                <linearGradient id="wa3" x1="50" y1="50" x2="4"  y2="46"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+                <linearGradient id="wa4" x1="50" y1="50" x2="7"  y2="66"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+                <linearGradient id="wa5" x1="50" y1="50" x2="22" y2="92"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+                <linearGradient id="wa6" x1="50" y1="50" x2="46" y2="97"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+                <linearGradient id="wa7" x1="50" y1="50" x2="84" y2="14"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+                <linearGradient id="wa8" x1="50" y1="50" x2="93" y2="50"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+                <radialGradient id="wac" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff"/><stop offset="55%" stop-color="#4a6ec7"/><stop offset="100%" stop-color="#1b3a6b"/></radialGradient>
+              </defs>
+              <g stroke-linecap="butt">
+                <line x1="50" y1="50" x2="64" y2="3"  stroke="url(#wa1)" stroke-width="2.5"/>
+                <line x1="50" y1="50" x2="12" y2="18" stroke="url(#wa2)" stroke-width="2.8"/>
+                <line x1="50" y1="50" x2="4"  y2="46" stroke="url(#wa3)" stroke-width="2.8"/>
+                <line x1="50" y1="50" x2="7"  y2="66" stroke="url(#wa4)" stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="22" y2="92" stroke="url(#wa5)" stroke-width="2.5"/>
+                <line x1="50" y1="50" x2="46" y2="97" stroke="url(#wa6)" stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="84" y2="14" stroke="url(#wa7)" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="93" y2="50" stroke="url(#wa8)" stroke-width="1.6"/>
+              </g>
+              <circle cx="50" cy="50" r="8.5" fill="#a3b8ea"/>
+              <circle cx="50" cy="50" r="5.5" fill="url(#wac)"/>
+            </svg>
+            <div style="position:relative; display:inline-block; font-family:'Satoshi','Inter Tight',sans-serif; font-weight:500; letter-spacing:0.04em; font-size:38px; line-height:1;">
+              <span style="background:linear-gradient(156deg,#1b3a6b 0%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ı</span><span style="position:absolute;left:0;width:14px;display:flex;justify-content:center;top:3px;"><span style="width:5px;height:5px;border-radius:50%;background:#4a6ec7;display:block;"></span></span><span style="background:linear-gradient(156deg,#1b3a6b 0%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ns</span><span style="position:relative;display:inline-block;"><span style="background:linear-gradient(156deg,#1b3a6b 0%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ı</span><span style="position:absolute;left:0;width:100%;display:flex;justify-content:center;top:3px;"><span style="width:5px;height:5px;border-radius:50%;background:#4a6ec7;display:block;"></span></span></span><span style="background:linear-gradient(156deg,#1b3a6b 0%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ghty</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- V2 dark void -->
+        <div class="logo-cell" style="background:#070b10; border-color:#1b232f; padding:56px 48px;">
+          <div class="logo-cell-label">Dark void · V2</div>
+          <div class="logo-lockup" style="gap:20px; align-items:center;">
+            <svg width="64" height="64" viewBox="0 0 100 100" fill="none">
+              <defs>
+                <linearGradient id="da1" x1="50" y1="50" x2="64" y2="3"   gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#fcfcfc"/><stop offset="100%" stop-color="#fcfcfc" stop-opacity="0"/></linearGradient>
+                <linearGradient id="da2" x1="50" y1="50" x2="12" y2="18"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#fcfcfc"/><stop offset="100%" stop-color="#fcfcfc" stop-opacity="0"/></linearGradient>
+                <linearGradient id="da3" x1="50" y1="50" x2="4"  y2="46"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#fcfcfc"/><stop offset="100%" stop-color="#fcfcfc" stop-opacity="0"/></linearGradient>
+                <linearGradient id="da4" x1="50" y1="50" x2="7"  y2="66"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#fcfcfc"/><stop offset="100%" stop-color="#fcfcfc" stop-opacity="0"/></linearGradient>
+                <linearGradient id="da5" x1="50" y1="50" x2="22" y2="92"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#fcfcfc"/><stop offset="100%" stop-color="#fcfcfc" stop-opacity="0"/></linearGradient>
+                <linearGradient id="da6" x1="50" y1="50" x2="46" y2="97"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#fcfcfc"/><stop offset="100%" stop-color="#fcfcfc" stop-opacity="0"/></linearGradient>
+                <linearGradient id="da7" x1="50" y1="50" x2="84" y2="14"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#fcfcfc"/><stop offset="100%" stop-color="#fcfcfc" stop-opacity="0"/></linearGradient>
+                <linearGradient id="da8" x1="50" y1="50" x2="93" y2="50"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#fcfcfc"/><stop offset="100%" stop-color="#fcfcfc" stop-opacity="0"/></linearGradient>
+                <radialGradient id="dac" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff"/><stop offset="55%" stop-color="#4a6ec7"/><stop offset="100%" stop-color="#1b3a6b"/></radialGradient>
+              </defs>
+              <g stroke-linecap="butt">
+                <line x1="50" y1="50" x2="64" y2="3"  stroke="url(#da1)" stroke-width="2.5"/>
+                <line x1="50" y1="50" x2="12" y2="18" stroke="url(#da2)" stroke-width="2.8"/>
+                <line x1="50" y1="50" x2="4"  y2="46" stroke="url(#da3)" stroke-width="2.8"/>
+                <line x1="50" y1="50" x2="7"  y2="66" stroke="url(#da4)" stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="22" y2="92" stroke="url(#da5)" stroke-width="2.5"/>
+                <line x1="50" y1="50" x2="46" y2="97" stroke="url(#da6)" stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="84" y2="14" stroke="url(#da7)" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="93" y2="50" stroke="url(#da8)" stroke-width="1.6"/>
+              </g>
+              <circle cx="50" cy="50" r="8.5" fill="#c9d5f3"/>
+              <circle cx="50" cy="50" r="5.5" fill="url(#dac)"/>
+            </svg>
+            <div style="position:relative;display:inline-block;font-family:'Satoshi','Inter Tight',sans-serif;font-weight:500;letter-spacing:0.04em;font-size:38px;line-height:1;">
+              <span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ı</span><span style="position:absolute;left:0;width:14px;display:flex;justify-content:center;top:3px;"><span style="width:5px;height:5px;border-radius:50%;background:#6e8fd9;display:block;"></span></span><span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ns</span><span style="position:relative;display:inline-block;"><span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ı</span><span style="position:absolute;left:0;width:100%;display:flex;justify-content:center;top:3px;"><span style="width:5px;height:5px;border-radius:50%;background:#6e8fd9;display:block;"></span></span></span><span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ghty</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- V2 dark navy -->
+        <div class="logo-cell" style="background:#0c1932; border-color:#1b232f; padding:56px 48px;">
+          <div class="logo-cell-label">Dark navy · V2</div>
+          <div class="logo-lockup" style="gap:20px; align-items:center;">
+            <svg width="64" height="64" viewBox="0 0 100 100" fill="none">
+              <defs>
+                <linearGradient id="na1" x1="50" y1="50" x2="64" y2="3"   gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#c9d5f3"/><stop offset="100%" stop-color="#c9d5f3" stop-opacity="0"/></linearGradient>
+                <linearGradient id="na2" x1="50" y1="50" x2="12" y2="18"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#c9d5f3"/><stop offset="100%" stop-color="#c9d5f3" stop-opacity="0"/></linearGradient>
+                <linearGradient id="na3" x1="50" y1="50" x2="4"  y2="46"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#c9d5f3"/><stop offset="100%" stop-color="#c9d5f3" stop-opacity="0"/></linearGradient>
+                <linearGradient id="na4" x1="50" y1="50" x2="7"  y2="66"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#c9d5f3"/><stop offset="100%" stop-color="#c9d5f3" stop-opacity="0"/></linearGradient>
+                <linearGradient id="na5" x1="50" y1="50" x2="22" y2="92"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#c9d5f3"/><stop offset="100%" stop-color="#c9d5f3" stop-opacity="0"/></linearGradient>
+                <linearGradient id="na6" x1="50" y1="50" x2="46" y2="97"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#c9d5f3"/><stop offset="100%" stop-color="#c9d5f3" stop-opacity="0"/></linearGradient>
+                <linearGradient id="na7" x1="50" y1="50" x2="84" y2="14"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#c9d5f3"/><stop offset="100%" stop-color="#c9d5f3" stop-opacity="0"/></linearGradient>
+                <linearGradient id="na8" x1="50" y1="50" x2="93" y2="50"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#c9d5f3"/><stop offset="100%" stop-color="#c9d5f3" stop-opacity="0"/></linearGradient>
+                <radialGradient id="nac" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff"/><stop offset="55%" stop-color="#4a6ec7"/><stop offset="100%" stop-color="#1b3a6b"/></radialGradient>
+              </defs>
+              <g stroke-linecap="butt">
+                <line x1="50" y1="50" x2="64" y2="3"  stroke="url(#na1)" stroke-width="2.5"/>
+                <line x1="50" y1="50" x2="12" y2="18" stroke="url(#na2)" stroke-width="2.8"/>
+                <line x1="50" y1="50" x2="4"  y2="46" stroke="url(#na3)" stroke-width="2.8"/>
+                <line x1="50" y1="50" x2="7"  y2="66" stroke="url(#na4)" stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="22" y2="92" stroke="url(#na5)" stroke-width="2.5"/>
+                <line x1="50" y1="50" x2="46" y2="97" stroke="url(#na6)" stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="84" y2="14" stroke="url(#na7)" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="93" y2="50" stroke="url(#na8)" stroke-width="1.6"/>
+              </g>
+              <circle cx="50" cy="50" r="8.5" fill="#c9d5f3"/>
+              <circle cx="50" cy="50" r="5.5" fill="url(#nac)"/>
+            </svg>
+            <div style="position:relative;display:inline-block;font-family:'Satoshi','Inter Tight',sans-serif;font-weight:500;letter-spacing:0.04em;font-size:38px;line-height:1;">
+              <span style="color:#c9d5f3;">ı</span><span style="position:absolute;left:0;width:14px;display:flex;justify-content:center;top:3px;"><span style="width:5px;height:5px;border-radius:50%;background:#6e8fd9;display:block;"></span></span><span style="color:#c9d5f3;">ns</span><span style="position:relative;display:inline-block;"><span style="color:#c9d5f3;">ı</span><span style="position:absolute;left:0;width:100%;display:flex;justify-content:center;top:3px;"><span style="width:5px;height:5px;border-radius:50%;background:#6e8fd9;display:block;"></span></span></span><span style="color:#c9d5f3;">ghty</span>
+            </div>
+          </div>
+          <div style="margin-top:24px;font-size:11px;color:#2a333e;font-family:monospace;line-height:1.9;">
+            Rays: #c9d5f3 → transparent<br/>
+            Center: white → #4a6ec7 → #1b3a6b<br/>
+            i-dots: #6e8fd9 (cornflower)
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Side-by-side comparison at large scale -->
+      <div style="margin-top:1px; display:grid; grid-template-columns:1fr 1fr; gap:0;">
+        <div style="padding:64px 56px; background:#fff; border:1px solid #1b232f; margin:-1px 0 0 -1px;">
+          <div style="font-size:11px;color:#bbb;font-family:monospace;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:32px;">V1 — symmetric · solid gradient</div>
+          <div style="display:flex; align-items:center; gap:18px;">
+            <svg width="80" height="80" viewBox="0 0 100 100" fill="none">
+              <defs><linearGradient id="cmp1" x1="5" y1="5" x2="95" y2="95" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#4a6ec7"/><stop offset="100%" stop-color="#d4a574"/></linearGradient></defs>
+              <g stroke="url(#cmp1)" stroke-linecap="butt">
+                <line x1="50" y1="50" x2="63" y2="5"  stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="87" y2="19" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="94" y2="44" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="9"  y2="34" stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="5"  y2="51" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="26" y2="92" stroke-width="2.4"/>
+                <line x1="50" y1="50" x2="47" y2="97" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="84" y2="90" stroke-width="2.0"/>
+                <line x1="50" y1="50" x2="96" y2="36" stroke-width="1.6"/>
+              </g>
+              <circle cx="50" cy="50" r="4" fill="url(#cmp1)"/>
+            </svg>
+            <span style="font-family:'Satoshi','Inter Tight',sans-serif;font-weight:500;letter-spacing:0.04em;font-size:56px;line-height:1;background:linear-gradient(135deg,#4a6ec7,#d4a574);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">insighty</span>
+          </div>
+        </div>
+        <div style="padding:64px 56px; background:#fff; border:1px solid #1b232f; margin:-1px 0 0 -1px;">
+          <div style="font-size:11px;color:#bbb;font-family:monospace;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:32px;">V2 — asymmetric · fade rays · bullseye · blue only</div>
+          <div style="display:flex; align-items:center; gap:18px;">
+            <svg width="80" height="80" viewBox="0 0 100 100" fill="none">
+              <defs>
+                <linearGradient id="cm1" x1="50" y1="50" x2="64" y2="3"   gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+                <linearGradient id="cm2" x1="50" y1="50" x2="12" y2="18"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+                <linearGradient id="cm3" x1="50" y1="50" x2="4"  y2="46"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+                <linearGradient id="cm4" x1="50" y1="50" x2="7"  y2="66"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+                <linearGradient id="cm5" x1="50" y1="50" x2="22" y2="92"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+                <linearGradient id="cm6" x1="50" y1="50" x2="46" y2="97"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+                <linearGradient id="cm7" x1="50" y1="50" x2="84" y2="14"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+                <linearGradient id="cm8" x1="50" y1="50" x2="93" y2="50"  gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#1b3a6b"/><stop offset="100%" stop-color="#1b3a6b" stop-opacity="0"/></linearGradient>
+                <radialGradient id="cmc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff"/><stop offset="55%" stop-color="#4a6ec7"/><stop offset="100%" stop-color="#1b3a6b"/></radialGradient>
+              </defs>
+              <g stroke-linecap="butt">
+                <line x1="50" y1="50" x2="64" y2="3"  stroke="url(#cm1)" stroke-width="2.8"/>
+                <line x1="50" y1="50" x2="12" y2="18" stroke="url(#cm2)" stroke-width="3.2"/>
+                <line x1="50" y1="50" x2="4"  y2="46" stroke="url(#cm3)" stroke-width="3.2"/>
+                <line x1="50" y1="50" x2="7"  y2="66" stroke="url(#cm4)" stroke-width="2.8"/>
+                <line x1="50" y1="50" x2="22" y2="92" stroke="url(#cm5)" stroke-width="2.8"/>
+                <line x1="50" y1="50" x2="46" y2="97" stroke="url(#cm6)" stroke-width="2.8"/>
+                <line x1="50" y1="50" x2="84" y2="14" stroke="url(#cm7)" stroke-width="2.2"/>
+                <line x1="50" y1="50" x2="93" y2="50" stroke="url(#cm8)" stroke-width="1.8"/>
+              </g>
+              <circle cx="50" cy="50" r="9"   fill="#a3b8ea"/>
+              <circle cx="50" cy="50" r="5.5" fill="url(#cmc)"/>
+            </svg>
+            <div style="position:relative;display:inline-block;font-family:'Satoshi','Inter Tight',sans-serif;font-weight:500;letter-spacing:0.04em;font-size:56px;line-height:1;">
+              <span style="background:linear-gradient(156deg,#1b3a6b 0%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ı</span><span style="position:absolute;left:0;width:18px;display:flex;justify-content:center;top:4px;"><span style="width:7px;height:7px;border-radius:50%;background:#4a6ec7;display:block;"></span></span><span style="background:linear-gradient(156deg,#1b3a6b 0%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ns</span><span style="position:relative;display:inline-block;"><span style="background:linear-gradient(156deg,#1b3a6b 0%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ı</span><span style="position:absolute;left:0;width:100%;display:flex;justify-content:center;top:4px;"><span style="width:7px;height:7px;border-radius:50%;background:#4a6ec7;display:block;"></span></span></span><span style="background:linear-gradient(156deg,#1b3a6b 0%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ghty</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══ LOGO V3 ═══ -->
+    <div class="section">
+      <span class="section-label">00C — Logo V3</span>
+      <h2 class="section-title">Logo V3 · Wordmark Only</h2>
+      <p class="section-desc">No separate icon. The first "i" is the mark — its oversized bullseye tittle anchors the left using the same gradient center as V2.</p>
+    </div>
+
+    <div style="max-width:1400px; margin:0 auto; padding:0 48px 80px;">
+
+      <!-- V3 concept notes -->
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0; margin-bottom:1px;">
+        <div style="padding:16px 20px; background:#0f1217; border:1px solid #1b232f; margin:-1px 0 0 -1px;">
+          <div style="font-size:11px;color:#4a6ec7;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Concept</div>
+          <div style="font-size:13px;color:#888;">Pure wordmark — no separate SVG mark. The "i" doubles as the icon through its oversized gradient tittle dot.</div>
+        </div>
+        <div style="padding:16px 20px; background:#0f1217; border:1px solid #1b232f; margin:-1px 0 0 -1px;">
+          <div style="font-size:11px;color:#4a6ec7;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">First "i" dot</div>
+          <div style="font-size:13px;color:#888;">3× normal size. V2 bullseye: outer ring #a3b8ea, inner radial white → #4a6ec7 → #1b3a6b</div>
+        </div>
+        <div style="padding:16px 20px; background:#0f1217; border:1px solid #1b232f; margin:-1px 0 0 -1px;">
+          <div style="font-size:11px;color:#4a6ec7;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">Hierarchy</div>
+          <div style="font-size:13px;color:#888;">First "i" = brand anchor (large dot). Second "i" = standard 5px dot. Single glyph creates icon-weight on the left.</div>
+        </div>
+      </div>
+
+      <!-- V3 lockups: 3 backgrounds -->
+      <div class="logo-variants" style="margin-top:1px;">
+
+        <!-- white bg -->
+        <div class="logo-cell" style="background:#fff; padding:56px 48px;">
+          <div class="logo-cell-label" style="color:#aaa;">White bg · V3</div>
+          <div class="logo-lockup" style="align-items:baseline;">
+            <div style="position:relative;display:inline-block;font-family:'Satoshi','Inter Tight',sans-serif;font-weight:500;letter-spacing:0.04em;font-size:38px;line-height:1;padding-top:20px;">
+              <span style="position:absolute;top:2px;left:0;width:12px;display:flex;justify-content:center;"><svg width="16" height="16" viewBox="0 0 16 16"><defs><radialGradient id="v3wc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff"/><stop offset="55%" stop-color="#4a6ec7"/><stop offset="100%" stop-color="#1b3a6b"/></radialGradient></defs><circle cx="8" cy="8" r="8" fill="#a3b8ea"/><circle cx="8" cy="8" r="5.5" fill="url(#v3wc)"/></svg></span>
+              <span style="background:linear-gradient(156deg,#1b3a6b 0%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ı</span><span style="background:linear-gradient(156deg,#1b3a6b 0%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ns</span><span style="position:relative;display:inline-block;"><span style="background:linear-gradient(156deg,#1b3a6b 0%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ı</span><span style="position:absolute;left:0;width:100%;display:flex;justify-content:center;top:3px;"><span style="width:5px;height:5px;border-radius:50%;background:#4a6ec7;display:block;"></span></span></span><span style="background:linear-gradient(156deg,#1b3a6b 0%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ghty</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- dark void -->
+        <div class="logo-cell" style="background:#070b10;border-color:#1b232f;padding:56px 48px;">
+          <div class="logo-cell-label">Dark void · V3</div>
+          <div class="logo-lockup" style="align-items:baseline;">
+            <div style="position:relative;display:inline-block;font-family:'Satoshi','Inter Tight',sans-serif;font-weight:500;letter-spacing:0.04em;font-size:38px;line-height:1;padding-top:20px;">
+              <span style="position:absolute;top:2px;left:0;width:12px;display:flex;justify-content:center;"><svg width="16" height="16" viewBox="0 0 16 16"><defs><radialGradient id="v3dc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff"/><stop offset="55%" stop-color="#4a6ec7"/><stop offset="100%" stop-color="#1b3a6b"/></radialGradient></defs><circle cx="8" cy="8" r="8" fill="#c9d5f3"/><circle cx="8" cy="8" r="5.5" fill="url(#v3dc)"/></svg></span>
+              <span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ı</span><span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ns</span><span style="position:relative;display:inline-block;"><span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ı</span><span style="position:absolute;left:0;width:100%;display:flex;justify-content:center;top:3px;"><span style="width:5px;height:5px;border-radius:50%;background:#6e8fd9;display:block;"></span></span></span><span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ghty</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- dark navy -->
+        <div class="logo-cell" style="background:#0c1932;border-color:#1b232f;padding:56px 48px;">
+          <div class="logo-cell-label">Dark navy · V3</div>
+          <div class="logo-lockup" style="align-items:baseline;">
+            <div style="position:relative;display:inline-block;font-family:'Satoshi','Inter Tight',sans-serif;font-weight:500;letter-spacing:0.04em;font-size:38px;line-height:1;padding-top:20px;">
+              <span style="position:absolute;top:2px;left:0;width:12px;display:flex;justify-content:center;"><svg width="16" height="16" viewBox="0 0 16 16"><defs><radialGradient id="v3nc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff"/><stop offset="55%" stop-color="#4a6ec7"/><stop offset="100%" stop-color="#1b3a6b"/></radialGradient></defs><circle cx="8" cy="8" r="8" fill="#c9d5f3"/><circle cx="8" cy="8" r="5.5" fill="url(#v3nc)"/></svg></span>
+              <span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ı</span><span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ns</span><span style="position:relative;display:inline-block;"><span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ı</span><span style="position:absolute;left:0;width:100%;display:flex;justify-content:center;top:3px;"><span style="width:5px;height:5px;border-radius:50%;background:#6e8fd9;display:block;"></span></span></span><span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ghty</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Size showcase: small / standard / large on dark navy -->
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0; margin-top:1px;">
+
+        <div style="background:#0c1932; padding:40px 48px; border:1px solid #1b232f; margin:-1px 0 0 -1px; display:flex; flex-direction:column; align-items:flex-start; justify-content:center;">
+          <div style="font-size:10px;color:#4a6ec7;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;">Small · 24px</div>
+          <div style="position:relative;display:inline-block;font-family:'Satoshi','Inter Tight',sans-serif;font-weight:500;letter-spacing:0.04em;font-size:24px;line-height:1;padding-top:13px;">
+            <span style="position:absolute;top:1px;left:0;width:8px;display:flex;justify-content:center;"><svg width="10" height="10" viewBox="0 0 10 10"><defs><radialGradient id="v3smc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff"/><stop offset="55%" stop-color="#4a6ec7"/><stop offset="100%" stop-color="#1b3a6b"/></radialGradient></defs><circle cx="5" cy="5" r="5" fill="#c9d5f3"/><circle cx="5" cy="5" r="3.5" fill="url(#v3smc)"/></svg></span>
+            <span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ı</span><span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ns</span><span style="position:relative;display:inline-block;"><span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ı</span><span style="position:absolute;left:0;width:100%;display:flex;justify-content:center;top:2px;"><span style="width:3px;height:3px;border-radius:50%;background:#6e8fd9;display:block;"></span></span></span><span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ghty</span>
+          </div>
+        </div>
+
+        <div style="background:#0c1932; padding:40px 48px; border:1px solid #1b232f; margin:-1px 0 0 -1px; display:flex; flex-direction:column; align-items:flex-start; justify-content:center;">
+          <div style="font-size:10px;color:#4a6ec7;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;">Standard · 38px</div>
+          <div style="position:relative;display:inline-block;font-family:'Satoshi','Inter Tight',sans-serif;font-weight:500;letter-spacing:0.04em;font-size:38px;line-height:1;padding-top:20px;">
+            <span style="position:absolute;top:2px;left:0;width:12px;display:flex;justify-content:center;"><svg width="16" height="16" viewBox="0 0 16 16"><defs><radialGradient id="v3mdc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff"/><stop offset="55%" stop-color="#4a6ec7"/><stop offset="100%" stop-color="#1b3a6b"/></radialGradient></defs><circle cx="8" cy="8" r="8" fill="#c9d5f3"/><circle cx="8" cy="8" r="5.5" fill="url(#v3mdc)"/></svg></span>
+            <span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ı</span><span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ns</span><span style="position:relative;display:inline-block;"><span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ı</span><span style="position:absolute;left:0;width:100%;display:flex;justify-content:center;top:3px;"><span style="width:5px;height:5px;border-radius:50%;background:#6e8fd9;display:block;"></span></span></span><span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ghty</span>
+          </div>
+        </div>
+
+        <div style="background:#0c1932; padding:40px 48px; border:1px solid #1b232f; margin:-1px 0 0 -1px; display:flex; flex-direction:column; align-items:flex-start; justify-content:center;">
+          <div style="font-size:10px;color:#4a6ec7;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;">Large · 56px</div>
+          <div style="position:relative;display:inline-block;font-family:'Satoshi','Inter Tight',sans-serif;font-weight:500;letter-spacing:0.04em;font-size:56px;line-height:1;padding-top:28px;">
+            <span style="position:absolute;top:2px;left:0;width:16px;display:flex;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24"><defs><radialGradient id="v3lgc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff"/><stop offset="55%" stop-color="#4a6ec7"/><stop offset="100%" stop-color="#1b3a6b"/></radialGradient></defs><circle cx="12" cy="12" r="12" fill="#c9d5f3"/><circle cx="12" cy="12" r="8.5" fill="url(#v3lgc)"/></svg></span>
+            <span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ı</span><span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ns</span><span style="position:relative;display:inline-block;"><span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ı</span><span style="position:absolute;left:0;width:100%;display:flex;justify-content:center;top:4px;"><span style="width:7px;height:7px;border-radius:50%;background:#6e8fd9;display:block;"></span></span></span><span style="background:linear-gradient(156deg,#ffffff 32%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ghty</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══ COLORS ═══ -->
+    <div class="section">
+      <span class="section-label">01 — Colors</span>
+      <h2 class="section-title">Color System</h2>
+      <p class="section-desc">All brand colors with hex values. Copy directly into design tools.</p>
+
+      <div class="color-group">
+        <div class="color-group-title">Primary Blue Scale</div>
+        <div class="color-grid">
+          {colors.primary.map(c => (
+            <div class="color-swatch">
+              <div class="color-swatch-block" style={`background:${c.hex}`}></div>
+              <div class="color-swatch-info">
+                <div class="color-swatch-name">{c.name}</div>
+                <div class="color-swatch-hex">{c.hex}</div>
+                <div class="color-swatch-label">{c.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="color-group">
+        <div class="color-group-title">Brand Accents</div>
+        <div class="color-grid">
+          {colors.brand.map(c => (
+            <div class="color-swatch">
+              <div class="color-swatch-block" style={`background:${c.hex}`}></div>
+              <div class="color-swatch-info">
+                <div class="color-swatch-name">{c.name}</div>
+                <div class="color-swatch-hex">{c.hex}</div>
+                <div class="color-swatch-label">{c.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="color-group">
+        <div class="color-group-title">Dark Backgrounds (use for slides)</div>
+        <div class="color-grid">
+          {colors.dark.map(c => (
+            <div class="color-swatch">
+              <div class="color-swatch-block" style={`background:${c.hex}; border-bottom: 1px solid #1b232f`}></div>
+              <div class="color-swatch-info">
+                <div class="color-swatch-name">{c.name}</div>
+                <div class="color-swatch-hex">{c.hex}</div>
+                <div class="color-swatch-label">{c.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="color-group">
+        <div class="color-group-title">Light / Neutral</div>
+        <div class="color-grid">
+          {colors.light.map(c => (
+            <div class="color-swatch">
+              <div class="color-swatch-block" style={`background:${c.hex}; border-bottom: 1px solid #1b232f`}></div>
+              <div class="color-swatch-info">
+                <div class="color-swatch-name">{c.name}</div>
+                <div class="color-swatch-hex">{c.hex}</div>
+                <div class="color-swatch-label">{c.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══ GRADIENTS ═══ -->
+    <div class="section">
+      <span class="section-label">02 — Gradients</span>
+      <h2 class="section-title">Gradient Library</h2>
+      <p class="section-desc">Background and decorative gradients. Use CSS values directly in Figma or design tools.</p>
+
+      <div class="gradient-grid">
+        {gradients.map(g => (
+          <div class="gradient-card">
+            <div class="gradient-block" style={`background:${g.css}`}></div>
+            <div class="gradient-info">
+              <div class="gradient-label">{g.label}</div>
+              <div class="gradient-use">{g.use}</div>
+              <div class="gradient-id">gradient-{g.id}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══ TYPOGRAPHY ═══ -->
+    <div class="section">
+      <span class="section-label">03 — Typography</span>
+      <h2 class="section-title">Type Scale</h2>
+      <p class="section-desc">Inter Tight — available on Google Fonts. All weights 100–900.</p>
+
+      <table class="type-table">
+        <thead>
+          <tr>
+            <th style="width:80px">Style</th>
+            <th style="width:100px">Size</th>
+            <th style="width:80px">Weight</th>
+            <th style="width:80px">Line-H</th>
+            <th>Preview</th>
+            <th>Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          {typoScale.map(t => (
+            <tr>
+              <td><span class="type-label">{t.label}</span></td>
+              <td><span class="type-meta">{t.size}</span></td>
+              <td><span class="type-meta">{t.weight}</span></td>
+              <td><span class="type-meta">{t.lh}</span></td>
+              <td>
+                <span class="type-preview" style={`font-size:${t.size}; font-weight:${t.weight}; line-height:${t.lh}`}>
+                  Insighty
+                </span>
+              </td>
+              <td><span class="type-use">{t.use}</span></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══ TEXT GRADIENTS ═══ -->
+    <div class="section">
+      <span class="section-label">04 — Text Gradients</span>
+      <h2 class="section-title">Font Gradients</h2>
+      <p class="section-desc">Apply to headings and display text. In CSS: background + -webkit-background-clip: text + -webkit-text-fill-color: transparent.</p>
+
+      <div class="text-grad-grid">
+        {textGradients.map(tg => (
+          <div class="text-grad-card">
+            <div class="text-grad-sample" style={`background: ${tg.css}; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;`}>
+              Financial Intelligence
+            </div>
+            <div class="text-grad-label">{tg.label}</div>
+            <div class="text-grad-code">{tg.css}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══ CAROUSEL TEMPLATES ═══ -->
+    <div class="section">
+      <span class="section-label">05 — Carousel Templates</span>
+      <h2 class="section-title">Social Media Slides</h2>
+      <p class="section-desc">4:5 ratio for Instagram / LinkedIn carousels. These are the approved compositions — adapt copy, keep structure.</p>
+
+      <div class="carousel-grid">
+
+        <!-- Slide 1: Intro / Cover -->
+        <div class="slide slide-navy slide-border">
+          <div class="slide-grid-overlay"></div>
+          <div class="slide-glow" style="background: rgba(74,110,199,0.4);"></div>
+          <div class="slide-top">
+            <div class="slide-logo"><div class="slide-logo-dot"></div> Insighty</div>
+            <div class="slide-year">2025</div>
+          </div>
+          <div class="slide-body">
+            <div class="slide-eyebrow">Meet</div>
+            <h2 class="slide-headline" style="background: linear-gradient(156deg, #ffffff 32.92%, #4a6ec7 91%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+              Financial<br/>Intelligence<br/>for Agencies
+            </h2>
+            <p class="slide-sub">One dashboard for revenue, projects, and pipeline.</p>
+          </div>
+          <div class="slide-bottom">
+            <div class="slide-card">insighty.io</div>
+            <div class="slide-tagline">"Run your agency like a CFO would."</div>
+          </div>
+        </div>
+
+        <!-- Slide 2: Stat -->
+        <div class="slide slide-dark slide-border">
+          <div class="slide-grid-overlay"></div>
+          <div class="slide-glow" style="background: rgba(212,165,116,0.3);"></div>
+          <div class="slide-top">
+            <div class="slide-logo"><div class="slide-logo-dot" style="background:#d4a574"></div> Insighty</div>
+            <div class="slide-year">Stat</div>
+          </div>
+          <div class="slide-body" style="text-align:center">
+            <div class="stat-big" style="background: linear-gradient(135deg, #4a6ec7 0%, #d4a574 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+              43%
+            </div>
+            <div class="stat-label">of agencies lose revenue<br/>to invoice leakage</div>
+            <div style="margin-top:24px; display:flex; flex-wrap:wrap; justify-content:center;">
+              <span class="feature-pill"><span class="feature-pill-dot" style="background:#4a6ec7"></span> This Month view</span>
+              <span class="feature-pill"><span class="feature-pill-dot" style="background:#d4a574"></span> Auto reminders</span>
+            </div>
+          </div>
+          <div class="slide-bottom">
+            <div class="slide-tagline" style="color:rgba(255,255,255,0.25)">insighty.io — Zero invoice left behind.</div>
+          </div>
+        </div>
+
+        <!-- Slide 3: Feature -->
+        <div class="slide slide-midnight slide-border">
+          <div class="slide-grid-overlay"></div>
+          <div class="slide-glow" style="background: rgba(45,155,155,0.35); top: -60px; right: -60px;"></div>
+          <div class="slide-top">
+            <div class="slide-logo"><div class="slide-logo-dot" style="background:#2d9b9b"></div> Insighty</div>
+            <div class="slide-year">Feature</div>
+          </div>
+          <div class="slide-body">
+            <div class="slide-eyebrow">Revenue Planner</div>
+            <h2 class="slide-headline" style="font-size:32px; background: linear-gradient(135deg, #2d9b9b 0%, #4a6ec7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+              See every revenue stream in one matrix
+            </h2>
+            <div class="slide-inner-card">
+              <div class="slide-inner-row">
+                <span class="slide-inner-label">Projects</span>
+                <span class="slide-inner-value">€ 48,500</span>
+              </div>
+              <div class="slide-inner-row">
+                <span class="slide-inner-label">Retainers</span>
+                <span class="slide-inner-value">€ 12,200</span>
+              </div>
+              <div class="slide-inner-row">
+                <span class="slide-inner-label">Hosting</span>
+                <span class="slide-inner-value">€ 3,800</span>
+              </div>
+              <div class="slide-inner-row" style="border-top:1px solid rgba(255,255,255,0.06); padding-top:12px; margin-top:4px">
+                <span class="slide-inner-label" style="color:rgba(255,255,255,0.7)">Total MRR</span>
+                <span class="slide-inner-value" style="color:#2d9b9b">€ 64,500</span>
+              </div>
+            </div>
+          </div>
+          <div class="slide-bottom">
+            <div class="slide-tagline">insighty.io</div>
+          </div>
+        </div>
+
+        <!-- Slide 4: Quote / Testimonial -->
+        <div class="slide slide-border" style="background: linear-gradient(135deg, #1b3a6b 0%, #0c1932 100%);">
+          <div class="slide-grid-overlay"></div>
+          <div class="slide-glow" style="background: rgba(74,110,199,0.5); top: 50%; right: -80px;"></div>
+          <div class="slide-top">
+            <div class="slide-logo"><div class="slide-logo-dot"></div> Insighty</div>
+            <div class="slide-year">★★★★★</div>
+          </div>
+          <div class="slide-body" style="justify-content:center">
+            <div style="font-size:40px; color:rgba(255,255,255,0.15); line-height:1; margin-bottom:16px">"</div>
+            <p style="font-size:20px; font-weight:600; color:#fcfcfc; line-height:1.4; margin:0 0 20px">
+              We stopped leaving money on the table the week we switched to Insighty.
+            </p>
+            <div style="font-size:13px; color:rgba(255,255,255,0.45)">— Agency Owner, 12-person team</div>
+          </div>
+          <div class="slide-bottom">
+            <div class="slide-tagline">insighty.io — Try free for 14 days</div>
+          </div>
+        </div>
+
+        <!-- Slide 5: CTA / Last slide -->
+        <div class="slide slide-border" style="background: linear-gradient(135deg, #4a6ec7 0%, #d4a574 100%);">
+          <div class="slide-glow" style="background: rgba(255,255,255,0.2); top: -80px; right: -80px;"></div>
+          <div class="slide-top">
+            <div class="slide-logo" style="color:#fff"><div class="slide-logo-dot" style="background:#fff"></div> Insighty</div>
+            <div class="slide-year" style="color:rgba(255,255,255,0.6)">2025</div>
+          </div>
+          <div class="slide-body" style="text-align:center; align-items:center">
+            <div style="font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.7); margin-bottom:20px">Ready to start?</div>
+            <h2 class="slide-headline" style="font-size:44px; text-align:center; color:#fff">
+              Run your agency smarter.
+            </h2>
+            <p class="slide-sub" style="color:rgba(255,255,255,0.7); text-align:center; max-width:240px">
+              Free 14-day trial. No credit card required.
+            </p>
+          </div>
+          <div class="slide-bottom">
+            <div class="slide-card" style="text-align:center; background:rgba(0,0,0,0.2); border-color:rgba(255,255,255,0.2); font-weight:600; font-size:14px">
+              insighty.io/trial →
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 6: Problem / Hook -->
+        <div class="slide slide-border" style="background: #0f1217;">
+          <div class="slide-grid-overlay"></div>
+          <div class="slide-glow" style="background: rgba(255,185,162,0.25); top: -60px; left: -60px; right:auto;"></div>
+          <div class="slide-top">
+            <div class="slide-logo"><div class="slide-logo-dot" style="background:#ffb9a2"></div> Insighty</div>
+            <div class="slide-year">Pain Point</div>
+          </div>
+          <div class="slide-body">
+            <div class="slide-eyebrow" style="color:#ffb9a2">Sound familiar?</div>
+            <h2 class="slide-headline" style="font-size:28px; color:#fcfcfc">
+              You're juggling 5 spreadsheets to answer one question:
+            </h2>
+            <p style="font-size:28px; font-weight:800; margin:16px 0 0; background: linear-gradient(135deg, #ffb9a2 0%, #d4a574 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+              "Are we profitable this month?"
+            </p>
+          </div>
+          <div class="slide-bottom">
+            <div style="display:flex; flex-wrap:wrap; gap:6px;">
+              <span class="feature-pill"><span class="feature-pill-dot" style="background:#ffb9a2"></span> No more sheets</span>
+              <span class="feature-pill"><span class="feature-pill-dot" style="background:#d4a574"></span> One dashboard</span>
+            </div>
+            <div class="slide-tagline">insighty.io</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══ VIDEO BG TEMPLATES ═══ -->
+    <div class="section">
+      <span class="section-label">06 — Video / Motion</span>
+      <h2 class="section-title">Background Templates for Video</h2>
+      <p class="section-desc">16:9 backgrounds for demo videos and reels. Use with 15–20% opacity grid overlay.</p>
+
+      <div class="video-bg-grid">
+        <div class="video-bg-card" style="background:#070b10">
+          <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(74,110,199,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(74,110,199,0.06) 1px,transparent 1px);background-size:30px 30px;"></div>
+          <div class="video-bg-label">
+            <div class="video-bg-title">#070b10</div>
+            <div class="video-bg-sub">Void + Blue Grid</div>
+          </div>
+        </div>
+        <div class="video-bg-card" style="background: linear-gradient(135deg, #1b3a6b 0%, #0c1932 100%)">
+          <div class="video-bg-label">
+            <div class="video-bg-title">Navy Gradient</div>
+            <div class="video-bg-sub">#1b3a6b → #0c1932</div>
+          </div>
+        </div>
+        <div class="video-bg-card" style="background: linear-gradient(135deg, #4a6ec7 0%, #d4a574 100%)">
+          <div class="video-bg-label">
+            <div class="video-bg-title">Royal → Gold</div>
+            <div class="video-bg-sub">gradient-1</div>
+          </div>
+        </div>
+        <div class="video-bg-card" style="background: #0c1932">
+          <div style="position:absolute;inset:0;background:radial-gradient(73.01% 80.77% at 19.23% 47.79%, rgba(131,231,238,0.15) 0%, rgba(134,79,254,0) 100%);"></div>
+          <div class="video-bg-label">
+            <div class="video-bg-title">Abyss + Cyan Glow</div>
+            <div class="video-bg-sub">#0c1932 + gradient-12</div>
+          </div>
+        </div>
+        <div class="video-bg-card" style="background: #0f1217">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg, rgba(74,110,199,0.2) 0%, rgba(212,165,116,0.2) 100%);"></div>
+          <div class="video-bg-label">
+            <div class="video-bg-title">Obsidian + Tinted</div>
+            <div class="video-bg-sub">#0f1217 + subtle gradient-1</div>
+          </div>
+        </div>
+        <div class="video-bg-card" style="background: linear-gradient(135deg, #2d9b9b 0%, #4a6ec7 100%)">
+          <div class="video-bg-label">
+            <div class="video-bg-title">Teal → Royal</div>
+            <div class="video-bg-sub">gradient-3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══ BUTTON STYLE ═══ -->
+    <div class="section">
+      <span class="section-label">08 — Buttons</span>
+      <h2 class="section-title">Button Gradient</h2>
+      <p class="section-desc">Default: navy → blue. Hover: reversed, fades in over 500ms. No border radius.</p>
+      <div class="btn-row">
+        <div>
+          <button class="btn-demo"><span>+ Add Domain</span></button>
+          <div class="btn-state-label" style="margin-top:8px">Hover over to see state change</div>
+        </div>
+        <div>
+          <button class="btn-demo"><span>Request a Demo</span></button>
+        </div>
+        <div>
+          <button class="btn-demo"><span>→ Try it free</span></button>
+        </div>
+      </div>
+      <div style="margin-top:32px; padding:20px; background:#0f1217; border:1px solid #1b232f;">
+        <div style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#555558; margin-bottom:12px;">CSS</div>
+        <pre style="font-size:12px; color:#4a6ec7; font-family:monospace; margin:0; line-height:1.7;">Default:  background: linear-gradient(135deg, #1b3a6b 0%, #4a6ec7 100%);
+Hover:    overlay::after &#123; background: linear-gradient(135deg, #4a6ec7 0%, #1b3a6b 100%);
+          opacity: 0 → 1; transition: opacity 500ms ease; &#125;</pre>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══ TOP 5 TOOLS CAROUSEL ═══ -->
+    <div class="section">
+      <span class="section-label">09 — Carousel Example</span>
+      <h2 class="section-title">Top 5 Tools · Founder Voice</h2>
+      <p class="section-desc">Cover is distinct. Tool slides share a consistent background. Text gradients on names. 4:5 ratio, no border radius.</p>
+    </div>
+
+    <div style="max-width:1400px; margin:0 auto; padding:0 48px 80px;">
+      <div class="carousel-strip">
+
+        <!-- ══ S1: COVER ══ distinctive dark treatment -->
+        <div class="slide" style="background:#070b10; border-right:1px solid #1b232f;">
+          <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(74,110,199,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(74,110,199,0.07) 1px,transparent 1px);background-size:30px 30px;pointer-events:none;"></div>
+          <!-- large blue radial glow top-right -->
+          <div style="position:absolute;top:-120px;right:-80px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(74,110,199,0.45) 0%,transparent 70%);pointer-events:none;"></div>
+          <!-- gold glow bottom-left -->
+          <div style="position:absolute;bottom:-80px;left:-60px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(212,165,116,0.2) 0%,transparent 70%);pointer-events:none;"></div>
+
+          <div class="slide-top" style="position:relative;z-index:1;">
+            <div class="slide-logo">
+              <div class="slide-logo-dot"></div>
+              Insighty
+            </div>
+            <div class="slide-year">1 / 6</div>
+          </div>
+
+          <div style="position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:28px 0 0;">
+            <div style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:20px;">Project Management</div>
+            <h2 style="font-size:40px;font-weight:800;line-height:1.05;margin:0 0 20px;background:linear-gradient(156deg,#ffffff 20%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+              5 tools I actually use<br/>to run projects<br/>at my agency.
+            </h2>
+            <p style="font-size:14px;color:rgba(255,255,255,0.38);line-height:1.65;margin:0;font-style:italic;">
+              Not what the influencers say.<br/>What actually works.
+            </p>
+          </div>
+
+          <div style="position:relative;z-index:1;margin-top:32px;">
+            <div style="height:1px;background:rgba(255,255,255,0.08);margin-bottom:14px;"></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:0.06em;">Swipe to see the stack →</span>
+              <span style="font-size:11px;color:rgba(255,255,255,0.2);">@insighty.io</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ S2: LINEAR ══ -->
+        <div class="slide" style="background:linear-gradient(160deg,#0e2044 0%,#1b3a6b 50%,#2a4f8a 100%);border-right:1px solid rgba(255,255,255,0.06);">
+          <div class="slide-grid-overlay"></div>
+          <div class="slide-top">
+            <div class="slide-logo"><div class="slide-logo-dot"></div>Insighty</div>
+            <div class="slide-year">2 / 6</div>
+          </div>
+          <div class="slide-body">
+            <!-- Linear icon: diagonal speed arrow -->
+            <div style="margin-bottom:20px;">
+              <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                <rect width="44" height="44" fill="rgba(255,255,255,0.06)"/>
+                <path d="M10 34L34 10M34 10H18M34 10V26" stroke="url(#lg1)" stroke-width="2.5" stroke-linecap="square"/>
+                <defs>
+                  <linearGradient id="lg1" x1="10" y1="34" x2="34" y2="10" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#83e7ee"/>
+                    <stop offset="1" stop-color="#c6f56f"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:8px;">01 / Linear</div>
+            <h2 style="font-size:46px;font-weight:800;line-height:1;margin:0 0 16px;background:linear-gradient(135deg,#83e7ee 0%,#c6f56f 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+              Linear
+            </h2>
+            <p style="font-size:15px;font-weight:600;color:rgba(255,255,255,0.85);line-height:1.4;margin:0 0 16px;">
+              Task management<br/>for the dev team.
+            </p>
+            <p style="font-size:13px;color:rgba(255,255,255,0.48);line-height:1.7;margin:0;">
+              Clean, fast, no bloat.<br/>
+              Jira is overkill for<br/>
+              a 15-person agency.<br/><br/>
+              Fight me.
+            </p>
+          </div>
+          <div style="position:relative;z-index:1;">
+            <div style="height:1px;background:rgba(255,255,255,0.08);"></div>
+          </div>
+        </div>
+
+        <!-- ══ S3: NOTION ══ -->
+        <div class="slide" style="background:linear-gradient(160deg,#0e2044 0%,#1b3a6b 50%,#2a4f8a 100%);border-right:1px solid rgba(255,255,255,0.06);">
+          <div class="slide-grid-overlay"></div>
+          <div class="slide-top">
+            <div class="slide-logo"><div class="slide-logo-dot"></div>Insighty</div>
+            <div class="slide-year">3 / 6</div>
+          </div>
+          <div class="slide-body">
+            <!-- Notion icon: page with lines -->
+            <div style="margin-bottom:20px;">
+              <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                <rect width="44" height="44" fill="rgba(255,255,255,0.06)"/>
+                <rect x="11" y="9" width="18" height="24" rx="0" stroke="url(#lg2)" stroke-width="2"/>
+                <path d="M15 15h10M15 19h10M15 23h6" stroke="url(#lg2)" stroke-width="1.5" stroke-linecap="square"/>
+                <path d="M29 9l4 4v20H22" stroke="url(#lg2)" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+                <defs>
+                  <linearGradient id="lg2" x1="11" y1="9" x2="33" y2="33" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#c9d5f3"/>
+                    <stop offset="1" stop-color="#d4a574"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:8px;">02 / Notion</div>
+            <h2 style="font-size:46px;font-weight:800;line-height:1;margin:0 0 16px;background:linear-gradient(156deg,#c9d5f3 20%,#d4a574 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+              Notion
+            </h2>
+            <p style="font-size:15px;font-weight:600;color:rgba(255,255,255,0.85);line-height:1.4;margin:0 0 16px;">
+              Briefs, SOWs,<br/>internal docs,<br/>meeting notes.
+            </p>
+            <p style="font-size:13px;color:rgba(255,255,255,0.48);line-height:1.7;margin:0;">
+              Not a project tracker.<br/>
+              Not a spreadsheet.<br/>
+              Just the single place<br/>
+              where things are written down.
+            </p>
+          </div>
+          <div style="position:relative;z-index:1;">
+            <div style="height:1px;background:rgba(255,255,255,0.08);"></div>
+          </div>
+        </div>
+
+        <!-- ══ S4: HARVEST ══ -->
+        <div class="slide" style="background:linear-gradient(160deg,#0e2044 0%,#1b3a6b 50%,#2a4f8a 100%);border-right:1px solid rgba(255,255,255,0.06);">
+          <div class="slide-grid-overlay"></div>
+          <div class="slide-top">
+            <div class="slide-logo"><div class="slide-logo-dot"></div>Insighty</div>
+            <div class="slide-year">4 / 6</div>
+          </div>
+          <div class="slide-body">
+            <!-- Harvest icon: clock -->
+            <div style="margin-bottom:20px;">
+              <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                <rect width="44" height="44" fill="rgba(255,255,255,0.06)"/>
+                <circle cx="22" cy="22" r="11" stroke="url(#lg3)" stroke-width="2"/>
+                <path d="M22 14v8l5 3" stroke="url(#lg3)" stroke-width="2" stroke-linecap="square"/>
+                <defs>
+                  <linearGradient id="lg3" x1="11" y1="11" x2="33" y2="33" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#d4a574"/>
+                    <stop offset="1" stop-color="#c08040"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:8px;">03 / Harvest</div>
+            <h2 style="font-size:46px;font-weight:800;line-height:1;margin:0 0 16px;background:linear-gradient(135deg,#d4a574 0%,#c08040 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+              Harvest
+            </h2>
+            <p style="font-size:15px;font-weight:600;color:rgba(255,255,255,0.85);line-height:1.4;margin:0 0 16px;">
+              Time tracking.
+            </p>
+            <p style="font-size:13px;color:rgba(255,255,255,0.48);line-height:1.7;margin:0;">
+              Nobody loves logging time.<br/>
+              But you can't bill accurately<br/>
+              or price the next project<br/>
+              right without it.<br/><br/>
+              Non-negotiable.
+            </p>
+          </div>
+          <div style="position:relative;z-index:1;">
+            <div style="height:1px;background:rgba(255,255,255,0.08);"></div>
+          </div>
+        </div>
+
+        <!-- ══ S5: FIGMA ══ -->
+        <div class="slide" style="background:linear-gradient(160deg,#0e2044 0%,#1b3a6b 50%,#2a4f8a 100%);border-right:1px solid rgba(255,255,255,0.06);">
+          <div class="slide-grid-overlay"></div>
+          <div class="slide-top">
+            <div class="slide-logo"><div class="slide-logo-dot"></div>Insighty</div>
+            <div class="slide-year">5 / 6</div>
+          </div>
+          <div class="slide-body">
+            <!-- Figma icon: three circles / color blocks -->
+            <div style="margin-bottom:20px;">
+              <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                <rect width="44" height="44" fill="rgba(255,255,255,0.06)"/>
+                <rect x="11" y="9" width="10" height="10" fill="url(#lg4a)"/>
+                <rect x="23" y="9" width="10" height="10" fill="url(#lg4b)"/>
+                <rect x="11" y="21" width="10" height="10" fill="url(#lg4c)"/>
+                <circle cx="28" cy="26" r="5" fill="url(#lg4d)"/>
+                <rect x="11" y="33" width="10" height="3" fill="rgba(255,255,255,0.2)"/>
+                <defs>
+                  <linearGradient id="lg4a" x1="11" y1="9" x2="21" y2="19" gradientUnits="userSpaceOnUse"><stop stop-color="#ff7262"/><stop offset="1" stop-color="#f24e1e"/></linearGradient>
+                  <linearGradient id="lg4b" x1="23" y1="9" x2="33" y2="19" gradientUnits="userSpaceOnUse"><stop stop-color="#a259ff"/><stop offset="1" stop-color="#7b3fe4"/></linearGradient>
+                  <linearGradient id="lg4c" x1="11" y1="21" x2="21" y2="31" gradientUnits="userSpaceOnUse"><stop stop-color="#0acf83"/><stop offset="1" stop-color="#1abcfe"/></linearGradient>
+                  <linearGradient id="lg4d" x1="23" y1="21" x2="33" y2="31" gradientUnits="userSpaceOnUse"><stop stop-color="#1abcfe"/><stop offset="1" stop-color="#0acf83"/></linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:8px;">04 / Figma</div>
+            <h2 style="font-size:46px;font-weight:800;line-height:1;margin:0 0 16px;background:linear-gradient(135deg,#a259ff 0%,#1abcfe 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+              Figma
+            </h2>
+            <p style="font-size:15px;font-weight:600;color:rgba(255,255,255,0.85);line-height:1.4;margin:0 0 16px;">
+              Design handoffs,<br/>client reviews,<br/>feedback rounds.
+            </p>
+            <p style="font-size:13px;color:rgba(255,255,255,0.48);line-height:1.7;margin:0;">
+              Saves us from<br/>
+              "can you move the logo<br/>
+              2px to the right"<br/>
+              email threads.
+            </p>
+          </div>
+          <div style="position:relative;z-index:1;">
+            <div style="height:1px;background:rgba(255,255,255,0.08);"></div>
+          </div>
+        </div>
+
+        <!-- ══ S6: INSIGHTY ══ closing / CTA -->
+        <div class="slide" style="background:linear-gradient(160deg,#070b10 0%,#0c1932 60%,#112445 100%);">
+          <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(74,110,199,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(74,110,199,0.06) 1px,transparent 1px);background-size:30px 30px;pointer-events:none;"></div>
+          <div style="position:absolute;bottom:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(212,165,116,0.3) 0%,transparent 70%);pointer-events:none;"></div>
+
+          <div class="slide-top" style="position:relative;z-index:1;">
+            <div class="slide-logo">
+              <div class="slide-logo-dot" style="background:#d4a574;"></div>
+              Insighty
+            </div>
+            <div class="slide-year">6 / 6</div>
+          </div>
+
+          <div style="position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center;padding:24px 0;">
+            <!-- Insighty icon: chart/lightning -->
+            <div style="margin-bottom:20px;">
+              <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                <rect width="44" height="44" fill="rgba(212,165,116,0.1)"/>
+                <rect x="10" y="26" width="5" height="9" fill="url(#lgi)"/>
+                <rect x="18" y="18" width="5" height="17" fill="url(#lgi)"/>
+                <rect x="26" y="12" width="5" height="23" fill="url(#lgi)"/>
+                <path d="M10 8l8 8 6-4 10-6" stroke="url(#lgi)" stroke-width="2" stroke-linecap="square"/>
+                <defs>
+                  <linearGradient id="lgi" x1="10" y1="8" x2="34" y2="35" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#d4a574"/>
+                    <stop offset="1" stop-color="#4a6ec7"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:8px;">05 / Insighty</div>
+            <h2 style="font-size:46px;font-weight:800;line-height:1;margin:0 0 16px;background:linear-gradient(135deg,#d4a574 0%,#4a6ec7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+              Insighty
+            </h2>
+            <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.7;margin:0;">
+              Everything above tells me<br/>
+              what happened.<br/><br/>
+              Insighty tells me what I<br/>
+              need to do today — invoices,<br/>
+              budgets, capacity, hosting.<br/><br/>
+              The connective tissue.
+            </p>
+          </div>
+
+          <div style="position:relative;z-index:1;">
+            <div style="height:1px;background:rgba(255,255,255,0.08);margin-bottom:14px;"></div>
+            <div style="font-size:13px;font-weight:700;color:#d4a574;letter-spacing:0.01em;">→ Try it free, link in bio.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Caption -->
+      <div style="margin-top:32px; padding:24px; background:#0f1217; border:1px solid #1b232f; max-width:680px;">
+        <div style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#555558; margin-bottom:12px;">Caption</div>
+        <p style="font-size:15px; color:#888888; line-height:1.7; margin:0;">
+          Every agency I talk to runs on a different stack.<br/><br/>
+          But the problem is always the same — 5 tools, no single source of truth, and money falling through the gaps.<br/><br/>
+          Here's what we use at Renderspace 👆
+        </p>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ═══ LOGO LOCKUPS ═══ -->
+    <div class="section">
+      <span class="section-label">07 — Logo</span>
+      <h2 class="section-title">Logo Lockups</h2>
+      <p class="section-desc">Minimum width: 80px. Always maintain clear space equal to the cap-height of the wordmark.</p>
+
+      <div class="logo-grid">
+        <div class="logo-card" style="background:#070b10;">
+          <span class="logo-text" style="color:#fcfcfc">Insighty</span>
+        </div>
+        <div class="logo-card" style="background:#fcfcfc;">
+          <span class="logo-text" style="color:#1b3a6b">Insighty</span>
+        </div>
+        <div class="logo-card" style="background: linear-gradient(135deg, #4a6ec7 0%, #d4a574 100%);">
+          <span class="logo-text" style="color:#fff">Insighty</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ FOOTER ═══ -->
+    <div class="brand-footer">
+      <div class="brand-footer-left">Insighty Brand Kit · Internal use only · v1.0 · 2025</div>
+      <div class="brand-footer-right">insighty.io</div>
+    </div>
+
+  </div>
+</BaseLayout>

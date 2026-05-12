@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 208 60" role="img" aria-label="Insighty">
+  <title>Insighty</title>
+  <defs>
+    <style>@import url('https://api.fontshare.com/v2/css?f[]=satoshi@500&amp;display=swap');</style>
+    <!-- wordmark gradient: white → royal blue (gradient-8 style) -->
+    <linearGradient id="tg" x1="8" y1="20" x2="200" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="32%"  stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#4a6ec7"/>
+    </linearGradient>
+    <!-- oversized first-i bullseye: white core → blue → navy -->
+    <radialGradient id="bc" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#ffffff"/>
+      <stop offset="55%"  stop-color="#4a6ec7"/>
+      <stop offset="100%" stop-color="#1b3a6b"/>
+    </radialGradient>
+  </defs>
+
+  <!-- wordmark: white→blue gradient text, Satoshi Medium -->
+  <text x="8" y="48"
+    font-family="Satoshi,'Inter Tight','Helvetica Neue',Arial,sans-serif"
+    font-size="38" font-weight="500" letter-spacing="0.04em"
+    fill="url(#tg)">insighty</text>
+
+  <!-- oversized bullseye on first "i" tittle -->
+  <circle cx="13" cy="18" r="8"   fill="#c9d5f3"/>
+  <circle cx="13" cy="18" r="5.5" fill="url(#bc)"/>
+</svg>

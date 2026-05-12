@@ -12,7 +12,7 @@ const smoothScrolling = () => {
   // Only initialize Lenis on non-mobile devices
   if (!isMobile) {
     lenis = new Lenis({
-      lerp: 0.1,
+      lerp: 0.18,
       smoothWheel: true,
     });
 

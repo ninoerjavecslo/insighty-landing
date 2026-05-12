@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 178 44" role="img" aria-label="Insighty">
+  <title>Insighty</title>
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@700&amp;display=swap');</style>
+  </defs>
+  <!-- ascending bars mark -->
+  <rect x="0"  y="32" width="6" height="10" rx="2" fill="#a3b8ea"/>
+  <rect x="9"  y="25" width="6" height="17" rx="2" fill="#6e8fd9"/>
+  <rect x="18" y="17" width="6" height="25" rx="2" fill="#4a6ec7"/>
+  <rect x="27" y="9"  width="6" height="33" rx="2" fill="#1b3a6b"/>
+  <!-- i-dot accent -->
+  <circle cx="30" cy="5" r="3.5" fill="#d4a574"/>
+  <!-- wordmark -->
+  <text x="45" y="33"
+    font-family="'Inter Tight','Helvetica Neue',Arial,sans-serif"
+    font-size="26" font-weight="700" letter-spacing="-0.3"
+    fill="#1b3a6b">insighty</text>
+</svg>
